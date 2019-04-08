@@ -12,13 +12,13 @@ namespace pi.Model
         Special _special;
         uint _health;
         Vector2f _position;
-        public Fighter(string name, Sprite sprite, Special special, float x, float y)
+
+        public Fighter(string name, Sprite sprite, Vector2f position)
         {
             _name = name;
             _sprite = sprite;
-            _special = special;
             _health = 100;
-            _position = new Vector2f(x, y);
+            _position = position;
         }
 
         internal void Update()

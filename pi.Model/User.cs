@@ -4,7 +4,7 @@ using System.Text;
 
 namespace pi.Model
 {
-    class User
+    public class User
     {
         Fighter _fighter;
 
