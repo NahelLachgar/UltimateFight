@@ -1,0 +1,14 @@
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\bin\Debug\netcoreapp2.1\pi.Ui.deps.json
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\bin\Debug\netcoreapp2.1\pi.Ui.runtimeconfig.json
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\bin\Debug\netcoreapp2.1\pi.Ui.runtimeconfig.dev.json
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\bin\Debug\netcoreapp2.1\pi.Ui.dll
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\obj\Debug\netcoreapp2.1\pi.Ui.csprojAssemblyReference.cache
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\obj\Debug\netcoreapp2.1\pi.Ui.csproj.CoreCompileInputs.cache
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\obj\Debug\netcoreapp2.1\pi.Ui.AssemblyInfoInputs.cache
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\obj\Debug\netcoreapp2.1\pi.Ui.AssemblyInfo.cs
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\bin\Debug\netcoreapp2.1\pi.Ui.pdb
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\bin\Debug\netcoreapp2.1\pi.Model.dll
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\bin\Debug\netcoreapp2.1\pi.Model.pdb
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\obj\Debug\netcoreapp2.1\pi.Ui.csproj.CopyComplete
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\obj\Debug\netcoreapp2.1\pi.Ui.dll
+C:\Users\LACHGARNahel\Documents\dev\pi\pi.Ui\obj\Debug\netcoreapp2.1\pi.Ui.pdb

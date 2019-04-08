@@ -1,0 +1,78 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "558c706e0710a727806e477f8adccc0e5cd352b6"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "pi.Model/1.0.0": {
+        "dependencies": {
+          "ITI.SFML.Graphics": "0.1.0"
+        },
+        "runtime": {
+          "pi.Model.dll": {}
+        }
+      },
+      "ITI.SFML.Graphics/0.1.0": {
+        "dependencies": {
+          "ITI.SFML.System": "0.1.0",
+          "ITI.SFML.Window": "0.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ITI.SFML.Graphics.dll": {
+            "assemblyVersion": "0.1.0.0",
+            "fileVersion": "0.0.24416.53026"
+          }
+        }
+      },
+      "ITI.SFML.System/0.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/ITI.SFML.System.dll": {
+            "assemblyVersion": "0.1.0.0",
+            "fileVersion": "0.0.24416.53026"
+          }
+        }
+      },
+      "ITI.SFML.Window/0.1.0": {
+        "dependencies": {
+          "ITI.SFML.System": "0.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ITI.SFML.Window.dll": {
+            "assemblyVersion": "0.1.0.0",
+            "fileVersion": "0.0.24416.53026"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "pi.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ITI.SFML.Graphics/0.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fp5u4g/GBvUe/S/QYvNhfXi3bNu6F4xUTAEwUnc6AKGMIYQ1BsxngED2QDP5K9n4lE+l0wZfrPboIZlrpq9/CQ==",
+      "path": "iti.sfml.graphics/0.1.0",
+      "hashPath": "iti.sfml.graphics.0.1.0.nupkg.sha512"
+    },
+    "ITI.SFML.System/0.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bwM0xmh5omxE3DWukLrb0cR0KAYJOkP8BA4lZPu1LXljwUr8C77VPP2FO5fvSgBtThKeVzwBcUutdYiUrGfg6w==",
+      "path": "iti.sfml.system/0.1.0",
+      "hashPath": "iti.sfml.system.0.1.0.nupkg.sha512"
+    },
+    "ITI.SFML.Window/0.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Fnejw7nGCr2YxoAUVgwwMTQWfhpPW01hahMjA73cKF71oDqHh5JwCLEKMJDorF4iGNKqbAV+wmh8i9VZLIZJ3g==",
+      "path": "iti.sfml.window/0.1.0",
+      "hashPath": "iti.sfml.window.0.1.0.nupkg.sha512"
+    }
+  }
+}
