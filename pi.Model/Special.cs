@@ -4,7 +4,7 @@ using System.Text;
 
 namespace pi.Model
 {
-    class Special
+    public class Special
     {
     }
 }
