@@ -768,17 +768,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LACHGARNahel\\Documents\\dev\\pi\\pi.Model\\pi.Model.csproj",
+      "projectUniqueName": "C:\\Users\\LACHGARNahel\\Documents\\dev\\pi-S3\\pi.Model\\pi.Model.csproj",
       "projectName": "pi.Model",
-      "projectPath": "C:\\Users\\LACHGARNahel\\Documents\\dev\\pi\\pi.Model\\pi.Model.csproj",
+      "projectPath": "C:\\Users\\LACHGARNahel\\Documents\\dev\\pi-S3\\pi.Model\\pi.Model.csproj",
       "packagesPath": "C:\\Users\\LACHGARNahel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LACHGARNahel\\Documents\\dev\\pi\\pi.Model\\obj\\",
+      "outputPath": "C:\\Users\\LACHGARNahel\\Documents\\dev\\pi-S3\\pi.Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\LACHGARNahel\\Documents\\dev\\pi\\NuGet.Config",
+        "C:\\Users\\LACHGARNahel\\Documents\\dev\\pi-S3\\NuGet.Config",
         "C:\\Users\\LACHGARNahel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
