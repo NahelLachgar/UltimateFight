@@ -3,27 +3,33 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 
-namespace pi.Model
+namespace pi
 {
-    public class Fighter
+    public class Character
     {
-        string _name;
-        Sprite _sprite;
-        Special _special;
-        uint _health;
-        Vector2f _position;
+        readonly internal string _name;
+        internal Sprite _sprite;
+      // internal Special _special;
+        internal uint _health = 100;
+        internal Vector2f _position;
 
-        public Fighter(string name, Sprite sprite, Vector2f position)
+        public Character(string name, Sprite sprite)
         {
             _name = name;
             _sprite = sprite;
-            _health = 100;
-            _position = position;
         }
 
-        internal string Name
+        internal string Name => _name;
+
+        internal uint Health
         {
-            get { return _name; }
+            get { return _health; }
+            set { _health = value; }
+        }
+
+        internal Vector2f Position
+        {
+            get { return _position; }
         }
 
         internal void Update()
@@ -39,9 +45,11 @@ namespace pi.Model
         internal void MoveRight(float xToAdd)
         {
         }
+
         internal void MoveLeft(float xToRemove)
         {
         }
+
         internal void Jump(float toAdd)
         {
         }

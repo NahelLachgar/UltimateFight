@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace pi.Model
+namespace pi
 {
     public class Special
     {
