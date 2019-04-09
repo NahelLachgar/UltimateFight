@@ -21,10 +21,21 @@ namespace pi.Model
             _position = position;
         }
 
+        internal string Name
+        {
+            get { return _name; }
+        }
+
         internal void Update()
         {
 
         }
+
+        internal void Waiting()
+        {
+
+        }
+
         internal void MoveRight(float xToAdd)
         {
         }
