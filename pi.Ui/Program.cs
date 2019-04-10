@@ -14,7 +14,7 @@ namespace pi
             //BALROG
 
             Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"),factory.NewStage("stage1"));
-            using (RenderWindow window = new RenderWindow(VideoMode.DesktopMode, "Test window"))
+            using (RenderWindow window = new RenderWindow(VideoMode.DesktopMode, "Test window", Styles.Default))
             {
                 while (window.IsOpen)
                 {
