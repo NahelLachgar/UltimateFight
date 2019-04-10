@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
@@ -12,11 +13,14 @@ namespace pi
       // internal Special _special;
         internal uint _health = 100;
         internal Vector2f _position;
+        Dictionary<string, IntRect> _sprites;
+        //Animation _animation;
 
         public Character(string name, Sprite sprite)
         {
             _name = name;
             _sprite = sprite;
+           // _animation = new Animation(this);
         }
 
         internal string Name => _name;

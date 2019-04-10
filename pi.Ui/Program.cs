@@ -10,8 +10,10 @@ namespace pi
     {
         static void Main(string[] args)
         {
+            Factory factory = new Factory();
+            //BALROG
 
-            Game game = new Game();
+            Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"));
             using (RenderWindow window = new RenderWindow(VideoMode.DesktopMode, "Test window"))
             {
                 while (window.IsOpen)
