@@ -13,6 +13,7 @@ namespace pi
             Texture texture = new Texture("../../../../img/characters/" + img);
             texture.Smooth = true;
             Sprite sprite = new Sprite(texture);
+            sprite.Scale = scale;
             sprite.TextureRect = new IntRect(rect.Left,rect.Top,rect.Width,rect.Height);
             Character character = new Character(name, sprite);
             return character;
