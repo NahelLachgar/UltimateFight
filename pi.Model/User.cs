@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace pi
-{
+{ 
     public class User
     {
         uint _wins;
