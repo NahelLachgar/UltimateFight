@@ -29,7 +29,10 @@ namespace pi
                     window.Draw(game._fighter2._sprite);
                     window.Display();
 
-
+                    window.KeyPressed += (sender, e) =>
+                    {
+                        if ( e.Code == Keyboard.Key.Escape ) window.Close();
+                    };
 
                 }
             }
