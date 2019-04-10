@@ -19,12 +19,13 @@ namespace pi
             return character;
         }
 
-        public Stage CreateStage(string name, string img, int groundHeight, Vector2f scale)
+        public Stage CreateStage(string name, string img, int groundHeight, float X, float Y)
         {
             Texture texture = new Texture("../../../../img/stages/" + img);
-            Sprite sprite = new Sprite(texture);
-            sprite.Scale = scale;
-            Stage stage = new Stage(name, sprite, groundHeight);
+            //Sprite sprite = new Sprite(texture);
+            //sprite.Scale = scale;
+
+            Stage stage = new Stage(name, /*sprite,*/ groundHeight, X, Y, texture);
             return stage;
         }
         
@@ -39,12 +40,12 @@ namespace pi
                     return null;
             }
         }
-        public Stage NewStage (string name)
+        public Stage NewStage(string name, float X, float Y)
         {
             switch(name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1.jpg", 600, new Vector2f(1.25F, 2F));
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 600, X, Y);
                     return stage;
                 default:
                     return null;

@@ -13,10 +13,11 @@ namespace pi
             Factory factory = new Factory();
             //BALROG
 
-            Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"),factory.NewStage("stage1"));
-            using (RenderWindow window = new RenderWindow(VideoMode.DesktopMode, "Test window", Styles.Default))
+            using (RenderWindow window = new RenderWindow(new VideoMode(VideoMode.DesktopMode.Width, VideoMode.DesktopMode.Height), "Test window", Styles.Default))
             {
-                while (window.IsOpen)
+                Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"),factory.NewStage("stage1", window.Size.X, window.Size.Y));
+
+                while ( window.IsOpen)
                 {
                     game.Update();
 
