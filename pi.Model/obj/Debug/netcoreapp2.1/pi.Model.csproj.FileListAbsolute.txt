@@ -6,3 +6,12 @@ C:\Users\LACHGARNahel\Documents\dev\pi\pi.Model\obj\Debug\netcoreapp2.1\pi.Model
 C:\Users\LACHGARNahel\Documents\dev\pi\pi.Model\bin\Debug\netcoreapp2.1\pi.Model.pdb
 C:\Users\LACHGARNahel\Documents\dev\pi\pi.Model\obj\Debug\netcoreapp2.1\pi.Model.dll
 C:\Users\LACHGARNahel\Documents\dev\pi\pi.Model\obj\Debug\netcoreapp2.1\pi.Model.pdb
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\bin\Debug\netcoreapp2.1\pi.Model.deps.json
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\bin\Debug\netcoreapp2.1\pi.Model.dll
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\bin\Debug\netcoreapp2.1\pi.Model.pdb
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\obj\Debug\netcoreapp2.1\pi.Model.csprojAssemblyReference.cache
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\obj\Debug\netcoreapp2.1\pi.Model.csproj.CoreCompileInputs.cache
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\obj\Debug\netcoreapp2.1\pi.Model.AssemblyInfoInputs.cache
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\obj\Debug\netcoreapp2.1\pi.Model.AssemblyInfo.cs
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\obj\Debug\netcoreapp2.1\pi.Model.dll
+C:\Users\LACHGARNahel\Documents\dev\pi-S3\pi.Model\obj\Debug\netcoreapp2.1\pi.Model.pdb

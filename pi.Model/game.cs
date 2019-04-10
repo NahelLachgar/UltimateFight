@@ -10,8 +10,8 @@ namespace pi
         Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
-        Character _fighter1;
-        Character _fighter2;
+       public Character _fighter1;
+        public Character _fighter2;
         User _user1;
         User _user2;
         float _moveSpeed = 4;

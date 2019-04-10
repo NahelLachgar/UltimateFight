@@ -9,7 +9,7 @@ namespace pi
     public class Character
     {
         readonly internal string _name;
-        internal Sprite _sprite;
+        public  Sprite _sprite;
       // internal Special _special;
         internal uint _health = 100;
         internal Vector2f _position;

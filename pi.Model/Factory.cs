@@ -8,33 +8,22 @@ namespace pi
 {
     public class Factory
     {
-        public Dictionary<string, Character> _characters;
-        public Dictionary<string, Stage> _stages;
-
-        public Factory()
-        {
-            _characters = new Dictionary<string, Character>();
-            _stages = new Dictionary<string, Stage>();
-        }
-
         public Character CreateCharacter (string name, string img, IntRect rect, Vector2f scale)
         {
-            Texture texture = new Texture("../../../../img/characters" + img);
+            Texture texture = new Texture("../../../../img/characters/" + img);
             texture.Smooth = true;
             Sprite sprite = new Sprite(texture);
             sprite.TextureRect = new IntRect(rect.Left,rect.Top,rect.Width,rect.Height);
             Character character = new Character(name, sprite);
-            _characters.Add(name, character);
             return character;
         }
 
         public Stage CreateStage(string name, string img, int groundHeight, Vector2f scale)
         {
-            Texture texture = new Texture("../../../../img/stage" + img);
+            Texture texture = new Texture("../../../../img/stages/" + img);
             Sprite sprite = new Sprite(texture);
             sprite.Scale = scale;
             Stage stage = new Stage(name, sprite, groundHeight);
-            _stages.Add(name, stage);
             return stage;
         }
         
