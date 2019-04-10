@@ -19,11 +19,17 @@ namespace pi
                 while (window.IsOpen)
                 {
                     game.Update();
+
+
                     window.DispatchEvents();
                     window.Clear();
                     window.Draw(game._fighter1._sprite);
                     window.Display();
 
+                    window.KeyPressed += (sender, e) =>
+                    {
+                        if ( e.Code == Keyboard.Key.Escape ) window.Close();
+                    };
 
 
                 }
