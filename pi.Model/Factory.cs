@@ -43,7 +43,7 @@ namespace pi
             switch(name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1", 600, new Vector2f(1.25F, 2F));
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 600, new Vector2f(1.25F, 2F));
                     return stage;
                 default:
                     return null;

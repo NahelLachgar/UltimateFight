@@ -7,11 +7,12 @@ namespace pi
 {
     public class Game { 
         Time _timer;
-        Stage stage;
+        public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
-       public Character _fighter1;
+        public Character _fighter1;
         public Character _fighter2;
+        public Stage _stage;
         User _user1;
         User _user2;
         float _moveSpeed = 4;
@@ -20,11 +21,12 @@ namespace pi
         User _winner;
         User _loser;
 
-        public Game(Time timer, Character fighter1, Character fighter2, User user1=null, User user2=null)
+        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, User user1=null, User user2=null)
         {
             _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
+            _stage = stage;
             _user1 = user1;
             _user2 = user2;
             _roundNb = 1;

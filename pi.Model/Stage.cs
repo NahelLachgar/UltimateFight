@@ -10,7 +10,7 @@ namespace pi
     public class Stage
     {
         string _name;
-        Sprite _sprite;
+        public Sprite _sprite;
         int _groundHeight;  
 
         public Stage(string name, Sprite sprite, int groundHeight)
