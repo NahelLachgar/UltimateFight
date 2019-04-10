@@ -6,7 +6,7 @@ using SFML.System;
 
 namespace pi
 {
-    public class Character
+    public class Character //:Sprite
     {
         readonly internal string _name;
         public  Sprite _sprite;

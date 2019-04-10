@@ -32,6 +32,10 @@ bld/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+pi.Model/bin
+pi.Model/obj
+pi.Ui/bin
+pi.Ui/obj
 */obj/
 */bin/
 *.cache
