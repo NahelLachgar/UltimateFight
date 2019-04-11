@@ -10,20 +10,25 @@ namespace pi
     {
         readonly internal string _name;
         public  Sprite _sprite;
-      // internal Special _special;
-        internal uint _health = 100;
+        // internal Special _special;
+        internal uint _health;
         internal Vector2f _position;
+        internal bool _alive;
         Dictionary<string, IntRect> _sprites;
         //Animation _animation;
 
         public Character(string name, Sprite sprite)
         {
             _name = name;
+            _health = 100;
+            _alive = true;
             _sprite = sprite;
            // _animation = new Animation(this);
         }
 
         internal string Name => _name;
+
+        internal bool IsAlive => _alive;
 
         internal uint Health
         {
@@ -82,9 +87,14 @@ namespace pi
 
         }
 
-        internal void TakeDammage()
+        internal void TakeDammage(uint Hit)
         {
-
+            _health -= Hit;
+            if(_health <= 0)
+            {
+                _health = 0;
+                _alive = false;
+            }
         }
     }
 }

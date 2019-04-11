@@ -19,13 +19,13 @@ namespace pi
             return character;
         }
 
-        public Stage CreateStage(string name, string img, int groundHeight, float X, float Y)
+        public Stage CreateStage(string name, string img, int groundHeight, RenderWindow window)
         {
             Texture texture = new Texture("../../../../img/stages/" + img);
             //Sprite sprite = new Sprite(texture);
             //sprite.Scale = scale;
 
-            Stage stage = new Stage(name, /*sprite,*/ groundHeight, X, Y, texture);
+            Stage stage = new Stage(name, /*sprite,*/ groundHeight, window, texture);
             return stage;
         }
         
@@ -40,12 +40,13 @@ namespace pi
                     return null;
             }
         }
-        public Stage NewStage(string name, float X, float Y)
+
+        public Stage NewStage(string name, RenderWindow window)
         {
             switch(name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1.jpg", 600, X, Y);
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 600, window);
                     return stage;
                 default:
                     return null;

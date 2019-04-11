@@ -20,6 +20,10 @@ namespace pi
         float _gravity = 1;
         User _winner;
         User _loser;
+        Clock _clock = new Clock();
+        float _timerGame = 99f;
+        float _currentTime;
+
 
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, User user1=null, User user2=null)
         {
@@ -31,6 +35,7 @@ namespace pi
             _user2 = user2;
             _roundNb = 1;
         }
+
         internal void EndGame ()
         {
           /*  if (_fighter1.Health > _fighter2.Health)
@@ -43,6 +48,7 @@ namespace pi
             }
             _winner.Wins += 1;*/
         }
+
         public void Update ()
         {
             if (_fighter1.Health == 0 || _fighter2.Health == 0 || _round == _roundNb && _timer.AsSeconds() == 0)
