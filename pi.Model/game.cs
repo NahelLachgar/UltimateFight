@@ -1,4 +1,6 @@
-﻿using SFML.System;
+﻿using SFML.Graphics;
+using SFML.System;
+using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +8,6 @@ using System.Text;
 namespace pi
 {
     public class Game { 
-        Time _timer;
         public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
@@ -21,13 +22,14 @@ namespace pi
         User _winner;
         User _loser;
         Clock _clock = new Clock();
+        Time _timer = new Time();
         float _timerGame = 99f;
         float _currentTime;
 
 
-        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, User user1=null, User user2=null)
+        public Game(/*Time timer,*/ Character fighter1, Character fighter2, Stage stage, User user1=null, User user2=null)
         {
-            _timer = timer;
+            //_timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
             _stage = stage;
@@ -51,10 +53,17 @@ namespace pi
 
         public void Update ()
         {
-            if (_fighter1.Health == 0 || _fighter2.Health == 0 || _round == _roundNb && _timer.AsSeconds() == 0)
+            // Timer management
+            _timer = _clock.ElapsedTime;
+            _currentTime = _timer.AsSeconds();
+
+            if (_fighter1.GetHealth == 0 || _fighter2.GetHealth == 0 || _round == _roundNb && _timer.AsSeconds() == 0)
                 EndGame();
+
             _fighter1.Update();
             _fighter2.Update();
+
+
         }
     }
 }

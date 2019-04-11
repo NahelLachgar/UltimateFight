@@ -10,40 +10,46 @@ namespace pi
 {
     public class GameInterface
     {
-        Text _text;
-        internal RectangleShape _HealthBar1;
-        RectangleShape _BackHealthBar1;
-        RectangleShape _RedBar1;
-        RectangleShape _HealthBar2;
-        RectangleShape _BackHealthBar2;
+        private Text _text;
+        private RectangleShape _HealthBar1;
+        private RectangleShape _BackHealthBar1;
+        private RectangleShape _RedBar1;
+        private RectangleShape _HealthBar2;
+        private RectangleShape _BackHealthBar2;
+        private float _windowX;
+        private float _windowY;
+
+
 
         Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
-        public List<RectangleShape> _inteface = new List<RectangleShape>();
+        private List<RectangleShape> _gameInterface = new List<RectangleShape>();
 
 
-        public GameInterface(RenderWindow _window)
+        public GameInterface(RenderWindow window)
         {
-           /* _text = new Text()
-            {
-                Font = new Font(s),
-                CharacterSize = 64,
-                FillColor = Color.Blue,
-                OutlineThickness = 5.0F,
-                OutlineColor = Color.White,
-                Style = 0
-            };*/
+            _windowX = Convert.ToSingle(window.Size.X);
+            _windowY = Convert.ToSingle(window.Size.Y);
+            /* _text = new Text()
+             {
+                 Font = new Font(s),
+                 CharacterSize = 64,
+                 FillColor = Color.Blue,
+                 OutlineThickness = 5.0F,
+                 OutlineColor = Color.White,
+                 Style = 0
+             };*/
 
             _HealthBar1 = new RectangleShape()
             {
-                Position = new Vector2f((_window.Size.X /100 * 10), 30),
-                Size = new Vector2f((_window.Size.X /100 *30), 20),
+                Position = new Vector2f((_windowX /100f * 10f), 30f),
+                Size = new Vector2f((_windowX /100f *30f), 20f),
                 FillColor = Color.Green,
             };
 
             _BackHealthBar1 = new RectangleShape()
             {
-                Position = new Vector2f((_window.Size.X /100 * 10), 30),
-                Size = new Vector2f((_window.Size.X /100 *30), 20),
+                Position = new Vector2f(( _windowX / 100f * 10f), 30f),
+                Size = new Vector2f(( _windowX / 100f *30f), 20f),
                 FillColor = Color.Black,
                 OutlineThickness = (4),
                 OutlineColor = Color.White
@@ -51,15 +57,15 @@ namespace pi
 
             _HealthBar2 = new RectangleShape()
             {
-                Position = new Vector2f(_window.Size.X - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 30),
-                Size = new Vector2f((_window.Size.X /100 *30), 20),
+                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 30f),
+                Size = new Vector2f(( _windowX / 100f *30f), 20f),
                 FillColor = Color.Green,
             };
 
             _BackHealthBar2 = new RectangleShape()
             {
-                Position = new Vector2f(_window.Size.X - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 30),
-                Size = new Vector2f((_window.Size.X /100 *30), 20),
+                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 30f),
+                Size = new Vector2f(( _windowX / 100f *30f), 20f),
                 FillColor = Color.Black,
                 OutlineThickness = (4),
                 OutlineColor = Color.White
@@ -67,44 +73,57 @@ namespace pi
 
             _RedBar1 = new RectangleShape()
             {
-                Position = new Vector2f((_window.Size.X /100 * 10), 30),
+                Position = new Vector2f(( _windowX / 100f * 10f), 30f),
                 Size = new Vector2f(0f, 20f),
                 FillColor = Color.Red,
             };
 
             
-            _inteface.Add(_BackHealthBar1);
-            _inteface.Add(_BackHealthBar2);
-            _inteface.Add(_RedBar1);
-            
-            _inteface.Add(_HealthBar1);
-            _inteface.Add(_HealthBar2);
+            _gameInterface.Add(_BackHealthBar1);
+            _gameInterface.Add(_BackHealthBar2);
+            _gameInterface.Add(_RedBar1);
+            _gameInterface.Add(_HealthBar1);
+            _gameInterface.Add(_HealthBar2);
+
         }
 
-        public RectangleShape HealthBar1
+
+        internal RectangleShape GetHealthBar1
+            =>  _HealthBar1;
+
+        internal RectangleShape GetBackHealthBar1
+            => _BackHealthBar1;
+
+        internal RectangleShape GetRedBar1
+            => _RedBar1;
+
+        internal RectangleShape GetHealthBar2
+            => _HealthBar2;
+
+        internal RectangleShape GetBackHealthBar2
+            => _BackHealthBar2;
+
+        public List<RectangleShape> GetGameInterface
+            => _gameInterface;
+
+        public void Update(uint HealthPlayer1, uint HealthPlayer2)
         {
-            get { return _HealthBar1; }
-            set { _HealthBar1 = value; }
-        }
-        public RectangleShape BackHealthBar1
-        {
-            get { return _BackHealthBar1; }
-            set { _BackHealthBar1 = value; }
-        }
-        public RectangleShape RedBar1
-        {
-            get { return _RedBar1; }
-            set { _RedBar1 = value; }
-        }
-        public RectangleShape HealthBar2
-        {
-            get { return _HealthBar2; }
-            set { _HealthBar2 = value; }
-        }
-        public RectangleShape BackHealthBar2
-        {
-            get { return _BackHealthBar2; }
-            set { _BackHealthBar2 = value; }
+            float _HealthPlayer1 = Convert.ToSingle(HealthPlayer1);
+            float _HealthPlayer2 = Convert.ToSingle(HealthPlayer2);
+
+            if ( _HealthPlayer1 > 0f && _HealthPlayer1 <= 100 )
+            {
+                _gameInterface[3].Size = new Vector2f( ( (_windowX / 100f * 30f) ) / 100f * _HealthPlayer1, 20f);
+            }
+            else _gameInterface[3].Size = new Vector2f(0f, 20f);
+
+            if ( _HealthPlayer2 > 0f && _HealthPlayer2 <= 100 )
+            {
+                _gameInterface [ 4 ].Size = new Vector2f(( Convert.ToSingle(_windowX / 100 * 30) ) / 100f * _HealthPlayer2, 20f);
+            }
+            else _gameInterface [ 4 ].Size = new Vector2f(0f, 20f);
+
+
         }
     }
 }

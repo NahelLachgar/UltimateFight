@@ -26,15 +26,15 @@ namespace pi
            // _animation = new Animation(this);
         }
 
-        internal string Name => _name;
+        internal string Name 
+            => _name;
 
-        internal bool IsAlive => _alive;
+        internal bool IsAlive 
+            => _alive;
 
-        internal uint Health
-        {
-            get { return _health; }
-            set { _health = value; }
-        }
+        public uint GetHealth
+            => _health;
+
 
         internal Vector2f Position
         {
@@ -89,7 +89,7 @@ namespace pi
 
         internal void TakeDammage(uint Hit)
         {
-            _health -= Hit;
+            _health = _health - Hit;
             if(_health <= 0)
             {
                 _health = 0;
