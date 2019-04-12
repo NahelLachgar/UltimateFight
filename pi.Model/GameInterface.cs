@@ -18,6 +18,12 @@ namespace pi
         private RectangleShape _BackHealthBar2;
         private float _windowX;
         private float _windowY;
+        private float _HealthPlayer1;
+        private float _HealthPlayer2;
+        private Vector2f _OldHealthPlayers1;
+        private Vector2f _OldHealthPlayers2;
+        private float _red;
+
 
 
 
@@ -85,6 +91,8 @@ namespace pi
             _gameInterface.Add(_HealthBar1);
             _gameInterface.Add(_HealthBar2);
 
+            _OldHealthPlayers1 = _HealthBar1.Size;
+            _OldHealthPlayers2 = _HealthBar2.Size;
         }
 
 
@@ -108,22 +116,39 @@ namespace pi
 
         public void Update(uint HealthPlayer1, uint HealthPlayer2)
         {
-            float _HealthPlayer1 = Convert.ToSingle(HealthPlayer1);
-            float _HealthPlayer2 = Convert.ToSingle(HealthPlayer2);
+            _HealthPlayer1 = Convert.ToSingle(HealthPlayer1);
+            _HealthPlayer2 = Convert.ToSingle(HealthPlayer2);
 
+            UpdateHealthBarPlayers();
+            UpdateRedBarPlayers();
+
+
+        }
+
+        private void UpdateHealthBarPlayers()
+        {
+            // Update the Health bar of Player 1
             if ( _HealthPlayer1 > 0f && _HealthPlayer1 <= 100 )
             {
-                _gameInterface[3].Size = new Vector2f( ( (_windowX / 100f * 30f) ) / 100f * _HealthPlayer1, 20f);
+                _gameInterface [ 3 ].Size = new Vector2f(( ( _windowX / 100f * 30f ) ) / 100f * _HealthPlayer1, 20f);
             }
-            else _gameInterface[3].Size = new Vector2f(0f, 20f);
+            else _gameInterface [ 3 ].Size = new Vector2f(0f, 20f);
 
+            // Update the Health Bar of the player 2
             if ( _HealthPlayer2 > 0f && _HealthPlayer2 <= 100 )
             {
                 _gameInterface [ 4 ].Size = new Vector2f(( Convert.ToSingle(_windowX / 100 * 30) ) / 100f * _HealthPlayer2, 20f);
             }
             else _gameInterface [ 4 ].Size = new Vector2f(0f, 20f);
-
-
         }
+
+        private void UpdateRedBarPlayers()
+        {
+            // Animation red bar health
+            _red += _OldHealthPlayers1.X - _BackHealthBar1.Size.X;
+            //redBarTimer = _timer.AsSeconds();
+        }
+
+
     }
 }
