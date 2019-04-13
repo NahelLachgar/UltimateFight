@@ -21,15 +21,15 @@ namespace pi
         float _gravity = 1;
         User _winner;
         User _loser;
-        Clock _clock = new Clock();
+        public Clock _clock = new Clock();
         Time _timer = new Time();
         float _timerGame = 99f;
         float _currentTime;
 
 
-        public Game(/*Time timer,*/ Character fighter1, Character fighter2, Stage stage, User user1=null, User user2=null)
+        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, User user1=null, User user2=null)
         {
-            //_timer = timer;
+            _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
             _stage = stage;
@@ -63,7 +63,17 @@ namespace pi
             _fighter1.Update();
             _fighter2.Update();
 
-
+            //====================================================================================
+            //====================================================================================
+            // *** Just for test : Must be delete in the futur ***
+            // *** Key 'P' for test damages on the player's health bar, and O for reset. ***
+            // *** The same for the player 2 with the key M and L. ***
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.P) ) _fighter1.TakeDammage(1);
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.O) ) _fighter1._health = 100;
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.M) ) _fighter2.TakeDammage(1);
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.L) ) _fighter2._health = 100;
+            //====================================================================================
+            //====================================================================================
         }
     }
 }

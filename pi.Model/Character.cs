@@ -90,7 +90,7 @@ namespace pi
         internal void TakeDammage(uint Hit)
         {
             _health = _health - Hit;
-            if(_health <= 0)
+            if(_health > 100)
             {
                 _health = 0;
                 _alive = false;
