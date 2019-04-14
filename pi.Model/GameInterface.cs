@@ -29,9 +29,11 @@ namespace pi
         private float _redTimer2 = 0f;
         private float _red1 = 0f;
         private float _red2 = 0f;
-
-
-
+        private List<Sprite> animation_ko = new List<Sprite>();
+        public Sprite KO = new Sprite();
+        private bool endGame = false;
+        private float _timerKO = 0;
+        private int _iKO = 0;
 
 
         Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
@@ -109,6 +111,16 @@ namespace pi
             _gameInterface.Add(_RedBar2);
             _gameInterface.Add(_HealthBar1);
             _gameInterface.Add(_HealthBar2);
+
+            for ( int i = 1; i <= 38; i++ )
+            {
+                Texture texture = new Texture("../../../../pi.Ui/Resources/k_o/"+i+".png");
+                Sprite _ko = new Sprite(texture);
+                _ko.Position = new Vector2f(0F,30f);
+                _ko.Scale = new Vector2f(3f, 3f);
+
+                animation_ko.Add(_ko);
+            }
         }
 
 
@@ -134,6 +146,8 @@ namespace pi
         {
             UpdateHealthBarPlayers(HealthPlayer1, HealthPlayer2);
             UpdateRedBarPlayers();
+            EndGame();
+
         }
 
         private void UpdateHealthBarPlayers(float HealthPlayer1 , float HealthPlayer2)
@@ -174,6 +188,21 @@ namespace pi
             }
 
         }
+
+
+        private void EndGame()
+        {
+            if ( (_HealthPlayer1 == 0 || _HealthPlayer2 == 0) && _timerKO < _clock.ElapsedTime.AsSeconds() && _iKO < 38 )
+            {
+                KO = animation_ko [ _iKO ];
+                _iKO++;
+                 _timerKO = _clock.ElapsedTime.AsSeconds() + 0.0500f;
+
+
+            }
+
+        }
+
 
 
     }
