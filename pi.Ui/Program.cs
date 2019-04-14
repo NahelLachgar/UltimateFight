@@ -20,7 +20,7 @@ namespace pi
 
                 while ( window.IsOpen)
                 {
-
+                    //Update
                     game.Update();
                     gameInterface.Update(game._fighter1.GetHealth, game._fighter2.GetHealth);
 
@@ -33,6 +33,8 @@ namespace pi
 
                     // Draw the game interface
                     foreach(RectangleShape value in gameInterface.GetGameInterface ) window.Draw(value);
+                    window.Draw(gameInterface.FontTime1);
+                    window.Draw(gameInterface.FontTime2);
                     window.Draw(gameInterface.KO);
 
                     window.Display();

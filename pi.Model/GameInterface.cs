@@ -29,14 +29,19 @@ namespace pi
         private float _redTimer2 = 0f;
         private float _red1 = 0f;
         private float _red2 = 0f;
+        private float _delaySecond = 0.4f;
+        private Texture texture;
         private List<Sprite> animation_ko = new List<Sprite>();
-        public Sprite KO = new Sprite();
+        private Sprite _KO = new Sprite();
+        private List<Sprite> animation_fontTimer = new List<Sprite>();
+        private Sprite _fontTimer1 ;
+        private Sprite _fontTimer2 ;
         private bool endGame = false;
         private float _timerKO = 0;
         private int _iKO = 0;
+        private float _timerGame = 99f;
 
-
-        Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
+        //Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
         private List<RectangleShape> _gameInterface = new List<RectangleShape>();
 
 
@@ -45,26 +50,42 @@ namespace pi
             _clock = clock;
             _windowX = Convert.ToSingle(window.Size.X);
             _windowY = Convert.ToSingle(window.Size.Y);
-            /* _text = new Text()
-             {
-                 Font = new Font(s),
-                 CharacterSize = 64,
-                 FillColor = Color.Blue,
-                 OutlineThickness = 5.0F,
-                 OutlineColor = Color.White,
-                 Style = 0
-             };*/
+           /* _text = new Text()
+            {
+                DisplayedString = String.Format("{0}", _timerGame),
+                //Font = new Font("../../../../pi.Ui/Resources/space_ranger/spaceranger.ttf"),
+                Font = new Font("../../../../pi.Ui/Resources/monsters_attack/Monsters_Attack.ttf"),
+                Scale = new Vector2f( 1.5f, 1f),
+                CharacterSize = 64,
+                FillColor = Color.Blue,
+                OutlineThickness = 5.0F,
+                OutlineColor = Color.White,
+                Style = 0,
+                Position = new Vector2f(( _windowX / 2f )-50f, 20.0f)
+            };*/
+
+            _fontTimer1 = new Sprite
+            {
+                Position = new Vector2f(( _windowX / 2f ) -35f, 40.0f),
+                Scale = new Vector2f(2f, 2f),
+            };
+
+            _fontTimer2 = new Sprite
+            {
+                Position = new Vector2f(( _windowX / 2f ) +15f, 40.0f),
+                Scale = new Vector2f(2f, 2f),
+            };
 
             _HealthBar1 = new RectangleShape()
             {
-                Position = new Vector2f((_windowX /100f * 10f), 30f),
+                Position = new Vector2f((_windowX /100f * 10f), 50f),
                 Size = new Vector2f((_windowX /100f *30f), 20f),
                 FillColor = Color.Green,
             };
 
             _BackHealthBar1 = new RectangleShape()
             {
-                Position = new Vector2f(( _windowX / 100f * 10f), 30f),
+                Position = new Vector2f(( _windowX / 100f * 10f), 50f),
                 Size = new Vector2f(( _windowX / 100f *30f), 20f),
                 FillColor = Color.Black,
                 OutlineThickness = (4),
@@ -73,14 +94,14 @@ namespace pi
 
             _HealthBar2 = new RectangleShape()
             {
-                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 30f),
+                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 50f),
                 Size = new Vector2f(( _windowX / 100f *30f), 20f),
                 FillColor = Color.Green,
             };
 
             _BackHealthBar2 = new RectangleShape()
             {
-                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 30f),
+                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 50f),
                 Size = new Vector2f(( _windowX / 100f *30f), 20f),
                 FillColor = Color.Black,
                 OutlineThickness = (4),
@@ -114,12 +135,19 @@ namespace pi
 
             for ( int i = 1; i <= 38; i++ )
             {
-                Texture texture = new Texture("../../../../pi.Ui/Resources/k_o/"+i+".png");
+                texture = new Texture("../../../../pi.Ui/Resources/k_o/"+i+".png");
                 Sprite _ko = new Sprite(texture);
                 _ko.Position = new Vector2f(0F,30f);
                 _ko.Scale = new Vector2f(3f, 3f);
 
                 animation_ko.Add(_ko);
+            }
+
+            for ( int i = 0; i < 10; i++ )
+            {
+                texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/"+i+".png");
+                Sprite font = new Sprite(texture);
+                animation_fontTimer.Add(font);
             }
         }
 
@@ -146,9 +174,33 @@ namespace pi
         {
             UpdateHealthBarPlayers(HealthPlayer1, HealthPlayer2);
             UpdateRedBarPlayers();
+            UpdateTimerGame();
             EndGame();
 
         }
+
+        private void UpdateTimerGame()
+        {
+            float time = _timerGame - _clock.ElapsedTime.AsSeconds();
+            decimal font_time1;
+            decimal font_time2;
+            if ( time > 0f )
+            {
+                font_time1 = Math.Truncate(Convert.ToDecimal(time / 10f));
+                font_time2 = Math.Truncate(Convert.ToDecimal(time) - (font_time1*10)  );
+
+                _fontTimer1.Texture = animation_fontTimer [ Convert.ToInt32(font_time1) ].Texture;
+                _fontTimer2.Texture = animation_fontTimer [ Convert.ToInt32(font_time2) ].Texture;
+                //_text.DisplayedString = String.Format("{0}{1}", font_time1, font_time2);
+
+            }
+        }
+
+        public Sprite FontTime1
+            => _fontTimer1;
+
+        public Sprite FontTime2
+            => _fontTimer2;
 
         private void UpdateHealthBarPlayers(float HealthPlayer1 , float HealthPlayer2)
         {
@@ -174,14 +226,14 @@ namespace pi
         private void UpdateRedBarPlayers()
         {
            // Update the Red Health Bar of player 1
-           if(_redTimer1 + 1f < _clock.ElapsedTime.AsSeconds() && _RedBar1.Size.X > _HealthBar1.Size.X)
+           if(_redTimer1 + _delaySecond < _clock.ElapsedTime.AsSeconds() && _RedBar1.Size.X > _HealthBar1.Size.X)
             {
                 _red1 -= 0.1f;
                 _RedBar1.Size = _HealthBar1.Size + new Vector2f(  ((_windowX / 100f * 30f) / 100f * _red1) , 0f   );
             }
 
             // Update the Red Health Bar of player 2
-            if ( _redTimer2 + 1f < _clock.ElapsedTime.AsSeconds() && _RedBar2.Size.X > _HealthBar2.Size.X )
+            if ( _redTimer2 + _delaySecond < _clock.ElapsedTime.AsSeconds() && _RedBar2.Size.X > _HealthBar2.Size.X )
             {
                 _red2 -= 0.1f;
                 _RedBar2.Size = _HealthBar2.Size + new Vector2f(( ( _windowX / 100f * 30f ) / 100f * _red2 ), 0f);
@@ -189,21 +241,24 @@ namespace pi
 
         }
 
-
         private void EndGame()
         {
             if ( (_HealthPlayer1 == 0 || _HealthPlayer2 == 0) && _timerKO < _clock.ElapsedTime.AsSeconds() && _iKO < 38 )
             {
-                KO = animation_ko [ _iKO ];
+                _KO = animation_ko [ _iKO ];
                 _iKO++;
-                 _timerKO = _clock.ElapsedTime.AsSeconds() + 0.0500f;
+                 _timerKO = _clock.ElapsedTime.AsSeconds() + 0.0400f;
 
 
             }
 
         }
 
+        public Sprite KO
+            => _KO;
 
+        public Text Text
+            => _text;
 
     }
 }
