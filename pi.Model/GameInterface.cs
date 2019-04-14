@@ -40,6 +40,7 @@ namespace pi
         private float _timerKO = 0;
         private int _iKO = 0;
         private float _timerGame = 99f;
+        private bool _end = false;
 
         //Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
         private List<RectangleShape> _gameInterface = new List<RectangleShape>();
@@ -170,14 +171,6 @@ namespace pi
         public List<RectangleShape> GetGameInterface
             => _gameInterface;
 
-        public void Update(uint HealthPlayer1, uint HealthPlayer2)
-        {
-            UpdateHealthBarPlayers(HealthPlayer1, HealthPlayer2);
-            UpdateRedBarPlayers();
-            UpdateTimerGame();
-            EndGame();
-
-        }
 
         private void UpdateTimerGame()
         {
@@ -248,8 +241,7 @@ namespace pi
                 _KO = animation_ko [ _iKO ];
                 _iKO++;
                  _timerKO = _clock.ElapsedTime.AsSeconds() + 0.0400f;
-
-
+                _end = true;
             }
 
         }
@@ -259,6 +251,17 @@ namespace pi
 
         public Text Text
             => _text;
+
+        public void Update(uint HealthPlayer1, uint HealthPlayer2)
+        {
+            if ( _end == false )
+            {
+                UpdateHealthBarPlayers(HealthPlayer1, HealthPlayer2);
+                UpdateTimerGame();
+            }
+            UpdateRedBarPlayers();
+            EndGame();
+        }
 
     }
 }
