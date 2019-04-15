@@ -45,6 +45,10 @@ namespace pi
         private Sprite _BackEnergyBar1_2;
         private Sprite _BackEnergyBar2_1;
         private Sprite _BackEnergyBar2_2;
+        public List<Sprite> _EnergyBar = new List<Sprite>();
+        public List<Sprite> _animation_BlueFlame = new List<Sprite>();
+        public Sprite _blueFlame1;
+        private Sprite _blueFlame2;
 
         //Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
         private List<RectangleShape> _gameInterface = new List<RectangleShape>();
@@ -138,6 +142,7 @@ namespace pi
             _gameInterface.Add(_HealthBar1);
             _gameInterface.Add(_HealthBar2);
 
+            // Sprite for draw the animation of "K.O" when a player dies
             for ( int i = 1; i <= 38; i++ )
             {
                 texture = new Texture("../../../../pi.Ui/Resources/k_o/"+i+".png");
@@ -147,6 +152,7 @@ namespace pi
                 animation_ko.Add(_ko);
             }
 
+            // Sprite for draw the timer in-game
             for ( int i = 0; i < 10; i++ )
             {
                 texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/"+i+".png");
@@ -154,37 +160,60 @@ namespace pi
                 animation_fontTimer.Add(font);
             }
 
+            // Sprite for draw the animation of blue flame for energy bars's players
+            for ( int i = 1; i <= 19; i++ )
+            {
+                texture = new Texture("../../../../pi.Ui/Resources/Blue_Flame/" + i + ".png");
+                Sprite flame = new Sprite(texture);
+                _animation_BlueFlame.Add(flame);
+            }
+
             texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar1.png");
             _BackEnergyBar1_1 = new Sprite()
             {
                 Texture = texture,
-                Position = new Vector2f(( _windowX / 100f * 10f )+245f, 90f),               
+                Position = new Vector2f(( _windowX / 100f * 10f )+245f, 120f),               
                 Scale = new Vector2f(0.3f,0.5f),
             };
+            _EnergyBar.Add(_BackEnergyBar1_1);
 
             _BackEnergyBar2_1 = new Sprite()
             {
                 Texture = texture,
-                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 90f),
+                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 120f),
                 Scale = new Vector2f(0.3f, 0.5f),
             };
+            _EnergyBar.Add(_BackEnergyBar2_1);
+
 
             texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar2.png");
             _BackEnergyBar1_2 = new Sprite()
             {
                 Texture = texture,
-                Position = new Vector2f(( _windowX / 100f * 10f ) + 245f, 96f),
+                Position = new Vector2f(( _windowX / 100f * 10f ) + 245f, 126f),
                 Scale = new Vector2f(0.3f, 0.5f),
                 Color = Color.White,
             };
+            _EnergyBar.Add(_BackEnergyBar1_2);
+
 
             _BackEnergyBar2_2 = new Sprite()
             {
                 Texture = texture,
-                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 96f),
+                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 126f),
                 Scale = new Vector2f(0.3f, 0.5f),
                 Color = Color.White,
             };
+            _EnergyBar.Add(_BackEnergyBar2_2);
+
+            // Animation of BlueFlame on Energy Bar for Player 1
+            _blueFlame1 = new Sprite()
+            {
+                Texture = _animation_BlueFlame [ 0 ].Texture,
+                Position = new Vector2f(( _windowX / 100f * 10f ) + 245f, 50f),
+                Scale = new Vector2f(0.5f, 0.5f),
+            };
+
         }
 
 
@@ -298,16 +327,9 @@ namespace pi
             EndGame();
         }
 
-        public Sprite BackEnergyBar1_1
-            => _BackEnergyBar1_1;
+        public List<Sprite> EnergyBar
+            => _EnergyBar;
 
-        public Sprite BackEnergyBar1_2
-            => _BackEnergyBar1_2;
 
-        public Sprite BackEnergyBar2_1
-            => _BackEnergyBar2_1;
-
-        public Sprite BackEnergyBar2_2
-            => _BackEnergyBar2_2;
     }
 }
