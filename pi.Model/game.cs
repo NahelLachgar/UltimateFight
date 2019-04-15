@@ -57,8 +57,10 @@ namespace pi
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
 
-            if (_fighter1.GetHealth == 0 || _fighter2.GetHealth == 0 || _round == _roundNb && _timer.AsSeconds() == 0)
+            if (_fighter1.Health == 0 || _fighter2.Health == 0 || _round == _roundNb && _timer.AsSeconds() == 0)
                 EndGame();
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _fighter1.MoveRight(1.5F);
 
             _fighter1.Update();
             _fighter2.Update();
