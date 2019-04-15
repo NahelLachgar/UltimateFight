@@ -37,10 +37,8 @@ namespace pi
                     window.Draw(gameInterface.FontTime1);
                     window.Draw(gameInterface.FontTime2);
                     window.Draw(gameInterface.KO);
-                    window.Draw(gameInterface.BackEnergyBar1_1);
-                    window.Draw(gameInterface.BackEnergyBar1_2);
-                    window.Draw(gameInterface.BackEnergyBar2_1);
-                    window.Draw(gameInterface.BackEnergyBar2_2);
+                    foreach ( Sprite value in gameInterface.EnergyBar ) window.Draw(value);
+                    window.Draw(gameInterface._blueFlame1);
 
                     window.Display();
                     
