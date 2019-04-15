@@ -31,11 +31,16 @@ namespace pi
                     window.Draw(game._fighter1._sprite);
                     window.Draw(game._fighter2._sprite);
 
+
                     // Draw the game interface
-                    foreach(RectangleShape value in gameInterface.GetGameInterface ) window.Draw(value);
+                    foreach (RectangleShape value in gameInterface.GetGameInterface ) window.Draw(value);
                     window.Draw(gameInterface.FontTime1);
                     window.Draw(gameInterface.FontTime2);
                     window.Draw(gameInterface.KO);
+                    window.Draw(gameInterface.BackEnergyBar1_1);
+                    window.Draw(gameInterface.BackEnergyBar1_2);
+                    window.Draw(gameInterface.BackEnergyBar2_1);
+                    window.Draw(gameInterface.BackEnergyBar2_2);
 
                     window.Display();
                     

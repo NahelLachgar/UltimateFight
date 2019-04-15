@@ -41,6 +41,10 @@ namespace pi
         private int _iKO = 0;
         private float _timerGame = 99f;
         private bool _end = false;
+        private Sprite _BackEnergyBar1_1;
+        private Sprite _BackEnergyBar1_2;
+        private Sprite _BackEnergyBar2_1;
+        private Sprite _BackEnergyBar2_2;
 
         //Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
         private List<RectangleShape> _gameInterface = new List<RectangleShape>();
@@ -140,7 +144,6 @@ namespace pi
                 Sprite _ko = new Sprite(texture);
                 _ko.Position = new Vector2f(0F,30f);
                 _ko.Scale = new Vector2f(3f, 3f);
-
                 animation_ko.Add(_ko);
             }
 
@@ -150,6 +153,38 @@ namespace pi
                 Sprite font = new Sprite(texture);
                 animation_fontTimer.Add(font);
             }
+
+            texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar1.png");
+            _BackEnergyBar1_1 = new Sprite()
+            {
+                Texture = texture,
+                Position = new Vector2f(( _windowX / 100f * 10f )+245f, 90f),               
+                Scale = new Vector2f(0.3f,0.5f),
+            };
+
+            _BackEnergyBar2_1 = new Sprite()
+            {
+                Texture = texture,
+                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 90f),
+                Scale = new Vector2f(0.3f, 0.5f),
+            };
+
+            texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar2.png");
+            _BackEnergyBar1_2 = new Sprite()
+            {
+                Texture = texture,
+                Position = new Vector2f(( _windowX / 100f * 10f ) + 245f, 96f),
+                Scale = new Vector2f(0.3f, 0.5f),
+                Color = Color.White,
+            };
+
+            _BackEnergyBar2_2 = new Sprite()
+            {
+                Texture = texture,
+                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 96f),
+                Scale = new Vector2f(0.3f, 0.5f),
+                Color = Color.White,
+            };
         }
 
 
@@ -263,5 +298,16 @@ namespace pi
             EndGame();
         }
 
+        public Sprite BackEnergyBar1_1
+            => _BackEnergyBar1_1;
+
+        public Sprite BackEnergyBar1_2
+            => _BackEnergyBar1_2;
+
+        public Sprite BackEnergyBar2_1
+            => _BackEnergyBar2_1;
+
+        public Sprite BackEnergyBar2_2
+            => _BackEnergyBar2_2;
     }
 }
