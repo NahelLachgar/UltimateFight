@@ -47,8 +47,11 @@ namespace pi
         private Sprite _BackEnergyBar2_2;
         public List<Sprite> _EnergyBar = new List<Sprite>();
         public List<Sprite> _animation_BlueFlame = new List<Sprite>();
-        public Sprite _blueFlame1;
+        private Sprite _blueFlame1;
         private Sprite _blueFlame2;
+        private int _blueFlameCount = 14;
+        private float _energyTimer = 0f;
+
 
         //Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
         private List<RectangleShape> _gameInterface = new List<RectangleShape>();
@@ -163,7 +166,7 @@ namespace pi
             // Sprite for draw the animation of blue flame for energy bars's players
             for ( int i = 1; i <= 19; i++ )
             {
-                texture = new Texture("../../../../pi.Ui/Resources/Blue_Flame/" + i + ".png");
+                texture = new Texture("../../../../pi.Ui/Resources/Blue_Flame/Blue_Flame(photoshop)/" + i + ".png");
                 Sprite flame = new Sprite(texture);
                 _animation_BlueFlame.Add(flame);
             }
@@ -214,6 +217,14 @@ namespace pi
                 Scale = new Vector2f(0.5f, 0.5f),
             };
 
+            _blueFlame2 = new Sprite()
+            {
+                Texture = _animation_BlueFlame [ 0 ].Texture,
+                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 126f),
+                Scale = new Vector2f(0.5f, 0.5f),
+            };
+
+            // End Builder-------------------------------------------------------------------------
         }
 
 
@@ -300,11 +311,11 @@ namespace pi
 
         private void EndGame()
         {
-            if ( (_HealthPlayer1 == 0 || _HealthPlayer2 == 0) && _timerKO < _clock.ElapsedTime.AsSeconds() && _iKO < 38 )
+            if ( ( _HealthPlayer1 == 0 || _HealthPlayer2 == 0 ) && _timerKO < _clock.ElapsedTime.AsSeconds() && _iKO < 38 )
             {
                 _KO = animation_ko [ _iKO ];
                 _iKO++;
-                 _timerKO = _clock.ElapsedTime.AsSeconds() + 0.0400f;
+                _timerKO = _clock.ElapsedTime.AsSeconds() + 0.0400f;
                 _end = true;
             }
 
@@ -323,6 +334,7 @@ namespace pi
                 UpdateHealthBarPlayers(HealthPlayer1, HealthPlayer2);
                 UpdateTimerGame();
             }
+            UpdateEnergyBar();
             UpdateRedBarPlayers();
             EndGame();
         }
@@ -330,6 +342,25 @@ namespace pi
         public List<Sprite> EnergyBar
             => _EnergyBar;
 
+        private void UpdateEnergyBar()
+        {
+            if ( _clock.ElapsedTime.AsSeconds() > _energyTimer + 0.02f )
+            {
+                _blueFlame1.Texture = _animation_BlueFlame [ _blueFlameCount ].Texture;
+                _blueFlame2.Texture = _animation_BlueFlame [ _blueFlameCount ].Texture;
+
+                _energyTimer += 0.115f;
+                if ( _blueFlameCount < 18 ) _blueFlameCount++;
+                else _blueFlameCount = 14; 
+            }
+
+        }
+
+        public Sprite BlueFame1
+            => _blueFlame1;
+
+        public Sprite BlueFlame2
+            => _blueFlame2;
 
     }
 }
