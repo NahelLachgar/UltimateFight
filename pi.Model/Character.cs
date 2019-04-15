@@ -6,7 +6,7 @@ using SFML.System;
 
 namespace pi
 {
-    public class Character //:Sprite
+    public class Character :Sprite
     {
         readonly internal string _name;
         public  Sprite _sprite;
@@ -16,11 +16,10 @@ namespace pi
         Dictionary<string, IntRect> _rects;
         //Animation _animation;
 
-        public Character(string name, Sprite sprite)
+        public Character(string name, Texture texture)
         {
             _name = name;
             _health = 100;
-            _sprite = sprite;
            // _animation = new Animation(this);
         }
 
@@ -31,7 +30,7 @@ namespace pi
         public uint Health => _health;
 
 
-        internal Vector2f Position
+        internal new Vector2f Position
         {
             get { return _position; }
             set { _position = value; }
@@ -39,7 +38,7 @@ namespace pi
 
         internal void Update()
         {
-
+            
         }
 
         internal void Waiting()
@@ -49,6 +48,8 @@ namespace pi
 
         internal void MoveRight(float xToAdd)
         {
+            this._sprite.Position += new Vector2f(xToAdd, _position.Y);
+            Console.WriteLine(this.Position);
         }
 
         internal void MoveLeft(float xToRemove)
