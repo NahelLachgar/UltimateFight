@@ -12,6 +12,7 @@ namespace pi
         static void Main(string[] args)
         {
             Factory factory = new Factory();
+            SFML.GraphicsNative.Load();
 
             using ( RenderWindow window = new RenderWindow(new VideoMode(VideoMode.DesktopMode.Width, VideoMode.DesktopMode.Height), "Test window", Styles.Default))
             {
