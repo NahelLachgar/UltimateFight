@@ -38,7 +38,7 @@ namespace pi
 
         internal void Update()
         {
-
+            
         }
 
         internal void Waiting()
@@ -48,6 +48,8 @@ namespace pi
 
         internal void MoveRight(float xToAdd)
         {
+            this._sprite.Position += new Vector2f(xToAdd, _position.Y);
+            Console.WriteLine(this.Position);
         }
 
         internal void MoveLeft(float xToRemove)
