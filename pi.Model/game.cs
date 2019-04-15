@@ -31,6 +31,7 @@ namespace pi
         {
             _timer = timer;
             _fighter1 = fighter1;
+            _fighter1.Position = new Vector2f(5, 5);
             _fighter2 = fighter2;
             _stage = stage;
             _user1 = user1;

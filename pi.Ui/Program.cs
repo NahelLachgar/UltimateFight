@@ -12,7 +12,8 @@ namespace pi
         static void Main(string[] args)
         {
             Factory factory = new Factory();
-
+            SFML.GraphicsNative.Load();
+      
             using ( RenderWindow window = new RenderWindow(new VideoMode(VideoMode.DesktopMode.Width, VideoMode.DesktopMode.Height), "Test window", Styles.Default))
             {
                 Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"), factory.NewStage("stage1", window) );
@@ -26,12 +27,13 @@ namespace pi
 
                 while ( window.IsOpen)
                 {
+                    window.DispatchEvents();
+
                     //Update
                     game.Update();
                     gameInterface.Update(game._fighter1.Health, game._fighter2.Health);
                     
 
-                    window.DispatchEvents();
 
                     window.Clear();
                     window.Draw(game._stage._sprite);
