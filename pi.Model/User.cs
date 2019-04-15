@@ -24,5 +24,10 @@ namespace pi
             get { return _wins; }
             set { _wins = value; }
         }
+        internal uint Loses
+        {
+            get { return _loses; }
+            set { _loses = value; }
+        }
     }
 }

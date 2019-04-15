@@ -13,32 +13,28 @@ namespace pi
         // internal Special _special;
         internal uint _health;
         internal Vector2f _position;
-        internal bool _alive;
-        Dictionary<string, IntRect> _sprites;
+        Dictionary<string, IntRect> _rects;
         //Animation _animation;
 
         public Character(string name, Sprite sprite)
         {
             _name = name;
             _health = 100;
-            _alive = true;
             _sprite = sprite;
            // _animation = new Animation(this);
         }
 
-        internal string Name 
-            => _name;
+        internal string Name => _name;
 
-        internal bool IsAlive 
-            => _alive;
+        internal bool IsAlive => Health != 0;
 
-        public uint GetHealth
-            => _health;
+        public uint Health => _health;
 
 
         internal Vector2f Position
         {
             get { return _position; }
+            set { _position = value; }
         }
 
         internal void Update()
@@ -93,7 +89,6 @@ namespace pi
             if(_health <= 0)
             {
                 _health = 0;
-                _alive = false;
             }
         }
     }

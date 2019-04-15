@@ -11,7 +11,7 @@ namespace pi
     {
         string _name;
         public Sprite _sprite;
-        int _groundHeight;
+        public int _groundHeight;
 
         public Stage(string name, /*Sprite sprite,*/ int groundHeight, RenderWindow window, Texture texture)
         {

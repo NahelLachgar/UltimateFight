@@ -21,7 +21,7 @@ namespace pi
                 while ( window.IsOpen)
                 {
                     game.Update();
-                    gameInterface.Update(game._fighter1.GetHealth, game._fighter2.GetHealth);
+                    gameInterface.Update(game._fighter1.Health, game._fighter2.Health);
 
                     window.DispatchEvents();
 

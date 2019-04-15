@@ -34,7 +34,7 @@ namespace pi
             switch (name)
             {
                 case "balrog":
-                    Character character = CreateCharacter("balrog", "balrog.png", new IntRect(220, 15, 40, 100), new Vector2f(5, 5));
+                    Character character = CreateCharacter("balrog", "balrog.png", new IntRect(220, 15, 55, 100), new Vector2f(5, 5));
                     return character;
                 default:
                     return null;
@@ -46,7 +46,7 @@ namespace pi
             switch(name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1.jpg", 600, window);
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 1300, window);
                     return stage;
                 default:
                     return null;
