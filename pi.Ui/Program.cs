@@ -20,8 +20,8 @@ namespace pi
                 GameInterface gameInterface = new GameInterface(window, game._clock);
 
                 // PLAYERS'S POSITIONS
-                game._fighter1._sprite.Position = new Vector2f(250, 450);
-                game._fighter2._sprite.Position = new Vector2f(1500, 450);
+                //game._fighter1._sprite.Position = new Vector2f(250, 450);
+                //game._fighter2._sprite.Position = new Vector2f(1500, 450);
 
 
 
@@ -36,8 +36,9 @@ namespace pi
 
                     window.Clear();
                     window.Draw(game._stage._sprite);
-                    window.Draw(game._fighter1._sprite);
-                    window.Draw(game._fighter2._sprite);
+                    //window.Draw(game._fighter1._sprite);
+                    //window.Draw(game._fighter2._sprite);
+
 
 
                     // Draw the game interface
@@ -46,7 +47,8 @@ namespace pi
                     window.Draw(gameInterface.FontTime2);
                     window.Draw(gameInterface.KO);
                     foreach ( Sprite value in gameInterface.EnergyBar ) window.Draw(value);
-                    window.Draw(gameInterface._blueFlame1);
+                    window.Draw(gameInterface.BlueFame1);
+                    window.Draw(gameInterface.BlueFlame2);
 
                     window.Display();
                     
