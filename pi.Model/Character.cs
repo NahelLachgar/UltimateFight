@@ -49,12 +49,12 @@ namespace pi
 
         internal void MoveRight(float xToAdd)
         {
-            this._sprite.Position += new Vector2f(xToAdd, _position.Y);
-            Console.WriteLine(this.Position);
+            this._sprite.Position += new Vector2f(xToAdd, 0);
         }
 
         internal void MoveLeft(float xToRemove)
         {
+            this._sprite.Position -= new Vector2f(xToRemove, 0);
         }
 
         internal void Jump(float toAdd)

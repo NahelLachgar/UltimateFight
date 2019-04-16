@@ -31,8 +31,8 @@ namespace pi
         {
             _timer = timer;
             _fighter1 = fighter1;
-            _fighter1.Position = new Vector2f(5, 5);
             _fighter2 = fighter2;
+            _fighter2._sprite.Scale = new Vector2f(-5f, 5f);
             _stage = stage;
             _user1 = user1;
             _user2 = user2;
@@ -61,7 +61,8 @@ namespace pi
             if (_fighter1.Health == 0 || _fighter2.Health == 0 || _round == _roundNb && _timer.AsSeconds() == 0)
                 EndGame();
 
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _fighter1.MoveRight(1.5F);
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _fighter1.MoveRight(5);
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.MoveLeft(5);
 
             _fighter1.Update();
             _fighter2.Update();
