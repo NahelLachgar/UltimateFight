@@ -62,12 +62,45 @@ namespace pi
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
 
+            // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM
+            if(_fighter1._sprite.Position.X > _fighter2._sprite.Position.X -300)
+            {
+                if (_fighter1._sprite.Scale.X > 0)
+                {
+                    _fighter1._sprite.Scale = new Vector2f((_fighter1._sprite.Scale.X * -1), _fighter1._sprite.Scale.Y);
+                    _fighter1._sprite.Position = new Vector2f((_fighter1._sprite.Position.X +300), _fighter1._sprite.Position.Y);
+                    
+                    _fighter2._sprite.Scale = new Vector2f((_fighter2._sprite.Scale.X * -1), _fighter2._sprite.Scale.Y);
+                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X -300), _fighter2._sprite.Position.Y);
+                    
+                }
+            }
+            if (_fighter1._sprite.Position.X < _fighter2._sprite.Position.X + 300)
+            {
+                if (_fighter1._sprite.Scale.X < 0)
+                {
+                    _fighter1._sprite.Scale = new Vector2f((_fighter1._sprite.Scale.X * -1), _fighter1._sprite.Scale.Y);
+                    _fighter1._sprite.Position = new Vector2f((_fighter1._sprite.Position.X - 300), _fighter1._sprite.Position.Y);
+
+                    _fighter2._sprite.Scale = new Vector2f((_fighter2._sprite.Scale.X * -1), _fighter2._sprite.Scale.Y);
+                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X + 300), _fighter2._sprite.Position.Y);
+
+                }
+            }
+
+
             if (_fighter1.Health == 0 || _fighter2.Health == 0 || _round == _roundNb && _timer.AsSeconds() == 0)
                 EndGame();
 
+            // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _fighter1.MoveRight(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.MoveLeft(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
+
+            // PLAYER 2 CONTROLER
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) _fighter2.MoveRight(_moveSpeed);
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) _fighter2.MoveLeft(_moveSpeed);
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Up)) _fighter2.Jump();
 
             _fighter1.Update();
             _fighter2.Update();

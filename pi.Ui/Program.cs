@@ -30,9 +30,11 @@ namespace pi
                     //Update
                     game.Update();
                     gameInterface.Update(game._fighter1.Health, game._fighter2.Health);
-                    
-
-
+/*
+                    Console.WriteLine(game._fighter1._sprite.Position.X);
+                    Console.WriteLine(" width: {0} ", game._fighter1._sprite.Position.X + game._fighter1._sprite.TextureRect.Width);
+                    Console.WriteLine(game._fighter2._sprite.Position.X);
+*/
                     window.Clear();
                     window.Draw(game._stage._sprite);
                     window.Draw(game._fighter1._sprite);

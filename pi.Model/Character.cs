@@ -80,9 +80,19 @@ namespace pi
 
         internal void MoveRight(float xToAdd)
         {
-            if (this._sprite.Position.X < 1655)
+            if (this._sprite.Scale.X > 0)
             {
-                this._sprite.Position += new Vector2f(xToAdd, 0);
+                if (this._sprite.Position.X < 1655)
+                {
+                    this._sprite.Position += new Vector2f(xToAdd, 0);
+                }
+            }
+            if (this._sprite.Scale.X < 0)
+            {
+                if (this._sprite.Position.X < 1990)
+                {
+                    this._sprite.Position += new Vector2f(xToAdd, 0);
+                }
             }
         }
 
