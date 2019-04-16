@@ -80,8 +80,9 @@ namespace pi
             {
                 texture = new Texture("../../../../pi.Ui/Resources/k_o/" + i + ".png");
                 Sprite _ko = new Sprite(texture);
-                _ko.Position = new Vector2f(0F, 30f);
-                _ko.Scale = new Vector2f(3f, 3f);
+                _ko.Scale = new Vector2f(  (_windowX * 0.0016f)    , ( _windowY * 0.0016f )  );
+                _ko.Position = new Vector2f(  (_windowX / 2f) - (_ko.Texture.Size.X / 2f *_ko.Scale.X)  , ( _windowY / 2f ) - ( _ko.Texture.Size.Y / 2f * _ko.Scale.Y )  );
+
                 animation_ko.Add(_ko);
             }
 
@@ -104,15 +105,17 @@ namespace pi
             _fontTimer1 = new Sprite
             {
                 Texture = animation_fontTimer [0].Texture,
-                Position = new Vector2f(( _windowX / 2f ) - Convert.ToSingle(animation_fontTimer[0].TextureRect.Width), 40.0f),
-                Scale = new Vector2f(2f, 2f),
-            };
+                //Position = new Vector2f(( _windowX / 2f ) - Convert.ToSingle(animation_fontTimer[0].TextureRect.Width), 40.0f),
+                Scale = new Vector2f(( _windowX * 0.00105f ), ( _windowY * 0.0013f )),
+                Position = new Vector2f(( _windowX / 2f ) - animation_fontTimer [ 0 ].Texture.Size.X, ( _windowY * 0.05f )),
+
+        };
 
             _fontTimer2 = new Sprite
             {
                 Texture = animation_fontTimer [ 0 ].Texture,
-                Position = new Vector2f(( _windowX / 2f ) - Convert.ToSingle(animation_fontTimer [ 0 ].TextureRect.Width), 40.0f),
-                Scale = new Vector2f(2f, 2f),
+                Scale = new Vector2f(( _windowX * 0.00105f ), ( _windowY * 0.0013f )),
+                Position = new Vector2f(( _windowX / 2f ) + animation_fontTimer [ 0 ].Texture.Size.X, ( _windowY * 0.05f )),
             };
 
             _HealthBar1 = new RectangleShape()
@@ -125,8 +128,6 @@ namespace pi
 
             _RedBar1 = new RectangleShape()
             {
-                //Position = new Vector2f(( _windowX / 100f * 10f), 30f),
-                //Size = new Vector2f(0f, 20f),
                 Position = new Vector2f(( _windowX * 0.10f ), ( _windowY * 0.0542f )),
                 Size = new Vector2f(( _windowX * 0.30f ), ( _windowY * 0.0203f )),
                 FillColor = Color.Red,
@@ -179,8 +180,8 @@ namespace pi
             _BackEnergyBar1 = new Sprite()
             {
                 Texture = texture,
+                Scale = new Vector2f(( _windowX * 0.000157f ), ( _windowY * 0.00047f )),
                 Position = new Vector2f(( _windowX * 0.227f ), (_windowY * 0.11f)),               
-                Scale = new Vector2f(0.3f,0.5f),
             };
             _EnergyBar.Add(_BackEnergyBar1);
 
@@ -188,8 +189,8 @@ namespace pi
             _BackEnergyBar2 = new Sprite()
             {
                 Texture = texture,
-                Position = new Vector2f(_windowX - _BackEnergyBar1.Position.X - ( _BackEnergyBar1.Texture.Size.X * 0.3f ), ( _windowY * 0.11f )),
-                Scale = new Vector2f(0.3f, 0.5f),
+                Scale = new Vector2f(( _windowX * 0.000157f ), ( _windowY * 0.00047f )),
+                Position = new Vector2f(_windowX - _BackEnergyBar1.Position.X - ( _BackEnergyBar1.Texture.Size.X * _BackEnergyBar1.Scale.X ), ( _windowY * 0.11f )),
             };
             _EnergyBar.Add(_BackEnergyBar2);
 
@@ -199,21 +200,19 @@ namespace pi
             // Animation of BlueFlame on Energy Bar for Player 1
             _blueFlame1 = new Sprite(_animation_BlueFlame [ 0 ].Texture, new IntRect(0, 140, 120, 140) )
             {
-                Position = new Vector2f( _BackEnergyBar1.Position.X , ( _windowY * 0.08f )),
-                Scale = new Vector2f(0.4f, 0.4f),
+                Scale = new Vector2f(( _windowX * 0.00025f ), ( _windowY * 0.00035f )),
+                Position = new Vector2f(( _windowX * 0.217f ), ( _windowY * 0.082f )),
             };
 
             _blueFlame2 = new Sprite(_animation_BlueFlame [ 0 ].Texture, new IntRect(0, 140, 120, 140))
             {
                 // Don't forget to multiply by the scale applicated :  Here it's by 0.4f
-                Scale = new Vector2f(0.4f, 0.4f),
-                Position = new Vector2f((_windowX - _blueFlame1.Position.X ) - (_blueFlame1.TextureRect.Width * 0.4f), ( _windowY * 0.08f )),
+                Scale = new Vector2f(( _windowX * 0.00025f ), ( _windowY * 0.00035f )),
+                Position = new Vector2f(_windowX - _blueFlame1.Position.X  - (_blueFlame1.TextureRect.Width * _blueFlame1.Scale.X), ( _windowY * 0.082f )),
             };
 
-            Console.WriteLine(_blueFlame1.TextureRect.Width);
-            Console.WriteLine(_windowX - _blueFlame2.TextureRect.Width);
-
-            // End Builder-------------------------------------------------------------------------
+            //================================================================================================================================
+            // End Builder--------------------------------------------------------------------------------------------------------------------
         }
 
 
@@ -249,7 +248,6 @@ namespace pi
                 _fontTimer1.Texture = animation_fontTimer [ Convert.ToInt32(font_time1) ].Texture;
                 _fontTimer2.Texture = animation_fontTimer [ Convert.ToInt32(font_time2) ].Texture;
                 //_text.DisplayedString = String.Format("{0}{1}", font_time1, font_time2);
-                _fontTimer2.Position = new Vector2f(( _windowX / 2f ) + Convert.ToSingle(_fontTimer1.TextureRect.Width), 40.0f);
             }
         }
 
@@ -286,14 +284,14 @@ namespace pi
            if(_redTimer1 + _delaySecond < _clock.ElapsedTime.AsSeconds() && _RedBar1.Size.X > _HealthBar1.Size.X)
             {
                 _red1 -= 0.1f;
-                _RedBar1.Size = _HealthBar1.Size + new Vector2f(  ((_windowX / 100f * 30f) / 100f * _red1) , 0f   );
+                _gameInterface[2].Size = _HealthBar1.Size + new Vector2f(  ((_windowX * 0.30f / 100f) * _red1) , 0f   );
             }
 
             // Update the Red Health Bar of player 2
             if ( _redTimer2 + _delaySecond < _clock.ElapsedTime.AsSeconds() && _RedBar2.Size.X > _HealthBar2.Size.X )
             {
                 _red2 -= 0.1f;
-                _RedBar2.Size = _HealthBar2.Size + new Vector2f(( ( _windowX / 100f * 30f ) / 100f * _red2 ), 0f);
+                _gameInterface[3].Size = _HealthBar2.Size + new Vector2f(( ( _windowX / 100f * 30f ) / 100f * _red2 ), 0f);
             }
 
         }
