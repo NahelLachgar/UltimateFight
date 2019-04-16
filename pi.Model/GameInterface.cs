@@ -91,6 +91,7 @@ namespace pi
             {
                 texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/" + i + ".png");
                 Sprite font = new Sprite(texture);
+                font.Scale = new Vector2f(( _windowX * 0.00105f ), ( _windowY * 0.0013f ));
                 animation_fontTimer.Add(font);
             }
 
@@ -265,7 +266,7 @@ namespace pi
                 _red1 += _HealthPlayer1 - Convert.ToSingle(HealthPlayer1);
                 _HealthPlayer1 = Convert.ToSingle(HealthPlayer1);
                 // Update the Health bar of Player 
-                _gameInterface [4].Size = new Vector2f((( _windowX * 0.30f ) / 100f) * HealthPlayer1, ( _windowY * 0.0203f ));
+                _gameInterface [4].Size = new Vector2f(( _windowX * 0.30f ) / 100f * HealthPlayer1, ( _windowY * 0.0203f ));
             }
 
             if ( _HealthPlayer2 > HealthPlayer2 )
@@ -274,7 +275,7 @@ namespace pi
                 _red2 += _HealthPlayer2 - Convert.ToSingle(HealthPlayer2);
                 _HealthPlayer2 = Convert.ToSingle(HealthPlayer2);
                 // Update the Health bar of Player 
-                _gameInterface [ 5 ].Size = new Vector2f(( ( _windowX * 0.30f ) / 100f ) * HealthPlayer2, ( _windowY * 0.0203f ));
+                _gameInterface [ 5 ].Size = new Vector2f((  _windowX * 0.30f ) / 100f  * HealthPlayer2, ( _windowY * 0.0203f ));
             }
         }
        
