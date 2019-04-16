@@ -41,10 +41,9 @@ namespace pi
         private int _iKO = 0;
         private float _timerGame = 99f;
         private bool _end = false;
-        private Sprite _BackEnergyBar1_1;
-        private Sprite _BackEnergyBar1_2;
-        private Sprite _BackEnergyBar2_1;
-        private Sprite _BackEnergyBar2_2;
+        private Sprite _BackEnergyBar1;
+        private Sprite _BackEnergyBar2;
+
         public List<Sprite> _EnergyBar = new List<Sprite>();
         public List<Sprite> _animation_BlueFlame = new List<Sprite>();
         private Sprite _blueFlame1;
@@ -62,95 +61,26 @@ namespace pi
             _clock = clock;
             _windowX = Convert.ToSingle(window.Size.X);
             _windowY = Convert.ToSingle(window.Size.Y);
-           /* _text = new Text()
-            {
-                DisplayedString = String.Format("{0}", _timerGame),
-                //Font = new Font("../../../../pi.Ui/Resources/space_ranger/spaceranger.ttf"),
-                Font = new Font("../../../../pi.Ui/Resources/monsters_attack/Monsters_Attack.ttf"),
-                Scale = new Vector2f( 1.5f, 1f),
-                CharacterSize = 64,
-                FillColor = Color.Blue,
-                OutlineThickness = 5.0F,
-                OutlineColor = Color.White,
-                Style = 0,
-                Position = new Vector2f(( _windowX / 2f )-50f, 20.0f)
-            };*/
-
-            _fontTimer1 = new Sprite
-            {
-                Position = new Vector2f(( _windowX / 2f ) -35f, 40.0f),
-                Scale = new Vector2f(2f, 2f),
-            };
-
-            _fontTimer2 = new Sprite
-            {
-                Position = new Vector2f(( _windowX / 2f ) +15f, 40.0f),
-                Scale = new Vector2f(2f, 2f),
-            };
-
-            _HealthBar1 = new RectangleShape()
-            {
-                Position = new Vector2f((_windowX /100f * 10f), 50f),
-                Size = new Vector2f((_windowX /100f *30f), 20f),
-                FillColor = Color.Green,
-            };
-
-            _BackHealthBar1 = new RectangleShape()
-            {
-                Position = new Vector2f(( _windowX / 100f * 10f), 50f),
-                Size = new Vector2f(( _windowX / 100f *30f), 20f),
-                FillColor = Color.Black,
-                OutlineThickness = (4),
-                OutlineColor = Color.White
-            };
-
-            _HealthBar2 = new RectangleShape()
-            {
-                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 50f),
-                Size = new Vector2f(( _windowX / 100f *30f), 20f),
-                FillColor = Color.Green,
-            };
-
-            _BackHealthBar2 = new RectangleShape()
-            {
-                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), 50f),
-                Size = new Vector2f(( _windowX / 100f *30f), 20f),
-                FillColor = Color.Black,
-                OutlineThickness = (4),
-                OutlineColor = Color.White
-            };
-
-            _RedBar1 = new RectangleShape()
-            {
-                //Position = new Vector2f(( _windowX / 100f * 10f), 30f),
-                //Size = new Vector2f(0f, 20f),
-                Position = _HealthBar1.Position,
-                Size = _HealthBar1.Size,
-                FillColor = Color.Red,
-            };
-
-            _RedBar2 = new RectangleShape()
-            {
-                //Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 30f),
-                //Size = new Vector2f(0f, 20f),
-                Position = _HealthBar2.Position,
-                Size = _HealthBar2.Size,
-                FillColor = Color.Red,
-            };
-
-            _gameInterface.Add(_BackHealthBar1);
-            _gameInterface.Add(_BackHealthBar2);
-            _gameInterface.Add(_RedBar1);
-            _gameInterface.Add(_RedBar2);
-            _gameInterface.Add(_HealthBar1);
-            _gameInterface.Add(_HealthBar2);
+            /* _text = new Text()
+             {
+                 DisplayedString = String.Format("{0}", _timerGame),
+                 //Font = new Font("../../../../pi.Ui/Resources/space_ranger/spaceranger.ttf"),
+                 Font = new Font("../../../../pi.Ui/Resources/monsters_attack/Monsters_Attack.ttf"),
+                 Scale = new Vector2f( 1.5f, 1f),
+                 CharacterSize = 64,
+                 FillColor = Color.Blue,
+                 OutlineThickness = 5.0F,
+                 OutlineColor = Color.White,
+                 Style = 0,
+                 Position = new Vector2f(( _windowX / 2f )-50f, 20.0f)
+             };*/
 
             // Sprite for draw the animation of "K.O" when a player dies
             for ( int i = 1; i <= 38; i++ )
             {
-                texture = new Texture("../../../../pi.Ui/Resources/k_o/"+i+".png");
+                texture = new Texture("../../../../pi.Ui/Resources/k_o/" + i + ".png");
                 Sprite _ko = new Sprite(texture);
-                _ko.Position = new Vector2f(0F,30f);
+                _ko.Position = new Vector2f(0F, 30f);
                 _ko.Scale = new Vector2f(3f, 3f);
                 animation_ko.Add(_ko);
             }
@@ -158,7 +88,7 @@ namespace pi
             // Sprite for draw the timer in-game
             for ( int i = 0; i < 10; i++ )
             {
-                texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/"+i+".png");
+                texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/" + i + ".png");
                 Sprite font = new Sprite(texture);
                 animation_fontTimer.Add(font);
             }
@@ -171,58 +101,117 @@ namespace pi
                 _animation_BlueFlame.Add(flame);
             }
 
+            _fontTimer1 = new Sprite
+            {
+                Texture = animation_fontTimer [0].Texture,
+                Position = new Vector2f(( _windowX / 2f ) - Convert.ToSingle(animation_fontTimer[0].TextureRect.Width), 40.0f),
+                Scale = new Vector2f(2f, 2f),
+            };
+
+            _fontTimer2 = new Sprite
+            {
+                Texture = animation_fontTimer [ 0 ].Texture,
+                Position = new Vector2f(( _windowX / 2f ) - Convert.ToSingle(animation_fontTimer [ 0 ].TextureRect.Width), 40.0f),
+                Scale = new Vector2f(2f, 2f),
+            };
+
+            _HealthBar1 = new RectangleShape()
+            {
+                Position = new Vector2f((_windowX * 0.10f), ( _windowY * 0.0542f )),
+                Size = new Vector2f((_windowX * 0.30f), ( _windowY * 0.0210f)),
+                FillColor = Color.Green,
+            };
+
+
+            _RedBar1 = new RectangleShape()
+            {
+                //Position = new Vector2f(( _windowX / 100f * 10f), 30f),
+                //Size = new Vector2f(0f, 20f),
+                Position = new Vector2f(( _windowX * 0.10f ), ( _windowY * 0.0542f )),
+                Size = new Vector2f(( _windowX * 0.30f ), ( _windowY * 0.0203f )),
+                FillColor = Color.Red,
+            };
+
+            _BackHealthBar1 = new RectangleShape()
+            {
+                Position = new Vector2f(( _windowX * 0.10f ), ( _windowY * 0.0542f )),
+                Size = new Vector2f(( _windowX * 0.30f ), ( _windowY * 0.0203f )),
+                FillColor = Color.Black,
+                OutlineThickness = (4),
+                OutlineColor = Color.White
+            };
+
+
+
+
+            _HealthBar2 = new RectangleShape()
+            {
+                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), ( _windowY * 0.0542f )),
+                Size = new Vector2f(( _windowX * 0.30f ), ( _windowY * 0.0203f )),
+                FillColor = Color.Green,
+            };
+
+            _BackHealthBar2 = new RectangleShape()
+            {
+                Position = new Vector2f(_windowX - (_HealthBar1.Size.X + _HealthBar1.Position.X ), ( _windowY * 0.0542f )),
+                Size = new Vector2f(( _windowX * 0.30f ), ( _windowY * 0.0203f )),
+                FillColor = Color.Black,
+                OutlineThickness = (4),
+                OutlineColor = Color.White
+            };
+
+            _RedBar2 = new RectangleShape()
+            {
+                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), ( _windowY * 0.0542f )),
+                Size = new Vector2f(( _windowX * 0.30f ), ( _windowY * 0.0203f )),
+                FillColor = Color.Red,
+            };
+
+            _gameInterface.Add(_BackHealthBar1);
+            _gameInterface.Add(_BackHealthBar2);
+            _gameInterface.Add(_RedBar1);
+            _gameInterface.Add(_RedBar2);
+            _gameInterface.Add(_HealthBar1);
+            _gameInterface.Add(_HealthBar2);
+
+
             texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar1.png");
-            _BackEnergyBar1_1 = new Sprite()
+            _BackEnergyBar1 = new Sprite()
             {
                 Texture = texture,
-                Position = new Vector2f(( _windowX / 100f * 10f )+245f, 120f),               
+                Position = new Vector2f(( _windowX * 0.227f ), (_windowY * 0.11f)),               
                 Scale = new Vector2f(0.3f,0.5f),
             };
-            _EnergyBar.Add(_BackEnergyBar1_1);
+            _EnergyBar.Add(_BackEnergyBar1);
 
-            _BackEnergyBar2_1 = new Sprite()
+
+            _BackEnergyBar2 = new Sprite()
             {
                 Texture = texture,
-                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 120f),
+                Position = new Vector2f(_windowX - _BackEnergyBar1.Position.X - ( _BackEnergyBar1.Texture.Size.X * 0.3f ), ( _windowY * 0.11f )),
                 Scale = new Vector2f(0.3f, 0.5f),
             };
-            _EnergyBar.Add(_BackEnergyBar2_1);
+            _EnergyBar.Add(_BackEnergyBar2);
 
 
-            texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar2.png");
-            _BackEnergyBar1_2 = new Sprite()
-            {
-                Texture = texture,
-                Position = new Vector2f(( _windowX / 100f * 10f ) + 245f, 126f),
-                Scale = new Vector2f(0.3f, 0.5f),
-                Color = Color.White,
-            };
-            _EnergyBar.Add(_BackEnergyBar1_2);
 
-
-            _BackEnergyBar2_2 = new Sprite()
-            {
-                Texture = texture,
-                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 126f),
-                Scale = new Vector2f(0.3f, 0.5f),
-                Color = Color.White,
-            };
-            _EnergyBar.Add(_BackEnergyBar2_2);
 
             // Animation of BlueFlame on Energy Bar for Player 1
-            _blueFlame1 = new Sprite()
+            _blueFlame1 = new Sprite(_animation_BlueFlame [ 0 ].Texture, new IntRect(0, 140, 120, 140) )
             {
-                Texture = _animation_BlueFlame [ 0 ].Texture,
-                Position = new Vector2f(( _windowX / 100f * 10f ) + 245f, 50f),
-                Scale = new Vector2f(0.5f, 0.5f),
+                Position = new Vector2f( _BackEnergyBar1.Position.X , ( _windowY * 0.08f )),
+                Scale = new Vector2f(0.4f, 0.4f),
             };
 
-            _blueFlame2 = new Sprite()
+            _blueFlame2 = new Sprite(_animation_BlueFlame [ 0 ].Texture, new IntRect(0, 140, 120, 140))
             {
-                Texture = _animation_BlueFlame [ 0 ].Texture,
-                Position = new Vector2f(_windowX - ( _HealthBar1.Size.X + _HealthBar1.Position.X ), 126f),
-                Scale = new Vector2f(0.5f, 0.5f),
+                // Don't forget to multiply by the scale applicated :  Here it's by 0.4f
+                Scale = new Vector2f(0.4f, 0.4f),
+                Position = new Vector2f((_windowX - _blueFlame1.Position.X ) - (_blueFlame1.TextureRect.Width * 0.4f), ( _windowY * 0.08f )),
             };
+
+            Console.WriteLine(_blueFlame1.TextureRect.Width);
+            Console.WriteLine(_windowX - _blueFlame2.TextureRect.Width);
 
             // End Builder-------------------------------------------------------------------------
         }
@@ -260,7 +249,7 @@ namespace pi
                 _fontTimer1.Texture = animation_fontTimer [ Convert.ToInt32(font_time1) ].Texture;
                 _fontTimer2.Texture = animation_fontTimer [ Convert.ToInt32(font_time2) ].Texture;
                 //_text.DisplayedString = String.Format("{0}{1}", font_time1, font_time2);
-
+                _fontTimer2.Position = new Vector2f(( _windowX / 2f ) + Convert.ToSingle(_fontTimer1.TextureRect.Width), 40.0f);
             }
         }
 
@@ -278,7 +267,7 @@ namespace pi
                 _red1 += _HealthPlayer1 - Convert.ToSingle(HealthPlayer1);
                 _HealthPlayer1 = Convert.ToSingle(HealthPlayer1);
                 // Update the Health bar of Player 
-                _gameInterface [4].Size = new Vector2f(( _windowX / 100f * 30f ) / 100f * HealthPlayer1, 20f);
+                _gameInterface [4].Size = new Vector2f((( _windowX * 0.30f ) / 100f) * HealthPlayer1, ( _windowY * 0.0203f ));
             }
 
             if ( _HealthPlayer2 > HealthPlayer2 )
@@ -287,7 +276,7 @@ namespace pi
                 _red2 += _HealthPlayer2 - Convert.ToSingle(HealthPlayer2);
                 _HealthPlayer2 = Convert.ToSingle(HealthPlayer2);
                 // Update the Health bar of Player 
-                _gameInterface [5].Size = new Vector2f(( _windowX / 100f * 30f ) / 100f * HealthPlayer2, 20f);
+                _gameInterface [ 5 ].Size = new Vector2f(( ( _windowX * 0.30f ) / 100f ) * HealthPlayer2, ( _windowY * 0.0203f ));
             }
         }
        
