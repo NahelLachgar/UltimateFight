@@ -19,9 +19,7 @@ namespace pi
                 Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"), factory.NewStage("stage1", window) );
                 GameInterface gameInterface = new GameInterface(window, game._clock);
 
-                // PLAYERS'S POSITIONS
-                game._fighter1._sprite.Position = new Vector2f(250, 450);
-                game._fighter2._sprite.Position = new Vector2f(1500, 450);
+                
 
 
 

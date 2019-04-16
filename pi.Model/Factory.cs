@@ -46,7 +46,7 @@ namespace pi
             switch (name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1.jpg", 1300, window);
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 500, window);
                     return stage;
                 default:
                     return null;
