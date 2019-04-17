@@ -98,10 +98,21 @@ namespace pi
 
         internal void MoveLeft(float xToRemove)
         {
-            if (this._sprite.Position.X > -75)
+            if (this._sprite.Scale.X > 0)
             {
-                this._sprite.Position -= new Vector2f(xToRemove, 0);
+                if (this._sprite.Position.X > -75)
+                {
+                    this._sprite.Position -= new Vector2f(xToRemove, 0);
+                }
             }
+            if (this._sprite.Scale.X < 0)
+            {
+                if (this._sprite.Position.X > 250)
+                {
+                    this._sprite.Position -= new Vector2f(xToRemove, 0);
+                }
+            }
+            
         }
 
         internal void Jump()
