@@ -210,9 +210,6 @@ namespace pi
                 Position = new Vector2f((_windowX - _blueFlame1.Position.X ) - (_blueFlame1.TextureRect.Width * 0.4f), ( _windowY * 0.08f )),
             };
 
-            Console.WriteLine(_blueFlame1.TextureRect.Width);
-            Console.WriteLine(_windowX - _blueFlame2.TextureRect.Width);
-
             // End Builder-------------------------------------------------------------------------
         }
 
