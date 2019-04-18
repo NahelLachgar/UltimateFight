@@ -14,6 +14,7 @@ namespace pi
         internal uint _health;
         internal Vector2f _position;
         Dictionary<string, IntRect> _rects;
+        bool _canMove;
         bool _isJumping;
         bool _isFalling;
         bool _isFighting;
@@ -27,6 +28,7 @@ namespace pi
             _isJumping = false;
             _isFalling = false;
             _isFighting = false;
+            _canMove = true;
             _sprite = sprite;
             _animation = new Animation(sprite);
         }
@@ -46,11 +48,19 @@ namespace pi
 
         internal void Update()
         {
-            // ANIMATION WAITING
-
-            _animation.Waiting();
-
-           
+            // ANIMATION 
+            if (_isFighting == true && _animation.LightPunch() == true)
+            {
+                _animation.LightPunch();
+                if (_animation.LightPunch() == false)
+                {
+                    _isFighting = false;
+                    _canMove = true;
+                }
+            }
+            else _animation.Waiting();
+            // ==== END ANIMATION
+            
             // WHILE JUMPING
             if (_isJumping == true && _isFalling == false)
             {
@@ -64,6 +74,7 @@ namespace pi
                     i = -1;
                 }
             }
+            
             // WHILE FALLING AFTER JUMPING
             if (_isJumping == false && _isFalling == true)
             {
@@ -80,46 +91,46 @@ namespace pi
             }
         }
 
-        internal void Waiting()
-        {
-
-        }
-
         internal void MoveRight(float xToAdd)
         {
-            if (this._sprite.Scale.X > 0)
+            if (_canMove == true)
             {
-                if (this._sprite.Position.X < 1700)
+                if (this._sprite.Scale.X > 0)
                 {
-                    this._sprite.Position += new Vector2f(xToAdd, 0);
+                    if (this._sprite.Position.X < 1700)
+                    {
+                        this._sprite.Position += new Vector2f(xToAdd, 0);
+                    }
                 }
-            }
-            if (this._sprite.Scale.X < 0)
-            {
-                if (this._sprite.Position.X < 1925)
+                if (this._sprite.Scale.X < 0)
                 {
-                    this._sprite.Position += new Vector2f(xToAdd, 0);
+                    if (this._sprite.Position.X < 1925)
+                    {
+                        this._sprite.Position += new Vector2f(xToAdd, 0);
+                    }
                 }
             }
         }
 
         internal void MoveLeft(float xToRemove)
         {
-            if (this._sprite.Scale.X > 0)
+            if (_canMove == true)
             {
-                if (this._sprite.Position.X > 0)
+                if (this._sprite.Scale.X > 0)
                 {
-                    this._sprite.Position -= new Vector2f(xToRemove, 0);
+                    if (this._sprite.Position.X > 0)
+                    {
+                        this._sprite.Position -= new Vector2f(xToRemove, 0);
+                    }
+                }
+                if (this._sprite.Scale.X < 0)
+                {
+                    if (this._sprite.Position.X > 225)
+                    {
+                        this._sprite.Position -= new Vector2f(xToRemove, 0);
+                    }
                 }
             }
-            if (this._sprite.Scale.X < 0)
-            {
-                if (this._sprite.Position.X > 225)
-                {
-                    this._sprite.Position -= new Vector2f(xToRemove, 0);
-                }
-            }
-            
         }
 
         internal void Jump()
@@ -132,11 +143,11 @@ namespace pi
 
         internal void LightPunch()
         {
-            if(_isFighting == false)
+            if (_isFighting == false)
             {
+                _canMove = false;
                 _isFighting = true;
-                //_animation.LightPunch;
-                _isFighting = false;
+                _animation.LightPunch();
             }
         }
 
