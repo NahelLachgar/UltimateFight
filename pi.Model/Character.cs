@@ -12,6 +12,7 @@ namespace pi
         public Sprite _sprite;
         // internal Special _special;
         internal uint _health;
+        internal uint _energy = 0;
         internal Vector2f _position;
         Dictionary<string, IntRect> _rects;
         bool _isJumping;
@@ -31,12 +32,13 @@ namespace pi
             _animation = new Animation(sprite);
         }
 
+        public uint Energy => _energy;
+
         internal string Name => _name;
 
         internal bool IsAlive => Health != 0;
 
         public uint Health => _health;
-
 
         internal Vector2f Position
         {
@@ -166,6 +168,15 @@ namespace pi
             if (_health > 100)
             {
                 _health = 0;
+            }
+        }
+
+        internal void GainEnergy(uint Gain)
+        {
+            _energy += Gain;
+            if ( _energy > 100 )
+            {
+                _energy = 100;
             }
         }
     }
