@@ -112,8 +112,13 @@ namespace pi
             // *** The same for the player 2 with the key M and L. ***
             if ( Keyboard.IsKeyPressed(Keyboard.Key.P) ) _fighter1.TakeDammage(1);
             if ( Keyboard.IsKeyPressed(Keyboard.Key.O) ) _fighter1._health = 100;
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.I) ) _fighter1.GainEnergy(1);
+
+
             if ( Keyboard.IsKeyPressed(Keyboard.Key.M) ) _fighter2.TakeDammage(1);
             if ( Keyboard.IsKeyPressed(Keyboard.Key.L) ) _fighter2._health = 100;
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.K) ) _fighter2.GainEnergy(1);
+
             //====================================================================================
             //====================================================================================
         }
