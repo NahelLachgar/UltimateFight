@@ -16,17 +16,19 @@ namespace pi
         Dictionary<string, IntRect> _rects;
         bool _isJumping;
         bool _isFalling;
+        bool _isFighting;
         int i;
-        //Animation _animation;
+        internal Animation _animation;
 
         public Character(string name, Sprite sprite)
         {
             _name = name;
             _health = 100;
-            _sprite = sprite;
             _isJumping = false;
             _isFalling = false;
-            // _animation = new Animation(this);
+            _isFighting = false;
+            _sprite = sprite;
+            _animation = new Animation(sprite);
         }
 
         internal string Name => _name;
@@ -44,6 +46,11 @@ namespace pi
 
         internal void Update()
         {
+            // ANIMATION WAITING
+
+            _animation.Waiting();
+
+           
             // WHILE JUMPING
             if (_isJumping == true && _isFalling == false)
             {
@@ -82,14 +89,14 @@ namespace pi
         {
             if (this._sprite.Scale.X > 0)
             {
-                if (this._sprite.Position.X < 1655)
+                if (this._sprite.Position.X < 1700)
                 {
                     this._sprite.Position += new Vector2f(xToAdd, 0);
                 }
             }
             if (this._sprite.Scale.X < 0)
             {
-                if (this._sprite.Position.X < 1990)
+                if (this._sprite.Position.X < 1925)
                 {
                     this._sprite.Position += new Vector2f(xToAdd, 0);
                 }
@@ -100,14 +107,14 @@ namespace pi
         {
             if (this._sprite.Scale.X > 0)
             {
-                if (this._sprite.Position.X > -75)
+                if (this._sprite.Position.X > 0)
                 {
                     this._sprite.Position -= new Vector2f(xToRemove, 0);
                 }
             }
             if (this._sprite.Scale.X < 0)
             {
-                if (this._sprite.Position.X > 250)
+                if (this._sprite.Position.X > 225)
                 {
                     this._sprite.Position -= new Vector2f(xToRemove, 0);
                 }
@@ -125,6 +132,12 @@ namespace pi
 
         internal void LightPunch()
         {
+            if(_isFighting == false)
+            {
+                _isFighting = true;
+                //_animation.LightPunch;
+                _isFighting = false;
+            }
         }
 
         internal void HeavyPunch()

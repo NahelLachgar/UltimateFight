@@ -63,27 +63,27 @@ namespace pi
             _currentTime = _timer.AsSeconds();
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM
-            if(_fighter1._sprite.Position.X > _fighter2._sprite.Position.X -300)
+            if(_fighter1._sprite.Position.X > _fighter2._sprite.Position.X -225)
             {
                 if (_fighter1._sprite.Scale.X > 0)
                 {
                     _fighter1._sprite.Scale = new Vector2f((_fighter1._sprite.Scale.X * -1), _fighter1._sprite.Scale.Y);
-                    _fighter1._sprite.Position = new Vector2f((_fighter1._sprite.Position.X +300), _fighter1._sprite.Position.Y);
+                    _fighter1._sprite.Position = new Vector2f(_fighter1._sprite.Position.X + 180 + _fighter2._sprite.TextureRect.Width , _fighter1._sprite.Position.Y); /* + */
                     
                     _fighter2._sprite.Scale = new Vector2f((_fighter2._sprite.Scale.X * -1), _fighter2._sprite.Scale.Y);
-                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X -300), _fighter2._sprite.Position.Y);
+                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width), _fighter2._sprite.Position.Y); /* - */
                     
                 }
             }
-            if (_fighter1._sprite.Position.X < _fighter2._sprite.Position.X + 300)
+            if (_fighter1._sprite.Position.X < _fighter2._sprite.Position.X + 225)
             {
                 if (_fighter1._sprite.Scale.X < 0)
                 {
                     _fighter1._sprite.Scale = new Vector2f((_fighter1._sprite.Scale.X * -1), _fighter1._sprite.Scale.Y);
-                    _fighter1._sprite.Position = new Vector2f((_fighter1._sprite.Position.X - 300), _fighter1._sprite.Position.Y);
+                    _fighter1._sprite.Position = new Vector2f((_fighter1._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width), _fighter1._sprite.Position.Y); /* - */
 
                     _fighter2._sprite.Scale = new Vector2f((_fighter2._sprite.Scale.X * -1), _fighter2._sprite.Scale.Y);
-                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X + 300), _fighter2._sprite.Position.Y);
+                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X + 180 + _fighter2._sprite.TextureRect.Width), _fighter2._sprite.Position.Y); /* + */
 
                 }
             }
