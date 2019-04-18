@@ -212,12 +212,7 @@ namespace pi
                 Scale = new Vector2f(( _windowX * 0.00025f ), ( _windowY * 0.00035f )),
                 Position = new Vector2f(_windowX - _blueFlame1.Position.X  - (_blueFlame1.TextureRect.Width * _blueFlame1.Scale.X), _blueFlame1.Position.Y),
             };
-
-<<<<<<< HEAD
-=======
-
-                //================================================================================================================================
->>>>>>> sami
+            
             // End Builder--------------------------------------------------------------------------------------------------------------------
 
         }
