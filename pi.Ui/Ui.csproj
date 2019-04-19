@@ -10,15 +10,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pi.Model\pi.Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Resources\space_ranger\spaceranger.ttf" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\pi.Model\Model.csproj" />
   </ItemGroup>
   
 </Project>

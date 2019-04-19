@@ -4,7 +4,7 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 
-namespace pi
+namespace UltimateFight
 {
     public class Character //:Sprite
     {
