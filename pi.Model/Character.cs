@@ -56,6 +56,7 @@ namespace UltimateFight
             // ANIMATION 
             if (_isFighting == true)
             {
+                _isMoving = false;
                 if (_animation.LightPunch() == true)
                 {
                     _animation.LightPunch();
@@ -120,6 +121,7 @@ namespace UltimateFight
                     if (this._sprite.Position.X < 1925)
                     {
                         this._sprite.Position += new Vector2f(xToAdd, 0);
+                        _animation.WalkingBackward();
                     }
                 }
             }
@@ -129,12 +131,13 @@ namespace UltimateFight
         {
             if (_canMove == true)
             {
-                //_isMoving = true;
+                _isMoving = true;
                 if (this._sprite.Scale.X > 0)
                 {
                     if (this._sprite.Position.X > 0)
                     {
                         this._sprite.Position -= new Vector2f(xToRemove, 0);
+                        _animation.WalkingBackward();
                     }
                 }
                 if (this._sprite.Scale.X < 0)
@@ -142,7 +145,7 @@ namespace UltimateFight
                     if (this._sprite.Position.X > 225)
                     {
                         this._sprite.Position -= new Vector2f(xToRemove, 0);
-                      //  _animation.WalkingForward();
+                        _animation.WalkingForward();
                     }
                 }
             }

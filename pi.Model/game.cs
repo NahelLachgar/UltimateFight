@@ -112,6 +112,12 @@ namespace UltimateFight
             _window.KeyReleased += (sender, e) =>
             {
                 if (e.Code == Keyboard.Key.D) _fighter1._isMoving = false;
+                if (e.Code == Keyboard.Key.Q) _fighter1._isMoving = false;
+
+
+                if (e.Code == Keyboard.Key.Right) _fighter2._isMoving = false;
+                if (e.Code == Keyboard.Key.Left) _fighter2._isMoving = false;
+
             };
 
             //====================================================================================

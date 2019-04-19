@@ -79,5 +79,27 @@ namespace UltimateFight
             }
             _i++;
         }
+
+        public void WalkingBackward()
+        {
+            switch (_i)
+            {
+                case 0:
+                    this._sprite.TextureRect = new IntRect(227, 17, 45, 93);
+                    _spriteNb = 0;
+                    break;
+                case 90:
+                    this._sprite.TextureRect = new IntRect(394, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    break;
+                case 180:
+                    this._sprite.TextureRect = new IntRect(337, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    break;
+                case 270:
+                    this._sprite.TextureRect = new IntRect(281, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    _i = -1;
+                    break;
+            }
+            _i++;
+        }
     }
 }
