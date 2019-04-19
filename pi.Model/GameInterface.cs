@@ -213,15 +213,9 @@ namespace UltimateFight
                 Scale = new Vector2f(( _windowX * 0.00025f ), ( _windowY * 0.00035f )),
                 Position = new Vector2f(_windowX - _blueFlame1.Position.X  - (_blueFlame1.TextureRect.Width * _blueFlame1.Scale.X), _blueFlame1.Position.Y),
             };
-<<<<<<< HEAD
-
-
 
                 //================================================================================================================================
 
-=======
-            
->>>>>>> ad015f052f2de4e53c46c1a83961124e98783bec
             // End Builder--------------------------------------------------------------------------------------------------------------------
 
         }
