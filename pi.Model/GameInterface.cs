@@ -90,7 +90,8 @@ namespace UltimateFight
                     Scale = new Vector2f(1f, 1f),
                 };
                 _gameInterface.Add(_RedBar1);  // Element 2
-                _gameInterface.Add(_RedBar2);  // Element 3                //-------------------------------------------------------------------------------------------------------------------------
+                _gameInterface.Add(_RedBar2);  // Element 3                
+                //-------------------------------------------------------------------------------------------------------------------------
 
 
                 // Health Bar of players 1 & 2
@@ -212,7 +213,9 @@ namespace UltimateFight
                 Scale = new Vector2f(( _windowX * 0.00025f ), ( _windowY * 0.00035f )),
                 Position = new Vector2f(_windowX - _blueFlame1.Position.X  - (_blueFlame1.TextureRect.Width * _blueFlame1.Scale.X), _blueFlame1.Position.Y),
             };
-            
+
+                //================================================================================================================================
+
             // End Builder--------------------------------------------------------------------------------------------------------------------
 
         }
