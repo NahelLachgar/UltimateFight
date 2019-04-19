@@ -16,7 +16,7 @@ namespace UltimateFight
         public Stage _stage;
         User _user1;
         User _user2;
-        float _moveSpeed = 1;
+        float _moveSpeed = 0.7F;
         float _jumpSpeed = 5;
         Vector2f _velocity = new Vector2f(0, 0);
         float _gravity = 1;
@@ -26,9 +26,10 @@ namespace UltimateFight
         Time _timer = new Time();
         float _timerGame = 99f;
         float _currentTime;
+        RenderWindow _window;
 
 
-        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, User user1=null, User user2=null)
+        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
         {
             _timer = timer;
             _fighter1 = fighter1;
@@ -41,6 +42,7 @@ namespace UltimateFight
             _user1 = user1;
             _user2 = user2;
             _roundNb = 1;
+            _window = window;
         }
 
         internal void EndGame ()
@@ -68,10 +70,10 @@ namespace UltimateFight
                 if (_fighter1._sprite.Scale.X > 0)
                 {
                     _fighter1._sprite.Scale = new Vector2f((_fighter1._sprite.Scale.X * -1), _fighter1._sprite.Scale.Y);
-                    _fighter1._sprite.Position = new Vector2f(_fighter1._sprite.Position.X + 180 + _fighter2._sprite.TextureRect.Width , _fighter1._sprite.Position.Y); /* + */
+                    _fighter1._sprite.Position = new Vector2f(_fighter1._sprite.Position.X + 180 + _fighter2._sprite.TextureRect.Width , _fighter1._sprite.Position.Y);
                     
                     _fighter2._sprite.Scale = new Vector2f((_fighter2._sprite.Scale.X * -1), _fighter2._sprite.Scale.Y);
-                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width), _fighter2._sprite.Position.Y); /* - */
+                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width), _fighter2._sprite.Position.Y);
                     
                 }
             }
@@ -80,10 +82,10 @@ namespace UltimateFight
                 if (_fighter1._sprite.Scale.X < 0)
                 {
                     _fighter1._sprite.Scale = new Vector2f((_fighter1._sprite.Scale.X * -1), _fighter1._sprite.Scale.Y);
-                    _fighter1._sprite.Position = new Vector2f((_fighter1._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width), _fighter1._sprite.Position.Y); /* - */
+                    _fighter1._sprite.Position = new Vector2f((_fighter1._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width), _fighter1._sprite.Position.Y);
 
                     _fighter2._sprite.Scale = new Vector2f((_fighter2._sprite.Scale.X * -1), _fighter2._sprite.Scale.Y);
-                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X + 180 + _fighter2._sprite.TextureRect.Width), _fighter2._sprite.Position.Y); /* + */
+                    _fighter2._sprite.Position = new Vector2f((_fighter2._sprite.Position.X + 180 + _fighter2._sprite.TextureRect.Width), _fighter2._sprite.Position.Y);
 
                 }
             }
@@ -97,14 +99,20 @@ namespace UltimateFight
             if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.MoveLeft(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) _fighter1.LightPunch();
-
+            
             // PLAYER 2 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) _fighter2.MoveRight(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) _fighter2.MoveLeft(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Up)) _fighter2.Jump();
+            if (Keyboard.IsKeyPressed(Keyboard.Key.RShift)) _fighter2.LightPunch();
 
             _fighter1.Update();
             _fighter2.Update();
+
+            _window.KeyReleased += (sender, e) =>
+            {
+                if (e.Code == Keyboard.Key.D) _fighter1._isMoving = false;
+            };
 
             //====================================================================================
             //====================================================================================

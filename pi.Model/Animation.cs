@@ -10,6 +10,7 @@ namespace UltimateFight
         Sprite _sprite;
         int _spriteNb;
         int _p;
+        int _i;
 
         public Animation (Sprite sprite)
         {
@@ -21,21 +22,21 @@ namespace UltimateFight
             switch (_spriteNb)
             {
                 case 0: this._sprite.TextureRect = new IntRect(4, 17, 45, 93);
+                    _i = 0;
                     break;
-                case 80: this._sprite.TextureRect = new IntRect(57, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                case 90: this._sprite.TextureRect = new IntRect(57, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
-                case 160: this._sprite.TextureRect = new IntRect(112, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                case 180: this._sprite.TextureRect = new IntRect(112, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
-                case 240: this._sprite.TextureRect = new IntRect(168, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
-                          _spriteNb = -1;
+                case 270: this._sprite.TextureRect = new IntRect(168, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    _spriteNb = -1;
                     break;
             }
-            _spriteNb += 1;
+            _spriteNb++;
         }
 
         public bool LightPunch()
         {
-            
             switch (_p)
             {
                 case 0:
@@ -55,6 +56,28 @@ namespace UltimateFight
             }
             _p++;
             return true;
+        }
+
+        public void WalkingForward()
+        {
+            switch (_i)
+            {
+                case 0:
+                    this._sprite.TextureRect = new IntRect(227, 17, 45, 93);
+                    _spriteNb = 0;
+                    break;
+                case 90:
+                    this._sprite.TextureRect = new IntRect(281, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    break;
+                case 180:
+                    this._sprite.TextureRect = new IntRect(337, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    break;
+                case 270:
+                    this._sprite.TextureRect = new IntRect(394, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    _i = -1;
+                    break;
+            }
+            _i++;
         }
     }
 }

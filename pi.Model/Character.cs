@@ -19,6 +19,7 @@ namespace UltimateFight
         bool _isJumping;
         bool _isFalling;
         bool _isFighting;
+        internal bool _isMoving;
         int i;
         internal Animation _animation;
 
@@ -29,6 +30,7 @@ namespace UltimateFight
             _isJumping = false;
             _isFalling = false;
             _isFighting = false;
+            _isMoving = false;
             _canMove = true;
             _sprite = sprite;
             _animation = new Animation(sprite);
@@ -50,19 +52,26 @@ namespace UltimateFight
 
         internal void Update()
         {
+
             // ANIMATION 
-            if (_isFighting == true && _animation.LightPunch() == true)
+            if (_isFighting == true)
             {
-                _animation.LightPunch();
-                if (_animation.LightPunch() == false)
+                if (_animation.LightPunch() == true)
                 {
-                    _isFighting = false;
-                    _canMove = true;
+                    _animation.LightPunch();
+                    if (_animation.LightPunch() == false)
+                    {
+                        _isFighting = false;
+                        _canMove = true;
+                    }
                 }
             }
-            else _animation.Waiting();
+
+            
+            if(_isMoving == false && _isFighting == false) _animation.Waiting();
             // ==== END ANIMATION
             
+
             // WHILE JUMPING
             if (_isJumping == true && _isFalling == false)
             {
@@ -97,11 +106,13 @@ namespace UltimateFight
         {
             if (_canMove == true)
             {
+                _isMoving = true;
                 if (this._sprite.Scale.X > 0)
                 {
                     if (this._sprite.Position.X < 1700)
                     {
                         this._sprite.Position += new Vector2f(xToAdd, 0);
+                        _animation.WalkingForward();
                     }
                 }
                 if (this._sprite.Scale.X < 0)
@@ -118,6 +129,7 @@ namespace UltimateFight
         {
             if (_canMove == true)
             {
+                //_isMoving = true;
                 if (this._sprite.Scale.X > 0)
                 {
                     if (this._sprite.Position.X > 0)
@@ -130,6 +142,7 @@ namespace UltimateFight
                     if (this._sprite.Position.X > 225)
                     {
                         this._sprite.Position -= new Vector2f(xToRemove, 0);
+                      //  _animation.WalkingForward();
                     }
                 }
             }
