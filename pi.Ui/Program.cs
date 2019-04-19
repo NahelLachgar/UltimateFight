@@ -34,11 +34,13 @@ namespace UltimateFight
 /*
                     Console.WriteLine(game._fighter1._sprite.Position.X);
                     Console.WriteLine(" width: {0} ", game._fighter1._sprite.Position.X + game._fighter1._sprite.TextureRect.Width);
-                    Console.WriteLine(game._fighter2._sprite.Position.X);  */
+                    Console.WriteLine(game._fighter1._sprite.Position.Y);  */
 
                     window.Clear();
                     window.Draw(game._stage._sprite);
+                    window.Draw(game._fighter1._shadow);
                     window.Draw(game._fighter1._sprite);
+                    window.Draw(game._fighter2._shadow);
                     window.Draw(game._fighter2._sprite);
 
                     // Draw the game interface
