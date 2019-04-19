@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace pi
+namespace UltimateFight
 {
     public class Game { 
         public Stage stage;
@@ -96,6 +96,7 @@ namespace pi
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _fighter1.MoveRight(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.MoveLeft(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) _fighter1.LightPunch();
 
             // PLAYER 2 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) _fighter2.MoveRight(_moveSpeed);
