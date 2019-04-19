@@ -6,7 +6,7 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
-namespace pi
+namespace UltimateFight
 {
     public class GameInterface
     {

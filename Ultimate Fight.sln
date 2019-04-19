@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pi.Ui", "pi.Ui\pi.Ui.csproj", "{C02B9AFF-161E-4F6F-B596-093A56116920}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ui", "pi.Ui\Ui.csproj", "{C02B9AFF-161E-4F6F-B596-093A56116920}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pi.Model", "pi.Model\pi.Model.csproj", "{56EC3A82-AA80-4C5B-BD56-35B8952CDB35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "pi.Model\Model.csproj", "{56EC3A82-AA80-4C5B-BD56-35B8952CDB35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

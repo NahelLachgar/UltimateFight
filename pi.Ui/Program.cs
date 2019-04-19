@@ -5,7 +5,7 @@ using SFML.Window;
 using SFML.System;
 using System.Collections.Generic;
 
-namespace pi
+namespace UltimateFight
 {
     public class Program
     {
@@ -16,7 +16,7 @@ namespace pi
       
             using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Default))
             {
-                Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"), factory.NewStage("stage1", window) );
+                Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"), factory.NewStage("stage1", window) , window);
                 GameInterface gameInterface = new GameInterface(window, game._clock);
 
                 
@@ -39,7 +39,6 @@ namespace pi
                     window.Draw(game._stage._sprite);
                     window.Draw(game._fighter1._sprite);
                     window.Draw(game._fighter2._sprite);
-
 
                     // Draw the game interface
                     foreach (RectangleShape value in gameInterface.GetGameInterface ) window.Draw(value);
