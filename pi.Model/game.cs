@@ -98,6 +98,7 @@ namespace UltimateFight
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _fighter1.MoveRight(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.MoveLeft(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
+            if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.Crouch();
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) _fighter1.LightPunch();
             
             // PLAYER 2 CONTROLER
@@ -111,10 +112,12 @@ namespace UltimateFight
 
             _window.KeyReleased += (sender, e) =>
             {
+                // PLAYER 1
                 if (e.Code == Keyboard.Key.D) _fighter1._isMoving = false;
                 if (e.Code == Keyboard.Key.Q) _fighter1._isMoving = false;
+                if (e.Code == Keyboard.Key.S) _fighter1._isCrouching = false;
 
-
+                // PLAYER 2
                 if (e.Code == Keyboard.Key.Right) _fighter2._isMoving = false;
                 if (e.Code == Keyboard.Key.Left) _fighter2._isMoving = false;
 

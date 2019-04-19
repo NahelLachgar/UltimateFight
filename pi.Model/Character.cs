@@ -19,6 +19,7 @@ namespace UltimateFight
         bool _isJumping;
         bool _isFalling;
         bool _isFighting;
+        internal bool _isCrouching;
         internal bool _isMoving;
         int i;
         internal Animation _animation;
@@ -31,6 +32,7 @@ namespace UltimateFight
             _isFalling = false;
             _isFighting = false;
             _isMoving = false;
+            
             _canMove = true;
             _sprite = sprite;
             _animation = new Animation(sprite);
@@ -57,6 +59,7 @@ namespace UltimateFight
             if (_isFighting == true)
             {
                 _isMoving = false;
+                _isCrouching = false;
                 if (_animation.LightPunch() == true)
                 {
                     _animation.LightPunch();
@@ -68,8 +71,12 @@ namespace UltimateFight
                 }
             }
 
+             if(_isMoving == true)
+            {
+                _isCrouching = false;
+            }
             
-            if(_isMoving == false && _isFighting == false) _animation.Waiting();
+            if(_isMoving == false && _isFighting == false && _isCrouching == false) _animation.Waiting();
             // ==== END ANIMATION
             
 
@@ -156,6 +163,15 @@ namespace UltimateFight
             if(_isJumping != true && _isFalling != true)
             {
                 _isJumping = true;
+            }
+        }
+
+        internal void Crouch()
+        {
+            if (_canMove == true)
+            {
+                _isCrouching = true;
+                _animation.Crouch();
             }
         }
 

@@ -25,7 +25,7 @@ namespace UltimateFight
 
                 while ( window.IsOpen)
                 {
-                   window.SetFramerateLimit(60);
+                   //window.SetFramerateLimit(60);
                     window.DispatchEvents();
 
                     //Update
