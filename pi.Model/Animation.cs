@@ -13,7 +13,7 @@ namespace UltimateFight
         int _p;
         int _i;
         int _c;
-        int _j;
+        int _j = -1;
 
         public Animation(Sprite sprite)
         {
@@ -24,7 +24,16 @@ namespace UltimateFight
         {
             switch (_spriteNb)
             {
-                case 0: this._sprite.TextureRect = new IntRect(4, 17, 45, 93);
+                case 0:
+                    // IF THE PLAYER WAS CROUCHING
+                    if (_c != 0)
+                    {
+                        this._sprite.TextureRect = new IntRect(786, 17, 45, 93);
+                    }
+                    else
+                    {
+                        this._sprite.TextureRect = new IntRect(4, 17, 45, 93);
+                    }
                     _i = 0;
                     _c = 0;
                     break;
@@ -146,9 +155,11 @@ namespace UltimateFight
         
         public void Jump( )
         {
-            
+            _j++;
+
             switch (_j)
             {
+                /*
                 case 0:
                     this._sprite.TextureRect = new IntRect(450, 17, 45, 93);
                     _i = 0;
@@ -169,13 +180,41 @@ namespace UltimateFight
                     break;
                 case 500:
                     this._sprite.TextureRect = new IntRect(733, 17, 43, this._sprite.TextureRect.Height);
-                    break;
-                case 599:
-                    this._sprite.TextureRect = new IntRect(450, 17, 45, 93);
                     _j = 0;
                     break;
+               /* case 599:
+                    this._sprite.TextureRect = new IntRect(450, 17, 45, 93);
+                    _j = 0;
+                    break; */
+
+
+                case 0:
+                    this._sprite.TextureRect = new IntRect(545, 17, 43, 93);
+                    _i = 0;
+                    _spriteNb = 0;
+                    _c = 1;
+                    break;
+                case 20:
+                    this._sprite.TextureRect = new IntRect(594, 17, 38, this._sprite.TextureRect.Height);
+                    break;
+                case 100:
+                    this._sprite.TextureRect = new IntRect(641, 17, 39, this._sprite.TextureRect.Height);
+                    break;
+                case 200:
+                    this._sprite.TextureRect = new IntRect(687, 17, 38, this._sprite.TextureRect.Height);
+                    break;
+                case 400:
+                    this._sprite.TextureRect = new IntRect(733, 17, 43, this._sprite.TextureRect.Height);
+                    break;
+                case 500:
+                    this._sprite.TextureRect = new IntRect(733, 17, 43, this._sprite.TextureRect.Height);
+                    break;
+                case 599:
+                    _j = -1;
+                    break;
+
             }
-            _j++;
+            
 
         }
     }
