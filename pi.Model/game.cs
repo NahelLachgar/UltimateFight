@@ -100,7 +100,8 @@ namespace UltimateFight
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.Crouch();
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) _fighter1.LightPunch();
-            
+            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) _fighter1.LightKick();
+
             // PLAYER 2 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) _fighter2.MoveRight(_moveSpeed);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) _fighter2.MoveLeft(_moveSpeed);
@@ -109,9 +110,9 @@ namespace UltimateFight
 
             _fighter1.Update();
             _fighter2.Update();
-
             
-            _window.KeyReleased += (sender, e) =>
+
+                _window.KeyReleased += (sender, e) =>
             {
                 // PLAYER 1
                 if (e.Code == Keyboard.Key.D) _fighter1._isMoving = false;

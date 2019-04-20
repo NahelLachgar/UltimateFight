@@ -19,6 +19,10 @@ namespace UltimateFight
         bool _isJumping;
         bool _isFalling;
         bool _isFighting;
+
+        bool _lightPunch;
+        bool _lightKick;
+
         internal bool _isCrouching;
         internal bool _isMoving;
         int i;
@@ -33,7 +37,10 @@ namespace UltimateFight
             _isFalling = false;
             _isFighting = false;
             _isMoving = false;
-            
+
+            _lightPunch = false;
+            _lightKick = false;
+
             _canMove = true;
             _sprite = sprite;
             _animation = new Animation(sprite);
@@ -67,31 +74,39 @@ namespace UltimateFight
             if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 180, 0f);
             if (_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
 
-            // ANIMATION 
+            // FIGTHING ANIMATION
             if (_isFighting == true)
             {
+                _canMove = false;
                 _isMoving = false;
                 _isCrouching = false;
-                if (_animation.LightPunch() == true)
+
+                if (_lightPunch == true)
                 {
                     _animation.LightPunch();
                     if (_animation.LightPunch() == false)
                     {
                         _isFighting = false;
                         _canMove = true;
+                        _lightPunch = false;
+                    }
+                }
+                
+                if (_lightKick == true)
+                {
+                    _animation.LightKick();
+                    if (_animation.LightKick() == false)
+                    {
+                        _isFighting = false;
+                        _canMove = true;
+                        _lightKick = false;
                     }
                 }
             }
 
-            if (_isMoving == true)
-            {
-                _isCrouching = false;
-            }
-
-           if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false && _isFalling == false) _animation.Waiting();
-            // ==== END ANIMATION
-
-
+            // WAITING ANIMATION
+            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false && _isFalling == false) _animation.Waiting();
+            
             // WHILE JUMPING
             if (_isJumping == true || _isFalling == true)
             {
@@ -126,10 +141,9 @@ namespace UltimateFight
                     }
                 }
             }
+        } // UPDATE BRAKET DONT REMOVE IT
 
-            
-        } // UPDATE BRAKET DONT MOVE IT
-
+        // MOVING TO THE RIGHT
         internal void MoveRight(float xToAdd)
         {
             if (_canMove == true)
@@ -161,6 +175,7 @@ namespace UltimateFight
             }
         }
 
+        // MOVING TO THE LEFT
         internal void MoveLeft(float xToRemove)
         {
             if (_canMove == true)
@@ -208,14 +223,16 @@ namespace UltimateFight
                 _animation.Crouch();
             }
         }
-
+        
         internal void LightPunch()
         {
             if (_isFighting == false)
             {
                 _canMove = false;
                 _isFighting = true;
+                _lightPunch = true;
                 _animation.LightPunch();
+
             }
         }
 
@@ -226,7 +243,14 @@ namespace UltimateFight
 
         internal void LightKick()
         {
+            if (_isFighting == false)
+            {
+                _canMove = false;
+                _isFighting = true;
+                _lightKick = true;
+                _animation.LightKick();
 
+            }
         }
 
         internal void HeavyKick()
