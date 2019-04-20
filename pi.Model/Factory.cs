@@ -34,7 +34,7 @@ namespace UltimateFight
             switch (name)
             {
                 case "balrog":
-                    Character character = CreateCharacter("balrog", "balrog2.png", new IntRect(4, 17, 45, 93), new Vector2f(5, 5));
+                    Character character = CreateCharacter("balrog", "balrog.png", new IntRect(4, 17, 45, 93), new Vector2f(5, 5));
                     return character;
                 default:
                     return null;
