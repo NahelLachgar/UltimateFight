@@ -141,13 +141,10 @@ namespace UltimateFight
             {
 
                 case 0:
-                    this._sprite.TextureRect = new IntRect(545, 17, 43, 93);
+                    this._sprite.TextureRect = new IntRect(594, 17, 38, this._sprite.TextureRect.Height);
                     _i = 0;
                     _spriteNb = 0;
                     _c = 1;
-                    break;
-                case 20:
-                    this._sprite.TextureRect = new IntRect(594, 17, 38, this._sprite.TextureRect.Height);
                     break;
                 case 100:
                     this._sprite.TextureRect = new IntRect(641, 17, 39, this._sprite.TextureRect.Height);
