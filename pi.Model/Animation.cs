@@ -158,11 +158,12 @@ namespace UltimateFight
                 case 500:
                     this._sprite.TextureRect = new IntRect(733, 17, 43, this._sprite.TextureRect.Height);
                     break;
-                case 599:
+                case 598:
                     _j = -1;
                     break;
 
             }
+
         }
         
         internal bool LightPunch()
