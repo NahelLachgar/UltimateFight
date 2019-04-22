@@ -163,8 +163,6 @@ namespace UltimateFight
                     break;
 
             }
-            
-
         }
         
         internal bool LightPunch()
@@ -213,5 +211,22 @@ namespace UltimateFight
             }
             return true;
         }
+
+        public void JumpLight()
+        {
+            _p++;
+
+            switch (_p)
+            {
+                case 0:
+                    this._sprite.TextureRect = new IntRect(22, 498, 55, 84);
+                    _p = -1;
+                    break;
+
+            }
+        }
+
+
+
     }
 }

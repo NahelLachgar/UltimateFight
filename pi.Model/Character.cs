@@ -228,11 +228,17 @@ namespace UltimateFight
         {
             if (_isFighting == false)
             {
-                _canMove = false;
-                _isFighting = true;
-                _lightPunch = true;
-                _animation.LightPunch();
-
+                if (_isJumping == true || _isFalling == true)
+                {
+                    _animation.JumpLight();
+                }
+                else
+                {
+                    _canMove = false;
+                    _isFighting = true;
+                    _lightPunch = true;
+                    _animation.LightPunch();
+                }
             }
         }
 
@@ -245,11 +251,17 @@ namespace UltimateFight
         {
             if (_isFighting == false)
             {
-                _canMove = false;
-                _isFighting = true;
-                _lightKick = true;
-                _animation.LightKick();
-
+                if (_isJumping == true || _isFalling == true)
+                {
+                    _animation.JumpLight();
+                }
+                else
+                {
+                    _canMove = false;
+                    _isFighting = true;
+                    _lightKick = true;
+                    _animation.LightKick();
+                }
             }
         }
 
