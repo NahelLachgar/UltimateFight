@@ -142,8 +142,8 @@ namespace UltimateFight
 
                 case 0:
                     this._sprite.TextureRect = new IntRect(594, 17, 38, this._sprite.TextureRect.Height);
-                    _i = 0;
-                    _spriteNb = 0;
+                    _i = -1;
+                    _spriteNb = -1;
                     _c = 1;
                     break;
                 case 100:
