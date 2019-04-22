@@ -213,6 +213,7 @@ namespace UltimateFight
             return true;
         }
 
+        // LIGHT KICK OR LIGHT PUNCH WHILE JUMPING
         public void JumpLight()
         {
             _p++;
@@ -227,6 +228,31 @@ namespace UltimateFight
             }
         }
 
+        public bool CrouchLight()
+        {
+            _p++;
+
+            switch (_p)
+            {
+                case 0:
+                    this._sprite.TextureRect = new IntRect(5, 377, 47, 93);
+                    break;
+                case 120:
+                    this._sprite.TextureRect = new IntRect(63, 377, 67, 93);
+                    break;
+                case 240:
+                    this._sprite.TextureRect = new IntRect(5, 377, 47, 93);
+                    break;
+                case 360:
+                    this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
+                    _p = -1;
+                    return false;
+                    break;
+                    
+            }
+            return true;
+
+        }
 
 
     }

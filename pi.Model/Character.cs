@@ -22,6 +22,7 @@ namespace UltimateFight
 
         bool _lightPunch;
         bool _lightKick;
+        bool _crouchPunch;
 
         internal bool _isCrouching;
         internal bool _isMoving;
@@ -40,6 +41,8 @@ namespace UltimateFight
 
             _lightPunch = false;
             _lightKick = false;
+            _crouchPunch = false;
+            
 
             _canMove = true;
             _sprite = sprite;
@@ -79,7 +82,18 @@ namespace UltimateFight
             {
                 _canMove = false;
                 _isMoving = false;
-                _isCrouching = false;
+             /* _isCrouching = false; BUG LIGHT KICK */
+
+                if(_crouchPunch == true)
+                {
+                    _animation.CrouchLight();
+                    if (_animation.CrouchLight() == false)
+                    {
+                        _isFighting = false;
+                        _canMove = true;
+                        _crouchPunch = false;
+                    }
+                }
 
                 if (_lightPunch == true)
                 {
@@ -111,6 +125,7 @@ namespace UltimateFight
             if (_isJumping == true || _isFalling == true)
             {
                 _animation.Jump();
+                _shadow.Color = new Color(255, 255, 255, 255);
                 if (_isJumping == true && _isFalling == false)
                 {
                     if (i < 200) this._sprite.Position -= new Vector2f(0, 1.8F);
@@ -138,7 +153,6 @@ namespace UltimateFight
                         _shadow.Color = new Color(255, 255, 255, 0);
                     }
                 }
-                _shadow.Color = new Color(255, 255, 255, 255);
             }
         } // UPDATE BRAKET DONT REMOVE IT
 
@@ -231,12 +245,21 @@ namespace UltimateFight
                 {
                     _animation.JumpLight();
                 }
+
                 else
                 {
                     _canMove = false;
                     _isFighting = true;
-                    _lightPunch = true;
-                    _animation.LightPunch();
+                    if (_isCrouching == true)
+                    {
+                        _crouchPunch = true;
+                        _animation.CrouchLight();
+                    }
+                    else
+                    {
+                        _lightPunch = true;
+                        _animation.LightPunch();
+                    }
                 }
             }
         }
@@ -258,8 +281,16 @@ namespace UltimateFight
                 {
                     _canMove = false;
                     _isFighting = true;
-                    _lightKick = true;
-                    _animation.LightKick();
+                    if (_isCrouching == true)
+                    {
+                        _crouchPunch = true;
+                        _animation.CrouchLight();
+                    }
+                    else
+                    {
+                        _lightKick = true;
+                        _animation.LightKick();
+                    }
                 }
             }
         }
