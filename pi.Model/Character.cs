@@ -16,6 +16,8 @@ namespace UltimateFight
         internal Vector2f _position;
         Dictionary<string, IntRect> _rects;
         bool _canMove;
+        bool _canJump;
+
         bool _isJumping;
         bool _isFalling;
         bool _isFighting;
@@ -45,6 +47,8 @@ namespace UltimateFight
             
 
             _canMove = true;
+            _canJump = true;
+
             _sprite = sprite;
             _animation = new Animation(sprite);
             _shadow = new Sprite
@@ -82,6 +86,7 @@ namespace UltimateFight
             {
                 _canMove = false;
                 _isMoving = false;
+                _canJump = false;
              /* _isCrouching = false; BUG LIGHT KICK */
 
                 if(_crouchPunch == true)
@@ -90,8 +95,9 @@ namespace UltimateFight
                     if (_animation.CrouchLight() == false)
                     {
                         _isFighting = false;
-                        _canMove = true;
                         _crouchPunch = false;
+                        _canMove = true;
+                        _canJump = true;
                     }
                 }
 
@@ -101,8 +107,9 @@ namespace UltimateFight
                     if (_animation.LightPunch() == false)
                     {
                         _isFighting = false;
-                        _canMove = true;
                         _lightPunch = false;
+                        _canMove = true;
+                        _canJump = true;
                     }
                 }
                 
@@ -112,8 +119,9 @@ namespace UltimateFight
                     if (_animation.LightKick() == false)
                     {
                         _isFighting = false;
-                        _canMove = true;
                         _lightKick = false;
+                        _canMove = true;
+                        _canJump = true;
                     }
                 }
             }
@@ -221,9 +229,12 @@ namespace UltimateFight
 
         internal void Jump()
         {
-            if(_isJumping == false && _isFalling == false)
+            if (_canJump == true)
             {
-                _isJumping = true;
+                if (_isJumping == false && _isFalling == false)
+                {
+                    _isJumping = true;
+                }
             }
         }
 
