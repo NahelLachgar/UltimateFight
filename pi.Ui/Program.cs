@@ -11,12 +11,11 @@ namespace UltimateFight
     {
         static void Main(string[] args)
         {
-            Factory factory = new Factory();
             SFML.GraphicsNative.Load();
       
             using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Default))
             {
-                Game game = new Game(new Time() , factory.NewCharacter("balrog"), factory.NewCharacter("balrog"), factory.NewStage("stage1", window) , window);
+                Game game = new Game(new Time() , Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window) , window);
                 GameInterface gameInterface = new GameInterface(window, game._clock);
 
                 
