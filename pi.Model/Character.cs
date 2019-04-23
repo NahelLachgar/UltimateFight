@@ -137,7 +137,11 @@ namespace UltimateFight
                 if (_isJumping == true && _isFalling == false)
                 {
                     if (i < 200) this._sprite.Position -= new Vector2f(0, 1.8F);
-                    if (i >= 200) this._sprite.Position -= new Vector2f(0, 1.3F);
+                    if (i >= 200)
+                    {
+                        this._sprite.Position -= new Vector2f(0, 1.3F);
+                        _shadow.Scale = new Vector2f(4f, 5f);
+                    }
                     i++;
                     if (i == 300)
                     {
@@ -149,8 +153,17 @@ namespace UltimateFight
                 // WHILE FALLING AFTER JUMPING
                 if (_isJumping == false && _isFalling == true)
                 {
-                    if (i < 100) this._sprite.Position += new Vector2f(0, 1.3F);
-                    if (i >= 100) this._sprite.Position += new Vector2f(0, 1.8F);
+                    if (i < 100)
+                    {
+                        this._sprite.Position += new Vector2f(0, 1.3F);
+                        _shadow.Scale = new Vector2f(3f, 5f);
+                    }
+                    if (i >= 100)
+                    {
+                        this._sprite.Position += new Vector2f(0, 1.8F);
+                        _shadow.Scale = new Vector2f(4f, 5f);
+
+                    }
                     i++;
                     if (i == 300)
                     {
@@ -158,6 +171,7 @@ namespace UltimateFight
                         _isFalling = false;
                         i = 0;
                         _shadow.Color = new Color(255, 255, 255, 0);
+                        _shadow.Scale = new Vector2f(5f, 5f);
                     }
                 }
             }
