@@ -75,7 +75,7 @@ namespace UltimateFight
             // SHADOW FOLOWING THE CHARACTER
             _shadow.Position = new Vector2f(0f, 580f);
             if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 180, 0f);
-            if (_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+            if(_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
 
             // FIGTHING ANIMATION
             if (_isFighting == true)
@@ -135,13 +135,12 @@ namespace UltimateFight
                     {
                         _isJumping = false;
                         _isFalling = true;
-                        i = -1;
+                        i = 0;
                     }
                 }
                 // WHILE FALLING AFTER JUMPING
                 if (_isJumping == false && _isFalling == true)
                 {
-                    if (i == -1) i = 0;
                     if (i < 100) this._sprite.Position += new Vector2f(0, 1.3F);
                     if (i >= 100) this._sprite.Position += new Vector2f(0, 1.8F);
                     i++;
@@ -245,7 +244,6 @@ namespace UltimateFight
                 {
                     _animation.JumpLight();
                 }
-
                 else
                 {
                     _canMove = false;
