@@ -8,7 +8,7 @@ namespace UltimateFight
 {
     public class Factory
     {
-        public Character CreateCharacter(string name, string img, IntRect rect, Vector2f scale)
+        static public Character CreateCharacter(string name, string img, IntRect rect, Vector2f scale)
         {
             Texture texture = new Texture("../../../../img/characters/" + img);
             texture.Smooth = true;
@@ -19,7 +19,7 @@ namespace UltimateFight
             return character;
         }
 
-        public Stage CreateStage(string name, string img, int groundHeight, RenderWindow window)
+        static public Stage CreateStage(string name, string img, int groundHeight, RenderWindow window)
         {
             Texture texture = new Texture("../../../../img/stages/" + img);
             //Sprite sprite = new Sprite(texture);
@@ -29,7 +29,7 @@ namespace UltimateFight
             return stage;
         }
 
-        public Character NewCharacter(string name)
+        static public Character NewCharacter(string name)
         {
             switch (name)
             {
@@ -41,7 +41,7 @@ namespace UltimateFight
             }
         }
 
-        public Stage NewStage(string name, RenderWindow window)
+        static public Stage NewStage(string name, RenderWindow window)
         {
             switch (name)
             {

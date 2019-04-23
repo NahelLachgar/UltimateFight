@@ -354,5 +354,6 @@ namespace UltimateFight
         public Sprite BlueFlame2
             => _blueFlame2;
 
+
     }
 }
