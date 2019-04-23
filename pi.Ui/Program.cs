@@ -17,7 +17,7 @@ namespace UltimateFight
             {
                 Game game = new Game(new Time() , Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window) , window);
                 GameInterface gameInterface = new GameInterface(window, game._clock);
-
+                var w = new PlayerName(game);
                 
 
 
@@ -52,7 +52,8 @@ namespace UltimateFight
                     window.Draw(gameInterface.BlueFame1);
                     window.Draw(gameInterface.BlueFlame2);
 
-
+                    window.Draw(w.Player1);
+                    window.Draw(w.Player2);
 
 
 
