@@ -16,9 +16,9 @@ namespace UltimateFight
             using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Default))
             {
                 Game game = new Game(new Time() , Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window) , window);
-                GameInterface gameInterface = new GameInterface(window, game._clock);
-                var w = new PlayerName(game);
-                
+                //GameInterface gameInterface = new GameInterface(window, game._clock);
+                //var w = new PlayerName(game);
+                UserInterface userInterface = new UserInterface(window, game);
 
 
 
@@ -29,7 +29,8 @@ namespace UltimateFight
 
                     //Update
                     game.Update();
-                    gameInterface.Update(game._fighter1.Health, game._fighter2.Health, game._fighter1.Energy, game._fighter2.Energy);
+                    //gameInterface.Update(game._fighter1.Health, game._fighter2.Health, game._fighter1.Energy, game._fighter2.Energy);
+                    userInterface.Update(game);
 /*
                     Console.WriteLine(game._fighter1._sprite.Position.X);
                     Console.WriteLine(" width: {0} ", game._fighter1._sprite.Position.X + game._fighter1._sprite.TextureRect.Width);
@@ -43,19 +44,20 @@ namespace UltimateFight
                     window.Draw(game._fighter2._sprite);
 
                     // Draw the game interface
-                    foreach (RectangleShape value in gameInterface.GetGameInterface ) window.Draw(value);
+                    userInterface.Draw(window);
 
-                    window.Draw(gameInterface.FontTime1);
-                    window.Draw(gameInterface.FontTime2);
-                    window.Draw(gameInterface.KO);
+
+                    //foreach (RectangleShape value in gameInterface.GetGameInterface ) window.Draw(value);
+
+
+                   /* window.Draw(gameInterface.KO);
 
                     window.Draw(gameInterface.BlueFame1);
-                    window.Draw(gameInterface.BlueFlame2);
+                    window.Draw(gameInterface.BlueFlame2);*/
 
-                    window.Draw(w.Player1);
-                    window.Draw(w.Player2);
-
-
+                    //window.Draw(w.Player1);
+                    //window.Draw(w.Player2);
+                    
 
                     window.Display();
                     

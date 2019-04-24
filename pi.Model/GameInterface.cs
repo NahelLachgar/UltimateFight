@@ -56,6 +56,7 @@ namespace UltimateFight
             _windowY = Convert.ToSingle(window.Size.Y);
 
             {
+                
                 //Health Bar in the back (color black) for players 1 & 2
                 RectangleShape _BackHealthBar1 = new RectangleShape()
                 {
@@ -72,7 +73,7 @@ namespace UltimateFight
                 };
 
                 _gameInterface.Add(_BackHealthBar1);  // Element 0
-                _gameInterface.Add(_BackHealthBar2);  // Element 1
+                _gameInterface.Add(_BackHealthBar2);  // Element 1 
                 //-------------------------------------------------------------------------------------------------------------------------
 
 
@@ -90,7 +91,7 @@ namespace UltimateFight
                     Scale = new Vector2f(1f, 1f),
                 };
                 _gameInterface.Add(_RedBar1);  // Element 2
-                _gameInterface.Add(_RedBar2);  // Element 3                
+                _gameInterface.Add(_RedBar2);  // Element 3             
                 //-------------------------------------------------------------------------------------------------------------------------
 
 
@@ -109,7 +110,7 @@ namespace UltimateFight
                     FillColor = Color.Green,
                     Scale = new Vector2f(1f, 1f),
                 };
-                _gameInterface.Add(_HealthBar1);  // Element 4
+                _gameInterface.Add(_HealthBar1);  // Element 4:
                 _gameInterface.Add(_HealthBar2);  // Element 5
                 //-------------------------------------------------------------------------------------------------------------------------
 
@@ -130,7 +131,7 @@ namespace UltimateFight
 
                 //-------------------------------------------------------------------------------------------------------------------------
 
-                // Back Energy Bar for Player 1 & Player 2
+                // Energy Bar for Player 1 & Player 2
                 RectangleShape _EnergyBar1 = new RectangleShape()
                 {
                     Position = new Vector2f(_BackHealthBar1.Position.X + _BackHealthBar1.Size.X *0.4f, ( _windowY * 0.115f )),
@@ -319,7 +320,7 @@ namespace UltimateFight
             if ( _end == false )
             {
                 UpdateHealthBarPlayers(HealthPlayer1, HealthPlayer2);
-                UpdateTimerGame();
+                //UpdateTimerGame();
             }
              UpdateRedBarPlayers();
             UpdateEnergyBar(EnergyPlayer1, EnergyPlayer2);
