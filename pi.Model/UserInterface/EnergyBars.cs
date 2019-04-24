@@ -29,7 +29,7 @@ namespace UltimateFight
                 Size = new Vector2f(( _windowX * 0.176f ), ( _windowY * 0.025f )),
                 FillColor = Color.White,
                 OutlineColor = Color.Black,
-                Texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar1.png"),
+                Texture = new Texture("../../../../pi.Ui/Resources/Img/Fight_Font/bar1.png"),
             };
 
             RectangleShape _BackEnergyBar2 = new RectangleShape(_BackEnergyBar1)

@@ -21,7 +21,7 @@ namespace UltimateFight
             // Sprite for draw the timer in-game
             for ( int i = 0; i < 10; i++ )
             {
-                texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/" + i + ".png");
+                texture = new Texture("../../../../pi.Ui/Resources/Img/Fight_Font/" + i + ".png");
                 texture.Smooth = true;
                 Sprite font = new Sprite(texture);
                 font.Scale = new Vector2f(1f, 1f);

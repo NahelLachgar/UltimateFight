@@ -24,7 +24,7 @@ namespace UltimateFight
             // Sprite for draw the animation of blue flame for energy bars's players
             for ( int i = 1; i <= 19; i++ )
             {
-                Texture texture = new Texture("../../../../pi.Ui/Resources/Blue_Flame/Blue_Flame(photoshop)/" + i + ".png");
+                Texture texture = new Texture("../../../../pi.Ui/Resources/Img/Blue_Flame/Blue_Flame(photoshop)/" + i + ".png");
                 texture.Smooth = true;
                 Sprite flame = new Sprite(texture);
                 _animation_BlueFlame.Add(flame);

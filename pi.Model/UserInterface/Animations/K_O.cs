@@ -24,7 +24,7 @@ namespace UltimateFight
             // Sprite for draw the animation of "K.O" when a player dies
             for ( int i = 1; i <= 38; i++ )
             {
-                Texture texture = new Texture("../../../../pi.Ui/Resources/k_o/" + i + ".png");
+                Texture texture = new Texture("../../../../pi.Ui/Resources/Img/k_o/" + i + ".png");
                 texture.Smooth = true;
                 Sprite _ko = new Sprite(texture);
                 _ko.Scale = new Vector2f(( _windowX * 0.0016f ), ( _windowY * 0.0016f ));
