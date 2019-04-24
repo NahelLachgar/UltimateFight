@@ -6,11 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ITI.SFML.Graphics" Version="0.1.0" />
+    <Compile Remove="Resources\space_ranger\**" />
+    <EmbeddedResource Remove="Resources\space_ranger\**" />
+    <None Remove="Resources\space_ranger\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\space_ranger\spaceranger.ttf" />
+    <PackageReference Include="ITI.SFML.Graphics" Version="0.1.0" />
   </ItemGroup>
 
   <ItemGroup>

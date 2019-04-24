@@ -19,7 +19,6 @@ namespace UltimateFight
         bool _canJump;
 
         bool _isJumping;
-        bool _isFalling;
         bool _isFighting;
 
         bool _lightPunch;
@@ -28,7 +27,7 @@ namespace UltimateFight
 
         internal bool _isCrouching;
         internal bool _isMoving;
-        int i;
+        int i = -1;
         internal Animation _animation;
         public Sprite _shadow;
 
@@ -37,7 +36,6 @@ namespace UltimateFight
             _name = name;
             _health = 100;
             _isJumping = false; 
-            _isFalling = false;
             _isFighting = false;
             _isMoving = false;
 
@@ -127,52 +125,36 @@ namespace UltimateFight
             }
 
             // WAITING ANIMATION
-            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false && _isFalling == false) _animation.Waiting();
-            
-            // WHILE JUMPING
-            if (_isJumping == true || _isFalling == true)
+            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false) _animation.Waiting();
+
+            // JUMPING ANIMATION
+            if (_isJumping == true)
             {
+                i++;
                 _animation.Jump();
                 _shadow.Color = new Color(255, 255, 255, 255);
-                if (_isJumping == true && _isFalling == false)
+                if (i < 200) this._sprite.Position -= new Vector2f(0, 1.8F);
+                if (i >= 200 && i < 300)
                 {
-                    if (i < 200) this._sprite.Position -= new Vector2f(0, 1.8F);
-                    if (i >= 200)
-                    {
-                        this._sprite.Position -= new Vector2f(0, 1.3F);
-                        _shadow.Scale = new Vector2f(4f, 5f);
-                    }
-                    i++;
-                    if (i == 300)
-                    {
-                        _isJumping = false;
-                        _isFalling = true;
-                        i = 0;
-                    }
+                    this._sprite.Position -= new Vector2f(0, 1.3F);
+                    _shadow.Scale = new Vector2f(4f, 5f);
                 }
-                // WHILE FALLING AFTER JUMPING
-                if (_isJumping == false && _isFalling == true)
+                if (i >= 300 && i < 400)
                 {
-                    if (i < 100)
-                    {
-                        this._sprite.Position += new Vector2f(0, 1.3F);
-                        _shadow.Scale = new Vector2f(3f, 5f);
-                    }
-                    if (i >= 100)
-                    {
-                        this._sprite.Position += new Vector2f(0, 1.8F);
-                        _shadow.Scale = new Vector2f(4f, 5f);
-
-                    }
-                    i++;
-                    if (i == 300)
-                    {
-                        _isJumping = false;
-                        _isFalling = false;
-                        i = 0;
-                        _shadow.Color = new Color(255, 255, 255, 0);
-                        _shadow.Scale = new Vector2f(5f, 5f);
-                    }
+                    this._sprite.Position += new Vector2f(0, 1.3F);
+                    _shadow.Scale = new Vector2f(3f, 5f);
+                }
+                if (i >= 400 && i < 600)
+                {
+                    this._sprite.Position += new Vector2f(0, 1.8F);
+                    _shadow.Scale = new Vector2f(4f, 5f);
+                }
+                if (i == 600)
+                {
+                    _isJumping = false;
+                    i = -1;
+                    _shadow.Color = new Color(255, 255, 255, 0);
+                    _shadow.Scale = new Vector2f(5f, 5f);
                 }
             }
         } // UPDATE BRAKET DONT REMOVE IT
@@ -189,7 +171,7 @@ namespace UltimateFight
                     if (this._sprite.Position.X < 1700)
                     {
                         this._sprite.Position += new Vector2f(xToAdd, 0);
-                        if (_isJumping == false && _isFalling == false)
+                        if (_isJumping == false)
                         {
                             _animation.WalkingForward();
                         }
@@ -200,7 +182,7 @@ namespace UltimateFight
                     if (this._sprite.Position.X < 1925)
                     {
                         this._sprite.Position += new Vector2f(xToAdd, 0);
-                        if (_isJumping == false && _isFalling == false)
+                        if (_isJumping == false)
                         {
                             _animation.WalkingBackward();
                         }
@@ -221,7 +203,7 @@ namespace UltimateFight
                     if (this._sprite.Position.X > 0)
                     {
                         this._sprite.Position -= new Vector2f(xToRemove, 0);
-                        if (_isJumping == false && _isFalling == false)
+                        if (_isJumping == false)
                         {
                             _animation.WalkingBackward();
                         }
@@ -232,7 +214,7 @@ namespace UltimateFight
                     if (this._sprite.Position.X > 225)
                     {
                         this._sprite.Position -= new Vector2f(xToRemove, 0);
-                        if (_isJumping == false && _isFalling == false)
+                        if (_isJumping == false)
                         {
                             _animation.WalkingForward();
                         }
@@ -245,7 +227,7 @@ namespace UltimateFight
         {
             if (_canJump == true)
             {
-                if (_isJumping == false && _isFalling == false)
+                if (_isJumping == false)
                 {
                     _isJumping = true;
                 }
@@ -254,7 +236,7 @@ namespace UltimateFight
 
         internal void Crouch()
         {
-            if (_canMove == true && _isFalling == false && _isJumping == false)
+            if (_canMove == true && _isJumping == false)
             {
                 _isCrouching = true;
                 _animation.Crouch();
@@ -265,7 +247,7 @@ namespace UltimateFight
         {
             if (_isFighting == false)
             {
-                if (_isJumping == true || _isFalling == true)
+                if (_isJumping == true)
                 {
                     _animation.JumpLight();
                 }
@@ -296,7 +278,7 @@ namespace UltimateFight
         {
             if (_isFighting == false)
             {
-                if (_isJumping == true || _isFalling == true)
+                if (_isJumping == true)
                 {
                     _animation.JumpLight();
                 }
@@ -347,3 +329,37 @@ namespace UltimateFight
         }
     }
 }
+
+/*
+ 
+if (_isJumping == true)
+{
+    _animation.Jump();
+    _shadow.Color = new Color(255, 255, 255, 255);
+        if (i < 200) this._sprite.Position -= new Vector2f(0, 1.8F);
+        if (i >= 200 && i <= 300)
+        {
+            this._sprite.Position -= new Vector2f(0, 1.3F);
+            _shadow.Scale = new Vector2f(4f, 5f);
+        }
+        if (i > 300 && i < 400)
+        {
+            this._sprite.Position += new Vector2f(0, 1.3F);
+            _shadow.Scale = new Vector2f(3f, 5f);
+        }
+        if (i >= 400 && i <= 600)
+        {
+            this._sprite.Position += new Vector2f(0, 1.8F);
+            _shadow.Scale = new Vector2f(4f, 5f);
+        }
+        if (i == 601)
+        {
+            _isJumping = false;
+            i = 0;
+            _shadow.Color = new Color(255, 255, 255, 0);
+            _shadow.Scale = new Vector2f(5f, 5f);
+        }
+        i++;
+}
+
+*/

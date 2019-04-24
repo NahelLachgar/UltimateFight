@@ -136,7 +136,6 @@ namespace UltimateFight
         public void Jump( )
         {
             _j++;
-
             switch (_j)
             {
 
@@ -144,7 +143,7 @@ namespace UltimateFight
                     this._sprite.TextureRect = new IntRect(594, 17, 38, this._sprite.TextureRect.Height);
                     _i = -1;
                     _spriteNb = -1;
-                    _c = 1;
+                    _c = -1;
                     break;
                 case 100:
                     this._sprite.TextureRect = new IntRect(641, 17, 39, this._sprite.TextureRect.Height);
@@ -158,7 +157,7 @@ namespace UltimateFight
                 case 500:
                     this._sprite.TextureRect = new IntRect(733, 17, 43, this._sprite.TextureRect.Height);
                     break;
-                case 598:
+                case 600:
                     _j = -1;
                     break;
 
