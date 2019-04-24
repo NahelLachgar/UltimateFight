@@ -16,6 +16,8 @@ namespace UltimateFight
         internal Vector2f _position;
         Dictionary<string, IntRect> _rects;
         bool _canMove;
+        bool _canJump;
+
         bool _isJumping;
         bool _isFalling;
         bool _isFighting;
@@ -45,6 +47,8 @@ namespace UltimateFight
             
 
             _canMove = true;
+            _canJump = true;
+
             _sprite = sprite;
             _animation = new Animation(sprite);
             _shadow = new Sprite
@@ -75,13 +79,14 @@ namespace UltimateFight
             // SHADOW FOLOWING THE CHARACTER
             _shadow.Position = new Vector2f(0f, 580f);
             if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 180, 0f);
-            if (_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+            if(_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
 
             // FIGTHING ANIMATION
             if (_isFighting == true)
             {
                 _canMove = false;
                 _isMoving = false;
+                _canJump = false;
              /* _isCrouching = false; BUG LIGHT KICK */
 
                 if(_crouchPunch == true)
@@ -90,8 +95,9 @@ namespace UltimateFight
                     if (_animation.CrouchLight() == false)
                     {
                         _isFighting = false;
-                        _canMove = true;
                         _crouchPunch = false;
+                        _canMove = true;
+                        _canJump = true;
                     }
                 }
 
@@ -101,8 +107,9 @@ namespace UltimateFight
                     if (_animation.LightPunch() == false)
                     {
                         _isFighting = false;
-                        _canMove = true;
                         _lightPunch = false;
+                        _canMove = true;
+                        _canJump = true;
                     }
                 }
                 
@@ -112,8 +119,9 @@ namespace UltimateFight
                     if (_animation.LightKick() == false)
                     {
                         _isFighting = false;
-                        _canMove = true;
                         _lightKick = false;
+                        _canMove = true;
+                        _canJump = true;
                     }
                 }
             }
@@ -129,21 +137,33 @@ namespace UltimateFight
                 if (_isJumping == true && _isFalling == false)
                 {
                     if (i < 200) this._sprite.Position -= new Vector2f(0, 1.8F);
-                    if (i >= 200) this._sprite.Position -= new Vector2f(0, 1.3F);
+                    if (i >= 200)
+                    {
+                        this._sprite.Position -= new Vector2f(0, 1.3F);
+                        _shadow.Scale = new Vector2f(4f, 5f);
+                    }
                     i++;
                     if (i == 300)
                     {
                         _isJumping = false;
                         _isFalling = true;
-                        i = -1;
+                        i = 0;
                     }
                 }
                 // WHILE FALLING AFTER JUMPING
                 if (_isJumping == false && _isFalling == true)
                 {
-                    if (i == -1) i = 0;
-                    if (i < 100) this._sprite.Position += new Vector2f(0, 1.3F);
-                    if (i >= 100) this._sprite.Position += new Vector2f(0, 1.8F);
+                    if (i < 100)
+                    {
+                        this._sprite.Position += new Vector2f(0, 1.3F);
+                        _shadow.Scale = new Vector2f(3f, 5f);
+                    }
+                    if (i >= 100)
+                    {
+                        this._sprite.Position += new Vector2f(0, 1.8F);
+                        _shadow.Scale = new Vector2f(4f, 5f);
+
+                    }
                     i++;
                     if (i == 300)
                     {
@@ -151,6 +171,7 @@ namespace UltimateFight
                         _isFalling = false;
                         i = 0;
                         _shadow.Color = new Color(255, 255, 255, 0);
+                        _shadow.Scale = new Vector2f(5f, 5f);
                     }
                 }
             }
@@ -222,9 +243,12 @@ namespace UltimateFight
 
         internal void Jump()
         {
-            if(_isJumping == false && _isFalling == false)
+            if (_canJump == true)
             {
-                _isJumping = true;
+                if (_isJumping == false && _isFalling == false)
+                {
+                    _isJumping = true;
+                }
             }
         }
 
@@ -245,7 +269,6 @@ namespace UltimateFight
                 {
                     _animation.JumpLight();
                 }
-
                 else
                 {
                     _canMove = false;
