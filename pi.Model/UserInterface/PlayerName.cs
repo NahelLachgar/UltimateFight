@@ -15,7 +15,7 @@ namespace UltimateFight
         {
             _player1 = new Text
             {
-                Font = new Font("../../../Resources/space_ranger/spaceranger.ttf"),
+                Font = new Font("../../../Resources/Font/space_ranger/spaceranger.ttf"),
                 Position = new Vector2f(190f, -15f),
                 DisplayedString = game._fighter1.Name,
                 CharacterSize = 60,

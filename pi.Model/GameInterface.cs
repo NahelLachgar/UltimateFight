@@ -45,7 +45,7 @@ namespace UltimateFight
         private int _blueFlameCount = 14;
         private float _energyTimer = 0f;
 
-        //Stream s = typeof(GameInterface).Assembly.GetManifestResourceStream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
+        //Stream s = typeof(GameInterface).Assembly.GetManifestResourcestream("pi.Ui.Resources.space_ranger.spaceranger.ttf");
 
 
 
@@ -120,7 +120,7 @@ namespace UltimateFight
                     Size = new Vector2f(( _windowX * 0.176f ), ( _windowY * 0.025f )),
                     FillColor = Color.White,
                     OutlineColor = Color.Black,
-                    Texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar1.png"),
+                    Texture = new Texture("../../../../pi.Ui/Resources/Img/Fight_Font/bar1.png"),
                 };
 
                 RectangleShape _BackEnergyBar2 = new RectangleShape(_BackEnergyBar1)
@@ -158,7 +158,7 @@ namespace UltimateFight
             // Sprite for draw the animation of "K.O" when a player dies
             for ( int i = 1; i <= 38; i++ )
             {
-                texture = new Texture("../../../../pi.Ui/Resources/k_o/" + i + ".png");
+                texture = new Texture("../../../../pi.Ui/Resources/Img/k_o/" + i + ".png");
                 texture.Smooth = true;
                 Sprite _ko = new Sprite(texture);
                 _ko.Scale = new Vector2f(( _windowX * 0.0016f ), ( _windowY * 0.0016f ));
@@ -170,7 +170,7 @@ namespace UltimateFight
             // Sprite for draw the timer in-game
             for ( int i = 0; i < 10; i++ )
             {
-                texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/" + i + ".png");
+                texture = new Texture("../../../../pi.Ui/Resources/Img/Fight_Font/" + i + ".png");
                 texture.Smooth = true;
                 Sprite font = new Sprite(texture);
                 font.Scale = new Vector2f(( _windowX * 0.00105f ), ( _windowY * 0.0013f ));
@@ -180,7 +180,7 @@ namespace UltimateFight
             // Sprite for draw the animation of blue flame for energy bars's players
             for ( int i = 1; i <= 19; i++ )
             {
-                texture = new Texture("../../../../pi.Ui/Resources/Blue_Flame/Blue_Flame(photoshop)/" + i + ".png");
+                texture = new Texture("../../../../pi.Ui/Resources/Img/Blue_Flame/Blue_Flame(photoshop)/" + i + ".png");
                 texture.Smooth = true;
                 Sprite flame = new Sprite(texture);
                 _animation_BlueFlame.Add(flame);
