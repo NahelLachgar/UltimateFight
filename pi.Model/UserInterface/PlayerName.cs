@@ -6,14 +6,14 @@ using System.Text;
 
 namespace UltimateFight
 {
-    public class PlayerName 
+    internal class PlayerName 
     {
-        Text _player1;
-        Text _player2;
+        Text _namePlayer1;
+        Text _namePlayer2;
 
-        public PlayerName(Game game)
+        internal PlayerName(Game game)
         {
-            _player1 = new Text
+            _namePlayer1 = new Text
             {
                 Font = new Font("../../../Resources/Fonts/space_ranger/spaceranger.ttf"),
                 Position = new Vector2f(190f, -15f),
@@ -22,20 +22,19 @@ namespace UltimateFight
                 
             };
 
-            _player2 = new Text(_player1)
+            _namePlayer2 = new Text(_namePlayer1)
             {
                 Position = new Vector2f(1150f, -15f),
+                DisplayedString = game._fighter2.Name,
+
             };
 
         }
 
-        public Text Player1 => _player1;
-        public Text Player2 => _player2;
+        internal Text NamePlayer1 => _namePlayer1;
+        internal Text NamePlayer2 => _namePlayer2;
 
-        public void Update()
-        {
-            
-        }
+
 
     }
 }
