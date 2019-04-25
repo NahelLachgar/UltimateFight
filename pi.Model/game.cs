@@ -127,7 +127,7 @@ namespace UltimateFight
 
             //====================================================================================
             //====================================================================================
-            // *** Just for test : Must be delete in the futur ***
+            // *** Just for test : Must be deleted in the futur ***
             // *** Key 'P' for test damages on the player's health bar, and O for reset. ***
             // *** The same for the player 2 with the key M and L. ***
             if ( Keyboard.IsKeyPressed(Keyboard.Key.P) ) _fighter1.TakeDammage(1);
