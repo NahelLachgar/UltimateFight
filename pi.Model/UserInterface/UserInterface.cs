@@ -25,10 +25,14 @@ namespace UltimateFight
 
         public void Update(Game game)
         {
-            gameTimer.UpdateTimerGame(game);
+            if ( game._fighter1._health > 0 && game._fighter2._health > 0 )
+            {
+                gameTimer.UpdateTimerGame(game);
+            }
             healthBar.UpdateBars(game);
             energyBar.Update(game, energyBar);
             animationsUI.Update(game);
+           
         }
 
         public void Draw(RenderWindow window)
