@@ -13,7 +13,7 @@ namespace UltimateFight
         {
             SFML.GraphicsNative.Load();
       
-            using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Fullscreen))
+            using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Default | Styles.Close ))
             {
                 Game game = new Game(new Time() , Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window) , window);
                 //GameInterface gameInterface = new GameInterface(window, game._clock);
@@ -24,9 +24,8 @@ namespace UltimateFight
 
                 while ( window.IsOpen)
                 {
-
                    //window.SetFramerateLimit(60);
-                    window.DispatchEvents();
+                   window.DispatchEvents();
 
                     //Update
                     game.Update();
@@ -42,7 +41,7 @@ namespace UltimateFight
 
                     // Draw the game interface
                     userInterface.Draw(window);
-                   
+
                     window.Display();
                     
                     /***   Event for close the program.   ***/

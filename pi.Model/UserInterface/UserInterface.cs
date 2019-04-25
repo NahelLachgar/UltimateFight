@@ -19,7 +19,7 @@ namespace UltimateFight
             gameTimer = new GameTimer();
             healthBar = new HealthBar(window, game);
             energyBar = new EnergyBars(window, healthBar, game);
-            playerName = new PlayerName(game);
+            playerName = new PlayerName(game, healthBar);
             animationsUI = new AnimationsUI(window, game);
         }
 
