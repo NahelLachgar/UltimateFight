@@ -111,7 +111,7 @@ namespace UltimateFight
             _fighter1.Update();
             _fighter2.Update();
             
-
+            
                 _window.KeyReleased += (sender, e) =>
             {
                 // PLAYER 1

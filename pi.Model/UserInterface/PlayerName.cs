@@ -11,23 +11,25 @@ namespace UltimateFight
         Text _namePlayer1;
         Text _namePlayer2;
 
-        internal PlayerName(Game game)
+        internal PlayerName(Game game, HealthBar bar)
         {
             _namePlayer1 = new Text
             {
-                Font = new Font("../../../Resources/Fonts/space_ranger/spaceranger.ttf"),
+                Font = new Font("../../../Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf"),
                 Position = new Vector2f(190f, -15f),
-                DisplayedString = game._fighter1.Name,
+                DisplayedString = "  " + game._fighter1.Name,
                 CharacterSize = 60,
-                
+                Style = Text.Styles.Italic ,           
             };
+            _namePlayer1.Position = new Vector2f(bar.Bar[0].Position.X , _namePlayer1.Position.Y);
+
 
             _namePlayer2 = new Text(_namePlayer1)
             {
-                Position = new Vector2f(1150f, -15f),
                 DisplayedString = game._fighter2.Name,
-
             };
+            _namePlayer2.Position = new Vector2f(bar.Bar[1].Position.X + bar.Bar[1].Size.X - _namePlayer2.GetGlobalBounds().Width, _namePlayer2.Position.Y);
+
 
         }
 
