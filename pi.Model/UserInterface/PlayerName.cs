@@ -15,9 +15,9 @@ namespace UltimateFight
         {
             _namePlayer1 = new Text
             {
-                Font = new Font("../../../Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf"),
+                Font = new Font("../../../Resources/Fonts/bonzai/bonzai.ttf"),
                 Position = new Vector2f(190f, -15f),
-                DisplayedString = "  " + game._fighter1.Name,
+                DisplayedString = game._fighter1.Name,
                 CharacterSize = 60,
                 Style = Text.Styles.Italic ,           
             };

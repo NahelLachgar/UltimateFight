@@ -31,8 +31,7 @@ namespace UltimateFight
             }
             healthBar.UpdateBars(game);
             energyBar.Update(game, energyBar);
-            animationsUI.Update(game);
-           
+            animationsUI.Update(game);          
         }
 
         public void Draw(RenderWindow window)

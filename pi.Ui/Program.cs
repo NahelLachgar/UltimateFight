@@ -12,7 +12,14 @@ namespace UltimateFight
         static void Main(string[] args)
         {
             SFML.GraphicsNative.Load();
-      
+
+            void OnClose(object sender, EventArgs e)
+            {
+                // Close the window when OnClose event is received
+                RenderWindow window = (RenderWindow)sender;
+                window.Close();
+            }
+
             using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Default | Styles.Close ))
             {
                 Game game = new Game(new Time() , Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window) , window);
@@ -21,11 +28,12 @@ namespace UltimateFight
                 UserInterface userInterface = new UserInterface(window, game);
 
 
-
                 while ( window.IsOpen)
                 {
                    //window.SetFramerateLimit(60);
                    window.DispatchEvents();
+
+                    window.Closed += new EventHandler(OnClose);
 
                     //Update
                     game.Update();
