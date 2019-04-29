@@ -11,7 +11,7 @@ namespace UltimateFight
     {
         static void Main(string[] args)
         {
-            SFML.GraphicsNative.Load();
+
 
             void OnClose(object sender, EventArgs e)
             {
@@ -33,8 +33,6 @@ namespace UltimateFight
                    //window.SetFramerateLimit(60);
                    window.DispatchEvents();
 
-                    window.Closed += new EventHandler(OnClose);
-
                     //Update
                     game.Update();
 
@@ -42,17 +40,20 @@ namespace UltimateFight
 
                     window.Clear();
                     window.Draw(game._stage._sprite);
-                    window.Draw(game._fighter1._shadow);
-                    window.Draw(game._fighter1._sprite);
                     window.Draw(game._fighter2._shadow);
                     window.Draw(game._fighter2._sprite);
+                    window.Draw(game._fighter1._shadow);
+                    window.Draw(game._fighter1._sprite);
 
                     // Draw the game interface
                     userInterface.Draw(window);
 
                     window.Display();
-                    
+
                     /***   Event for close the program.   ***/
+
+                    window.Closed += new EventHandler(OnClose);
+
                     window.KeyPressed += (sender, e) =>
                     {
                         if ( e.Code == Keyboard.Key.Escape ) window.Close();

@@ -15,11 +15,13 @@ namespace UltimateFight
         {
             _namePlayer1 = new Text
             {
-                Font = new Font("../../../Resources/Fonts/bonzai/bonzai.ttf"),
-                Position = new Vector2f(190f, -15f),
+                Font = new Font("../../../Resources/Fonts/Cocogoose/CocogooseBold.ttf"),
+                Position = new Vector2f(190f, 6f),
                 DisplayedString = game._fighter1.Name,
-                CharacterSize = 60,
-                Style = Text.Styles.Italic ,           
+                CharacterSize = 35,
+                Style = Text.Styles.Italic ,    
+                OutlineColor = Color.Black,
+                OutlineThickness = 4f,
             };
             _namePlayer1.Position = new Vector2f(bar.Bar[0].Position.X , _namePlayer1.Position.Y);
 
