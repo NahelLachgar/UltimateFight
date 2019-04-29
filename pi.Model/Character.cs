@@ -11,8 +11,9 @@ namespace UltimateFight
         readonly internal string _name;
         public Sprite _sprite;
         // internal Special _special;
-        internal uint _health;
+        internal uint _health = 100;
         internal uint _energy = 0;
+        internal uint _roundWin = 0;
         internal Vector2f _position;
         Dictionary<string, IntRect> _rects;
         bool _canMove;
@@ -34,7 +35,6 @@ namespace UltimateFight
         public Character(string name, Sprite sprite)
         {
             _name = name;
-            _health = 100;
             _isJumping = false; 
             _isFighting = false;
             _isMoving = false;
@@ -43,7 +43,6 @@ namespace UltimateFight
             _lightKick = false;
             _crouchPunch = false;
             
-
             _canMove = true;
             _canJump = true;
 
@@ -327,6 +326,8 @@ namespace UltimateFight
                 _energy = 100;
             }
         }
+
+
     }
 }
 

@@ -7,7 +7,9 @@ using System.Text;
 
 namespace UltimateFight
 {
-    public class Game { 
+    public class Game
+    {
+        internal bool _game = true;
         public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
@@ -45,17 +47,21 @@ namespace UltimateFight
             _window = window;
         }
 
-        internal void EndGame ()
+        internal void EndGame (Character Fighter1, Character Fighter2)
         {
-          /*  if (_fighter1.Health > _fighter2.Health)
+            if(_game == true)
             {
-                _winner = _user1;
+                if(Fighter1._health <= 0)
+                {
+                    _game = false;
+                    Fighter2._roundWin++;
+                } 
+                else if (Fighter2._health <= 0 )
+                {
+                    _game = false;
+                    Fighter1._roundWin++;
+                }
             }
-            else
-            {
-                _winner = _user2;
-            }
-            _winner.Wins += 1;*/
         }
 
         public void Update ()
@@ -63,6 +69,9 @@ namespace UltimateFight
             // Timer management
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
+
+            //Check if the round is over
+            EndGame(_fighter1, _fighter2);
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM
             if(_fighter1._sprite.Position.X > _fighter2._sprite.Position.X -225)
@@ -90,9 +99,6 @@ namespace UltimateFight
                 }
             }
 
-
-            if (_fighter1.Health == 0 || _fighter2.Health == 0 || _round == _roundNb && _timer.AsSeconds() == 0)
-                EndGame();
 
             // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _fighter1.MoveRight(_moveSpeed);

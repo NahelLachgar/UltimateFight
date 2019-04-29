@@ -12,7 +12,6 @@ namespace UltimateFight
         private Sprite _KO = new Sprite();
         private float _timerKO = 0;
         private int _iKO = 0;
-        private float _timerGame = 99f;
 
 
 

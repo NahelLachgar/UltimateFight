@@ -12,19 +12,9 @@ namespace UltimateFight
         static void Main(string[] args)
         {
 
-
-            void OnClose(object sender, EventArgs e)
-            {
-                // Close the window when OnClose event is received
-                RenderWindow window = (RenderWindow)sender;
-                window.Close();
-            }
-
             using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Default | Styles.Close ))
             {
                 Game game = new Game(new Time() , Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window) , window);
-                //GameInterface gameInterface = new GameInterface(window, game._clock);
-                //var w = new PlayerName(game);
                 UserInterface userInterface = new UserInterface(window, game);
 
 
@@ -45,6 +35,7 @@ namespace UltimateFight
                     window.Draw(game._fighter1._shadow);
                     window.Draw(game._fighter1._sprite);
 
+               
                     // Draw the game interface
                     userInterface.Draw(window);
 
@@ -60,6 +51,14 @@ namespace UltimateFight
                     };
 
                 }
+
+            }
+
+            void OnClose(object sender, EventArgs e)
+            {
+                // Close the window when OnClose event is received
+                RenderWindow window = (RenderWindow)sender;
+                window.Close();
             }
         }
     }
