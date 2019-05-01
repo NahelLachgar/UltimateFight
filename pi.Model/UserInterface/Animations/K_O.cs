@@ -12,10 +12,11 @@ namespace UltimateFight
         private Sprite _KO = new Sprite();
         private float _timerKO = 0;
         private int _iKO = 0;
+        internal bool _finish = true; 
 
 
 
-        internal K_O(RenderWindow window, Game game)
+        internal K_O(RenderWindow window)
         {
             float _windowX = window.Size.X;
             float _windowY = window.Size.Y;

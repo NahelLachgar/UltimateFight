@@ -13,7 +13,6 @@ namespace UltimateFight
         // internal Special _special;
         internal uint _health = 100;
         internal uint _energy = 0;
-        internal uint _roundWin = 0;
         internal Vector2f _position;
         Dictionary<string, IntRect> _rects;
         bool _canMove;

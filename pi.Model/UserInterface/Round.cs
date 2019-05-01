@@ -21,7 +21,7 @@ namespace UltimateFight
                 FillColor = Color.Transparent,
                 OutlineColor = Color.Magenta,
                 OutlineThickness = 5f,
-                Position = new Vector2f( healthBar.Bar[0].Position.X, healthBar.Bar[0].Position.Y + 50f),
+                Position = new Vector2f( healthBar.Bar[0].Position.X , healthBar.Bar[0].Position.Y + 50f),
             };
 
             _P1round2 = new CircleShape(_P1round1);
@@ -47,11 +47,11 @@ namespace UltimateFight
 
         internal void UpdateColorRound(Game game)
         {
-            if ( game._fighter1._roundWin >= 1 ) _P1round1.FillColor = Color.Yellow;
-            if ( game._fighter1._roundWin >= 2 ) _P1round2.FillColor = Color.Yellow;
+            if ( game._player1Win >= 1 ) _P1round1.FillColor = Color.Yellow;
+            if ( game._player1Win >= 2 ) _P1round2.FillColor = Color.Yellow;
 
-            if ( game._fighter2._roundWin >= 1 ) _P2round1.FillColor = Color.Yellow;
-            if ( game._fighter2._roundWin >= 2 ) _P2round2.FillColor = Color.Yellow;
+            if ( game._player2Win >= 1 ) _P2round1.FillColor = Color.Yellow;
+            if ( game._player2Win >= 2 ) _P2round2.FillColor = Color.Yellow;
         }
 
     }

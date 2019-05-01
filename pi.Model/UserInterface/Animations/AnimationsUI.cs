@@ -7,20 +7,22 @@ namespace UltimateFight
 {
     internal class AnimationsUI
     {
-        K_O KO;
+        internal K_O KO;
+        internal Ready _ready;
 
-
-        internal AnimationsUI(RenderWindow window, Game game)
+        internal AnimationsUI(RenderWindow window)
         {
-            KO = new K_O(window, game);
+            KO = new K_O(window);
+            _ready = new Ready();
         }
 
 
         internal void Update(Game game)
         {
             KO.AnimationKO(game);
+            _ready.AnimationReady(game);
         }
 
-        internal K_O Ko => KO;
+
     }
 }

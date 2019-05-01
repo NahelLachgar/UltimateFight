@@ -15,7 +15,7 @@ namespace UltimateFight
             using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Default | Styles.Close ))
             {
                 Game game = new Game(new Time() , Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window) , window);
-                UserInterface userInterface = new UserInterface(window, game);
+                //UserInterface userInterface = new UserInterface(window, game);
 
 
                 while ( window.IsOpen)
@@ -24,9 +24,9 @@ namespace UltimateFight
                    window.DispatchEvents();
 
                     //Update
-                    game.Update();
+                    game.Update(window);
 
-                    userInterface.Update(game);
+                    //userInterface.Update(game);
 
                     window.Clear();
                     window.Draw(game._stage._sprite);
@@ -35,9 +35,10 @@ namespace UltimateFight
                     window.Draw(game._fighter1._shadow);
                     window.Draw(game._fighter1._sprite);
 
-               
+
                     // Draw the game interface
-                    userInterface.Draw(window);
+                    //userInterface.Draw(window);
+                    game.userInterface.Draw(window);
 
                     window.Display();
 

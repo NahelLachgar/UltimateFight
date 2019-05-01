@@ -9,10 +9,14 @@ namespace UltimateFight
 {
     public class Game
     {
-        internal bool _game = true;
+        internal bool _startRound = true;
+
         public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
+        internal uint _player1Win = 0;
+        internal uint _player2Win = 0;
+        internal float _timeBeforeResetRound = -4f;
         public Character _fighter1;
         public Character _fighter2;
         public Stage _stage;
@@ -26,13 +30,15 @@ namespace UltimateFight
         User _loser;
         public Clock _clock = new Clock();
         Time _timer = new Time();
-        float _timerGame = 99f;
+        internal float _timerGame = 99.5f;
         float _currentTime;
         RenderWindow _window;
+        public UserInterface userInterface;
 
 
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
         {
+             
             _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
@@ -45,33 +51,60 @@ namespace UltimateFight
             _user2 = user2;
             _roundNb = 1;
             _window = window;
+
+
         }
 
-        internal void EndGame (Character Fighter1, Character Fighter2)
+
+
+        internal void EndRound (Character Fighter1, Character Fighter2)
         {
-            if(_game == true)
+            if( _startRound == false && _player1Win < 3  && _player2Win < 3)
             {
                 if(Fighter1._health <= 0)
                 {
-                    _game = false;
-                    Fighter2._roundWin++;
+                    _startRound = true;
+                    _player2Win++;
+                    _round++;
+                    _timeBeforeResetRound = _clock.ElapsedTime.AsSeconds();
                 } 
                 else if (Fighter2._health <= 0 )
                 {
-                    _game = false;
-                    Fighter1._roundWin++;
+                    _startRound = true;
+                    _player1Win++;
+                    _round++;
+                    _timeBeforeResetRound = _clock.ElapsedTime.AsSeconds();
                 }
+
             }
+
+
         }
 
-        public void Update ()
+        public void Update (RenderWindow window)
         {
+
+            if ( _startRound == true && _clock.ElapsedTime.AsSeconds() > _timeBeforeResetRound+4f)
+            {
+                userInterface = new UserInterface(_window, this);
+                _fighter1 = new Character(_fighter1.Name, _fighter1._sprite);
+                _fighter2 = new Character(_fighter2.Name, _fighter2._sprite);
+                // PLAYERS'S POSITIONS
+                _fighter1._sprite.Position = new Vector2f(250, 580);
+                _fighter2._sprite.Position = new Vector2f(1500, 580);
+                _startRound = false;
+                _clock = new Clock();
+            }
+
             // Timer management
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
 
             //Check if the round is over
-            EndGame(_fighter1, _fighter2);
+            EndRound(_fighter1, _fighter2);
+
+            //Interface game graphic
+            userInterface.Update(this);
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM
             if(_fighter1._sprite.Position.X > _fighter2._sprite.Position.X -225)

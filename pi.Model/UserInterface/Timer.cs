@@ -7,15 +7,13 @@ using UltimateFight;
 
 namespace UltimateFight
 {
-    internal class GameTimer 
+    internal class Timer 
     {
         private List<Sprite> animation_fontTimer = new List<Sprite>() ;
         private Sprite _fontTimer1 ;
         private Sprite _fontTimer2 ;
-        private float _timerGame = 99f;
-        
 
-        internal GameTimer()
+        internal Timer()
         {
             Texture texture;
             // Sprite for draw the timer in-game
@@ -30,7 +28,7 @@ namespace UltimateFight
 
             _fontTimer1 = new Sprite
             {
-                Texture = animation_fontTimer[0].Texture,
+                Texture = animation_fontTimer[9].Texture,
                 Scale = new Vector2f( 2.3f, 2.3f),
                 Position = new Vector2f(  900f, 50f ),
             };
@@ -43,9 +41,9 @@ namespace UltimateFight
         
 
 
-        internal void UpdateTimerGame(Game game)
+        internal void UpdateTimer(Game game)
         {
-            float time = _timerGame - game._clock.ElapsedTime.AsSeconds();
+            float time = game._timerGame - game._clock.ElapsedTime.AsSeconds();
             decimal font_time1;
             decimal font_time2;
             if ( time > 0f )

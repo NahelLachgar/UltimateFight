@@ -126,7 +126,7 @@ namespace UltimateFight
 
         }
 
-        internal void UpdateBars(Game game)
+        internal void Update(Game game)
         {
             float HealthPlayer1 = Convert.ToSingle(game._fighter1.Health);
             float HealthPlayer2 = Convert.ToSingle(game._fighter2.Health);
