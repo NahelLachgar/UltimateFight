@@ -132,20 +132,20 @@ namespace UltimateFight
                 i++;
                 _animation.Jump();
                 _shadow.Color = new Color(255, 255, 255, 255);
-                if (i < 200) this._sprite.Position -= new Vector2f(0, 1.8F);
+                if (i < 200) this._sprite.Position -= new Vector2f(0, 2F);
                 if (i >= 200 && i < 300)
                 {
-                    this._sprite.Position -= new Vector2f(0, 1.3F);
+                    this._sprite.Position -= new Vector2f(0, 1F);
                     _shadow.Scale = new Vector2f(4f, 5f);
                 }
                 if (i >= 300 && i < 400)
                 {
-                    this._sprite.Position += new Vector2f(0, 1.3F);
+                    this._sprite.Position += new Vector2f(0, 1F);
                     _shadow.Scale = new Vector2f(3f, 5f);
                 }
                 if (i >= 400 && i < 600)
                 {
-                    this._sprite.Position += new Vector2f(0, 1.8F);
+                    this._sprite.Position += new Vector2f(0, 2F);
                     _shadow.Scale = new Vector2f(4f, 5f);
                 }
                 if (i == 600)
