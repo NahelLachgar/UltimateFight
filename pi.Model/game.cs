@@ -161,14 +161,18 @@ namespace UltimateFight
                     _fighter2._sprite.Position = new Vector2f(_fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width, _fighter2._sprite.Position.Y);
                 }
             }
-        
+
+          /*  Console.WriteLine(_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width );
+          /*  Console.WriteLine(_fighter2._sprite.Position.X - _fighter2._sprite.TextureRect.Width - 180); */
+
+
             // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.Crouch();
             if (Keyboard.IsKeyPressed(Keyboard.Key.A))
             {
                 _fighter1.LightPunch();
-                if(_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 180 > _fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width)
+                if(_fighter1._sprite.Position.X + _fighter2._sprite.TextureRect.Width + 235> _fighter2._sprite.Position.X - _fighter2._sprite.TextureRect.Width - 235)
                 {
                     _fighter2.TakeDammage(10, "low");
                 }
@@ -177,7 +181,7 @@ namespace UltimateFight
             if (Keyboard.IsKeyPressed(Keyboard.Key.E))
             {
                 _fighter1.LightKick();
-                if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 180 > _fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width)
+                if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 225 > _fighter2._sprite.Position.X - 235 - _fighter2._sprite.TextureRect.Width)
                 {
                     _fighter2.TakeDammage(15, "low");
                 }
@@ -209,7 +213,7 @@ namespace UltimateFight
 
             _window.KeyPressed += (sender, e) =>
             {
-                if (e.Code == Keyboard.Key.P) _fighter1.TakeDammage(1, "low");
+                if (e.Code == Keyboard.Key.P) _fighter1.TakeDammage(100, "low");
             };
             //====================================================================================
             //====================================================================================
