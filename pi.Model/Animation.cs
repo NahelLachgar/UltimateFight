@@ -291,21 +291,26 @@ namespace UltimateFight
             {
                 case 0:
                     this._sprite.TextureRect = new IntRect(7, 986, 42, 93);
+                    this._sprite.Position += new Vector2f(80f, 0f);
                     _spriteNb = -1;
                     _i = -1;
                     _c = 0;
                     break;
                 case 150:
                     this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
+                    this._sprite.Position += new Vector2f(80f, 0f);
                     break;
                 case 300:
                     this._sprite.TextureRect = new IntRect(132, 986, 70, 98);
+                    this._sprite.Position += new Vector2f(80f, 0f);
                     break;
                 case 450:
                     this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
+                    this._sprite.Position += new Vector2f(80f, 0f);
                     break;
                 case 600:
                     this._sprite.TextureRect = new IntRect(132, 986, 70, 98);
+                    this._sprite.Position += new Vector2f(80f, 0f);
                     break;
             }
         }

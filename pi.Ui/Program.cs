@@ -18,6 +18,7 @@ namespace UltimateFight
                 //UserInterface userInterface = new UserInterface(window, game);
 
 
+
                 while ( window.IsOpen)
                 {
                    //window.SetFramerateLimit(60);

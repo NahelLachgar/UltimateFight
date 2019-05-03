@@ -165,7 +165,6 @@ namespace UltimateFight
             // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.Crouch();
-
             if (Keyboard.IsKeyPressed(Keyboard.Key.A))
             {
                 _fighter1.LightPunch();
