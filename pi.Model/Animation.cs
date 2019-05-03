@@ -283,7 +283,7 @@ namespace UltimateFight
             return true;
         }
 
-        public bool KO()
+        public void KO()
         {
             _p++;
 
@@ -295,23 +295,19 @@ namespace UltimateFight
                     _i = -1;
                     _c = 0;
                     break;
-                case 100:
+                case 150:
                     this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
-                    break;
-                case 200:
-                    this._sprite.TextureRect = new IntRect(132, 851, 70, 98);
                     break;
                 case 300:
+                    this._sprite.TextureRect = new IntRect(132, 986, 70, 98);
+                    break;
+                case 450:
                     this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
                     break;
-                case 400:
-                    this._sprite.TextureRect = new IntRect(132, 851, 70, 98);
+                case 600:
+                    this._sprite.TextureRect = new IntRect(132, 986, 70, 98);
                     break;
-                case 500:
-                    _p = -1;
-                    return false;
             }
-            return true;
         }
 
 

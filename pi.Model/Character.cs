@@ -11,7 +11,7 @@ namespace UltimateFight
         readonly internal string _name;
         public Sprite _sprite;
         // internal Special _special;
-        internal uint _health = 100;
+        internal int _health = 100;
         internal uint _energy = 0;
         internal Vector2f _position;
         Dictionary<string, IntRect> _rects;
@@ -69,7 +69,7 @@ namespace UltimateFight
 
         internal bool IsAlive => Health != 0;
 
-        public uint Health => _health;
+        public int Health => _health;
 
         internal Vector2f Position
         {
@@ -83,6 +83,18 @@ namespace UltimateFight
             _shadow.Position = new Vector2f(0f, 580f);
             if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 180, 0f);
             if(_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+
+            // IS KO 
+
+            if (_isKo == true)
+            {
+                _canMove = false;
+                _canJump = false;
+                _isFighting = false;
+
+                _animation.KO();
+            }
+
 
             // TAKING DAMAGE ANIMATION
             if (_isTakingDamage == true)
@@ -336,23 +348,29 @@ namespace UltimateFight
 
         }
 
-        internal void TakeDammage(uint Damage, string Hit)
+        internal void TakeDammage(int Damage, string Hit)
         {
             if (_isTakingDamage == false)
             {
-                _health = _health - Damage;
+                _health -= Damage;
                 _isTakingDamage = true;
                 _hit = Hit;
 
-                if(_hit == "low")
+                if (_health <= 0)
+                {
+                    _hit = string.Empty;
+                    _isKo = true;
+                    _health = 0;
+                    _isTakingDamage = false;
+                    _animation.KO();
+                }
+
+                if (_hit == "low" && _isKo == false)
                 {
                     _animation.FaceHit();
                 }
 
-                if (_health > 100)
-                {
-                    _health = 0;
-                }
+                
             }
             
         }
