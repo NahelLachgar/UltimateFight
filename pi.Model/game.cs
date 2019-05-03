@@ -115,6 +115,7 @@ namespace UltimateFight
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _fighter2.MoveRight(_moveSpeed);
 
+                // IF THE PLAYERS ARE STUCK TO EACHOTHER
                 if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 180 <= _fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width || _fighter1._sprite.Position.Y != _fighter2._sprite.Position.Y)
                 {
                     // PLAYER 1
@@ -122,7 +123,8 @@ namespace UltimateFight
                     // PLAYER 2
                     if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _fighter2.MoveLeft(_moveSpeed);
                 }
-            
+
+                // TURNING THE PLAYERS
                 if (_fighter1._sprite.Scale.X < 0)
                 {
                     _fighter1._sprite.Scale = new Vector2f((_fighter1._sprite.Scale.X * -1), _fighter1._sprite.Scale.Y);
@@ -140,7 +142,7 @@ namespace UltimateFight
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _fighter2.MoveLeft(_moveSpeed);
 
-
+                // IF THE PLAYERS ARE STUCK TO EACHOTHER
                 if (_fighter1._sprite.Position.X - _fighter1._sprite.TextureRect.Width - 180 >= _fighter2._sprite.Position.X + 180 + _fighter2._sprite.TextureRect.Width || _fighter1._sprite.Position.Y != _fighter2._sprite.Position.Y)
                 {
                     // PLAYER 1
@@ -149,6 +151,7 @@ namespace UltimateFight
                     if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _fighter2.MoveRight(_moveSpeed);
                 }
                 
+                // TURNING THE PLAYERS
                 if (_fighter1._sprite.Scale.X > 0)
                 {
                     _fighter1._sprite.Scale = new Vector2f((_fighter1._sprite.Scale.X * -1), _fighter1._sprite.Scale.Y);
@@ -162,8 +165,24 @@ namespace UltimateFight
             // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.Crouch();
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) _fighter1.LightPunch();
-            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) _fighter1.LightKick();
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+            {
+                _fighter1.LightPunch();
+                if(_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 180 > _fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width)
+                {
+                    _fighter2.TakeDammage(10, "low");
+                }
+            }
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.E))
+            {
+                _fighter1.LightKick();
+                if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 180 > _fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width)
+                {
+                    _fighter2.TakeDammage(15, "low");
+                }
+            }
 
             // PLAYER 2 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad5)) _fighter2.Jump();
@@ -189,17 +208,21 @@ namespace UltimateFight
 
             };
 
+            _window.KeyPressed += (sender, e) =>
+            {
+                if (e.Code == Keyboard.Key.P) _fighter1.TakeDammage(1, "low");
+            };
             //====================================================================================
             //====================================================================================
             // *** Just for test : Must be deleted in the futur ***
             // *** Key 'P' for test damages on the player's health bar, and O for reset. ***
             // *** The same for the player 2 with the key M and L. ***
-            if ( Keyboard.IsKeyPressed(Keyboard.Key.P) ) _fighter1.TakeDammage(1);
+          //  if ( Keyboard.IsKeyPressed(Keyboard.Key.P) ) _fighter1.TakeDammage(1, "low");
             if ( Keyboard.IsKeyPressed(Keyboard.Key.O) ) _fighter1._health = 100;
             if ( Keyboard.IsKeyPressed(Keyboard.Key.I) ) _fighter1.GainEnergy(1);
 
 
-            if ( Keyboard.IsKeyPressed(Keyboard.Key.M) ) _fighter2.TakeDammage(1);
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.M) ) _fighter2.TakeDammage(1, "low");
             if ( Keyboard.IsKeyPressed(Keyboard.Key.L) ) _fighter2._health = 100;
             if ( Keyboard.IsKeyPressed(Keyboard.Key.K) ) _fighter2.GainEnergy(1);
 

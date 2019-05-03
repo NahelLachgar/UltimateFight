@@ -12,7 +12,7 @@ namespace UltimateFight
         int _spriteNb;
         int _p = -1;
         int _m = -1;
-        int _i;
+        int _i = -1;
         int _c;
         int _j = -1;
 
@@ -245,13 +245,75 @@ namespace UltimateFight
                 case 360:
                     this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
                     _p = -1;
-                    return false;
-                    break;
-                    
+                    return false;                    
             }
             return true;
 
         }
+
+        // ===============================================
+        // TAKING DAMAGE & K.O.
+        // ===============================================
+
+        public bool FaceHit()
+        {
+            _p++;
+
+            switch (_p)
+            {
+                case 0:
+                    this._sprite.TextureRect = new IntRect(196, 851, 44, 100);
+                    _spriteNb = -1;
+                    _i = -1;
+                    _c = 0;
+                    break;
+                case 100:
+                    this._sprite.TextureRect = new IntRect(252, 851, 46, 100);
+                    break;
+                case 200 :
+                    this._sprite.TextureRect = new IntRect(301, 851, 49, 100);
+                    break;
+                case 300:
+                    this._sprite.TextureRect = new IntRect(196, 851, 44, 100);
+                    break;
+                case 400:
+                    _p = -1;
+                    return false;    
+            }
+            return true;
+        }
+
+        public bool KO()
+        {
+            _p++;
+
+            switch (_p)
+            {
+                case 0:
+                    this._sprite.TextureRect = new IntRect(7, 986, 42, 93);
+                    _spriteNb = -1;
+                    _i = -1;
+                    _c = 0;
+                    break;
+                case 100:
+                    this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
+                    break;
+                case 200:
+                    this._sprite.TextureRect = new IntRect(132, 851, 70, 98);
+                    break;
+                case 300:
+                    this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
+                    break;
+                case 400:
+                    this._sprite.TextureRect = new IntRect(132, 851, 70, 98);
+                    break;
+                case 500:
+                    _p = -1;
+                    return false;
+            }
+            return true;
+        }
+
 
 
     }

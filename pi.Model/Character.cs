@@ -15,11 +15,15 @@ namespace UltimateFight
         internal uint _energy = 0;
         internal Vector2f _position;
         Dictionary<string, IntRect> _rects;
+        string _hit;
+
         bool _canMove;
         bool _canJump;
 
         bool _isJumping;
         bool _isFighting;
+        bool _isTakingDamage;
+        bool _isKo;
 
         bool _lightPunch;
         bool _lightKick;
@@ -34,9 +38,12 @@ namespace UltimateFight
         public Character(string name, Sprite sprite)
         {
             _name = name;
+            _hit = string.Empty;
             _isJumping = false; 
             _isFighting = false;
             _isMoving = false;
+            _isTakingDamage = false;
+            _isKo = false;
 
             _lightPunch = false;
             _lightKick = false;
@@ -77,13 +84,34 @@ namespace UltimateFight
             if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 180, 0f);
             if(_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
 
+            // TAKING DAMAGE ANIMATION
+            if (_isTakingDamage == true)
+            {
+                _canMove = false;
+                _canJump = false;
+                _isFighting = false;
+
+                switch (_hit)
+                {
+                    case "low":
+                        _animation.FaceHit();
+                        if (_animation.FaceHit() == false)
+                        {
+                            _isTakingDamage = false;
+                            _canMove = true;
+                            _canJump = true;
+                            _hit = string.Empty;
+                        }
+                        break;
+                }
+            }
+
             // FIGTHING ANIMATION
             if (_isFighting == true)
             {
                 _canMove = false;
                 _isMoving = false;
                 _canJump = false;
-             /* _isCrouching = false; BUG LIGHT KICK */
 
                 if(_crouchPunch == true)
                 {
@@ -123,7 +151,7 @@ namespace UltimateFight
             }
 
             // WAITING ANIMATION
-            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false) _animation.Waiting();
+            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false && _isTakingDamage == false && _isKo == false) _animation.Waiting();
 
             // JUMPING ANIMATION
             if (_isJumping == true)
@@ -308,13 +336,25 @@ namespace UltimateFight
 
         }
 
-        internal void TakeDammage(uint Hit)
+        internal void TakeDammage(uint Damage, string Hit)
         {
-            _health = _health - Hit;
-            if (_health > 100)
+            if (_isTakingDamage == false)
             {
-                _health = 0;
+                _health = _health - Damage;
+                _isTakingDamage = true;
+                _hit = Hit;
+
+                if(_hit == "low")
+                {
+                    _animation.FaceHit();
+                }
+
+                if (_health > 100)
+                {
+                    _health = 0;
+                }
             }
+            
         }
 
         internal void GainEnergy(uint Gain)
@@ -329,37 +369,3 @@ namespace UltimateFight
 
     }
 }
-
-/*
- 
-if (_isJumping == true)
-{
-    _animation.Jump();
-    _shadow.Color = new Color(255, 255, 255, 255);
-        if (i < 200) this._sprite.Position -= new Vector2f(0, 1.8F);
-        if (i >= 200 && i <= 300)
-        {
-            this._sprite.Position -= new Vector2f(0, 1.3F);
-            _shadow.Scale = new Vector2f(4f, 5f);
-        }
-        if (i > 300 && i < 400)
-        {
-            this._sprite.Position += new Vector2f(0, 1.3F);
-            _shadow.Scale = new Vector2f(3f, 5f);
-        }
-        if (i >= 400 && i <= 600)
-        {
-            this._sprite.Position += new Vector2f(0, 1.8F);
-            _shadow.Scale = new Vector2f(4f, 5f);
-        }
-        if (i == 601)
-        {
-            _isJumping = false;
-            i = 0;
-            _shadow.Color = new Color(255, 255, 255, 0);
-            _shadow.Scale = new Vector2f(5f, 5f);
-        }
-        i++;
-}
-
-*/
