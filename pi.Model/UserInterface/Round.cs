@@ -16,11 +16,11 @@ namespace UltimateFight
 
         internal Round(HealthBar healthBar)
         {
-            _P1round1 = new CircleShape(17f, 4)
+            _P1round1 = new CircleShape(13f, 4)
             {
                 FillColor = Color.Transparent,
-                OutlineColor = Color.Magenta,
-                OutlineThickness = 5f,
+                OutlineColor = Color.White,
+                OutlineThickness = 3f,
                 Position = new Vector2f( healthBar.Bar[0].Position.X , healthBar.Bar[0].Position.Y + 50f),
             };
 

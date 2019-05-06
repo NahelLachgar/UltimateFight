@@ -8,18 +8,15 @@ namespace UltimateFight
 {
     internal class BlueFlames 
     {
-        private float _windowX;
-        private float _windowY;
         private List<Sprite> _animation_BlueFlame = new List<Sprite>();
         private Sprite _blueFlame1;
         private Sprite _blueFlame2;
         private int _blueFlameCount = 14;
         private float _energyTimer = 0f;
 
-        internal BlueFlames(RenderWindow window, Game game)
+        internal BlueFlames(Game game)
         {
-            _windowX = window.Size.X;
-            _windowY = window.Size.Y;
+
 
             // Sprite for draw the animation of blue flame for energy bars's players
             for ( int i = 1; i <= 19; i++ )
@@ -33,15 +30,15 @@ namespace UltimateFight
             // Animation of BlueFlame on Energy Bar for Player 1 & Player 2
             _blueFlame1 = new Sprite(_animation_BlueFlame[0].Texture, new IntRect(0, 140, 120, 140))
             {
-                Scale = new Vector2f(( _windowX * 0.00025f ), ( _windowY * 0.00035f )),
-                Position = new Vector2f(( _windowX * 0.209f ), ( _windowY * 0.0885f )),
+                Scale = new Vector2f(0.48f, 0.378f),
+                Position = new Vector2f(401f, 95f),
             };
 
             _blueFlame2 = new Sprite(_animation_BlueFlame[0].Texture, new IntRect(0, 140, 120, 140))
             {
                 // Don't forget to multiply by the scale applicated :  Here it's by 0.4f
-                Scale = new Vector2f(( _windowX * 0.00025f ), ( _windowY * 0.00035f )),
-                Position = new Vector2f(_windowX - _blueFlame1.Position.X - ( _blueFlame1.TextureRect.Width * _blueFlame1.Scale.X ), _blueFlame1.Position.Y),
+                Scale = new Vector2f(0.48f, 0.378f),
+                Position = new Vector2f(1920 - _blueFlame1.Position.X - ( _blueFlame1.TextureRect.Width * _blueFlame1.Scale.X ), _blueFlame1.Position.Y),
             };
 
         }

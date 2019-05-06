@@ -32,7 +32,7 @@ namespace UltimateFight
         Time _timer = new Time();
         internal float _timerGame = 99.5f;
         float _currentTime;
-        RenderWindow _window;
+        internal RenderWindow _window;
         public UserInterface userInterface;
 
 
@@ -52,14 +52,13 @@ namespace UltimateFight
             _roundNb = 1;
             _window = window;
 
-
         }
 
 
 
         internal void EndRound (Character Fighter1, Character Fighter2)
         {
-            if( _startRound == false && _player1Win < 3  && _player2Win < 3)
+            if( _startRound == false && _player1Win <= 1   &&  _player2Win <= 1)
             {
                 if(Fighter1._health <= 0)
                 {
@@ -83,10 +82,11 @@ namespace UltimateFight
 
         public void Update (RenderWindow window)
         {
+            _window.Size = window.Size;
 
             if ( _startRound == true && _clock.ElapsedTime.AsSeconds() > _timeBeforeResetRound+4f)
             {
-                userInterface = new UserInterface(_window, this);
+                userInterface = new UserInterface(this);
                 _fighter1 = new Character(_fighter1.Name, _fighter1._sprite);
                 _fighter2 = new Character(_fighter2.Name, _fighter2._sprite);
                 // PLAYERS'S POSITIONS
@@ -96,6 +96,10 @@ namespace UltimateFight
                 _clock = new Clock();
             }
 
+
+            //Interface game graphic
+            userInterface.Update(this);
+
             // Timer management
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
@@ -103,8 +107,6 @@ namespace UltimateFight
             //Check if the round is over
             EndRound(_fighter1, _fighter2);
 
-            //Interface game graphic
-            userInterface.Update(this);
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             if (_fighter1._sprite.Position.X < _fighter2._sprite.Position.X + 225)
@@ -131,11 +133,13 @@ namespace UltimateFight
                     _fighter1._sprite.Position = new Vector2f(_fighter1._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width, _fighter1._sprite.Position.Y);
 
                     _fighter2._sprite.Scale = new Vector2f((_fighter2._sprite.Scale.X * -1), _fighter2._sprite.Scale.Y);
+
                     _fighter2._sprite.Position = new Vector2f(_fighter2._sprite.Position.X + 180 + _fighter2._sprite.TextureRect.Width, _fighter2._sprite.Position.Y);
                 }
             }
 
             if(_fighter1._sprite.Position.X > _fighter2._sprite.Position.X -225)
+
             {
                 // PLAYER 1
                 if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _fighter1.MoveRight(_moveSpeed);

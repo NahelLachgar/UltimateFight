@@ -16,10 +16,8 @@ namespace UltimateFight
 
 
 
-        internal K_O(RenderWindow window)
+        internal K_O()
         {
-            float _windowX = window.Size.X;
-            float _windowY = window.Size.Y;
 
             // Sprite for draw the animation of "K.O" when a player dies
             for ( int i = 1; i <= 38; i++ )
@@ -27,8 +25,8 @@ namespace UltimateFight
                 Texture texture = new Texture("../../../../pi.Ui/Resources/Img/k_o/" + i + ".png");
                 texture.Smooth = true;
                 Sprite _ko = new Sprite(texture);
-                _ko.Scale = new Vector2f(( _windowX * 0.0016f ), ( _windowY * 0.0016f ));
-                _ko.Position = new Vector2f(( _windowX / 2f ) - ( _ko.Texture.Size.X / 2f * _ko.Scale.X ), ( _windowY / 2f ) - ( _ko.Texture.Size.Y / 2f * _ko.Scale.Y ));
+                _ko.Scale = new Vector2f(3.072f, 1.728f);
+                _ko.Position = new Vector2f(( 1920f / 2f ) - ( _ko.Texture.Size.X / 2f * _ko.Scale.X ), ( 1080f / 2f ) - ( _ko.Texture.Size.Y / 2f * _ko.Scale.Y ));
 
                 animation_ko.Add(_ko);
             }

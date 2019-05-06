@@ -10,9 +10,9 @@ namespace UltimateFight
         internal K_O KO;
         internal Ready _ready;
 
-        internal AnimationsUI(RenderWindow window)
+        internal AnimationsUI()
         {
-            KO = new K_O(window);
+            KO = new K_O();
             _ready = new Ready();
         }
 
