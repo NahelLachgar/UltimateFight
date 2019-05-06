@@ -15,14 +15,14 @@ namespace UltimateFight
         Round round;
         AnimationsUI animationsUI;
 
-        public UserInterface(RenderWindow window, Game game)
+        public UserInterface(Game game)
         {
             gameTimer = new Timer();
-            healthBar = new HealthBar(window, game);
-            energyBar = new EnergyBars(window, healthBar, game);
+            healthBar = new HealthBar( game);
+            energyBar = new EnergyBars( healthBar, game);
             playerName = new PlayerName(game, healthBar);
             round = new Round(healthBar);
-            animationsUI = new AnimationsUI(window);
+            animationsUI = new AnimationsUI();
 
         }
 

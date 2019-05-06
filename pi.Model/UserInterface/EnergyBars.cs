@@ -8,25 +8,21 @@ namespace UltimateFight
 {
     internal class EnergyBars
     {
-        private float _windowX;
-        private float _windowY;
         private float _energy1 = 2f;
         private float _energy2 = 2f;
         private List<RectangleShape> _EnergyBar = new List<RectangleShape>();
         internal BlueFlames blueFlames;
 
-        internal EnergyBars(RenderWindow window, HealthBar healthBar, Game game)
+        internal EnergyBars( HealthBar healthBar, Game game)
         {
-            _windowX = window.Size.X;
-            _windowY = window.Size.Y;
             List<RectangleShape> list = healthBar.Bar;
-            blueFlames = new BlueFlames(window, game);
+            blueFlames = new BlueFlames(game);
 
             // Back Energy Bar for Player 1 & Player 2
             RectangleShape _BackEnergyBar1 = new RectangleShape()
             {
-                Position = new Vector2f(list[0].Position.X + list[0].Size.X *0.4f, ( _windowY * 0.115f )),
-                Size = new Vector2f(( _windowX * 0.176f ), ( _windowY * 0.025f )),
+                Position = new Vector2f(list[0].Position.X + list[0].Size.X *0.4f, 124f),
+                Size = new Vector2f((338f), 27f),
                 FillColor = Color.White,
                 OutlineColor = Color.Black,
                 Texture = new Texture("../../../../pi.Ui/Resources/Img/Fight_Font/bar1.png"),
@@ -34,7 +30,7 @@ namespace UltimateFight
 
             RectangleShape _BackEnergyBar2 = new RectangleShape(_BackEnergyBar1)
             {
-                Position = new Vector2f(_windowX - _BackEnergyBar1.Position.X - _BackEnergyBar1.Size.X , _BackEnergyBar1.Position.Y),
+                Position = new Vector2f(1920 - _BackEnergyBar1.Position.X - _BackEnergyBar1.Size.X , _BackEnergyBar1.Position.Y),
             };
 
             //-------------------------------------------------------------------------------------------------------------------------
@@ -42,8 +38,8 @@ namespace UltimateFight
             // Energy Bar for Player 1 & Player 2
             RectangleShape _EnergyBar1 = new RectangleShape()
             {
-                Position = new Vector2f(list[0].Position.X + list[0].Size.X *0.4f, ( _windowY * 0.115f )),
-                Size = new Vector2f(( _windowX * 0.176f ), ( _windowY * 0.025f )),
+                Position = new Vector2f(list[0].Position.X + list[0].Size.X *0.4f, 124f),
+                Size = new Vector2f(338f, 27f),
                 FillColor = Color.Blue,
                 OutlineColor = Color.Black,
                 //Texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar1.png"),
@@ -51,7 +47,7 @@ namespace UltimateFight
 
             RectangleShape _EnergyBar2 = new RectangleShape(_EnergyBar1)
             {
-                Position = new Vector2f(_windowX - _BackEnergyBar1.Position.X , _BackEnergyBar1.Position.Y),
+                Position = new Vector2f(1920 - _BackEnergyBar1.Position.X , _BackEnergyBar1.Position.Y),
                 Scale = new Vector2f(-1f, 1f),
             };
 
