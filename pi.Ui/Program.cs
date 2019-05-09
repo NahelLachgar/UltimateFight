@@ -31,6 +31,9 @@ namespace UltimateFight
 
                     window.Clear();
                     window.Draw(game._stage._sprite);
+
+                    game.userInterface.Draw(window);
+
                     window.Draw(game._fighter2._shadow);
                     window.Draw(game._fighter2._sprite);
                     window.Draw(game._fighter1._shadow);
@@ -38,7 +41,6 @@ namespace UltimateFight
 
                     // Draw the game interface
                     //userInterface.Draw(window);
-                    game.userInterface.Draw(window);
 
                     window.Display();
 

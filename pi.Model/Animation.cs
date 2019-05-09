@@ -283,6 +283,28 @@ namespace UltimateFight
             return true;
         }
 
+        public bool CrouchHit()
+        {
+            _p++;
+
+            switch (_p)
+            {
+                case 0:
+                    this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
+                    _spriteNb = -1;
+                    _i = -1;
+                    break;
+                case 200:
+                    this._sprite.TextureRect = new IntRect(358, 855, 49, 93);
+                    break;
+                case 400:
+                    this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
+                    _p = -1;
+                    return false;
+            }
+            return true;
+        }
+
         public void KO()
         {
             _p++;
@@ -294,9 +316,6 @@ namespace UltimateFight
                     case 0:
                         this._sprite.TextureRect = new IntRect(7, 986, 42, 93);
                         this._sprite.Position += new Vector2f(80f, 0f);
-                        _spriteNb = -1;
-                        _i = -1;
-                        _c = 0;
                         break;
                     case 150:
                         this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
@@ -323,9 +342,6 @@ namespace UltimateFight
                     case 0:
                         this._sprite.TextureRect = new IntRect(7, 986, 42, 93);
                         this._sprite.Position -= new Vector2f(80f, 0f);
-                        _spriteNb = -1;
-                        _i = -1;
-                        _c = 0;
                         break;
                     case 150:
                         this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
@@ -347,7 +363,31 @@ namespace UltimateFight
             }
         }
 
+        // VICTORY POSE
+        public void VictoryPose()
+        {
+            if (_i == -1 && _j == -1 && _m == -1 && _c == 0)
+            {
+                _p++;
+                switch (_p)
+                {
+                    case 0:
+                        this._sprite.TextureRect = new IntRect(363, 973, 43, 107);
+                      /*  _c = 0;
+                        _i = 0;
+                        _j = 0;
+                        _m = 0;*/
+                        break;
+                    case 225:
+                        this._sprite.TextureRect = new IntRect(414, 973, 58, 107);
+                        break;
+                    case 450:
+                        this._sprite.TextureRect = new IntRect(481, 973, 78, 107);
+                        break;
+                }
+            }
+        }
 
 
-    }
+    }// DONT TOUCH
 }

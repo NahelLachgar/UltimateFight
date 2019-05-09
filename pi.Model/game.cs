@@ -35,7 +35,6 @@ namespace UltimateFight
         internal RenderWindow _window;
         public UserInterface userInterface;
 
-
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
         {
              
@@ -53,9 +52,7 @@ namespace UltimateFight
             _window = window;
 
         }
-
-
-
+        
         internal void EndRound (Character Fighter1, Character Fighter2)
         {
             if( _startRound == false && _player1Win <= 1   &&  _player2Win <= 1)
@@ -74,10 +71,7 @@ namespace UltimateFight
                     _round++;
                     _timeBeforeResetRound = _clock.ElapsedTime.AsSeconds();
                 }
-
             }
-
-
         }
 
         public void Update (RenderWindow window)
@@ -96,7 +90,6 @@ namespace UltimateFight
                 _clock = new Clock();
             }
 
-
             //Interface game graphic
             userInterface.Update(this);
 
@@ -107,6 +100,15 @@ namespace UltimateFight
             //Check if the round is over
             EndRound(_fighter1, _fighter2);
 
+            // IF FIGHTERS WINS
+            if (_fighter2.Health == 0)
+            {
+                _fighter1._isWinner = true;
+            }
+            if (_fighter1.Health == 0)
+            {
+                _fighter2._isWinner = true;
+            }
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             if (_fighter1._sprite.Position.X < _fighter2._sprite.Position.X + 225)
@@ -173,21 +175,30 @@ namespace UltimateFight
             // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.Crouch();
+
+            // LIGHT PUNCH 
             if (Keyboard.IsKeyPressed(Keyboard.Key.A))
             {
                 _fighter1.LightPunch();
                 if(_fighter1._sprite.Position.X + _fighter2._sprite.TextureRect.Width + 235> _fighter2._sprite.Position.X - _fighter2._sprite.TextureRect.Width - 235)
                 {
-                    _fighter2.TakeDammage(10, "low");
+                    if(_fighter2.TakeDammage(10, "low") == true)
+                    {
+                        _fighter1.GainEnergy(10);
+                    }
                 }
             }
 
+            // LIGHT KICK 
             if (Keyboard.IsKeyPressed(Keyboard.Key.E))
             {
                 _fighter1.LightKick();
-                if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 225 > _fighter2._sprite.Position.X - 235 - _fighter2._sprite.TextureRect.Width)
+                if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 235 > _fighter2._sprite.Position.X - 235 - _fighter2._sprite.TextureRect.Width)
                 {
-                    _fighter2.TakeDammage(15, "low");
+                    if (_fighter2.TakeDammage(15, "low") == true)
+                    {
+                        _fighter1.GainEnergy(10);
+                    }
                 }
             }
 

@@ -10,7 +10,6 @@ namespace UltimateFight
     {
         readonly internal string _name;
         public Sprite _sprite;
-        // internal Special _special;
         internal int _health = 100;
         internal uint _energy = 0;
         internal Vector2f _position;
@@ -23,7 +22,8 @@ namespace UltimateFight
         bool _isJumping;
         bool _isFighting;
         bool _isTakingDamage;
-        bool _isKo;
+        internal bool _isKo;
+        internal bool _isWinner;
 
         bool _lightPunch;
         bool _lightKick;
@@ -33,6 +33,7 @@ namespace UltimateFight
         internal bool _isMoving;
         int i = -1;
         internal Animation _animation;
+        internal Special _special;
         public Sprite _shadow;
 
         public Character(string name, Sprite sprite)
@@ -44,6 +45,7 @@ namespace UltimateFight
             _isMoving = false;
             _isTakingDamage = false;
             _isKo = false;
+            _isWinner = false;
 
             _lightPunch = false;
             _lightKick = false;
@@ -85,7 +87,6 @@ namespace UltimateFight
             if(_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
 
             // IS KO 
-
             if (_isKo == true)
             {
                 _canMove = false;
@@ -95,19 +96,32 @@ namespace UltimateFight
                 _animation.KO();
             }
 
+            // IS WINNING
+            if (_isWinner == true)
+            {
+                
+
+                _animation.VictoryPose();
+            }
 
             // TAKING DAMAGE ANIMATION
             if (_isTakingDamage == true)
             {
-                _canMove = false;
-                _canJump = false;
-                _isFighting = false;
-
                 switch (_hit)
                 {
                     case "low":
                         _animation.FaceHit();
                         if (_animation.FaceHit() == false)
+                        {
+                            _isTakingDamage = false;
+                            _canMove = true;
+                            _canJump = true;
+                            _hit = string.Empty;
+                        }
+                        break;
+                    case "crouchHit":
+                        _animation.CrouchHit();
+                        if (_animation.CrouchHit() == false)
                         {
                             _isTakingDamage = false;
                             _canMove = true;
@@ -125,6 +139,7 @@ namespace UltimateFight
                 _isMoving = false;
                 _canJump = false;
 
+                // CROUCH PUNCH
                 if(_crouchPunch == true)
                 {
                     _animation.CrouchLight();
@@ -137,6 +152,7 @@ namespace UltimateFight
                     }
                 }
 
+                // LIGHT PUNCH
                 if (_lightPunch == true)
                 {
                     _animation.LightPunch();
@@ -149,6 +165,7 @@ namespace UltimateFight
                     }
                 }
                 
+                // LIGHT KICK 
                 if (_lightKick == true)
                 {
                     _animation.LightKick();
@@ -163,7 +180,7 @@ namespace UltimateFight
             }
 
             // WAITING ANIMATION
-            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false && _isTakingDamage == false && _isKo == false) _animation.Waiting();
+            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false && _isTakingDamage == false && _isKo == false && _isWinner == false) _animation.Waiting();
 
             // JUMPING ANIMATION
             if (_isJumping == true)
@@ -348,13 +365,16 @@ namespace UltimateFight
 
         }
 
-        internal void TakeDammage(int Damage, string Hit)
+        internal bool TakeDammage(int Damage, string Hit)
         {
             if (_isTakingDamage == false)
             {
                 _health -= Damage;
-                _isTakingDamage = true;
                 _hit = Hit;
+                _isTakingDamage = true;
+                _canMove = false;
+                _canJump = false;
+                _isFighting = false;
 
                 if (_health <= 0)
                 {
@@ -365,14 +385,20 @@ namespace UltimateFight
                     _animation.KO();
                 }
 
+                if (_isCrouching == true && _hit == "low" && _isKo == false)
+                {
+                    _animation.CrouchHit();
+                    _hit = "crouchHit";
+                    return true;
+                }
+
                 if (_hit == "low" && _isKo == false)
                 {
                     _animation.FaceHit();
+                    return true;
                 }
-
-                
             }
-            
+            return false;
         }
 
         internal void GainEnergy(uint Gain)
