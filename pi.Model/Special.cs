@@ -11,12 +11,7 @@ namespace UltimateFight
         Sprite _sprite;
         int _i;
 
-        public Special(Sprite sprite)
-        {
-            _sprite = sprite;
-        }
-
-        public SpecialMove
+        public static void SpecialMove(Sprite sprite, String name)
         {
 
         }

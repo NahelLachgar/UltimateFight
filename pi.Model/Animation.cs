@@ -366,17 +366,17 @@ namespace UltimateFight
         // VICTORY POSE
         public void VictoryPose()
         {
-            if (_i == -1 && _j == -1 && _m == -1 && _c == 0)
-            {
+           // if (_i == -1 && _j == -1 && _m == -1 && _c == 0)
+            //{
                 _p++;
                 switch (_p)
                 {
                     case 0:
                         this._sprite.TextureRect = new IntRect(363, 973, 43, 107);
-                      /*  _c = 0;
-                        _i = 0;
-                        _j = 0;
-                        _m = 0;*/
+                        _c = 0;
+                        _i = -1;
+                        _j = -1;
+                        _m = -1;
                         break;
                     case 225:
                         this._sprite.TextureRect = new IntRect(414, 973, 58, 107);
@@ -385,9 +385,41 @@ namespace UltimateFight
                         this._sprite.TextureRect = new IntRect(481, 973, 78, 107);
                         break;
                 }
-            }
+           // }
         }
 
+        // ===============================================
+        // SPECIAL MOVE
+        // ===============================================
 
+        public bool Special()
+        {
+            _p++;
+            switch (_p)
+            {
+                case 0:
+                    _c = 0;
+                    this._sprite.TextureRect = new IntRect(8, 612, 53, 94);
+                    this._sprite.Position += new Vector2f(80f, 0f);
+                    break;
+                case 150:
+                    this._sprite.TextureRect = new IntRect(70, 612, 60, 94);
+                    this._sprite.Position += new Vector2f(80f, 0f);
+                    break;
+                case 300:
+                    this._sprite.TextureRect = new IntRect(139, 612, 118, 94);
+                    this._sprite.Position += new Vector2f(80f, 0f);
+                    break;
+                case 450:
+                    this._sprite.TextureRect = new IntRect(262, 612, 61, 94);
+                    this._sprite.Position += new Vector2f(80f, 0f);
+                    break;
+                case 650:
+                    this._sprite.TextureRect = new IntRect(327, 612, 48, 94);
+                    _p = -1;
+                    return false;
+            }
+            return true;
+        }
     }// DONT TOUCH
 }

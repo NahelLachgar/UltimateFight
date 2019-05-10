@@ -19,6 +19,8 @@ namespace UltimateFight
         bool _canMove;
         bool _canJump;
 
+        internal bool _isCrouching;
+        internal bool _isMoving;
         bool _isJumping;
         bool _isFighting;
         bool _isTakingDamage;
@@ -28,13 +30,13 @@ namespace UltimateFight
         bool _lightPunch;
         bool _lightKick;
         bool _crouchPunch;
+        bool _special;
 
-        internal bool _isCrouching;
-        internal bool _isMoving;
         int i = -1;
         internal Animation _animation;
-        internal Special _special;
+      //  internal Special _special;
         public Sprite _shadow;
+        public RectangleShape _hitbox;
 
         public Character(string name, Sprite sprite)
         {
@@ -50,6 +52,7 @@ namespace UltimateFight
             _lightPunch = false;
             _lightKick = false;
             _crouchPunch = false;
+            _special = false;
             
             _canMove = true;
             _canJump = true;
@@ -62,6 +65,14 @@ namespace UltimateFight
                 TextureRect = new IntRect(501, 17, 41, 93),
                 Scale = _sprite.Scale,
                 Color = new Color(255, 255, 255, 0)
+            };
+
+            _hitbox = new RectangleShape
+            {
+                Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height),
+                Scale = _sprite.Scale,
+                Position = new Vector2f(this._sprite.Position.X, this._sprite.Position.Y),
+                FillColor = Color.Red
             };
         }
 
@@ -83,8 +94,13 @@ namespace UltimateFight
         {
             // SHADOW FOLOWING THE CHARACTER
             _shadow.Position = new Vector2f(0f, 580f);
-            if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 180, 0f);
+            if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 225, 0f);
             if(_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+
+            _hitbox.Position = new Vector2f(0f, this._sprite.Position.Y);
+            _hitbox.Size = new Vector2f(_sprite.TextureRect.Width, _sprite.TextureRect.Height);
+            if (_sprite.Scale.X < 0) _hitbox.Position += new Vector2f(_sprite.Position.X - 225, 0f);
+            if (_sprite.Scale.X > 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);
 
             // IS KO 
             if (_isKo == true)
@@ -173,6 +189,19 @@ namespace UltimateFight
                     {
                         _isFighting = false;
                         _lightKick = false;
+                        _canMove = true;
+                        _canJump = true;
+                    }
+                }
+
+                // SPECIAL 
+                if (_special == true)
+                {
+                    _animation.Special();
+                    if (_animation.Special() == false)
+                    {
+                        _isFighting = false;
+                        _special = false;
                         _canMove = true;
                         _canJump = true;
                     }
@@ -278,6 +307,7 @@ namespace UltimateFight
             }
         }
 
+        // JUMP
         internal void Jump()
         {
             if (_canJump == true)
@@ -289,6 +319,7 @@ namespace UltimateFight
             }
         }
 
+        // CROUCH
         internal void Crouch()
         {
             if (_canMove == true && _isJumping == false)
@@ -298,6 +329,7 @@ namespace UltimateFight
             }
         }
         
+        // LIGHT PUNCH
         internal void LightPunch()
         {
             if (_isFighting == false)
@@ -329,6 +361,7 @@ namespace UltimateFight
 
         }
 
+        // LIGTH KICK
         internal void LightKick()
         {
             if (_isFighting == false)
@@ -360,9 +393,17 @@ namespace UltimateFight
 
         }
 
+        // SPECIAL
         internal void Special()
         {
-
+            if (_isFighting == false && _isJumping == false)
+            {
+                _canMove = false;
+                _isFighting = true;
+                _special = true;
+                _energy = 0;
+                _animation.Special();
+            }
         }
 
         internal bool TakeDammage(int Damage, string Hit)
@@ -402,8 +443,12 @@ namespace UltimateFight
         }
 
         internal void GainEnergy(uint Gain)
-        {
-            _energy += Gain;
+        { 
+            if( _energy < 100)
+            {
+                _energy += Gain;
+            }
+
             if ( _energy > 100 )
             {
                 _energy = 100;

@@ -41,6 +41,7 @@ namespace UltimateFight
             _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
+        //    _fighter2._sprite.Origin = new Vector2f(_fighter2._sprite.TextureRect.Width / 2, 0f);
             _fighter2._sprite.Scale = new Vector2f(-5f, 5f);
             // PLAYERS'S POSITIONS
             _fighter1._sprite.Position = new Vector2f(250, 580);
@@ -119,6 +120,43 @@ namespace UltimateFight
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _fighter2.MoveRight(_moveSpeed);
 
+                // LIGHT PUNCH 
+                if (Keyboard.IsKeyPressed(Keyboard.Key.A))
+                {
+                    _fighter1.LightPunch();
+                    if (_fighter1._sprite.Position.X + _fighter2._sprite.TextureRect.Width + 225 > _fighter2._sprite.Position.X - _fighter2._sprite.TextureRect.Width - 235)
+                    {
+                        if (_fighter2.TakeDammage(10, "low") == true)
+                        {
+                            _fighter1.GainEnergy(10);
+                        }
+                    }
+                }
+
+                // LIGHT KICK 
+                if (Keyboard.IsKeyPressed(Keyboard.Key.E))
+                {
+                    _fighter1.LightKick();
+                    if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 235 > _fighter2._sprite.Position.X - 235 - _fighter2._sprite.TextureRect.Width)
+                    {
+                        if (_fighter2.TakeDammage(15, "low") == true)
+                        {
+                            _fighter1.GainEnergy(10);
+                        }
+                    }
+                }
+
+                // Special
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _fighter1.Energy == 100)
+                {
+                    _fighter1.Special();
+                    if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 235 > _fighter2._sprite.Position.X - 235 - _fighter2._sprite.TextureRect.Width)
+                    {
+                        _fighter2.TakeDammage(15, "low");
+                    }
+                }
+
+
                 // IF THE PLAYERS ARE STUCK TO EACHOTHER
                 if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 180 <= _fighter2._sprite.Position.X - 180 - _fighter2._sprite.TextureRect.Width || _fighter1._sprite.Position.Y != _fighter2._sprite.Position.Y)
                 {
@@ -175,33 +213,7 @@ namespace UltimateFight
             // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _fighter1.Crouch();
-
-            // LIGHT PUNCH 
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A))
-            {
-                _fighter1.LightPunch();
-                if(_fighter1._sprite.Position.X + _fighter2._sprite.TextureRect.Width + 235> _fighter2._sprite.Position.X - _fighter2._sprite.TextureRect.Width - 235)
-                {
-                    if(_fighter2.TakeDammage(10, "low") == true)
-                    {
-                        _fighter1.GainEnergy(10);
-                    }
-                }
-            }
-
-            // LIGHT KICK 
-            if (Keyboard.IsKeyPressed(Keyboard.Key.E))
-            {
-                _fighter1.LightKick();
-                if (_fighter1._sprite.Position.X + _fighter1._sprite.TextureRect.Width + 235 > _fighter2._sprite.Position.X - 235 - _fighter2._sprite.TextureRect.Width)
-                {
-                    if (_fighter2.TakeDammage(15, "low") == true)
-                    {
-                        _fighter1.GainEnergy(10);
-                    }
-                }
-            }
-
+            
             // PLAYER 2 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad5)) _fighter2.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad2) && !Keyboard.IsKeyPressed(Keyboard.Key.Numpad3) && !Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _fighter2.Crouch();
