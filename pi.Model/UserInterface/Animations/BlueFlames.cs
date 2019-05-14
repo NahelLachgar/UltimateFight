@@ -13,10 +13,11 @@ namespace UltimateFight
         private Sprite _blueFlame2;
         private int _blueFlameCount = 14;
         private float _energyTimer = 0f;
+        private Clock _clock;
 
         internal BlueFlames(Game game)
         {
-
+            _clock = game._clock;
 
             // Sprite for draw the animation of blue flame for energy bars's players
             for ( int i = 1; i <= 19; i++ )
@@ -44,9 +45,9 @@ namespace UltimateFight
         }
 
 
-        internal void UpdateEnergyFlame(Game game, EnergyBars energyBars)
+        internal void UpdateEnergyFlame(EnergyBars energyBars)
         {
-            if ( game._clock.ElapsedTime.AsSeconds() > _energyTimer + 0.02f )
+            if ( _clock.ElapsedTime.AsSeconds() > _energyTimer + 0.02f )
             {
                 _blueFlame1.Texture = _animation_BlueFlame[_blueFlameCount].Texture;
                 _blueFlame1.Position = new Vector2f(energyBars.EnergyBar[0].Position.X + energyBars.EnergyBar[0].Size.X - 30f, energyBars.EnergyBar[0].Position.Y - energyBars.EnergyBar[0].Size.Y);
