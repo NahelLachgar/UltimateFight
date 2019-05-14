@@ -74,8 +74,6 @@ namespace UltimateFight
                     _timeBeforeResetRound = _clock.ElapsedTime.AsSeconds();
                 }
             }
-
-
         }
 
         public void Update (RenderWindow window)
@@ -234,6 +232,14 @@ namespace UltimateFight
 
             //====================================================================================
             //====================================================================================
+        }
+
+
+        internal uint NameWinner()
+        {
+            if ( _player1Win == 2 ) return 1;
+            else if( _player2Win == 2 ) return 2;
+            else return 0;
         }
     }
 }

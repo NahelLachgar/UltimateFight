@@ -16,22 +16,28 @@ namespace UltimateFight
         {
         }
 
-        internal Sprite NewButton(string color)
+        internal (Sprite, Sprite) NewButton(string color)
         {
-            IntRect Color = this.ChooseColor(color);
+
+            IntRect Color = this.ChooseButtonColor(color);
             Sprite button = new Sprite(_img, Color);
-            return button;
+
+            Color = this.SelectButtonColor(color);
+            Sprite selectButton = new Sprite(_img, Color);
+
+            return (button, selectButton);
         }
+
 
         internal Text NewTextMenu(string Text, Vector2f PositionText, uint SizeFont )
         {
-            Text text = new Text(Text, new Font("../../../../pi.Ui/Resources/Fonts/Cocogoose/CocogooseBold.ttf"), SizeFont);
+            Text text = new Text(Text, new Font("../../../../pi.Ui/Resources/Fonts/space_ranger/spaceranger.ttf"), SizeFont);
             text.Position = PositionText;
             text.FillColor = Color.Black;
             return text;
         }
 
-        private IntRect ChooseColor(string color)
+        private IntRect ChooseButtonColor(string color)
         {
             IntRect colorSize;
             switch(color)
@@ -65,10 +71,52 @@ namespace UltimateFight
             }
         }
 
+        private IntRect SelectButtonColor(string color)
+        {
+            IntRect colorSize;
+            switch ( color )
+            {
+                case "Green":
+                    colorSize = new IntRect(new Vector2i(9, 69), new Vector2i(94, 21));
+                    return colorSize;
+                    break;
+                case "Yellow":
+                    colorSize = new IntRect(new Vector2i(9, 39), new Vector2i(94, 21));
+                    return colorSize;
+                    break;
+                case "Blue":
+                    colorSize = new IntRect(new Vector2i(9, 129), new Vector2i(94, 21));
+                    return colorSize;
+                    break;
+                case "White":
+                    colorSize = new IntRect(new Vector2i(9, 9), new Vector2i(94, 21));
+                    return colorSize;
+                    break;
+                case "Orange":
+                    colorSize = new IntRect(new Vector2i(9, 99), new Vector2i(94, 21));
+                    return colorSize;
+                    break;
+
+                default:
+                    //Button green by default
+                    colorSize = new IntRect(new Vector2i(324, 68), new Vector2i(94, 21));
+                    return colorSize;
+                    break;
+            }
+        }
+
+
         internal Sprite NewBackground()
         {
             Sprite backMenu = new Sprite(_img, new IntRect(new Vector2i(640, 195),  new Vector2i(93, 89) ));
             return backMenu;
         }
+
+        internal bool MouseInButton(Sprite Button, RenderWindow window)
+        {
+            return Button.GetGlobalBounds().Contains(Mouse.GetPosition(window).X, Mouse.GetPosition(window).Y);
+        }
+
+
     }
 }

@@ -35,12 +35,16 @@ namespace UltimateFight
 
         internal void AnimationKO(Game game)
         {
-            if ( ( game._fighter1.Health == 0 || game._fighter2.Health == 0 ) && _timerKO < game._clock.ElapsedTime.AsSeconds() && _iKO < 38 )
+            if ( ( game._fighter1.Health == 0 || game._fighter2.Health == 0 ) && _timerKO < game._clock.ElapsedTime.AsSeconds() && _iKO < 38)
             {
                 _KO = animation_ko[_iKO];
                 _iKO++;
                 _timerKO = game._clock.ElapsedTime.AsSeconds() + 0.0400f;
-                if ( animation_ko.Count == _iKO ) _finish = true;
+                if ( animation_ko.Count == _iKO )
+                {
+                    _finish = true;
+                    _KO = new Sprite();
+                }
                 else _finish = false;
 
                 _finish = ( animation_ko.Count == _iKO );
