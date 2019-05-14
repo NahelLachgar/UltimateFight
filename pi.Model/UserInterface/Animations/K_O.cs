@@ -12,7 +12,7 @@ namespace UltimateFight
         private Sprite _KO = new Sprite();
         private float _timerKO = 0;
         private int _iKO = 0;
-        internal bool _finish = true; 
+        private bool _finish = true; 
 
 
 
@@ -40,11 +40,16 @@ namespace UltimateFight
                 _KO = animation_ko[_iKO];
                 _iKO++;
                 _timerKO = game._clock.ElapsedTime.AsSeconds() + 0.0400f;
+                if ( animation_ko.Count == _iKO ) _finish = true;
+                else _finish = false;
+
+                _finish = ( animation_ko.Count == _iKO );
             }
 
         }
 
         internal Sprite KO => _KO;
 
+        internal bool Finish => _finish;
     }
 }
