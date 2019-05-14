@@ -58,7 +58,7 @@ namespace UltimateFight
             _canJump = true;
 
             _sprite = sprite;
-            _animation = new Animation(sprite);
+
             _shadow = new Sprite
             {
                 Texture = sprite.Texture,
@@ -69,11 +69,12 @@ namespace UltimateFight
 
             _hitbox = new RectangleShape
             {
-                Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height),
-                Scale = _sprite.Scale,
-                Position = new Vector2f(this._sprite.Position.X, this._sprite.Position.Y),
-                FillColor = Color.Red
+                // FillColor = Color.Red
+               FillColor = new Color(255, 255, 255, 0)
             };
+
+            _animation = new Animation(sprite, _hitbox);
+
         }
 
         public uint Energy => _energy;
@@ -92,14 +93,25 @@ namespace UltimateFight
 
         internal void Update()
         {
+
             // SHADOW FOLOWING THE CHARACTER
             _shadow.Position = new Vector2f(0f, 580f);
-            if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 225, 0f);
-            if(_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+            if (_sprite.Scale.X < 0)
+            {
+                _shadow.Position += new Vector2f(this._sprite.Position.X, 0f);
+              //  if(_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
+            }
+
+            if (_sprite.Scale.X > 0)
+            {
+                _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+              //  if (_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
+            }
 
             _hitbox.Position = new Vector2f(0f, this._sprite.Position.Y);
-            _hitbox.Size = new Vector2f(_sprite.TextureRect.Width, _sprite.TextureRect.Height);
-            if (_sprite.Scale.X < 0) _hitbox.Position += new Vector2f(_sprite.Position.X - 225, 0f);
+            //_hitbox.Size = new Vector2f(_sprite.TextureRect.Width, _sprite.TextureRect.Height);
+            _hitbox.Scale = new Vector2f(this._sprite.Scale.X, this._sprite.Scale.Y);
+            if (_sprite.Scale.X < 0) _hitbox.Position += new Vector2f(_sprite.Position.X , 0f);
             if (_sprite.Scale.X > 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);
 
             // IS KO 
@@ -115,8 +127,6 @@ namespace UltimateFight
             // IS WINNING
             if (_isWinner == true)
             {
-                
-
                 _animation.VictoryPose();
             }
 
@@ -221,24 +231,24 @@ namespace UltimateFight
                 if (i >= 200 && i < 300)
                 {
                     this._sprite.Position -= new Vector2f(0, 1F);
-                    _shadow.Scale = new Vector2f(4f, 5f);
+             //       _shadow.Scale = new Vector2f(4f, 5f);
                 }
                 if (i >= 300 && i < 400)
                 {
                     this._sprite.Position += new Vector2f(0, 1F);
-                    _shadow.Scale = new Vector2f(3f, 5f);
+               //     _shadow.Scale = new Vector2f(3f, 5f);
                 }
                 if (i >= 400 && i < 600)
                 {
                     this._sprite.Position += new Vector2f(0, 2F);
-                    _shadow.Scale = new Vector2f(4f, 5f);
+             //       _shadow.Scale = new Vector2f(4f, 5f);
                 }
                 if (i == 600)
                 {
                     _isJumping = false;
                     i = -1;
                     _shadow.Color = new Color(255, 255, 255, 0);
-                    _shadow.Scale = new Vector2f(5f, 5f);
+             //       _shadow.Scale = new Vector2f(5f, 5f);
                 }
             }
         } // UPDATE BRAKET DONT REMOVE IT

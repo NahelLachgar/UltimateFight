@@ -9,6 +9,7 @@ namespace UltimateFight
     public class Animation
     {
         Sprite _sprite;
+        RectangleShape _hitbox;
         int _spriteNb;
         int _p = -1;
         int _m = -1;
@@ -16,9 +17,10 @@ namespace UltimateFight
         int _c;
         int _j = -1;
 
-        public Animation(Sprite sprite)
+        public Animation(Sprite sprite, RectangleShape hitbox)
         {
             _sprite = sprite;
+            _hitbox = hitbox;
         }
 
         public void Waiting()
@@ -177,9 +179,11 @@ namespace UltimateFight
                     break;
                 case 100:
                     this._sprite.TextureRect = new IntRect(64, this._sprite.TextureRect.Top, 74, this._sprite.TextureRect.Height);
+                    this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 200:
                     this._sprite.TextureRect = new IntRect(146, this._sprite.TextureRect.Top, 54, this._sprite.TextureRect.Height);
+                    this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
                 // NEEDED TO GET THE ANIMATION SMOOTHER
                 case 300:
@@ -201,9 +205,11 @@ namespace UltimateFight
                     break;
                 case 180:
                     this._sprite.TextureRect = new IntRect(81, this._sprite.TextureRect.Top, 74, this._sprite.TextureRect.Height);
+                    this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 350:
                     this._sprite.TextureRect = new IntRect(164, this._sprite.TextureRect.Top, 68, this._sprite.TextureRect.Height);
+                    this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
                 case 450:
                     _m = -1;
