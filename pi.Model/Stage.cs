@@ -5,7 +5,7 @@ using SFML.System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace UltimateFight
+namespace Model
 {
     public class Stage
     {

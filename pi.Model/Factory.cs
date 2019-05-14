@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace UltimateFight
+namespace Model
 {
-    public class Factory
+    public static class Factory
     {
         static public Character CreateCharacter(string name, string img, IntRect rect, Vector2f scale)
         {

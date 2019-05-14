@@ -4,63 +4,48 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 using System.Collections.Generic;
+using System.Text;
+using System.Net.Sockets;
+using Model;
+using UI;
 
-namespace UltimateFight
+namespace Ui
 {
     public class Program
-    {
+    {   
         static void Main(string[] args)
         {
+            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight", Styles.Default | Styles.Close))
 
-            using ( RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Test window", Styles.Default | Styles.Close ))
             {
-                Game game = new Game(new Time() , Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window) , window);
-                //UserInterface userInterface = new UserInterface(window, game);
+                Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1", window), window);
+
+                GamesList _gamesList = new GamesList();
+
+                Drawer _drawer = new Drawer(window, _gamesList);
+                _drawer.Draw("Game", _drawer, game);
 
 
-
-                while ( window.IsOpen)
+                while (window.IsOpen)
                 {
-                   //window.SetFramerateLimit(60);
-                   window.DispatchEvents();
+                    //window.SetFramerateLimit(60);
+                    window.DispatchEvents();
 
                     //Update
-                    game.Update(window);
-
-                    //userInterface.Update(game);
-
-                    window.Clear();
-                    window.Draw(game._stage._sprite);
-                    window.Draw(game._fighter2._shadow);
-                    window.Draw(game._fighter2._sprite);
-                    window.Draw(game._fighter1._shadow);
-                    window.Draw(game._fighter1._sprite);
-
-                    // Draw the game interface
-                    //userInterface.Draw(window);
-                    game.userInterface.Draw(window);
+                    foreach (Game g in _gamesList._games) g.Update(window);
 
                     window.Display();
 
-                    /***   Event for close the program.   ***/
+                    //Event for close the program
 
                     window.Closed += new EventHandler(OnClose);
-
-                    window.KeyPressed += (sender, e) =>
+                    void OnClose(object sender, EventArgs e)
                     {
-                        if ( e.Code == Keyboard.Key.Escape ) window.Close();
-                    };
-
+                        // Close the window when OnClose event is received
+                        window.Close();
+                    }
                 }
-
             }
-
-            void OnClose(object sender, EventArgs e)
-            {
-                // Close the window when OnClose event is received
-                RenderWindow window = (RenderWindow)sender;
-                window.Close();
-            }
-        }
+        }  
     }
 }

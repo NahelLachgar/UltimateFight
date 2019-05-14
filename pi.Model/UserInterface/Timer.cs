@@ -3,9 +3,8 @@ using SFML.System;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using UltimateFight;
 
-namespace UltimateFight
+namespace Model
 {
     internal class Timer 
     {

@@ -4,7 +4,7 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 
-namespace UltimateFight
+namespace Model
 {
     public class Character //:Sprite
     {
