@@ -34,20 +34,11 @@ namespace Model
         internal float _timerGame = 99.5f;
         float _currentTime;
         internal RenderWindow _window;
-<<<<<<< HEAD
         public UserInterface _userInterface;
-
-
-        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
-        {
-=======
-        public UserInterface userInterface;
         public MenuEndGame menuEndGame = new MenuEndGame();
-
 
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
         {             
->>>>>>> 6986839d3fa4f6126d4c81a6d77b58930eb656ec
             _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
@@ -60,11 +51,8 @@ namespace Model
             _user2 = user2;
             _roundNb = 1;
             _window = window;
-<<<<<<< HEAD
             _controls = new GameControls(this);
             _userInterface = new UserInterface(this);
-=======
->>>>>>> 6986839d3fa4f6126d4c81a6d77b58930eb656ec
         }
 
 
@@ -109,13 +97,9 @@ namespace Model
             }
 
             //Interface game graphic
-<<<<<<< HEAD
             _userInterface.Update(this);
-=======
-            userInterface.Update(this);
             // Menu in-game
-            menuEndGame.Update(this, userInterface.AnimationUI.KO.Finish );
->>>>>>> 6986839d3fa4f6126d4c81a6d77b58930eb656ec
+            menuEndGame.Update(this, _userInterface.AnimationUI.KO.Finish );
 
             // Timer management
             _timer = _clock.ElapsedTime;
