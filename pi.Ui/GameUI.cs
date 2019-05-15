@@ -26,6 +26,7 @@ namespace Ui
             window.Draw(game._fighter1._shadow);
             window.Draw(game._fighter1._sprite);
             game._userInterface.Draw(window);
+            game.Update(window);
         }
     }
 }

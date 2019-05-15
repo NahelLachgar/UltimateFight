@@ -37,7 +37,6 @@ namespace Model
             {
                 gameTimer.UpdateTimer(game);
             }
-
         }
 
         public void Draw(RenderWindow window)

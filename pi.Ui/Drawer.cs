@@ -10,6 +10,7 @@ namespace UI
 {
     public class Drawer
     {
+        public string _page;
         RenderWindow _window;
         GamesList _gamesList;
 
@@ -18,11 +19,11 @@ namespace UI
         {
             _window = window;
             _gamesList = gamesList;
-
         }
 
         public void Draw(string page, Drawer drawer, Game game = null)
         {
+            _page = page;
             switch (page)
             {
                 case "Game":
@@ -30,6 +31,9 @@ namespace UI
                      break;
                 case "CreateGameMenu":
                     CreateGameMenu.Draw(_window, drawer);
+                    break;
+                case "CreateOnlineGameMenu":
+                    CreateOnlineGameMenu.Draw(_window, drawer);
                     break;
             }
         }

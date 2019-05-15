@@ -32,7 +32,14 @@ namespace Ui
                     window.DispatchEvents();
 
                     //Update
-                    foreach (Game g in _gamesList._games) g.Update(window);
+                    /* foreach (Game g in _gamesList._games)
+                      {
+                          g.Update(window);
+                          g._userInterface.Update(g);
+                          g._userInterface.Draw(window);
+                      }*/
+                    //while (_drawer._page == "Game")
+                        _drawer.Draw("Game", _drawer, game);
 
                     window.Display();
 

@@ -83,6 +83,7 @@ namespace Model
 
         public void Update(RenderWindow window)
         {
+            _userInterface.Draw(window);
             _controls.Update();
             _window.Size = window.Size;
 
