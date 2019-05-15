@@ -39,7 +39,7 @@ namespace Ui
                           g._userInterface.Draw(window);
                       }*/
                     //while (_drawer._page == "Game")
-                        _drawer.Draw("Game", _drawer, game);
+                    _drawer.Draw("Game", _drawer, game);
 
                     window.Display();
 

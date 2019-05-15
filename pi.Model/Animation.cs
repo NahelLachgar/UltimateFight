@@ -9,6 +9,7 @@ namespace Model
     public class Animation
     {
         Sprite _sprite;
+        RectangleShape _hitbox;
         int _spriteNb;
         int _p = -1;
         int _m = -1;
@@ -16,9 +17,10 @@ namespace Model
         int _c;
         int _j = -1;
 
-        public Animation(Sprite sprite)
+        public Animation(Sprite sprite, RectangleShape hitbox)
         {
             _sprite = sprite;
+            _hitbox = hitbox;
         }
 
         public void Waiting()
@@ -177,9 +179,11 @@ namespace Model
                     break;
                 case 100:
                     this._sprite.TextureRect = new IntRect(64, this._sprite.TextureRect.Top, 74, this._sprite.TextureRect.Height);
+                    this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 200:
                     this._sprite.TextureRect = new IntRect(146, this._sprite.TextureRect.Top, 54, this._sprite.TextureRect.Height);
+                    this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
                 // NEEDED TO GET THE ANIMATION SMOOTHER
                 case 300:
@@ -201,9 +205,11 @@ namespace Model
                     break;
                 case 180:
                     this._sprite.TextureRect = new IntRect(81, this._sprite.TextureRect.Top, 74, this._sprite.TextureRect.Height);
+                    this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 350:
                     this._sprite.TextureRect = new IntRect(164, this._sprite.TextureRect.Top, 68, this._sprite.TextureRect.Height);
+                    this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
                 case 450:
                     _m = -1;
@@ -283,6 +289,28 @@ namespace Model
             return true;
         }
 
+        public bool CrouchHit()
+        {
+            _p++;
+
+            switch (_p)
+            {
+                case 0:
+                    this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
+                    _spriteNb = -1;
+                    _i = -1;
+                    break;
+                case 200:
+                    this._sprite.TextureRect = new IntRect(358, 855, 49, 93);
+                    break;
+                case 400:
+                    this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
+                    _p = -1;
+                    return false;
+            }
+            return true;
+        }
+
         public void KO()
         {
             _p++;
@@ -294,9 +322,6 @@ namespace Model
                     case 0:
                         this._sprite.TextureRect = new IntRect(7, 986, 42, 93);
                         this._sprite.Position += new Vector2f(80f, 0f);
-                        _spriteNb = -1;
-                        _i = -1;
-                        _c = 0;
                         break;
                     case 150:
                         this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
@@ -323,9 +348,6 @@ namespace Model
                     case 0:
                         this._sprite.TextureRect = new IntRect(7, 986, 42, 93);
                         this._sprite.Position -= new Vector2f(80f, 0f);
-                        _spriteNb = -1;
-                        _i = -1;
-                        _c = 0;
                         break;
                     case 150:
                         this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
@@ -347,7 +369,63 @@ namespace Model
             }
         }
 
+        // VICTORY POSE
+        public void VictoryPose()
+        {
+           // if (_i == -1 && _j == -1 && _m == -1 && _c == 0)
+            //{
+                _p++;
+                switch (_p)
+                {
+                    case 0:
+                        this._sprite.TextureRect = new IntRect(363, 973, 43, 107);
+                        _c = 0;
+                        _i = -1;
+                        _j = -1;
+                        _m = -1;
+                        break;
+                    case 225:
+                        this._sprite.TextureRect = new IntRect(414, 973, 58, 107);
+                        break;
+                    case 450:
+                        this._sprite.TextureRect = new IntRect(481, 973, 78, 107);
+                        break;
+                }
+           // }
+        }
 
+        // ===============================================
+        // SPECIAL MOVE
+        // ===============================================
 
-    }
+        public bool Special()
+        {
+            _p++;
+            switch (_p)
+            {
+                case 0:
+                    _c = 0;
+                    this._sprite.TextureRect = new IntRect(8, 612, 53, 94);
+                    this._sprite.Position += new Vector2f(80f, 0f);
+                    break;
+                case 150:
+                    this._sprite.TextureRect = new IntRect(70, 612, 60, 94);
+                    this._sprite.Position += new Vector2f(80f, 0f);
+                    break;
+                case 300:
+                    this._sprite.TextureRect = new IntRect(139, 612, 118, 94);
+                    this._sprite.Position += new Vector2f(80f, 0f);
+                    break;
+                case 450:
+                    this._sprite.TextureRect = new IntRect(262, 612, 61, 94);
+                    this._sprite.Position += new Vector2f(80f, 0f);
+                    break;
+                case 650:
+                    this._sprite.TextureRect = new IntRect(327, 612, 48, 94);
+                    _p = -1;
+                    return false;
+            }
+            return true;
+        }
+    }// DONT TOUCH
 }

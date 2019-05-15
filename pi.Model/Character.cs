@@ -10,7 +10,6 @@ namespace Model
     {
         readonly internal string _name;
         public Sprite _sprite;
-        // internal Special _special;
         internal int _health = 100;
         internal uint _energy = 0;
         internal Vector2f _position;
@@ -20,20 +19,24 @@ namespace Model
         bool _canMove;
         bool _canJump;
 
+        internal bool _isCrouching;
+        internal bool _isMoving;
         bool _isJumping;
         bool _isFighting;
         bool _isTakingDamage;
-        bool _isKo;
+        internal bool _isKo;
+        internal bool _isWinner;
 
         bool _lightPunch;
         bool _lightKick;
         bool _crouchPunch;
+        bool _special;
 
-        internal bool _isCrouching;
-        internal bool _isMoving;
         int i = -1;
         internal Animation _animation;
+      //  internal Special _special;
         public Sprite _shadow;
+        public RectangleShape _hitbox;
 
         public Character(string name, Sprite sprite)
         {
@@ -44,16 +47,18 @@ namespace Model
             _isMoving = false;
             _isTakingDamage = false;
             _isKo = false;
+            _isWinner = false;
 
             _lightPunch = false;
             _lightKick = false;
             _crouchPunch = false;
+            _special = false;
             
             _canMove = true;
             _canJump = true;
 
             _sprite = sprite;
-            _animation = new Animation(sprite);
+
             _shadow = new Sprite
             {
                 Texture = sprite.Texture,
@@ -61,6 +66,15 @@ namespace Model
                 Scale = _sprite.Scale,
                 Color = new Color(255, 255, 255, 0)
             };
+
+            _hitbox = new RectangleShape
+            {
+                // FillColor = Color.Red
+               FillColor = new Color(255, 255, 255, 0)
+            };
+
+            _animation = new Animation(sprite, _hitbox);
+
         }
 
         public uint Energy => _energy;
@@ -79,13 +93,28 @@ namespace Model
 
         internal void Update()
         {
+
             // SHADOW FOLOWING THE CHARACTER
             _shadow.Position = new Vector2f(0f, 580f);
-            if(_sprite.Scale.X < 0) _shadow.Position += new Vector2f(_sprite.Position.X - 180, 0f);
-            if(_sprite.Scale.X > 0) _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+            if (_sprite.Scale.X < 0)
+            {
+                _shadow.Position += new Vector2f(this._sprite.Position.X, 0f);
+              //  if(_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
+            }
+
+            if (_sprite.Scale.X > 0)
+            {
+                _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+              //  if (_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
+            }
+
+            _hitbox.Position = new Vector2f(0f, this._sprite.Position.Y);
+            //_hitbox.Size = new Vector2f(_sprite.TextureRect.Width, _sprite.TextureRect.Height);
+            _hitbox.Scale = new Vector2f(this._sprite.Scale.X, this._sprite.Scale.Y);
+            if (_sprite.Scale.X < 0) _hitbox.Position += new Vector2f(_sprite.Position.X , 0f);
+            if (_sprite.Scale.X > 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);
 
             // IS KO 
-
             if (_isKo == true)
             {
                 _canMove = false;
@@ -95,19 +124,30 @@ namespace Model
                 _animation.KO();
             }
 
+            // IS WINNING
+            if (_isWinner == true)
+            {
+                _animation.VictoryPose();
+            }
 
             // TAKING DAMAGE ANIMATION
             if (_isTakingDamage == true)
             {
-                _canMove = false;
-                _canJump = false;
-                _isFighting = false;
-
                 switch (_hit)
                 {
                     case "low":
                         _animation.FaceHit();
                         if (_animation.FaceHit() == false)
+                        {
+                            _isTakingDamage = false;
+                            _canMove = true;
+                            _canJump = true;
+                            _hit = string.Empty;
+                        }
+                        break;
+                    case "crouchHit":
+                        _animation.CrouchHit();
+                        if (_animation.CrouchHit() == false)
                         {
                             _isTakingDamage = false;
                             _canMove = true;
@@ -125,6 +165,7 @@ namespace Model
                 _isMoving = false;
                 _canJump = false;
 
+                // CROUCH PUNCH
                 if(_crouchPunch == true)
                 {
                     _animation.CrouchLight();
@@ -137,6 +178,7 @@ namespace Model
                     }
                 }
 
+                // LIGHT PUNCH
                 if (_lightPunch == true)
                 {
                     _animation.LightPunch();
@@ -149,6 +191,7 @@ namespace Model
                     }
                 }
                 
+                // LIGHT KICK 
                 if (_lightKick == true)
                 {
                     _animation.LightKick();
@@ -160,10 +203,23 @@ namespace Model
                         _canJump = true;
                     }
                 }
+
+                // SPECIAL 
+                if (_special == true)
+                {
+                    _animation.Special();
+                    if (_animation.Special() == false)
+                    {
+                        _isFighting = false;
+                        _special = false;
+                        _canMove = true;
+                        _canJump = true;
+                    }
+                }
             }
 
             // WAITING ANIMATION
-            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false && _isTakingDamage == false && _isKo == false) _animation.Waiting();
+            if (_isMoving == false && _isFighting == false && _isCrouching == false && _isJumping == false && _isTakingDamage == false && _isKo == false && _isWinner == false) _animation.Waiting();
 
             // JUMPING ANIMATION
             if (_isJumping == true)
@@ -175,24 +231,24 @@ namespace Model
                 if (i >= 200 && i < 300)
                 {
                     this._sprite.Position -= new Vector2f(0, 1F);
-                    _shadow.Scale = new Vector2f(4f, 5f);
+             //       _shadow.Scale = new Vector2f(4f, 5f);
                 }
                 if (i >= 300 && i < 400)
                 {
                     this._sprite.Position += new Vector2f(0, 1F);
-                    _shadow.Scale = new Vector2f(3f, 5f);
+               //     _shadow.Scale = new Vector2f(3f, 5f);
                 }
                 if (i >= 400 && i < 600)
                 {
                     this._sprite.Position += new Vector2f(0, 2F);
-                    _shadow.Scale = new Vector2f(4f, 5f);
+             //       _shadow.Scale = new Vector2f(4f, 5f);
                 }
                 if (i == 600)
                 {
                     _isJumping = false;
                     i = -1;
                     _shadow.Color = new Color(255, 255, 255, 0);
-                    _shadow.Scale = new Vector2f(5f, 5f);
+             //       _shadow.Scale = new Vector2f(5f, 5f);
                 }
             }
         } // UPDATE BRAKET DONT REMOVE IT
@@ -261,6 +317,7 @@ namespace Model
             }
         }
 
+        // JUMP
         internal void Jump()
         {
             if (_canJump == true)
@@ -272,6 +329,7 @@ namespace Model
             }
         }
 
+        // CROUCH
         internal void Crouch()
         {
             if (_canMove == true && _isJumping == false)
@@ -281,6 +339,7 @@ namespace Model
             }
         }
         
+        // LIGHT PUNCH
         internal void LightPunch()
         {
             if (_isFighting == false)
@@ -312,6 +371,7 @@ namespace Model
 
         }
 
+        // LIGTH KICK
         internal void LightKick()
         {
             if (_isFighting == false)
@@ -343,18 +403,29 @@ namespace Model
 
         }
 
+        // SPECIAL
         internal void Special()
         {
-
+            if (_isFighting == false && _isJumping == false)
+            {
+                _canMove = false;
+                _isFighting = true;
+                _special = true;
+                _energy = 0;
+                _animation.Special();
+            }
         }
 
-        internal void TakeDammage(int Damage, string Hit)
+        internal bool TakeDammage(int Damage, string Hit)
         {
             if (_isTakingDamage == false)
             {
                 _health -= Damage;
-                _isTakingDamage = true;
                 _hit = Hit;
+                _isTakingDamage = true;
+                _canMove = false;
+                _canJump = false;
+                _isFighting = false;
 
                 if (_health <= 0)
                 {
@@ -365,19 +436,29 @@ namespace Model
                     _animation.KO();
                 }
 
+                if (_isCrouching == true && _hit == "low" && _isKo == false)
+                {
+                    _animation.CrouchHit();
+                    _hit = "crouchHit";
+                    return true;
+                }
+
                 if (_hit == "low" && _isKo == false)
                 {
                     _animation.FaceHit();
+                    return true;
                 }
-
-                
             }
-            
+            return false;
         }
 
         internal void GainEnergy(uint Gain)
-        {
-            _energy += Gain;
+        { 
+            if( _energy < 100)
+            {
+                _energy += Gain;
+            }
+
             if ( _energy > 100 )
             {
                 _energy = 100;
