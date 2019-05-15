@@ -34,11 +34,20 @@ namespace Model
         internal float _timerGame = 99.5f;
         float _currentTime;
         internal RenderWindow _window;
+<<<<<<< HEAD
         public UserInterface _userInterface;
 
 
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
         {
+=======
+        public UserInterface userInterface;
+        public MenuEndGame menuEndGame = new MenuEndGame();
+
+
+        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
+        {             
+>>>>>>> 6986839d3fa4f6126d4c81a6d77b58930eb656ec
             _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
@@ -51,8 +60,11 @@ namespace Model
             _user2 = user2;
             _roundNb = 1;
             _window = window;
+<<<<<<< HEAD
             _controls = new GameControls(this);
             _userInterface = new UserInterface(this);
+=======
+>>>>>>> 6986839d3fa4f6126d4c81a6d77b58930eb656ec
         }
 
 
@@ -63,22 +75,19 @@ namespace Model
             {
                 if (Fighter1._health <= 0)
                 {
-                    _startRound = true;
                     _player2Win++;
+                    if (_player2Win < 2) _startRound = true;
                     _round++;
                     _timeBeforeResetRound = _clock.ElapsedTime.AsSeconds();
                 }
                 else if (Fighter2._health <= 0)
                 {
-                    _startRound = true;
                     _player1Win++;
+                    if ( _player1Win < 2 ) _startRound = true;
                     _round++;
                     _timeBeforeResetRound = _clock.ElapsedTime.AsSeconds();
                 }
-
             }
-
-
         }
 
         public void Update(RenderWindow window)
@@ -99,9 +108,14 @@ namespace Model
                 _clock = new Clock();
             }
 
-
             //Interface game graphic
+<<<<<<< HEAD
             _userInterface.Update(this);
+=======
+            userInterface.Update(this);
+            // Menu in-game
+            menuEndGame.Update(this, userInterface.AnimationUI.KO.Finish );
+>>>>>>> 6986839d3fa4f6126d4c81a6d77b58930eb656ec
 
             // Timer management
             _timer = _clock.ElapsedTime;
@@ -109,6 +123,14 @@ namespace Model
 
             //Check if the round is over
             EndRound(_fighter1, _fighter2);
+        }
+
+
+        internal uint NameWinner()
+        {
+            if ( _player1Win == 2 ) return 1;
+            else if( _player2Win == 2 ) return 2;
+            else return 0;
         }
     }
 }

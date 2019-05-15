@@ -26,6 +26,8 @@ namespace Model
 
         }
 
+        internal AnimationsUI AnimationUI => animationsUI;
+
         public void Update(Game game)
         {
             healthBar.Update(game);

@@ -73,7 +73,7 @@ namespace Model
         internal void Update(Game game, EnergyBars energyBars)
         {
             this.UpdateEnergyBar(game._fighter1.Energy, game._fighter2.Energy);
-            blueFlames.UpdateEnergyFlame(game, energyBars);
+            blueFlames.UpdateEnergyFlame(energyBars);
         }
     }
 }

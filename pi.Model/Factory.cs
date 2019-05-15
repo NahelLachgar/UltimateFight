@@ -19,13 +19,13 @@ namespace Model
             return character;
         }
 
-        static public Stage CreateStage(string name, string img, int groundHeight, RenderWindow window)
+        static public Stage CreateStage(string name, string img, int groundHeight)
         {
             Texture texture = new Texture("../../../../img/stages/" + img);
             //Sprite sprite = new Sprite(texture);
             //sprite.Scale = scale;
 
-            Stage stage = new Stage(name, /*sprite,*/ groundHeight, window, texture);
+            Stage stage = new Stage(name, /*sprite,*/ groundHeight, texture);
             return stage;
         }
 
@@ -41,12 +41,12 @@ namespace Model
             }
         }
 
-        static public Stage NewStage(string name, RenderWindow window)
+        static public Stage NewStage(string name)
         {
             switch (name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1.jpg", 500, window);
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 500);
                     return stage;
                 default:
                     return null;
