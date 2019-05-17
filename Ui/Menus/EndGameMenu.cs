@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model
+namespace UI
 {
     public class EndGameMenu
     {

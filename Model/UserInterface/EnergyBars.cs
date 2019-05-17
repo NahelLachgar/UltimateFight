@@ -25,7 +25,7 @@ namespace Model
                 Size = new Vector2f((338f), 27f),
                 FillColor = Color.White,
                 OutlineColor = Color.Black,
-                Texture = new Texture("../../../../pi.Ui/Resources/Img/Fight_Font/bar1.png"),
+                Texture = new Texture("../../../../Ui/Resources/Img/Fight_Font/bar1.png"),
             };
 
             RectangleShape _BackEnergyBar2 = new RectangleShape(_BackEnergyBar1)
@@ -42,7 +42,7 @@ namespace Model
                 Size = new Vector2f(338f, 27f),
                 FillColor = Color.Blue,
                 OutlineColor = Color.Black,
-                //Texture = new Texture("../../../../pi.Ui/Resources/Fight_Font/bar1.png"),
+                //Texture = new Texture("../../../../Ui/Resources/Fight_Font/bar1.png"),
             };
 
             RectangleShape _EnergyBar2 = new RectangleShape(_EnergyBar1)

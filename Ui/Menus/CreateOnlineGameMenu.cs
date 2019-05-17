@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SFML.Window;
-using Ui;
+using UI;
 using Model;
 
 namespace UI
 {
-    public static class CreateGameMenu
+    public static class CreateOnlineGameMenu
     {
         public static void Draw(RenderWindow window, Drawer drawer)
         {
@@ -20,7 +20,7 @@ namespace UI
             window.MouseLeft += (sender, e) =>
             {
                 Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), window);
-                drawer.Draw("Game",drawer, game);
+                drawer.Draw("Game", drawer, game);
             };
         }
     }

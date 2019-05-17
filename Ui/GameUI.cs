@@ -5,7 +5,7 @@ using System.Text;
 using Model;
 using UI;
 
-namespace Ui
+namespace UI
 {
     public class GameUI
     {

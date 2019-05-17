@@ -4,6 +4,7 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UI;
 
 namespace Model
 {
@@ -31,7 +32,7 @@ namespace Model
 
         internal Text NewTextMenu(string Text, Vector2f PositionText, uint SizeFont )
         {
-            Text text = new Text(Text, new Font("../../../../pi.Ui/Resources/Fonts/space_ranger/spaceranger.ttf"), SizeFont);
+            Text text = new Text(Text, new Font("../../../../Ui/Resources/Fonts/space_ranger/spaceranger.ttf"), SizeFont);
             text.Position = PositionText;
             text.FillColor = Color.Black;
             return text;

@@ -22,7 +22,7 @@ namespace Model
             // Sprite for draw the animation of "K.O" when a player dies
             for ( int i = 1; i <= 38; i++ )
             {
-                Texture texture = new Texture("../../../../pi.Ui/Resources/Img/k_o/" + i + ".png");
+                Texture texture = new Texture("../../../../Ui/Resources/Img/k_o/" + i + ".png");
                 texture.Smooth = true;
                 Sprite _ko = new Sprite(texture);
                 _ko.Scale = new Vector2f(3.072f, 1.728f);

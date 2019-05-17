@@ -9,7 +9,7 @@ using System.Net.Sockets;
 using Model;
 using UI;
 
-namespace Ui
+namespace UI
 {
     public class Program
     {   
