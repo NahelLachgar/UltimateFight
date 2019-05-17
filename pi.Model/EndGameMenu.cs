@@ -7,14 +7,14 @@ using System.Text;
 
 namespace Model
 {
-    public class MenuEndGame 
+    public class EndGameMenu
     {
         internal bool _isActived = false;
         private Dictionary<string, Sprite> _menu = new Dictionary<string, Sprite>();
         private Dictionary<string, Text> _textMenu = new Dictionary<string, Text>();
         CreateMenu CreateMenu = new CreateMenu();
 
-        internal MenuEndGame()
+        internal EndGameMenu()
         {
             _menu.Add("Back", CreateMenu.NewBackground());
             _menu["Back"].Position = new Vector2f(1980f / 2f - Convert.ToSingle(_menu["Back"].TextureRect.Width) * 3f, 1080f / 2f - Convert.ToSingle(_menu["Back"].TextureRect.Height) * 2f);
