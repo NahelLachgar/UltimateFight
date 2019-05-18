@@ -4,20 +4,19 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using UI;
 
 namespace Model
 {
-    internal class CreateMenu
+    public class CreateMenu
     {
         private Texture _img = new Texture("../../../../img/Menu/menu.png");
 
 
-        internal CreateMenu()
+        public CreateMenu()
         {
         }
 
-        internal (Sprite, Sprite) NewButton(string color)
+        public (Sprite, Sprite) NewButton(string color)
         {
 
             IntRect Color = this.ChooseButtonColor(color);
@@ -30,7 +29,7 @@ namespace Model
         }
 
 
-        internal Text NewTextMenu(string Text, Vector2f PositionText, uint SizeFont )
+        public Text NewTextMenu(string Text, Vector2f PositionText, uint SizeFont )
         {
             Text text = new Text(Text, new Font("../../../../Ui/Resources/Fonts/space_ranger/spaceranger.ttf"), SizeFont);
             text.Position = PositionText;
@@ -38,7 +37,7 @@ namespace Model
             return text;
         }
 
-        private IntRect ChooseButtonColor(string color)
+        public IntRect ChooseButtonColor(string color)
         {
             IntRect colorSize;
             switch(color)
@@ -72,7 +71,7 @@ namespace Model
             }
         }
 
-        private IntRect SelectButtonColor(string color)
+        public IntRect SelectButtonColor(string color)
         {
             IntRect colorSize;
             switch ( color )
@@ -107,13 +106,13 @@ namespace Model
         }
 
 
-        internal Sprite NewBackground()
+        public Sprite NewBackground()
         {
             Sprite backMenu = new Sprite(_img, new IntRect(new Vector2i(640, 195),  new Vector2i(93, 89) ));
             return backMenu;
         }
 
-        internal bool MouseInButton(Sprite Button, RenderWindow window)
+        public bool MouseInButton(Sprite Button, RenderWindow window)
         {
             return Button.GetGlobalBounds().Contains(Mouse.GetPosition(window).X, Mouse.GetPosition(window).Y);
         }

@@ -1,9 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Model
 {
@@ -15,8 +12,8 @@ namespace Model
         public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
-        internal uint _player1Win = 0;
-        internal uint _player2Win = 0;
+        public uint _player1Win = 0;
+        public uint _player2Win = 0;
         internal float _timeBeforeResetRound = -4f;
         public Character _fighter1;
         public Character _fighter2;
@@ -33,9 +30,9 @@ namespace Model
         Time _timer = new Time();
         internal float _timerGame = 99.5f;
         float _currentTime;
-        internal RenderWindow _window;
+        public RenderWindow _window;
         public UserInterface _userInterface;
-        public EndGameMenu EndGameMenu = new EndGameMenu();
+       // public EndGameMenu EndGameMenu = new EndGameMenu();
        
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
         {             
@@ -98,7 +95,7 @@ namespace Model
             //Interface game graphic
             _userInterface.Update(this);
             // Menu in-game
-            EndGameMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
+            //EndGameMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
 
             // Timer management
             _timer = _clock.ElapsedTime;
@@ -123,7 +120,7 @@ namespace Model
            
         }
 
-        internal uint NameWinner()
+        public uint NameWinner()
         {
             if (_player1Win == 2) return 1;
             else if (_player2Win == 2) return 2;
