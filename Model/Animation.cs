@@ -14,6 +14,7 @@ namespace Model
         int _p = -1;
         int _m = -1;
         int _i = -1;
+        int _v = -1;
         int _c;
         int _j = -1;
 
@@ -374,11 +375,12 @@ namespace Model
         {
            // if (_i == -1 && _j == -1 && _m == -1 && _c == 0)
             //{
-                _p++;
-                switch (_p)
+                _v++;
+                switch (_v)
                 {
                     case 0:
                         this._sprite.TextureRect = new IntRect(363, 973, 43, 107);
+                        _p = 0;
                         _c = 0;
                         _i = -1;
                         _j = -1;
@@ -414,10 +416,12 @@ namespace Model
                     break;
                 case 300:
                     this._sprite.TextureRect = new IntRect(139, 612, 118, 94);
+                    this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     this._sprite.Position += new Vector2f(80f, 0f);
                     break;
                 case 450:
                     this._sprite.TextureRect = new IntRect(262, 612, 61, 94);
+                    this._hitbox.Size = new Vector2f(0, 0);
                     this._sprite.Position += new Vector2f(80f, 0f);
                     break;
                 case 650:

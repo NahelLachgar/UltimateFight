@@ -214,6 +214,7 @@ namespace Model
                         _special = false;
                         _canMove = true;
                         _canJump = true;
+                        _energy = 0;
                     }
                 }
             }
@@ -411,7 +412,6 @@ namespace Model
                 _canMove = false;
                 _isFighting = true;
                 _special = true;
-                _energy = 0;
                 _animation.Special();
             }
         }

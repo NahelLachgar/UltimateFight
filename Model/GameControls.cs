@@ -57,7 +57,7 @@ namespace Model
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _game._fighter1.Energy == 100)
                 {
                     _game._fighter1.Special();
-                    if (_game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width + 235 > _game._fighter2._sprite.Position.X - 235 - _game._fighter2._sprite.TextureRect.Width)
+                    if (_game._fighter1._hitbox.Position.X + _game._fighter1._hitbox.Size.X * _game._fighter1._hitbox.Scale.X > _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
                     {
                         _game._fighter2.TakeDammage(15, "low");
                     }
