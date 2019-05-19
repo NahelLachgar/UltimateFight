@@ -22,7 +22,7 @@ namespace Model
 
             byte[] msg = Encoding.Default.GetBytes(toSend);
 
-            _udpClient.Send(msg, msg.Length, "192.168.0.37", 5035);
+            _udpClient.Send(msg, msg.Length, "127.0.0.1", 5035);
             _udpClient.Close();
         }   
     }

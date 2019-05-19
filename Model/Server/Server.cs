@@ -13,7 +13,7 @@ namespace Model
         internal static Thread _ListenTh;
         internal static bool _isListening = true;
 
-        internal void StartServer()       
+        internal static void StartServer()       
         {
             //Préparation et démarrage du thread en charge d'écouter.
             _ListenTh = new Thread(new ThreadStart(Listen));
