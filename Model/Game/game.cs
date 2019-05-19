@@ -10,7 +10,7 @@ namespace Model
     public class Game
     {
         internal bool _startRound = true;
-
+        internal string _host;
         GameControls _controls;
         public Stage stage;
         UInt16 _round = 1;
@@ -37,9 +37,11 @@ namespace Model
         public UserInterface _userInterface;
         //public EndGameMenu EndGameMenu = new EndGameMenu();
        
-        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
-        {             
-            _timer = timer;
+        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
+        {
+            if (host != null) _host = host;
+            else _host = "10.8.110.207";
+             _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
          //   _fighter2._sprite.Origin = new Vector2f(_fighter2._sprite.TextureRect.Width, 0f);

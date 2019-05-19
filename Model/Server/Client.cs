@@ -16,21 +16,13 @@ namespace Model
         static public void SendKey(Keyboard.Key key, Game game)
         {
             UdpClient _udpClient = new UdpClient();
-
             KeyPress keyPress = new KeyPress(game, key);
 
             string toSend = JsonConvert.SerializeObject(keyPress);
 
             byte[] msg = Encoding.Default.GetBytes(toSend);
 
-            try
-            {
-                _udpClient.Send(msg, msg.Length, "10.8.110.207", 5035);
-            }
-            catch
-            {
-                _udpClient.Send(msg, msg.Length, "192.168.0.37", 5035);
-            }
+            _udpClient.Send(msg, msg.Length, game._host, 5035);
         }
     }
 }
