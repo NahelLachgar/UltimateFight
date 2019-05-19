@@ -1,22 +1,10 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Server
 {
-    [DataContract]
-    public class KeyPress
+    class KeyPress
     {
-
-        [DataMember]
-        public string _game;
-
-        [DataMember]
-        public ConsoleKey _key;
-
-        public KeyPress(string game = null, ConsoleKey key = ConsoleKey.A)
-        {
-            _game = game;
-            _key = key;
-        }
     }
 }
