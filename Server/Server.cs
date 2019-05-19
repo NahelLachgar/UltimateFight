@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using Model;
+using Newtonsoft.Json;
 
 namespace Server
 {
@@ -21,7 +22,6 @@ namespace Server
 
         internal static void Listen()
         {
-            //Console.WriteLine("Préparation à l'écoute...");
 
             //On crée le serveur en lui spécifiant le port sur lequel il devra écouter.
             UdpClient server = new UdpClient(5035);
