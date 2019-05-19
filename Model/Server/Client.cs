@@ -10,12 +10,13 @@ using System.Text;
 
 namespace Model
 {
-    public class Client
+    static public class Client
     {
-        UdpClient _udpClient = new UdpClient();
 
-        public void SendKey(Keyboard.Key key, Game game)
+        static public void SendKey(Keyboard.Key key, Game game)
         {
+            UdpClient _udpClient = new UdpClient();
+
             KeyPress keyPress = new KeyPress(game, key);
 
             string toSend = JsonConvert.SerializeObject(keyPress);

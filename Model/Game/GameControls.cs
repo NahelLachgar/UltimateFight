@@ -21,7 +21,6 @@ namespace Model
             // LEFT TO THE RIGHT 
             if (_game._fighter1._sprite.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
-
                 // PLAYER 1
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
 
