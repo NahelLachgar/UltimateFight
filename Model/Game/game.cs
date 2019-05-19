@@ -11,7 +11,7 @@ namespace Model
     {
         internal bool _startRound = true;
         internal string _host;
-        GameControls _controls;
+        internal GameControls _controls;
         public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
@@ -40,7 +40,7 @@ namespace Model
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
         {
             if (host != null) _host = host;
-            else _host = "10.8.110.207";
+            else _host = "192.168.0.37";
              _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
