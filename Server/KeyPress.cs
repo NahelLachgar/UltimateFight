@@ -12,7 +12,7 @@ namespace Server
 
         public Keyboard.Key _key;
 
-        public KeyPress(Game game = null, Keyboard.Key key = Keyboard.Key.A)
+        public KeyPress(Game game = null, Keyboard.Key key = Keyboard.Key.Unknown)
         {
             _game = game;
             _key = key;
