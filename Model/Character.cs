@@ -6,7 +6,7 @@ using SFML.System;
 
 namespace Model
 {
-    public class Character //:Sprite
+    public class Character
     {
         readonly internal string _name;
         public Sprite _sprite;
