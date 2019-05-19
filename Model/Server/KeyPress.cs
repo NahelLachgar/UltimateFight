@@ -3,7 +3,7 @@ using SFML.Window;
 using System;
 using System.Runtime.Serialization;
 
-namespace Server
+namespace Model
 {
     public class KeyPress
     {

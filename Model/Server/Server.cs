@@ -6,7 +6,7 @@ using System.Threading;
 using Model;
 using Newtonsoft.Json;
 
-namespace Server
+namespace Model
 {
     public class Server
     {

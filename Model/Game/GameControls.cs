@@ -15,7 +15,7 @@ namespace Model
         }
 
         public void Update(Keyboard.Key key = Keyboard.Key.Unknown)
-        {            
+        {
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
 
             // LEFT TO THE RIGHT 

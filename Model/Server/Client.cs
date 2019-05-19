@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 
 
-namespace Server
+namespace Model
 {
     public class Client
     {
