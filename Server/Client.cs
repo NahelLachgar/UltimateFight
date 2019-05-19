@@ -1,5 +1,6 @@
 ﻿using Model;
 using Newtonsoft.Json;
+using SFML.Window;
 using System;
 using System.IO;
 using System.Net.Sockets;
@@ -13,7 +14,7 @@ namespace Server
     {
         UdpClient _udpClient = new UdpClient();
 
-        public void SendKey(ConsoleKey key, Game game)
+        public void SendKey(Keyboard.Key key, Game game)
         {
             KeyPress keyPress = new KeyPress(game, key);
 
