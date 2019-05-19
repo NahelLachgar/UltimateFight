@@ -21,6 +21,7 @@ namespace Model
 
             IntRect Color = this.ChooseButtonColor(color);
             Sprite button = new Sprite(_img, Color);
+            
 
             Color = this.SelectButtonColor(color);
             Sprite selectButton = new Sprite(_img, Color);

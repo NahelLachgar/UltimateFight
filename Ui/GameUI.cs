@@ -20,6 +20,9 @@ namespace UI
             gamesList._games.Add(game);
 
             window.Clear();
+
+            game.Update(window);
+
             window.Draw(game._stage._sprite);
             window.Draw(game._fighter2._shadow);
             window.Draw(game._fighter2._sprite);
@@ -27,7 +30,6 @@ namespace UI
             window.Draw(game._fighter1._sprite);
             game.EndGameMenu.Draw(window);
             game._userInterface.Draw(window);
-            game.Update(window);
         }
     }
 }

@@ -80,6 +80,8 @@ namespace Model
             _controls.Update();
             _window.Size = window.Size;
 
+            
+
             if (_startRound == true && _clock.ElapsedTime.AsSeconds() > _timeBeforeResetRound + 4f)
             {
                 _userInterface = new UserInterface(this);
@@ -94,6 +96,7 @@ namespace Model
 
             //Interface game graphic
             _userInterface.Update(this);
+
             // Menu in-game
             EndGameMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
 

@@ -39,6 +39,8 @@ namespace UI
                           g._userInterface.Draw(window);
                       }*/
                     //while (_drawer._page == "Game")
+                    if(game.EndGameMenu._replay == true ) game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
+                    
                     _drawer.Draw("Game", _drawer, game);
 
                     window.Display();
