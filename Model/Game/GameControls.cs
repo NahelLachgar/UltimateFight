@@ -14,7 +14,7 @@ namespace Model
             _game = game;
         }
 
-        public void Update(Keyboard.Key key)
+        public void Update(Keyboard.Key key = null)
         {
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
 
