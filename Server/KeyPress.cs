@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Runtime.Serialization;
 
 namespace Server
@@ -8,12 +9,12 @@ namespace Server
     {
 
         [DataMember]
-        public string _game;
+        public Game _game;
 
         [DataMember]
         public ConsoleKey _key;
 
-        public KeyPress(string game = null, ConsoleKey key = ConsoleKey.A)
+        public KeyPress(Game game = null, ConsoleKey key = ConsoleKey.A)
         {
             _game = game;
             _key = key;

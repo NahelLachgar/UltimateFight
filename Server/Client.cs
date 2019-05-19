@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using Model;
 
 
 namespace Server
@@ -14,7 +14,7 @@ namespace Server
 
         public void SendKey(ConsoleKey key, Game game)
         {
-            KeyPress keyPress = new KeyPress(key, game);
+            KeyPress keyPress = new KeyPress(game, key);
 
             string toSend = JsonConvert.SerializeObject(keyPress);
 
