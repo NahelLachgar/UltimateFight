@@ -3,13 +3,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Model;
 
-namespace Model
+namespace Server
 {
     public class Server
     {
         internal static Thread _ListenTh;
-        internal staitc bool _isListening = true;
+        internal static bool _isListening = true;
 
         internal static void StartServer()
         {
@@ -30,12 +31,11 @@ namespace Model
             {
                 //Création d'un objet IPEndPoint qui recevra les données du Socket distant.
                 IPEndPoint client = null;
-                //Console.WriteLine("ÉCOUTE...");
 
                 //On écoute jusqu'à recevoir un message.
-                byte[] data = serveur.Receive(ref client);
+                byte[] data = server.Receive(ref client);
                 string message = Encoding.Default.GetString(data);
-                //Console.WriteLine("Touche : {0}, ip : {1}", message,client.Address);
+                KeyPress key = JsonConvert.DeserializeObject<KeyPress>(message);
             }
         }
     }

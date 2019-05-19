@@ -35,7 +35,7 @@ namespace Model
         float _currentTime;
         internal RenderWindow _window;
         public UserInterface _userInterface;
-        public EndGameMenu EndGameMenu = new EndGameMenu();
+        //public EndGameMenu EndGameMenu = new EndGameMenu();
        
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
         {             
@@ -98,7 +98,7 @@ namespace Model
             //Interface game graphic
             _userInterface.Update(this);
             // Menu in-game
-            EndGameMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
+            //EndGameMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
 
             // Timer management
             _timer = _clock.ElapsedTime;
