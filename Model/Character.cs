@@ -104,7 +104,7 @@ namespace Model
 
             if (_sprite.Scale.X > 0)
             {
-                _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+                _shadow.Position += new Vector2f(_sprite.Position.X , 0f);
               //  if (_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
             }
 
@@ -214,6 +214,7 @@ namespace Model
                         _special = false;
                         _canMove = true;
                         _canJump = true;
+                        _energy = 0;
                     }
                 }
             }
@@ -411,7 +412,6 @@ namespace Model
                 _canMove = false;
                 _isFighting = true;
                 _special = true;
-                _energy = 0;
                 _animation.Special();
             }
         }

@@ -108,7 +108,7 @@ namespace Model
             EndRound(_fighter1, _fighter2);
 
 
-            // IF FIGHTERS WINS
+         /*   // IF FIGHTERS WINS
             if (_fighter2.Health == 0)
             {
                 _fighter1._isWinner = true;
@@ -117,7 +117,7 @@ namespace Model
             {
                 _fighter2._isWinner = true;
             }
-
+            */
         
 
            
