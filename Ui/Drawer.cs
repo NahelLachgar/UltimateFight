@@ -21,6 +21,12 @@ namespace UI
             _gamesList = gamesList;
         }
 
+        public string  page 
+        {
+            get { return page; }
+            set { page = value; }
+        }
+
         public void Draw(string page, Game game = null)
         {
             _page = page;

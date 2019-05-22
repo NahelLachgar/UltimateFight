@@ -26,7 +26,6 @@ namespace Model
 
         internal  void Listen()
         {
-
             UdpClient server = new UdpClient(5035);
 
 
