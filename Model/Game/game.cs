@@ -9,6 +9,7 @@ namespace Model
 {
     public class Game
     {
+        internal Server _server;
         internal bool _startRound = true;
         internal string _host;
         internal GameControls _controls;
@@ -39,6 +40,7 @@ namespace Model
        
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
         {
+            _server = new Server (this);
             if (host != null) _host = host;
             else _host = "192.168.0.37";
              _timer = timer;

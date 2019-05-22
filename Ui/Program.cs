@@ -23,7 +23,7 @@ namespace UI
                 GamesList _gamesList = new GamesList();
 
                 Drawer _drawer = new Drawer(window, _gamesList);
-                _drawer.Draw("Game", _drawer, game);
+                _drawer.Draw("Game", game);
 
 
                 while (window.IsOpen)
@@ -39,7 +39,7 @@ namespace UI
                           g._userInterface.Draw(window);
                       }*/
                     //while (_drawer._page == "Game")
-                    _drawer.Draw("Game", _drawer, game);
+                    _drawer.Draw("Game", game);
 
                     window.Display();
 

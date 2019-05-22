@@ -10,17 +10,21 @@ namespace Model
 {
     public class Server
     {
+        public Game _game;
         internal static Thread _ListenTh;
         internal static bool _isListening = true;
 
-        internal static void StartServer()       
+        public Server (Game game) {
+            _game = game;
+        }
+        internal void StartServer()       
         {
             //Préparation et démarrage du thread en charge d'écouter.
             _ListenTh = new Thread(new ThreadStart(Listen));
             _ListenTh.Start();
         }
 
-        internal static void Listen()
+        internal  void Listen()
         {
 
             UdpClient server = new UdpClient(5035);
@@ -37,9 +41,12 @@ namespace Model
                 byte[] data = server.Receive(ref client);
                 string message = Encoding.Default.GetString(data);
                 KeyPress keyPress = JsonConvert.DeserializeObject<KeyPress>(message);
-                keyPress._game._controls.Update(keyPress._key);
-                Console.WriteLine(message);
+                Send(keyPress);
             }
+        }
+        internal void Send(KeyPress keyPress) {
+
+            _game._controls.Update(keyPress._key);
         }
     }
 }
