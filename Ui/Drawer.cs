@@ -21,19 +21,19 @@ namespace UI
             _gamesList = gamesList;
         }
 
-        public void Draw(string page, Drawer drawer, Game game = null)
+        public void Draw(string page, Game game = null)
         {
             _page = page;
             switch (page)
             {
                 case "Game":
-                     GameUI.Draw(_window, game, drawer, _gamesList);
+                     GameUI.Draw(_window, game, _gamesList);
                      break;
                 case "CreateGameMenu":
-                    CreateGameMenu.Draw(_window, drawer);
+                    CreateGameMenu.Draw(_window, this);
                     break;
                 case "CreateOnlineGameMenu":
-                    CreateOnlineGameMenu.Draw(_window, drawer);
+                    CreateOnlineGameMenu.Draw(_window, this);
                     break;
             }
         }

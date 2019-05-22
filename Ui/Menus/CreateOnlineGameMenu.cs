@@ -20,7 +20,7 @@ namespace UI
             window.MouseLeft += (sender, e) =>
             {
                 Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), window);
-                drawer.Draw("Game", drawer, game);
+                drawer.Draw("Game", game);
             };
         }
     }

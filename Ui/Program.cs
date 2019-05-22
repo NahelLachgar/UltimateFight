@@ -23,7 +23,7 @@ namespace UI
                 GamesList _gamesList = new GamesList();
 
                 Drawer _drawer = new Drawer(window, _gamesList);
-                _drawer.Draw("Game", _drawer, game);
+                _drawer.Draw("Game", game);
 
 
                 while (window.IsOpen)
@@ -41,7 +41,7 @@ namespace UI
                     //while (_drawer._page == "Game")
                     if(game.EndGameMenu._replay == true ) game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
                     
-                    _drawer.Draw("Game", _drawer, game);
+                    _drawer.Draw("Game", game);
 
                     window.Display();
 

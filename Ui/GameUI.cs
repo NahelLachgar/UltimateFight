@@ -15,7 +15,7 @@ namespace UI
             _game = game;
         }*/
 
-       static public void Draw(RenderWindow window, Game game, Drawer drawer, GamesList gamesList)
+       static public void Draw(RenderWindow window, Game game, GamesList gamesList)
         {
             gamesList._games.Add(game);
 
