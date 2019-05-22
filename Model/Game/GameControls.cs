@@ -14,14 +14,14 @@ namespace Model
             _game = game;
         }
 
-        public void Update(Keyboard.Key key = Keyboard.Key.Unknown)
+        public void Update(string key = null)
         {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey(Keyboard.Key.Q, _game);
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey(Keyboard.Key.Z, _game);
-            if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey(Keyboard.Key.S, _game);
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey(Keyboard.Key.D, _game);
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey(Keyboard.Key.A, _game);
-            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey(Keyboard.Key.E, _game);
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey("Z");
+            if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
+            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");
 
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
@@ -29,7 +29,7 @@ namespace Model
             if (_game._fighter1._sprite.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
-                if (key == Keyboard.Key.Q) _game._fighter1.MoveLeft(_game._moveSpeed);
+                if (key =="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
 
                 // LIGHT PUNCH 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))

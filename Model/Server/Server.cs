@@ -39,14 +39,14 @@ namespace Model
                 IPEndPoint client = null;
                 //On écoute jusqu'à recevoir un message.
                 byte[] data = server.Receive(ref client);
-                string message = Encoding.Default.GetString(data);
-                KeyPress keyPress = JsonConvert.DeserializeObject<KeyPress>(message);
-                Send(keyPress);
+                string key = Encoding.Default.GetString(data);
+                Send(key);
             }
         }
-        internal void Send(KeyPress keyPress) {
+        internal void Send(string key) {
 
-            _game._controls.Update(keyPress._key);
+            _game._controls.Update(key);
+            //Console.WriteLine(key);
         }
     }
 }

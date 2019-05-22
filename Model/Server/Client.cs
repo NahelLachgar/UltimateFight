@@ -13,14 +13,10 @@ namespace Model
     static public class Client
     {
 
-        static public void SendKey(Keyboard.Key key, Game game)
+        static public void SendKey(string key)
         {
             UdpClient _udpClient = new UdpClient();
-            KeyPress keyPress = new KeyPress(game, key);
-
-            string toSend = JsonConvert.SerializeObject(keyPress);
-
-            byte[] msg = Encoding.Default.GetBytes(toSend);
+            byte[] msg = Encoding.Default.GetBytes(key);
 
             _udpClient.Send(msg, msg.Length, "127.0.0.1", 5035);
             _udpClient.Close();

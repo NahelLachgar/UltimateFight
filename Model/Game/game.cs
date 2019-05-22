@@ -41,6 +41,7 @@ namespace Model
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
         {
             _server = new Server (this);
+            _server.StartServer();
             if (host != null) _host = host;
             else _host = "192.168.0.37";
              _timer = timer;
