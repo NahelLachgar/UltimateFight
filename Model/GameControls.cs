@@ -30,7 +30,7 @@ namespace Model
             {
 
                 // PLAYER 1
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
+                if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
 

@@ -104,7 +104,8 @@ namespace Model
                 {
                     case 1:
                         // Replay
-                        //game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
+                        /*game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
+                        _drawer.Draw("game", game);*/
                         _replay = true;
                         break;
 
