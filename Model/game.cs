@@ -8,7 +8,8 @@ namespace Model
     {
         internal bool _startRound = true;
 
-        GameControls _controls;
+        internal Server _server;
+        internal GameControls _controls;
         public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
@@ -35,7 +36,9 @@ namespace Model
         public EndGameMenu EndGameMenu = new EndGameMenu();
        
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
-        {             
+        {
+            _server = new Server(this);
+            _server.StartServer();
             _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
