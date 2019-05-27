@@ -11,16 +11,15 @@ namespace UI
 {
     public class CreateGameMenu : IAppState
     {
-         IAppState nextState { get; set; }
 
         RectangleShape rectangleShape = new RectangleShape();
 
-        void Draw(RenderWindow window)
+        public void Draw(RenderWindow window)
         {
             window.Draw(rectangleShape);
         }
 
-        void Update(RenderWindow window)
+        public void Update(RenderWindow window)
         {
             Draw(window);
         }

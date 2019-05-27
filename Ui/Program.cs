@@ -29,7 +29,7 @@ namespace UI
 
                     if(game.EndGameMenu._replay == true )
                     game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
-                    _cs.State = new CreateGameMenu();
+                    _cs.State = new GameUI(game);
                     _cs.Update(window);
                     _cs.Draw(window);
                     window.Display();
