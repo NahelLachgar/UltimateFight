@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿//using SFML.Graphics;
 //using SFML.System;
 //using SFML.Window;
@@ -5,6 +6,14 @@
 //using System.Collections.Generic;
 //using System.Text;
 //using Model;
+=======
+﻿/*using SFML.Graphics;
+using SFML.System;
+using SFML.Window;
+using System;
+using System.Collections.Generic;
+using System.Text;
+>>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0
 
 //namespace UI
 //{
@@ -79,6 +88,13 @@
 //            }
 //        }
 
+<<<<<<< HEAD
 //        public Dictionary<string, Sprite> BackMenu => _menu;
 //    }
 //}
+=======
+        public Dictionary<string, Sprite> BackMenu => _menu;
+    }
+}
+*/
+>>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0

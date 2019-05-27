@@ -23,16 +23,24 @@ namespace Model
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
             if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");
+<<<<<<< HEAD:Model/GameControls.cs
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
+=======
 
+>>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0:Model/Game/GameControls.cs
+
+            // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             // LEFT TO THE RIGHT 
             if (_game._fighter1._sprite.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
-
                 // PLAYER 1
+<<<<<<< HEAD:Model/GameControls.cs
                 if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
+=======
+                if (key =="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
+>>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0:Model/Game/GameControls.cs
 
                 // LIGHT PUNCH 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))
@@ -75,8 +83,7 @@ namespace Model
                 {
                     // PLAYER 1
                     if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
-                    // PLAYER 2
-                    if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _game._fighter2.MoveLeft(_game._moveSpeed);
+                   
                 }
 
                 // TURNING THE PLAYERS
@@ -96,16 +103,14 @@ namespace Model
             {
                 // PLAYER 1
                 if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
-                // PLAYER 2
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _game._fighter2.MoveLeft(_game._moveSpeed);
+              
 
                 // IF THE PLAYERS ARE STUCK TO EACHOTHER
                 if (_game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X >= _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X || _game._fighter1._sprite.Position.Y != _game._fighter2._sprite.Position.Y)
                 {
                     // PLAYER 1
                     if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
-                    // PLAYER 2
-                    if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
+                   
                 }
 
                 // TURNING THE PLAYERS
@@ -124,11 +129,6 @@ namespace Model
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _game._fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.Crouch();
 
-            // PLAYER 2 CONTROLER
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad5)) _game._fighter2.Jump();
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad2) && !Keyboard.IsKeyPressed(Keyboard.Key.Numpad3) && !Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _game._fighter2.Crouch();
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad4)) _game._fighter2.LightPunch();
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad6)) _game._fighter2.LightKick();
 
             _game._fighter1.Update();
             _game._fighter2.Update();

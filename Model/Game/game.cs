@@ -6,9 +6,14 @@ namespace Model
 {
     public class Game
     {
+        internal Server _server;
         internal bool _startRound = true;
+<<<<<<< HEAD:Model/game.cs
 
         internal Server _server;
+=======
+        internal string _host;
+>>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0:Model/Game/game.cs
         internal GameControls _controls;
         public Stage stage;
         UInt16 _round = 1;
@@ -33,13 +38,23 @@ namespace Model
         float _currentTime;
         public RenderWindow _window;
         public UserInterface _userInterface;
-        public EndGameMenu EndGameMenu = new EndGameMenu();
+        //public EndGameMenu EndGameMenu = new EndGameMenu();
        
+<<<<<<< HEAD:Model/game.cs
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null)
         {
             _server = new Server(this);
             _server.StartServer();
             _timer = timer;
+=======
+        public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
+        {
+            _server = new Server (this);
+            _server.StartServer();
+            if (host != null) _host = host;
+            else _host = "192.168.0.37";
+             _timer = timer;
+>>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0:Model/Game/game.cs
             _fighter1 = fighter1;
             _fighter2 = fighter2;
          //   _fighter2._sprite.Origin = new Vector2f(_fighter2._sprite.TextureRect.Width, 0f);
@@ -101,7 +116,7 @@ namespace Model
             _userInterface.Update(this);
 
             // Menu in-game
-            EndGameMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
+            //EndGameMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
 
             // Timer management
             _timer = _clock.ElapsedTime;
@@ -119,8 +134,13 @@ namespace Model
             if (_fighter1.Health == 0)
             {
                 _fighter2._isWinner = true;
+<<<<<<< HEAD:Model/game.cs
             }
             */
+=======
+            }*/
+
+>>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0:Model/Game/game.cs
         
 
            
