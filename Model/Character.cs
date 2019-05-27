@@ -99,13 +99,13 @@ namespace Model
             if (_sprite.Scale.X < 0)
             {
                 _shadow.Position += new Vector2f(this._sprite.Position.X, 0f);
-              //  if(_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
+                if(_shadow.Scale.X > 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
             }
 
             if (_sprite.Scale.X > 0)
             {
                 _shadow.Position += new Vector2f(_sprite.Position.X , 0f);
-              //  if (_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
+                if (_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
             }
 
             _hitbox.Position = new Vector2f(0f, this._sprite.Position.Y);

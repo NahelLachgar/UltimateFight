@@ -39,14 +39,14 @@ namespace UI
                           g._userInterface.Draw(window);
                       }*/
                     //while (_drawer._page == "Game")
-                    if(game.EndGameMenu._replay == true ) game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
+     /*               if(game.EndGameMenu._replay == true ) game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
                     
                     _drawer.Draw("Game", game);
 
                     window.Display();
 
                     //Event for close the program
-
+                    */
                     window.Closed += new EventHandler(OnClose);
                     void OnClose(object sender, EventArgs e)
                     {

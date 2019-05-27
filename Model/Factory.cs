@@ -46,7 +46,7 @@ namespace Model
             switch (name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1.jpg", 500);
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 580);
                     return stage;
                 default:
                     return null;
