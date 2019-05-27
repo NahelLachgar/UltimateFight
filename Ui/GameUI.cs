@@ -7,29 +7,30 @@ using UI;
 
 namespace UI
 {
-    public class GameUI
+    public class GameUI : IAppState
     {
-        /*Game _game;
+        Game _game;
+
         public GameUI(Game game)
         {
             _game = game;
-        }*/
+        }
 
-       static public void Draw(RenderWindow window, Game game, GamesList gamesList)
+         public void Draw(RenderWindow window)
         {
-            gamesList._games.Add(game);
-
             window.Clear();
+            window.Draw(_game._stage._sprite);
+            window.Draw(_game._fighter2._shadow);
+            window.Draw(_game._fighter2._sprite);
+            window.Draw(_game._fighter1._shadow);
+            window.Draw(_game._fighter1._sprite);
+            _game.EndGameMenu.Draw(window);
+            _game._userInterface.Draw(window);
+        }
 
-            game.Update(window);
-
-            window.Draw(game._stage._sprite);
-            window.Draw(game._fighter2._shadow);
-            window.Draw(game._fighter2._sprite);
-            window.Draw(game._fighter1._shadow);
-            window.Draw(game._fighter1._sprite);
-            game.EndGameMenu.Draw(window);
-            game._userInterface.Draw(window);
+        public void Update(RenderWindow window)
+        {
+            _game.Update(window);
         }
     }
 }
