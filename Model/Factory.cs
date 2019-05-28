@@ -58,6 +58,23 @@ namespace Model
                     // LIGHT KICK
                     _animationRect.Add("lightKick1", new IntRect(5, 248, 68, 94));
                     _animationRect.Add("lightKick2", new IntRect(81, 248, 74, 94));
+                    // JUMP LIGHT
+                    _animationRect.Add("jumpLight", new IntRect(22, 498, 55, 84));
+                    // CROUCH LIGHT
+                    _animationRect.Add("crouchLight1", new IntRect(5, 377, 47, 93));
+                    _animationRect.Add("crouchLight2", new IntRect(63, 377, 67, 93));
+                    // FACE HIT
+                    _animationRect.Add("faceHit1", new IntRect(196, 851, 44, 100));
+                    _animationRect.Add("faceHit2", new IntRect(252, 851, 46, 100));
+                    _animationRect.Add("faceHit3", new IntRect(301, 851, 49, 100));
+                    // CROUCH HIT
+                    _animationRect.Add("crouchHit", new IntRect(358, 855, 49, 93));
+                    // KO
+                    _animationRect.Add("ko1", new IntRect(7, 986, 42, 93));
+                    _animationRect.Add("ko2", new IntRect(61, 986, 62, 93));
+                    _animationRect.Add("ko3", new IntRect(132, 986, 70, 98));
+
+
 
 
 
