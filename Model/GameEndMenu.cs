@@ -8,7 +8,7 @@ using Model;
 
 namespace Model
 {
-    public class EndGameMenu
+    public class GameEndMenu
     {
         internal bool _isActived = false;
         private Dictionary<string, Sprite> _menu = new Dictionary<string, Sprite>();
@@ -17,7 +17,7 @@ namespace Model
         private short _chooseMenu = 0;
         public bool _replay = false;
 
-        internal EndGameMenu()
+        internal GameEndMenu()
         {
             _menu.Add("Back", CreateMenu.NewBackground());
             _menu["Back"].Position = new Vector2f(1980f / 2f - Convert.ToSingle(_menu["Back"].TextureRect.Width) * 3f, 1080f / 2f - Convert.ToSingle(_menu["Back"].TextureRect.Height) * 2f);

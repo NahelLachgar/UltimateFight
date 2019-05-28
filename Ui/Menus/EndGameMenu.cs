@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿//using SFML.Graphics;
 //using SFML.System;
 //using SFML.Window;
@@ -6,25 +5,17 @@
 //using System.Collections.Generic;
 //using System.Text;
 //using Model;
-=======
-﻿/*using SFML.Graphics;
-using SFML.System;
-using SFML.Window;
-using System;
-using System.Collections.Generic;
-using System.Text;
->>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0
 
 //namespace UI
 //{
-//    public class EndGameMenu
+//    public class GameEndMenu
 //    {
 //        internal bool _isActived = false;
 //        private Dictionary<string, Sprite> _menu = new Dictionary<string, Sprite>();
 //        private Dictionary<string, Text> _textMenu = new Dictionary<string, Text>();
 //        CreateMenu CreateMenu = new CreateMenu();
 
-//        internal EndGameMenu()
+//        internal GameEndMenu()
 //        {
 //            _menu.Add("Back", CreateMenu.NewBackground());
 //            _menu["Back"].Position = new Vector2f(1980f / 2f - Convert.ToSingle(_menu["Back"].TextureRect.Width) * 3f, 1080f / 2f - Convert.ToSingle(_menu["Back"].TextureRect.Height) * 2f);
@@ -88,13 +79,9 @@ using System.Text;
 //            }
 //        }
 
-<<<<<<< HEAD
 //        public Dictionary<string, Sprite> BackMenu => _menu;
 //    }
 //}
-=======
-        public Dictionary<string, Sprite> BackMenu => _menu;
+        /*public Dictionary<string, Sprite> BackMenu => _menu;
     }
-}
-*/
->>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0
+}*/

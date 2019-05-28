@@ -17,30 +17,22 @@ namespace Model
 
         public void Update(string key = null)
         {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
+            /*if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey("Z");
             if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");
-<<<<<<< HEAD:Model/GameControls.cs
+            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");*/
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
-=======
-
->>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0:Model/Game/GameControls.cs
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             // LEFT TO THE RIGHT 
             if (_game._fighter1._sprite.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
-<<<<<<< HEAD:Model/GameControls.cs
-                if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
-=======
-                if (key =="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
->>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0:Model/Game/GameControls.cs
 
                 // LIGHT PUNCH 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))

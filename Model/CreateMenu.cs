@@ -4,10 +4,6 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
-<<<<<<< HEAD
-=======
-//using UI;
->>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0
 
 namespace Model
 {

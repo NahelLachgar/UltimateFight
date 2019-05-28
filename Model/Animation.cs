@@ -421,12 +421,9 @@ namespace Model
                     break;
                 case 450:
                     this._sprite.TextureRect = new IntRect(262, 612, 61, 94);
-<<<<<<< HEAD
-                    this._hitbox.Size = new Vector2f(0f,0f);
-=======
+
                     this._hitbox.Size = new Vector2f(0, 0);
                     this._sprite.Position += new Vector2f(80f, 0f);
->>>>>>> c024e1faa1940fad830c75c797bfc6323258e1b0
                     break;
                 case 650:
                     this._sprite.TextureRect = new IntRect(327, 612, 48, 94);
