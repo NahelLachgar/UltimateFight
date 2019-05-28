@@ -27,8 +27,7 @@ namespace UI
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
 
-                    //if(game.GameEndMenu._replay == true )
-                    game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
+                    
                     _cs.State = new GameUI(game);
                     _cs.Update(window);
                     _cs.Draw(window);
