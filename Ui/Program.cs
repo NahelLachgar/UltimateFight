@@ -26,7 +26,6 @@ namespace UI
                 {
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
-
                     
                     _cs.State = new GameUI(game);
                     _cs.Update(window);
