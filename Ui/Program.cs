@@ -12,37 +12,25 @@ using UI;
 namespace UI
 {
     public class Program
-    {   
+    {
         static void Main(string[] args)
         {
+            CurrentState _cs = new CurrentState();
+
             using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight", Styles.Default | Styles.Close))
 
             {
                 Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), window);
-
-                GamesList _gamesList = new GamesList();
-
-                Drawer _drawer = new Drawer(window, _gamesList);
-                _drawer.Draw("Game", game);
-
 
                 while (window.IsOpen)
                 {
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
 
-                    //Update
-                    /* foreach (Game g in _gamesList._games)
-                      {
-                          g.Update(window);
-                          g._userInterface.Update(g);
-                          g._userInterface.Draw(window);
-                      }*/
-                    //while (_drawer._page == "Game")
-        /*            if(game.EndGameMenu._replay == true ) game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), game._window);
-                    */
-                    _drawer.Draw("Game", game);
                     
+                    _cs.State = new GameUI(game);
+                    _cs.Update(window);
+                    _cs.Draw(window);
                     window.Display();
 
                     //Event for close the program
@@ -55,6 +43,6 @@ namespace UI
                     }
                 }
             }
-        }  
+        }          
     }
 }

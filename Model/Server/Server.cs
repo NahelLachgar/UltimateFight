@@ -11,11 +11,16 @@ namespace Model
         public Game _game;
         internal static Thread _ListenTh;
         internal static bool _isListening = true;
+       // internal UdpClient _server;
+
 
         public Server(Game game)
         {
             _game = game;
+            //_server = new UdpClient(5035);
+
         }
+
         internal void StartServer()
         {
             //Préparation et démarrage du thread en charge d'écouter.
@@ -25,7 +30,7 @@ namespace Model
 
         internal void Listen()
         {
-            UdpClient server = new UdpClient(5035);
+            //UdpClient server = new UdpClient(5035);
 
 
             //Création d'une boucle infinie qui aura pour tâche d'écouter.
@@ -36,16 +41,15 @@ namespace Model
                 //Création d'un objet IPEndPoint qui recevra les données du Socket distant.
                 IPEndPoint client = null;
                 //On écoute jusqu'à recevoir un message.
-                byte[] data = server.Receive(ref client);
-                string key = Encoding.Default.GetString(data);
-                Send(key);
+               // byte[] data = _server.Receive(ref client);
+              //  string key = Encoding.Default.GetString(data);
+               // Send(key);
             }
         }
         internal void Send(string key)
         {
-
             _game._controls.Update(key);
-            //Console.WriteLine(key);
+            Console.WriteLine(key);
         }
     }
 }

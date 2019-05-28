@@ -9,8 +9,8 @@ namespace Model
 {
     public class Game
     {
-        internal Server _server;
         internal bool _startRound = true;
+        internal Server _server;
         internal string _host;
         internal GameControls _controls;
         public Stage stage;
@@ -36,15 +36,16 @@ namespace Model
         float _currentTime;
         public RenderWindow _window;
         public UserInterface _userInterface;
-        //public EndGameMenu EndGameMenu = new EndGameMenu();
-       
+
+        //public GameEndMenu GameEndMenu = new GameEndMenu();       
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
         {
             _server = new Server (this);
             _server.StartServer();
             if (host != null) _host = host;
             else _host = "192.168.0.37";
-            _timer = timer;
+
+             _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
          //   _fighter2._sprite.Origin = new Vector2f(_fighter2._sprite.TextureRect.Width, 0f);
@@ -103,8 +104,7 @@ namespace Model
             //Interface game graphic
             _userInterface.Update(this);
             // Menu in-game
-            //EndGameMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
-
+            //GameEndMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
             // Timer management
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
@@ -121,9 +121,9 @@ namespace Model
             if (_fighter1.Health == 0)
             {
                 _fighter2._isWinner = true;
-            }*/
 
-        
+            }
+            */
 
            
         }

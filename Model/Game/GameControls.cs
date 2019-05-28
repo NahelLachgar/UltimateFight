@@ -16,13 +16,14 @@ namespace Model
 
         public void Update(string key = null)
         {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
+            /*if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey("Z");
             if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");
 
+            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");*/
+            // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             // LEFT TO THE RIGHT 
@@ -30,6 +31,8 @@ namespace Model
             {
                 // PLAYER 1
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
+                // PLAYER 2
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
 
                 // LIGHT PUNCH 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))

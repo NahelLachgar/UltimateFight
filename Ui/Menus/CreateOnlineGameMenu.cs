@@ -9,19 +9,18 @@ using Model;
 
 namespace UI
 {
-    public static class CreateOnlineGameMenu
+    public class CreateOnlineGameMenu : IAppState
     {
-        public static void Draw(RenderWindow window, Drawer drawer)
-        {
-            window.Clear();
-            RectangleShape rectangle = new RectangleShape(new Vector2f(550, 200));
-            window.Draw(rectangle);
+        RectangleShape rectangleShape = new RectangleShape();
 
-            window.MouseLeft += (sender, e) =>
-            {
-                Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), window);
-                drawer.Draw("Game", game);
-            };
+        public void Draw(RenderWindow window)
+        {
+            window.Draw(rectangleShape);
+        }
+
+    public void Update(RenderWindow window)
+        {
+            Draw(window);
         }
     }
 }
