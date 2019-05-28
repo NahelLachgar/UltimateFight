@@ -10,6 +10,8 @@ namespace Model
     {
         Sprite _sprite;
         RectangleShape _hitbox;
+        //IntRect _test;
+        Dictionary<string, IntRect> _animationRect;
         int _spriteNb;
         int _p = -1;
         int _m = -1;
@@ -21,7 +23,9 @@ namespace Model
         {
             _sprite = sprite;
             _hitbox = hitbox;
+            _animationRect = animationRect;
         }
+
 
         public void Waiting()
         {
@@ -31,20 +35,20 @@ namespace Model
                     // IF THE PLAYER WAS CROUCHING
                     if (_c != 0)
                     {
-                        this._sprite.TextureRect = new IntRect(786, 17, 45, 93);
+                        this._sprite.TextureRect = _animationRect["crouch1"];
                     }
                     else
                     {
-                        this._sprite.TextureRect = new IntRect(4, 17, 45, 93);
+                        this._sprite.TextureRect = _animationRect["waiting1"];
                     }
                     _i = 0;
                     _c = 0;
                     break;
-                case 90: this._sprite.TextureRect = new IntRect(57, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                case 90: this._sprite.TextureRect = _animationRect["waiting2"];
                     break;
-                case 180: this._sprite.TextureRect = new IntRect(112, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                case 180: this._sprite.TextureRect = _animationRect["waiting3"];
                     break;
-                case 270: this._sprite.TextureRect = new IntRect(168, 17, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                case 270: this._sprite.TextureRect = _animationRect["waiting4"];
                     _spriteNb = -1;
                     break;
             }
@@ -61,23 +65,23 @@ namespace Model
                     // IF THE PLAYER WAS CROUCHING
                     if (_c != 0)
                     {
-                        this._sprite.TextureRect = new IntRect(786, 17, 45, 93);
+                        this._sprite.TextureRect = _animationRect["crouch1"];
                     }
                     else
                     {
-                        this._sprite.TextureRect = new IntRect(227, 17, 45, 93);
+                        this._sprite.TextureRect = _animationRect["walking1"];
                     }
                     _spriteNb = 0;
                     _c = 0;
                     break;
                 case 90:
-                    this._sprite.TextureRect = new IntRect(281, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["walking2"];
                     break;
                 case 180:
-                    this._sprite.TextureRect = new IntRect(337, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["walking3"];
                     break;
                 case 270:
-                    this._sprite.TextureRect = new IntRect(394, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["walking4"];
                     _i = -1;
                     break;
             }
@@ -92,24 +96,24 @@ namespace Model
                     // IF THE PLAYER WAS CROUCHING
                     if (_c != 0)
                     {
-                        this._sprite.TextureRect = new IntRect(786, 17, 45, 93);
+                        this._sprite.TextureRect = _animationRect["crouch1"];
                     }
                     else
                     {
-                        this._sprite.TextureRect = new IntRect(227, 17, 45, 93);
-                        
+                        this._sprite.TextureRect = _animationRect["walking1"];
+
                     }
                     _spriteNb = 0;
                     _c = 0;
                     break;
                 case 90:
-                    this._sprite.TextureRect = new IntRect(394, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["walking4"];
                     break;
                 case 180:
-                    this._sprite.TextureRect = new IntRect(337, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["walking3"];
                     break;
                 case 270:
-                    this._sprite.TextureRect = new IntRect(281, this._sprite.TextureRect.Top, this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["walking2"];
                     _i = -1;
                     break;
             }
@@ -121,12 +125,12 @@ namespace Model
             switch (_c)
             {
                 case 0:
-                    this._sprite.TextureRect = new IntRect(786, 17, 45, 93);
+                    this._sprite.TextureRect = _animationRect["crouch1"];
                     _spriteNb = 0;
                     _i = 0;
                     break;
                 case 45:
-                    this._sprite.TextureRect = new IntRect(837, this._sprite.TextureRect.Top, 43, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["crouch2"];
                     break;
             }
             if (_c != 45)
@@ -142,22 +146,22 @@ namespace Model
             {
 
                 case 0:
-                    this._sprite.TextureRect = new IntRect(594, 17, 38, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["jump1"];
                     _i = -1;
                     _spriteNb = -1;
                     _c = -1;
                     break;
-                case 100:
-                    this._sprite.TextureRect = new IntRect(641, 17, 39, this._sprite.TextureRect.Height);
+                case 125:
+                    this._sprite.TextureRect = _animationRect["jump2"];
                     break;
-                case 200:
-                    this._sprite.TextureRect = new IntRect(687, 17, 38, this._sprite.TextureRect.Height);
+                case 250:
+                    this._sprite.TextureRect = _animationRect["jump3"];
                     break;
-                case 400:
-                    this._sprite.TextureRect = new IntRect(733, 17, 43, this._sprite.TextureRect.Height);
+                case 375:
+                    this._sprite.TextureRect = _animationRect["jump2"];
                     break;
                 case 500:
-                    this._sprite.TextureRect = new IntRect(733, 17, 43, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["jump1"];
                     break;
                 case 600:
                     _j = -1;
@@ -175,14 +179,14 @@ namespace Model
             {
                 case 0:
                     _spriteNb = 0;
-                    this._sprite.TextureRect = new IntRect(5, 137, 55, 93);
+                    this._sprite.TextureRect = _animationRect["lightPunch1"];
                     break;
                 case 100:
-                    this._sprite.TextureRect = new IntRect(64, this._sprite.TextureRect.Top, 74, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["lightPunch2"];
                     this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 200:
-                    this._sprite.TextureRect = new IntRect(146, this._sprite.TextureRect.Top, 54, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["lightPunch1"];
                     this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
                 // NEEDED TO GET THE ANIMATION SMOOTHER
@@ -201,14 +205,14 @@ namespace Model
             {
                 case 0:
                     _spriteNb = 0;
-                    this._sprite.TextureRect = new IntRect(5, 248, 68, 94);
+                    this._sprite.TextureRect = _animationRect["lightKick1"];
                     break;
                 case 180:
-                    this._sprite.TextureRect = new IntRect(81, this._sprite.TextureRect.Top, 74, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["lightKick2"];
                     this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 350:
-                    this._sprite.TextureRect = new IntRect(164, this._sprite.TextureRect.Top, 68, this._sprite.TextureRect.Height);
+                    this._sprite.TextureRect = _animationRect["lightKick1"];
                     this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
                 case 450:
