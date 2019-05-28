@@ -36,6 +36,7 @@ namespace Model
         float _currentTime;
         public RenderWindow _window;
         public UserInterface _userInterface;
+        int _groundHeight;
 
         //public GameEndMenu GameEndMenu = new GameEndMenu();       
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
@@ -45,14 +46,15 @@ namespace Model
             if (host != null) _host = host;
             else _host = "192.168.0.37";
 
+            _groundHeight = stage._groundHeight;
              _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
          //   _fighter2._sprite.Origin = new Vector2f(_fighter2._sprite.TextureRect.Width, 0f);
             _fighter2._sprite.Scale = new Vector2f(-5f, 5f);
             // PLAYERS'S POSITIONS
-            _fighter1._sprite.Position = new Vector2f(250, 580);
-            _fighter2._sprite.Position = new Vector2f(1500, 580);
+            _fighter1._sprite.Position = new Vector2f(250, _groundHeight);
+            _fighter2._sprite.Position = new Vector2f(1500, _groundHeight);
             _stage = stage;
             _user1 = user1;
             _user2 = user2;
@@ -95,8 +97,8 @@ namespace Model
                 _fighter1 = new Character(_fighter1.Name, _fighter1._sprite, _fighter1._animationRect);
                 _fighter2 = new Character(_fighter2.Name, _fighter2._sprite, _fighter2._animationRect);
                 // PLAYERS'S POSITIONS
-                _fighter1._sprite.Position = new Vector2f(250, 580);
-                _fighter2._sprite.Position = new Vector2f(1500, 580);
+                _fighter1._sprite.Position = new Vector2f(250, _groundHeight);
+                _fighter2._sprite.Position = new Vector2f(1500, _groundHeight);
                 _startRound = false;
                 _clock = new Clock();
             }
