@@ -17,7 +17,7 @@ namespace Model
         int _c;
         int _j = -1;
 
-        public Animation(Sprite sprite, RectangleShape hitbox)
+        public Animation(Sprite sprite, RectangleShape hitbox, Dictionary<string, IntRect> animationRect)
         {
             _sprite = sprite;
             _hitbox = hitbox;

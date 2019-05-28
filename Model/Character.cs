@@ -13,7 +13,7 @@ namespace Model
         internal int _health = 100;
         internal uint _energy = 0;
         internal Vector2f _position;
-        Dictionary<string, IntRect> _rects;
+        internal Dictionary<string, IntRect> _animationRect;
         string _hit;
 
         bool _canMove;
@@ -38,10 +38,13 @@ namespace Model
         public Sprite _shadow;
         public RectangleShape _hitbox;
 
-        public Character(string name, Sprite sprite)
+        public Character(string name, Sprite sprite, Dictionary<string, IntRect> animationRect)
         {
             _name = name;
+            _sprite = sprite;
+            _animationRect = animationRect;
             _hit = string.Empty;
+
             _isJumping = false; 
             _isFighting = false;
             _isMoving = false;
@@ -57,8 +60,6 @@ namespace Model
             _canMove = true;
             _canJump = true;
 
-            _sprite = sprite;
-
             _shadow = new Sprite
             {
                 Texture = sprite.Texture,
@@ -73,7 +74,7 @@ namespace Model
                FillColor = new Color(255, 255, 255, 0)
             };
 
-            _animation = new Animation(sprite, _hitbox);
+            _animation = new Animation(sprite, _hitbox, _animationRect);
 
         }
 

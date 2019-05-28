@@ -8,14 +8,14 @@ namespace Model
 {
     public static class Factory
     {
-        static public Character CreateCharacter(string name, string img, IntRect rect, Vector2f scale)
+        static public Character CreateCharacter(string name, string img, Dictionary<string, IntRect> animationSprite, Vector2f scale)
         {
             Texture texture = new Texture("../../../../img/characters/" + img);
             texture.Smooth = true;
             Sprite sprite = new Sprite(texture);
             sprite.Scale = scale;
-            sprite.TextureRect = new IntRect(rect.Left, rect.Top, rect.Width, rect.Height);
-            Character character = new Character(name, sprite);
+        //    sprite.TextureRect = new IntRect(rect.Left, rect.Top, rect.Width, rect.Height);
+            Character character = new Character(name, sprite, animationSprite);
             return character;
         }
 
@@ -34,7 +34,14 @@ namespace Model
             switch (name)
             {
                 case "balrog":
-                    Character character = CreateCharacter("Balrog", "balrog.png", new IntRect(4, 17, 45, 93), new Vector2f(5, 5));
+                    Dictionary<string, IntRect> _animationRect = new Dictionary<string, IntRect>();
+                    // WAITING
+                    _animationRect.Add("Waiting1", new IntRect(4, 17, 45, 93));
+                    _animationRect.Add("Waiting2", new IntRect(57, 17, 45, 93));
+                    _animationRect.Add("Waiting3", new IntRect(112, 17, 45, 93));
+                    _animationRect.Add("Waiting4", new IntRect(168, 17, 45, 93));
+
+                    Character character = CreateCharacter("Balrog", "balrog.png", _animationRect, new Vector2f(5, 5));
                     return character;
                 default:
                     return null;
