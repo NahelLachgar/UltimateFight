@@ -231,10 +231,9 @@ namespace Model
             switch (_p)
             {
                 case 0:
-                    this._sprite.TextureRect = new IntRect(22, 498, 55, 84);
+                    this._sprite.TextureRect = _animationRect["jumpLight"];
                     _p = -1;
                     break;
-
             }
         }
 
@@ -245,16 +244,16 @@ namespace Model
             switch (_p)
             {
                 case 0:
-                    this._sprite.TextureRect = new IntRect(5, 377, 47, 93);
+                    this._sprite.TextureRect = _animationRect["crouchLight1"];
                     break;
                 case 120:
-                    this._sprite.TextureRect = new IntRect(63, 377, 67, 93);
+                    this._sprite.TextureRect = _animationRect["crouchLight2"];
                     break;
                 case 240:
-                    this._sprite.TextureRect = new IntRect(5, 377, 47, 93);
+                    this._sprite.TextureRect = _animationRect["crouchLight1"];
                     break;
                 case 360:
-                    this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
+                    this._sprite.TextureRect = _animationRect["crouch2"];
                     _p = -1;
                     return false;                    
             }
@@ -273,19 +272,19 @@ namespace Model
             switch (_p)
             {
                 case 0:
-                    this._sprite.TextureRect = new IntRect(196, 851, 44, 100);
+                    this._sprite.TextureRect = _animationRect["faceHit1"];
                     _spriteNb = -1;
                     _i = -1;
                     _c = 0;
                     break;
                 case 100:
-                    this._sprite.TextureRect = new IntRect(252, 851, 46, 100);
+                    this._sprite.TextureRect = _animationRect["faceHit2"];
                     break;
                 case 200 :
-                    this._sprite.TextureRect = new IntRect(301, 851, 49, 100);
+                    this._sprite.TextureRect = _animationRect["faceHit3"];
                     break;
                 case 300:
-                    this._sprite.TextureRect = new IntRect(196, 851, 44, 100);
+                    this._sprite.TextureRect = _animationRect["faceHit1"];
                     break;
                 case 400:
                     _p = -1;
@@ -301,15 +300,15 @@ namespace Model
             switch (_p)
             {
                 case 0:
-                    this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
+                    this._sprite.TextureRect = _animationRect["crouch2"];
                     _spriteNb = -1;
                     _i = -1;
                     break;
                 case 200:
-                    this._sprite.TextureRect = new IntRect(358, 855, 49, 93);
+                    this._sprite.TextureRect = _animationRect["crouchHit"];
                     break;
                 case 400:
-                    this._sprite.TextureRect = new IntRect(837, 17, 43, 93);
+                    this._sprite.TextureRect = _animationRect["crouch2"];
                     _p = -1;
                     return false;
             }
@@ -325,23 +324,23 @@ namespace Model
                 switch (_p)
                 {
                     case 0:
-                        this._sprite.TextureRect = new IntRect(7, 986, 42, 93);
+                        this._sprite.TextureRect = _animationRect["ko1"];
                         this._sprite.Position += new Vector2f(80f, 0f);
                         break;
                     case 150:
-                        this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
+                        this._sprite.TextureRect = _animationRect["ko2"];
                         this._sprite.Position += new Vector2f(80f, 0f);
                         break;
                     case 300:
-                        this._sprite.TextureRect = new IntRect(132, 986, 70, 98);
+                        this._sprite.TextureRect = _animationRect["ko3"];
                         this._sprite.Position += new Vector2f(80f, 0f);
                         break;
                     case 450:
-                        this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
+                        this._sprite.TextureRect = _animationRect["ko2"];
                         this._sprite.Position += new Vector2f(80f, 0f);
                         break;
                     case 600:
-                        this._sprite.TextureRect = new IntRect(132, 986, 70, 98);
+                        this._sprite.TextureRect = _animationRect["ko3"];
                         this._sprite.Position += new Vector2f(80f, 0f);
                         break;
                 }
@@ -351,23 +350,23 @@ namespace Model
                 switch (_p)
                 {
                     case 0:
-                        this._sprite.TextureRect = new IntRect(7, 986, 42, 93);
+                        this._sprite.TextureRect = _animationRect["ko1"];
                         this._sprite.Position -= new Vector2f(80f, 0f);
                         break;
                     case 150:
-                        this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
+                        this._sprite.TextureRect = _animationRect["ko2"];
                         this._sprite.Position -= new Vector2f(80f, 0f);
                         break;
                     case 300:
-                        this._sprite.TextureRect = new IntRect(132, 986, 70, 98);
+                        this._sprite.TextureRect = _animationRect["ko3"];
                         this._sprite.Position -= new Vector2f(80f, 0f);
                         break;
                     case 450:
-                        this._sprite.TextureRect = new IntRect(61, 986, 62, 93);
+                        this._sprite.TextureRect = _animationRect["ko2"];
                         this._sprite.Position -= new Vector2f(80f, 0f);
                         break;
                     case 600:
-                        this._sprite.TextureRect = new IntRect(132, 986, 70, 98);
+                        this._sprite.TextureRect = _animationRect["ko3"];
                         this._sprite.Position -= new Vector2f(80f, 0f);
                         break;
                 }
