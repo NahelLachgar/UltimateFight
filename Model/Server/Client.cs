@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
 using System.Text;
-
+using System.Threading;
 
 namespace Model
 {
@@ -12,7 +12,7 @@ namespace Model
             UdpClient _udpClient = new UdpClient();
             byte[] msg = Encoding.Default.GetBytes(key);
 
-            _udpClient.Send(msg, msg.Length, "192.168.230.129", 5035);
+            _udpClient.Send(msg, msg.Length, "127.0.0.1", 5035);
             _udpClient.Close();
         }
     }

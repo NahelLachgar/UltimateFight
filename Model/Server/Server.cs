@@ -30,8 +30,7 @@ namespace Model
 
         internal void Listen()
         {
-            //UdpClient server = new UdpClient(5035);
-
+            UdpClient _server = new UdpClient(5035);
 
             //Création d'une boucle infinie qui aura pour tâche d'écouter.
             while (_isListening)
@@ -41,14 +40,15 @@ namespace Model
                 //Création d'un objet IPEndPoint qui recevra les données du Socket distant.
                 IPEndPoint client = null;
                 //On écoute jusqu'à recevoir un message.
-               // byte[] data = _server.Receive(ref client);
-              //  string key = Encoding.Default.GetString(data);
-               // Send(key);
+                byte[] data = _server.Receive(ref client);
+               string key = Encoding.Default.GetString(data);
+                Send(key);
             }
         }
         internal void Send(string key)
         {
             _game._controls.Update(key);
+            Thread.Sleep(1);
             Console.WriteLine(key);
         }
     }
