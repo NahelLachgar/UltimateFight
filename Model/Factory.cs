@@ -83,13 +83,13 @@ namespace Model
                     _animationRect.Add("waiting3", new IntRect(124, 24, 52, 106));
                     _animationRect.Add("waiting4", new IntRect(183, 24, 52, 106));
                     // WALKING
-                    _animationRect.Add("walking1", new IntRect(227, 17, 45, 93));
-                    _animationRect.Add("walking2", new IntRect(281, 17, 45, 93));
-                    _animationRect.Add("walking3", new IntRect(337, 17, 45, 93));
-                    _animationRect.Add("walking4", new IntRect(394, 17, 45, 93));
+                    _animationRect.Add("walking1", new IntRect(310, 24, 52, 106));
+                    _animationRect.Add("walking2", new IntRect(372, 22, 52, 106));
+                    _animationRect.Add("walking3", new IntRect(431, 21, 52, 106));
+                    _animationRect.Add("walking4", new IntRect(490, 22, 52, 106));
                     // CROUCH
-                    _animationRect.Add("crouch1", new IntRect(786, 17, 45, 93));
-                    _animationRect.Add("crouch2", new IntRect(837, 17, 43, 93));
+                    _animationRect.Add("crouch1", new IntRect(834, 45, 51, 85));
+                    _animationRect.Add("crouch2", new IntRect(892, 72, 55, 58));
                     // JUMP
                     _animationRect.Add("jump1", new IntRect(733, 17, 43, 93));
                     _animationRect.Add("jump2", new IntRect(594, 17, 38, 93));
@@ -128,7 +128,7 @@ namespace Model
             switch (name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1.jpg", 580);
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 1060);
                     return stage;
                 default:
                     return null;

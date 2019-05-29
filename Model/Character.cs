@@ -70,7 +70,7 @@ namespace Model
 
             _hitbox = new RectangleShape
             {
-                // FillColor = Color.Red
+               //FillColor = Color.Red
                FillColor = new Color(255, 255, 255, 0)
             };
 
