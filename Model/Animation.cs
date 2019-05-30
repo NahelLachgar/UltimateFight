@@ -150,7 +150,7 @@ namespace Model
                     this._sprite.TextureRect = _animationRect["jump1"];
                     _i = -1;
                     _spriteNb = -1;
-                    _c = -1;
+              //      _c = -1;
                     break;
                 case 125:
                     this._sprite.TextureRect = _animationRect["jump2"];
@@ -165,9 +165,9 @@ namespace Model
                     this._sprite.TextureRect = _animationRect["jump1"];
                     break;
                 case 600:
+                    this._sprite.TextureRect = _animationRect["waiting1"];
                     _j = -1;
                     break;
-
             }
 
         }

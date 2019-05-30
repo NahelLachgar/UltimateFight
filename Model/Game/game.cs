@@ -102,6 +102,7 @@ namespace Model
                 _fighter1._sprite.Position = new Vector2f(250, _groundHeight - _fighter1._sprite.TextureRect.Height * _fighter1._sprite.Scale.Y);
                 _fighter2._sprite.Position = new Vector2f(1500, _groundHeight - _fighter2._sprite.TextureRect.Height * _fighter2._sprite.Scale.Y);
 
+
                 _startRound = false;
                 _clock = new Clock();
             }

@@ -20,7 +20,7 @@ namespace UI
             using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight", Styles.Default | Styles.Close))
 
             {
-                Game game = new Game(new Time(), Factory.NewCharacter("sagat"), Factory.NewCharacter("sagat"), Factory.NewStage("stage1"), window);
+                Game game = new Game(new Time(), Factory.NewCharacter("sagat"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), window);
 
                 while (window.IsOpen)
                 {

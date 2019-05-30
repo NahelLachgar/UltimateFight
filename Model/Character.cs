@@ -21,7 +21,7 @@ namespace Model
 
         internal bool _isCrouching;
         internal bool _isMoving;
-        bool _isJumping;
+        internal bool _isJumping;
         bool _isFighting;
         bool _isTakingDamage;
         internal bool _isKo;
@@ -70,8 +70,8 @@ namespace Model
 
             _hitbox = new RectangleShape
             {
-               //FillColor = Color.Red
-               FillColor = new Color(255, 255, 255, 0)
+               FillColor = Color.Red
+               //FillColor = new Color(255, 255, 255, 0)
             };
 
             _animation = new Animation(sprite, _hitbox, _animationRect);
@@ -110,7 +110,7 @@ namespace Model
             }
 
             _hitbox.Position = new Vector2f(0f, this._sprite.Position.Y);
-            //_hitbox.Size = new Vector2f(_sprite.TextureRect.Width, _sprite.TextureRect.Height);
+            _hitbox.Size = new Vector2f(_sprite.TextureRect.Width, _sprite.TextureRect.Height);
             _hitbox.Scale = new Vector2f(this._sprite.Scale.X, this._sprite.Scale.Y);
             if (_sprite.Scale.X < 0) _hitbox.Position += new Vector2f(_sprite.Position.X , 0f);
             if (_sprite.Scale.X > 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);

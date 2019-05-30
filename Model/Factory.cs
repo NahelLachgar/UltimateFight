@@ -91,9 +91,9 @@ namespace Model
                     _animationRect.Add("crouch1", new IntRect(834, 45, 51, 85));
                     _animationRect.Add("crouch2", new IntRect(892, 72, 55, 58));
                     // JUMP
-                    _animationRect.Add("jump1", new IntRect(733, 17, 43, 93));
-                    _animationRect.Add("jump2", new IntRect(594, 17, 38, 93));
-                    _animationRect.Add("jump3", new IntRect(641, 17, 39, 93));
+                    _animationRect.Add("jump1", new IntRect(682, 15, 37, 115));
+                    _animationRect.Add("jump2", new IntRect(732, 15, 39, 115));
+                    _animationRect.Add("jump3", new IntRect(732, 15, 39, 115));
                     // LIGHT PUNCH
                     _animationRect.Add("lightPunch1", new IntRect(5, 137, 55, 93));
                     _animationRect.Add("lightPunch2", new IntRect(64, 137, 74, 93));

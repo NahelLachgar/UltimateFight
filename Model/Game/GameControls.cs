@@ -21,9 +21,12 @@ namespace Model
             if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
-
             if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");*/
-            // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
+
+            if (_game._fighter1._sprite.Position.Y + _game._fighter1._sprite.TextureRect.Height * _game._fighter1._sprite.Scale.Y != _game._stage._groundHeight && _game._fighter1._isJumping == false)
+            {
+                _game._fighter1._sprite.Position = new Vector2f(_game._fighter1._sprite.Position.X, _game._stage._groundHeight - _game._fighter1._sprite.TextureRect.Height * _game._fighter1._sprite.Scale.Y);
+            }
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             // LEFT TO THE RIGHT 
@@ -118,9 +121,8 @@ namespace Model
 
 
             // PLAYER 1 CONTROLER
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _game._fighter1.Jump();
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.Crouch();
-
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _game._fighter1.Jump();
 
             _game._fighter1.Update();
             _game._fighter2.Update();
