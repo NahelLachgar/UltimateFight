@@ -322,7 +322,7 @@ namespace Model
         // JUMP
         internal void Jump()
         {
-            if (_canJump == true)
+            if (_canJump == true && _isCrouching == false)
             {
                 if (_isJumping == false)
                 {

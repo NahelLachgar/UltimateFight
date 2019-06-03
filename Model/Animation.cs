@@ -150,7 +150,7 @@ namespace Model
                     this._sprite.TextureRect = _animationRect["jump1"];
                     _i = -1;
                     _spriteNb = -1;
-              //      _c = -1;
+                    _c = -1;
                     break;
                 case 125:
                     this._sprite.TextureRect = _animationRect["jump2"];
@@ -182,16 +182,16 @@ namespace Model
                     _spriteNb = 0;
                     this._sprite.TextureRect = _animationRect["lightPunch1"];
                     break;
-                case 100:
+                case 150:
                     this._sprite.TextureRect = _animationRect["lightPunch2"];
                     this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
-                case 200:
+                case 300:
                     this._sprite.TextureRect = _animationRect["lightPunch1"];
                     this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
                 // NEEDED TO GET THE ANIMATION SMOOTHER
-                case 300:
+                case 400:
                     _p = -1;
                     return false;
             }
@@ -208,15 +208,21 @@ namespace Model
                     _spriteNb = 0;
                     this._sprite.TextureRect = _animationRect["lightKick1"];
                     break;
-                case 180:
+                case 120:
                     this._sprite.TextureRect = _animationRect["lightKick2"];
+                    break;
+                case 240:
+                    this._sprite.TextureRect = _animationRect["lightKick3"];
                     this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
-                case 350:
-                    this._sprite.TextureRect = _animationRect["lightKick1"];
+                case 360:
+                    this._sprite.TextureRect = _animationRect["lightKick2"];
                     this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
-                case 450:
+                case 480:
+                    this._sprite.TextureRect = _animationRect["lightKick1"];
+                    break;
+                case 600:
                     _m = -1;
                     return false;
             }
@@ -284,7 +290,7 @@ namespace Model
                     this._sprite.TextureRect = _animationRect["faceHit3"];
                     break;
                 case 300:
-                    this._sprite.TextureRect = _animationRect["faceHit1"];
+                    this._sprite.TextureRect = _animationRect["faceHit2"];
                     break;
                 case 400:
                     _p = -1;

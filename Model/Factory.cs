@@ -56,8 +56,9 @@ namespace Model
                     _animationRect.Add("lightPunch1", new IntRect(5, 137, 55, 93));
                     _animationRect.Add("lightPunch2", new IntRect(64, 137, 74, 93));
                     // LIGHT KICK
-                    _animationRect.Add("lightKick1", new IntRect(5, 248, 68, 94));
-                    _animationRect.Add("lightKick2", new IntRect(81, 248, 74, 94));
+                    _animationRect.Add("lightKick1", new IntRect(4, 17, 45, 93));
+                    _animationRect.Add("lightKick2", new IntRect(5, 248, 68, 94));
+                    _animationRect.Add("lightKick3", new IntRect(81, 248, 74, 94));
                     // JUMP LIGHT
                     _animationRect.Add("jumpLight", new IntRect(22, 498, 55, 84));
                     // CROUCH LIGHT
@@ -95,26 +96,27 @@ namespace Model
                     _animationRect.Add("jump2", new IntRect(732, 15, 39, 115));
                     _animationRect.Add("jump3", new IntRect(732, 15, 39, 115));
                     // LIGHT PUNCH
-                    _animationRect.Add("lightPunch1", new IntRect(5, 137, 55, 93));
-                    _animationRect.Add("lightPunch2", new IntRect(64, 137, 74, 93));
+                    _animationRect.Add("lightPunch1", new IntRect(4, 156, 66, 99));
+                    _animationRect.Add("lightPunch2", new IntRect(79, 156, 82, 99));
                     // LIGHT KICK
-                    _animationRect.Add("lightKick1", new IntRect(5, 248, 68, 94));
-                    _animationRect.Add("lightKick2", new IntRect(81, 248, 74, 94));
+                    _animationRect.Add("lightKick1", new IntRect(83, 404, 63, 112));
+                    _animationRect.Add("lightKick2", new IntRect(154, 404, 58, 112));
+                    _animationRect.Add("lightKick3", new IntRect(224, 404, 97, 112));
                     // JUMP LIGHT
-                    _animationRect.Add("jumpLight", new IntRect(22, 498, 55, 84));
+                    _animationRect.Add("jumpLight", new IntRect(64, 726, 69, 88));
                     // CROUCH LIGHT
-                    _animationRect.Add("crouchLight1", new IntRect(5, 377, 47, 93));
-                    _animationRect.Add("crouchLight2", new IntRect(63, 377, 67, 93));
+                    _animationRect.Add("crouchLight1", new IntRect(72, 537, 57, 59));
+                    _animationRect.Add("crouchLight2", new IntRect(136, 537, 77, 59));
                     // FACE HIT
-                    _animationRect.Add("faceHit1", new IntRect(196, 851, 44, 100));
-                    _animationRect.Add("faceHit2", new IntRect(252, 851, 46, 100));
-                    _animationRect.Add("faceHit3", new IntRect(301, 851, 49, 100));
+                    _animationRect.Add("faceHit1", new IntRect(219, 1109, 50, 108));
+                    _animationRect.Add("faceHit2", new IntRect(280, 1109, 57, 108));
+                    _animationRect.Add("faceHit3", new IntRect(346, 1109, 58, 108));
                     // CROUCH HIT
-                    _animationRect.Add("crouchHit", new IntRect(358, 855, 49, 93));
+                    _animationRect.Add("crouchHit", new IntRect(666, 619, 55, 64));
                     // KO
-                    _animationRect.Add("ko1", new IntRect(7, 986, 42, 93));
-                    _animationRect.Add("ko2", new IntRect(61, 986, 62, 93));
-                    _animationRect.Add("ko3", new IntRect(132, 986, 70, 98));
+                    _animationRect.Add("ko1", new IntRect(182, 1257, 64, 101));
+                    _animationRect.Add("ko2", new IntRect(254, 1257, 71, 101));
+                    _animationRect.Add("ko3", new IntRect(460, 1313, 88, 44));
 
                     character = CreateCharacter("Sagat", "sagat.png", _animationRect, new Vector2f(5, 5));
                     return character;

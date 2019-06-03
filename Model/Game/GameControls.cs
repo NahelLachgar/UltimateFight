@@ -27,7 +27,7 @@ namespace Model
             {
                 _game._fighter1._sprite.Position = new Vector2f(_game._fighter1._sprite.Position.X, _game._stage._groundHeight - _game._fighter1._sprite.TextureRect.Height * _game._fighter1._sprite.Scale.Y);
             }
-
+            
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             // LEFT TO THE RIGHT 
             if (_game._fighter1._sprite.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
@@ -123,6 +123,7 @@ namespace Model
             // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.Crouch();
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _game._fighter1.Jump();
+                
 
             _game._fighter1.Update();
             _game._fighter2.Update();
@@ -155,6 +156,7 @@ namespace Model
             //  if ( Keyboard.IsKeyPressed(Keyboard.Key.P) ) _game._fighter1.TakeDammage(1, "low");
             if (Keyboard.IsKeyPressed(Keyboard.Key.O)) _game._fighter1._health = 100;
             if (Keyboard.IsKeyPressed(Keyboard.Key.I)) _game._fighter1.GainEnergy(1);
+            if (Keyboard.IsKeyPressed(Keyboard.Key.P)) _game._fighter1.TakeDammage(1, "low");
 
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.M)) _game._fighter2.TakeDammage(1, "low");
