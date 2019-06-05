@@ -166,7 +166,7 @@ namespace Model
                     // LIGHT KICK
                     _animationRect.Add("lightKick1", new IntRect(4, 244, 62, 90));
                     _animationRect.Add("lightKick2", new IntRect(76, 243, 65, 91));
-                    _animationRect.Add("lightKick3", new IntRect(149, 244, 68, 90));
+                    _animationRect.Add("lightKick3", new IntRect(440, 244, 80, 90));
                     // JUMP LIGHT
                     _animationRect.Add("jumpLight", new IntRect(77, 468, 59, 75));
                     // CROUCH LIGHT
