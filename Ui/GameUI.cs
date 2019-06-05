@@ -24,6 +24,7 @@ namespace UI
             window.Draw(_game._fighter2._sprite);
             window.Draw(_game._fighter1._shadow);
             window.Draw(_game._fighter1._sprite);
+            window.Draw(_game._fighter1._projectile);
             //_game.GameEndMenu.Draw(window);
             _game._userInterface.Draw(window);
         }

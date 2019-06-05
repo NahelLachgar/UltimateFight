@@ -6,7 +6,6 @@ namespace Model
 {
     static public class Client
     {
-
         static public void SendKey(string key)
         {
             UdpClient _udpClient = new UdpClient();

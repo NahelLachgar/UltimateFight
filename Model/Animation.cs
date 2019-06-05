@@ -27,7 +27,6 @@ namespace Model
             _animationRect = animationRect;
         }
 
-
         public void Waiting()
         {
             switch (_spriteNb)
@@ -254,9 +253,11 @@ namespace Model
                     break;
                 case 120:
                     this._sprite.TextureRect = _animationRect["crouchLight2"];
+                    this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 240:
                     this._sprite.TextureRect = _animationRect["crouchLight1"];
+                    this._hitbox.Size = new Vector2f(0f, 0f);
                     break;
                 case 360:
                     this._sprite.TextureRect = _animationRect["crouch2"];
@@ -405,41 +406,5 @@ namespace Model
            // }
         }
 
-        // ===============================================
-        // SPECIAL MOVE
-        // ===============================================
-
-        public bool Special()
-        {
-            _p++;
-            switch (_p)
-            {
-                case 0:
-                    _c = 0;
-                    this._sprite.TextureRect = new IntRect(8, 612, 53, 94);
-                    this._sprite.Position += new Vector2f(80f, 0f);
-                    break;
-                case 150:
-                    this._sprite.TextureRect = new IntRect(70, 612, 60, 94);
-                    this._sprite.Position += new Vector2f(80f, 0f);
-                    break;
-                case 300:
-                    this._sprite.TextureRect = new IntRect(139, 612, 118, 94);
-                    this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
-                    this._sprite.Position += new Vector2f(80f, 0f);
-                    break;
-                case 450:
-                    this._sprite.TextureRect = new IntRect(262, 612, 61, 94);
-
-                    this._hitbox.Size = new Vector2f(0, 0);
-                    this._sprite.Position += new Vector2f(80f, 0f);
-                    break;
-                case 650:
-                    this._sprite.TextureRect = new IntRect(327, 612, 48, 94);
-                    _p = -1;
-                    return false;
-            }
-            return true;
-        }
     }// DONT TOUCH
 }
