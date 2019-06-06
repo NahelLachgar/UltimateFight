@@ -28,6 +28,7 @@ namespace UI
             _game._userInterface.Draw(window);
         }
 
+
         public void Update(RenderWindow window)
         {
             _game.Update(window);

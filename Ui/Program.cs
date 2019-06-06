@@ -29,15 +29,18 @@ namespace UI
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
 
-                    _cs.State = new GameUI(game);
-                    //_cs.State = new MenuUI(menus);
+
+                    //_cs.State = new GameUI(game);
+                    _cs.State = new MenuUI(menus);
                     _cs.Update(window);
                     _cs.Draw(window);
                     window.Display();
 
                     //Event for close the program
 
+
                     if (Keyboard.IsKeyPressed(Keyboard.Key.F4)) window.Close();
+
 
                     window.Closed += new EventHandler(OnClose);
                     void OnClose(object sender, EventArgs e)

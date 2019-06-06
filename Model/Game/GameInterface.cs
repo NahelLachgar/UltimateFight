@@ -47,8 +47,6 @@ namespace Model
 
         //Stream s = typeof(GameInterface).Assembly.GetManifestResourcestream("Ui.Resources.space_ranger.spaceranger.ttf");
 
-
-
         public GameInterface(RenderWindow window, Clock clock)
         {
             _clock = clock;

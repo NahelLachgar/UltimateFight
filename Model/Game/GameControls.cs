@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace Model
 {
     public class GameControls
@@ -17,12 +16,13 @@ namespace Model
 
         public void Update(string key = null)
         {
-            /*if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey("Z");
             if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");*/
+            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");
+
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
@@ -30,7 +30,9 @@ namespace Model
             if (_game._fighter1._sprite.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
+                if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
+
+               // if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
 
@@ -42,7 +44,7 @@ namespace Model
                     {
                         if (_game._fighter2.TakeDammage(10, "low") == true)
                         {
-                            _game._fighter1.GainEnergy(25);
+                            _game._fighter1.GainEnergy(10);
                         }
                     }
                 }
@@ -55,7 +57,7 @@ namespace Model
                     {
                         if (_game._fighter2.TakeDammage(15, "low") == true)
                         {
-                            _game._fighter1.GainEnergy(25);
+                            _game._fighter1.GainEnergy(10);
                         }
                     }
                 }
@@ -66,7 +68,7 @@ namespace Model
                     _game._fighter1.Special();
                     if (_game._fighter1._hitbox.Position.X + _game._fighter1._hitbox.Size.X * _game._fighter1._hitbox.Scale.X > _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
                     {
-                        _game._fighter2.TakeDammage(100, "low");
+                        _game._fighter2.TakeDammage(15, "low");
                     }
                 }
 

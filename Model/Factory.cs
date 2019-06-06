@@ -8,14 +8,14 @@ namespace Model
 {
     public static class Factory
     {
-        static public Character CreateCharacter(string name, string img, IntRect rect, Vector2f scale)
+        static public Character CreateCharacter(string name, string img, Dictionary<string, IntRect> animationSprite, Vector2f scale)
         {
             Texture texture = new Texture("../../../../img/characters/" + img);
             texture.Smooth = true;
             Sprite sprite = new Sprite(texture);
             sprite.Scale = scale;
-            sprite.TextureRect = new IntRect(rect.Left, rect.Top, rect.Width, rect.Height);
-            Character character = new Character(name, sprite);
+        //    sprite.TextureRect = new IntRect(rect.Left, rect.Top, rect.Width, rect.Height);
+            Character character = new Character(name, sprite, animationSprite);
             return character;
         }
 
@@ -34,7 +34,51 @@ namespace Model
             switch (name)
             {
                 case "balrog":
-                    Character character = CreateCharacter("Balrog", "balrog.png", new IntRect(4, 17, 45, 93), new Vector2f(5, 5));
+                    Dictionary<string, IntRect> _animationRect = new Dictionary<string, IntRect>();
+                    // WAITING
+                    _animationRect.Add("waiting1", new IntRect(4, 17, 45, 93));
+                    _animationRect.Add("waiting2", new IntRect(57, 17, 45, 93));
+                    _animationRect.Add("waiting3", new IntRect(112, 17, 45, 93));
+                    _animationRect.Add("waiting4", new IntRect(168, 17, 45, 93));
+                    // WALKING
+                    _animationRect.Add("walking1", new IntRect(227, 17, 45, 93));
+                    _animationRect.Add("walking2", new IntRect(281, 17, 45, 93));
+                    _animationRect.Add("walking3", new IntRect(337, 17, 45, 93));
+                    _animationRect.Add("walking4", new IntRect(394, 17, 45, 93));
+                    // CROUCH
+                    _animationRect.Add("crouch1", new IntRect(786, 17, 45, 93));
+                    _animationRect.Add("crouch2", new IntRect(837, 17, 43, 93));
+                    // JUMP
+                    _animationRect.Add("jump1", new IntRect(733, 17, 43, 93));
+                    _animationRect.Add("jump2", new IntRect(594, 17, 38, 93));
+                    _animationRect.Add("jump3", new IntRect(641, 17, 39, 93));
+                    // LIGHT PUNCH
+                    _animationRect.Add("lightPunch1", new IntRect(5, 137, 55, 93));
+                    _animationRect.Add("lightPunch2", new IntRect(64, 137, 74, 93));
+                    // LIGHT KICK
+                    _animationRect.Add("lightKick1", new IntRect(5, 248, 68, 94));
+                    _animationRect.Add("lightKick2", new IntRect(81, 248, 74, 94));
+                    // JUMP LIGHT
+                    _animationRect.Add("jumpLight", new IntRect(22, 498, 55, 84));
+                    // CROUCH LIGHT
+                    _animationRect.Add("crouchLight1", new IntRect(5, 377, 47, 93));
+                    _animationRect.Add("crouchLight2", new IntRect(63, 377, 67, 93));
+                    // FACE HIT
+                    _animationRect.Add("faceHit1", new IntRect(196, 851, 44, 100));
+                    _animationRect.Add("faceHit2", new IntRect(252, 851, 46, 100));
+                    _animationRect.Add("faceHit3", new IntRect(301, 851, 49, 100));
+                    // CROUCH HIT
+                    _animationRect.Add("crouchHit", new IntRect(358, 855, 49, 93));
+                    // KO
+                    _animationRect.Add("ko1", new IntRect(7, 986, 42, 93));
+                    _animationRect.Add("ko2", new IntRect(61, 986, 62, 93));
+                    _animationRect.Add("ko3", new IntRect(132, 986, 70, 98));
+
+
+
+
+
+                    Character character = CreateCharacter("Balrog", "balrog.png", _animationRect, new Vector2f(5, 5));
                     return character;
                 default:
                     return null;
@@ -46,7 +90,7 @@ namespace Model
             switch (name)
             {
                 case "stage1":
-                    Stage stage = CreateStage("stage1", "stage1.jpg", 500);
+                    Stage stage = CreateStage("stage1", "stage1.jpg", 580);
                     return stage;
                 default:
                     return null;
