@@ -28,6 +28,7 @@ namespace Model
                this.SelectOption(window);
                 this.RedirectionMenu(mainMenu, startGame, window);
             }
+            _avatars.Update();
         }
 
         public void Draw(MainMenu mainMenu, StartGame startGame, RenderWindow window)
@@ -36,8 +37,9 @@ namespace Model
             window.Draw(_imgBackGround);
             foreach ( CircleShape value in _buttons.Values ) window.Draw(value);
             foreach ( CircleShape value in _avatars.Avatars ) window.Draw(value);
-            window.Draw(_avatars.ttt);
-            window.Draw(_avatars.aaa);
+
+            window.Draw(_avatars.ImgPlayer1);
+            window.Draw(_avatars.ImgPlayer2);
         }
 
 

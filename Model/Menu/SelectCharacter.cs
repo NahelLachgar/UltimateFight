@@ -9,54 +9,60 @@ namespace Model
 {
     internal class SelectCharacter
     {
-        string CharacterPlayer1 = "Balrog";
-        string CharacterPlayer2 = "Ryu";
+        string _characterPlayer1 = "Sagat";
+        string _characterPlayer2 = "Bison";
         AvatarCharacter _img = new AvatarCharacter();
         List<CircleShape> _avatars = new List<CircleShape>();
-        public RectangleShape test = new RectangleShape();
-        public ConvexShape ttt = new ConvexShape();
-        public ConvexShape aaa = new ConvexShape();
+
+        private ConvexShape _imgPlayer1 = new ConvexShape();
+        private ConvexShape _imgPlayer2 = new ConvexShape();
 
         internal SelectCharacter()
         {
             _avatars = CreateAvatars();
+        }
 
+        internal void Update()
+        {
+            ImgChararctersConstruction();
+            
+        }
 
+        private void ImgChararctersConstruction()
+        {
+            if ( _characterPlayer1 != string.Empty )
+            {
+                _imgPlayer1.SetPointCount(9);
+                _imgPlayer1.SetPoint(0, new Vector2f(125f, 15f));
+                _imgPlayer1.SetPoint(1, new Vector2f(575f, 15f));
+                _imgPlayer1.SetPoint(2, new Vector2f(370f, 760f));
+                _imgPlayer1.SetPoint(3, new Vector2f(345f, 760f));
+                _imgPlayer1.SetPoint(4, new Vector2f(325f, 800f));
+                _imgPlayer1.SetPoint(5, new Vector2f(329f, 760f));
+                _imgPlayer1.SetPoint(6, new Vector2f(267f, 760f));
+                _imgPlayer1.SetPoint(7, new Vector2f(298f, 898f));
+                _imgPlayer1.SetPoint(8, new Vector2f(-155f, 898f));
 
-            ttt.SetPointCount(9);
-            ttt.SetPoint(0, new Vector2f(125f, 15f));
-            ttt.SetPoint(1, new Vector2f(575f, 15f));
-            ttt.SetPoint(2, new Vector2f(370f, 760f));
+                _imgPlayer1.Position = new Vector2f(900f, 0f);
+                _imgPlayer1.Texture = _img.Character[_characterPlayer1];
+                _imgPlayer1.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Character[_characterPlayer1].Size.X), Convert.ToInt32(_img.Character[_characterPlayer1].Size.Y));
+            }
 
-            ttt.SetPoint(3, new Vector2f(345f, 760f));
-            ttt.SetPoint(4, new Vector2f(325f, 800f));
-            ttt.SetPoint(5, new Vector2f(329f, 760f));
+            if ( _characterPlayer2 != string.Empty )
+            {
+                _imgPlayer2.SetPointCount(7);
+                _imgPlayer2.SetPoint(0, new Vector2f(130f, 15f));
+                _imgPlayer2.SetPoint(1, new Vector2f(490f, 15f));
+                _imgPlayer2.SetPoint(2, new Vector2f(490f, 330f));
+                _imgPlayer2.SetPoint(3, new Vector2f(345f, 898f));
+                _imgPlayer2.SetPoint(4, new Vector2f(-50f, 898f));
+                _imgPlayer2.SetPoint(5, new Vector2f(-50f, 758f));
+                _imgPlayer2.SetPoint(6, new Vector2f(-95f, 758f));
 
-            ttt.SetPoint(6, new Vector2f(267f, 760f));
-            ttt.SetPoint(7, new Vector2f(298f, 898f));
-            ttt.SetPoint(8, new Vector2f(-155f, 898f));
-
-            //ttt.FillColor = Color.Cyan;
-            ttt.Position = new Vector2f(900f, 0f);
-            ttt.Texture = _img.Character[CharacterPlayer1];
-            ttt.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Character[CharacterPlayer1].Size.X), Convert.ToInt32(_img.Character[CharacterPlayer1].Size.Y));
-
-
-
-            aaa.SetPointCount(7);
-            aaa.SetPoint(0, new Vector2f(130f, 15f));
-            aaa.SetPoint(1, new Vector2f(490f, 15f));
-            aaa.SetPoint(2, new Vector2f(490f, 330f));
-
-            aaa.SetPoint(3, new Vector2f(345f, 898f));
-            aaa.SetPoint(4, new Vector2f(-50f, 898f));
-            aaa.SetPoint(5, new Vector2f(-50f, 758f));
-            aaa.SetPoint(6, new Vector2f(-95f, 758f));
-
-            //aaa.FillColor = Color.Cyan;
-            aaa.Position = new Vector2f(1428f, 0f);
-            aaa.Texture = _img.Character[CharacterPlayer2];
-            aaa.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Character[CharacterPlayer2].Size.X), Convert.ToInt32(_img.Character[CharacterPlayer2].Size.Y));
+                _imgPlayer2.Position = new Vector2f(1428f, 0f);
+                _imgPlayer2.Texture = _img.Character[_characterPlayer2];
+                _imgPlayer2.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Character[_characterPlayer2].Size.X), Convert.ToInt32(_img.Character[_characterPlayer2].Size.Y));
+            }
         }
 
         private List<CircleShape> CreateAvatars()
@@ -80,6 +86,17 @@ namespace Model
             shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Ryu"].Size.X), Convert.ToInt32(_img.Avatar["Ryu"].Size.Y));
             circleShape.Add(shape);
 
+            shape = ( ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(465f, 179f), Color.Transparent, Color.White) );
+            shape.Texture = _img.Avatar["Bison"];
+            shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Bison"].Size.X), Convert.ToInt32(_img.Avatar["Bison"].Size.Y));
+            circleShape.Add(shape);
+
+            shape = ( ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(608f, 179f), Color.Transparent, Color.White) );
+            shape.Texture = _img.Avatar["Sagat"];
+            shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Sagat"].Size.X), Convert.ToInt32(_img.Avatar["Sagat"].Size.Y));
+            circleShape.Add(shape);
+
+
             // Ligne impair
             circleShape.Add(ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(102f, 304f), Color.Transparent));
 
@@ -95,6 +112,9 @@ namespace Model
             return shape;
         }
 
+        internal ConvexShape ImgPlayer1 => _imgPlayer1;
+
+        internal ConvexShape ImgPlayer2 => _imgPlayer2;
 
         internal List<CircleShape> Avatars => _avatars;
 

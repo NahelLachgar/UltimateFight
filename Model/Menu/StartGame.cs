@@ -14,6 +14,7 @@ namespace Model
         internal RectangleShape _blackBackMenu;
         internal int _chooseOptionMenu = -1;
         CharacterMenu _characterMenu = new CharacterMenu();
+        OnlineMenu _onlineMenu = new OnlineMenu();
 
         public StartGame()
         {
@@ -115,7 +116,7 @@ namespace Model
                     break;
 
                 case 2:  // Mode online
-                    _characterMenu.Draw(mainMenu, this, window);
+                    _onlineMenu.Draw(mainMenu, this, window);
                     break;
 
                 case 3:  // Option : "Retour" 

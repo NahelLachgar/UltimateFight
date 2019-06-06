@@ -24,6 +24,8 @@ namespace Model
             load.Add("Chunli", new Texture("../../../../img/Characters/Avatar/Character/Chunli.png"));
             load.Add("Balrog", new Texture("../../../../img/Characters/Avatar/Character/Balrog.png"));
             load.Add("Ryu", new Texture("../../../../img/Characters/Avatar/Character/Ryu.png"));
+            load.Add("Bison", new Texture("../../../../img/Characters/Avatar/Character/Bison.png"));
+            load.Add("Sagat", new Texture("../../../../img/Characters/Avatar/Character/Sagat.png"));
 
             return load;
         }
@@ -35,6 +37,8 @@ namespace Model
             load.Add("Chunli", new Texture("../../../../img/Characters/Avatar/Avatar/Chunli.png"));
             load.Add("Balrog", new Texture("../../../../img/Characters/Avatar/Avatar/Balrog.png"));
             load.Add("Ryu", new Texture("../../../../img/Characters/Avatar/Avatar/Ryu.png"));
+            load.Add("Bison", new Texture("../../../../img/Characters/Avatar/Avatar/Bison.gif"));
+            load.Add("Sagat", new Texture("../../../../img/Characters/Avatar/Avatar/Sagat.png"));
 
             return load;
         }
