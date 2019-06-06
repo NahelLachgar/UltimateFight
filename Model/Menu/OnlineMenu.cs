@@ -14,6 +14,7 @@ namespace Model
         private RectangleShape _backLobby;
         private Text _textButtonLobby;
         private Text _textTitleLobby;
+        internal int _chooseOptionMenu = -1;
 
         internal OnlineMenu()
         {
@@ -35,13 +36,35 @@ namespace Model
         }
 
 
-        internal void Update()
+        internal void Update(RenderWindow window)
         {
+            if(_imgButtons.GetGlobalBounds().Contains(Mouse.GetPosition(window).X, Mouse.GetPosition(window).Y ) )
+            {
+                _imgButtons.Color = new Color(_imgButtons.Color.R, _imgButtons.Color.G, _imgButtons.Color.B, 130);
+                _textButtonLobby.FillColor = new Color(_textButtonLobby.FillColor.R, _textButtonLobby.FillColor.G, _textButtonLobby.FillColor.B, 120);
+
+
+                if ( Mouse.IsButtonPressed(Mouse.Button.Left) )
+                {
+                    _chooseOptionMenu = 0;
+                    Console.WriteLine("Option Online Menu : \"Héberger une partie\" choisis.");
+                }
+            }
+            else
+            {
+                _imgButtons.Color = new Color(_imgButtons.Color.R, _imgButtons.Color.G, _imgButtons.Color.B, 255);
+                _textButtonLobby.FillColor = new Color(_textButtonLobby.FillColor.R, _textButtonLobby.FillColor.G, _textButtonLobby.FillColor.B, 255);
+
+            }
+
+            if ( _chooseOptionMenu == 0 ) this.ActionButtonLobby();
 
         }
 
+
         internal void Draw(MainMenu mainMenu, StartGame startGame, RenderWindow window)
         {
+            this.Update(window);
             window.Draw(_imgBackGround);
             window.Draw(_backLobby);
             window.Draw(_imgButtons);
@@ -49,6 +72,10 @@ namespace Model
             window.Draw(_textTitleLobby);
         }
 
+        private void ActionButtonLobby()
+        {
+            throw new NotImplementedException();
+        }
 
         private Sprite CreateImgBackGround()
         {
@@ -96,5 +123,7 @@ namespace Model
 
             return text;
         }
+
+
     }
 }
