@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Model
 {
-    internal class OnlineMenu
+    public class OnlineMenu
     {
         private Sprite _imgBackGround;
         private Sprite _imgButtons;
@@ -15,6 +15,8 @@ namespace Model
         private Text _textButtonLobby;
         private Text _textTitleLobby;
         internal int _chooseOptionMenu = -1;
+        private Sprite _returnButton;
+        private Text _textReturnButton;
 
         internal OnlineMenu()
         {
@@ -33,10 +35,24 @@ namespace Model
 
             _textTitleLobby = this.CreateTextTitleLobby();
 
+            _returnButton = new Sprite(new Texture("../../../../img/Menu/return_button.png"))
+            {
+                Scale = new Vector2f(0.35f, 0.25f),
+                Position = new Vector2f(55f, 890f)
+            };
+
+            _textReturnButton = new Text()
+            {
+                Style = Text.Styles.Regular,
+                Font = new Font("../../../../Ui/Resources/Fonts/Cocogoose/CocogooseBold.ttf"),
+                CharacterSize = 30,
+                DisplayedString = "Retour",
+                Position = new Vector2f(95f, 900f),
+            };
         }
 
 
-        internal void Update(RenderWindow window)
+        internal void Update(MainMenu mainMenu, StartGame startGame, RenderWindow window)
         {
             if(_imgButtons.GetGlobalBounds().Contains(Mouse.GetPosition(window).X, Mouse.GetPosition(window).Y ) )
             {
@@ -59,17 +75,28 @@ namespace Model
 
             if ( _chooseOptionMenu == 0 ) this.ActionButtonLobby();
 
+            if ( _returnButton.GetGlobalBounds().Contains(Mouse.GetPosition(window).X, Mouse.GetPosition(window).Y) && Mouse.IsButtonPressed(Mouse.Button.Left) ) _chooseOptionMenu = 1;
+
+            if(_chooseOptionMenu == 1)
+            {
+                startGame._chooseOptionMenu = -1;
+                mainMenu._chooseOptionMenu = -1;
+                this._chooseOptionMenu = -1;
+            }
+
         }
 
 
         internal void Draw(MainMenu mainMenu, StartGame startGame, RenderWindow window)
         {
-            this.Update(window);
+            this.Update(mainMenu, startGame, window);
             window.Draw(_imgBackGround);
             window.Draw(_backLobby);
             window.Draw(_imgButtons);
             window.Draw(_textButtonLobby);
             window.Draw(_textTitleLobby);
+            window.Draw(_returnButton);
+            window.Draw(_textReturnButton);
         }
 
         private void ActionButtonLobby()

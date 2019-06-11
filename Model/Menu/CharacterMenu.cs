@@ -12,7 +12,7 @@ namespace Model
         Sprite _imgBackGround;
         SelectCharacter _avatars = new SelectCharacter();
         Dictionary<int, CircleShape> _buttons;
-        int _chooseOptionMenu = -1;
+        public int _chooseOptionMenu = -1;
 
 
         public CharacterMenu()
@@ -26,9 +26,9 @@ namespace Model
             if ( _chooseOptionMenu == -1 )
             {
                this.SelectOption(window);
-                this.RedirectionMenu(mainMenu, startGame, window);
+               this.RedirectionMenu(mainMenu, startGame, window);
             }
-            _avatars.Update();
+            _avatars.Update(window);
         }
 
         public void Draw(MainMenu mainMenu, StartGame startGame, RenderWindow window)
@@ -103,9 +103,15 @@ namespace Model
                     this._chooseOptionMenu = -1;
                     startGame._chooseOptionMenu = -1;
                     mainMenu._chooseOptionMenu = -1;
+                    _avatars._characterPlayer1 = string.Empty;
+                    _avatars._characterPlayer2 = string.Empty;
                     break;
 
                 case 1:  // Button "Random Character"
+                    Random random = new Random();
+
+                    _avatars._characterPlayer1 = _avatars._nameAvatars[random.Next(0, 5)];
+                    _avatars._characterPlayer2 = _avatars._nameAvatars[random.Next(0, 5)];
                     break;
 
                 case 2:  // Button "Next"

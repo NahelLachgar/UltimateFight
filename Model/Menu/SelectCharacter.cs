@@ -4,15 +4,17 @@ using System.Text;
 using Model;
 using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
 
 namespace Model
 {
-    internal class SelectCharacter
+    public class SelectCharacter
     {
-        string _characterPlayer1 = "Sagat";
-        string _characterPlayer2 = "Bison";
+        public string _characterPlayer1 = string.Empty;
+        public string _characterPlayer2 = string.Empty;
         AvatarCharacter _img = new AvatarCharacter();
         List<CircleShape> _avatars = new List<CircleShape>();
+        public List<string> _nameAvatars = new List<string>();
 
         private ConvexShape _imgPlayer1 = new ConvexShape();
         private ConvexShape _imgPlayer2 = new ConvexShape();
@@ -20,12 +22,33 @@ namespace Model
         internal SelectCharacter()
         {
             _avatars = CreateAvatars();
+            _nameAvatars = CreateNameAvatars();
         }
 
-        internal void Update()
+
+        internal void Update(RenderWindow window)
         {
             ImgChararctersConstruction();
-            
+            Vector2i mousePosition = Mouse.GetPosition(window);
+
+            for ( byte i = 0; i <= _avatars.Count-2 ; i++ )
+            {
+                if ( _avatars[i].GetGlobalBounds().Contains(mousePosition.X, mousePosition.Y) )
+                {
+                    if ( Mouse.IsButtonPressed(Mouse.Button.Left) )
+                    {
+
+                        if ( _characterPlayer1 == string.Empty )
+                        { _characterPlayer1 = _nameAvatars[i]; window.WaitAndDispatchEvents(); window.WaitAndDispatchEvents(); }
+
+                        else if ( _characterPlayer1 != string.Empty ) _characterPlayer2 = _nameAvatars[i];
+
+                        Console.WriteLine("Héros 1 : " + _characterPlayer1 );
+                        Console.WriteLine("Héros 2 : " + _characterPlayer2 );
+                    }
+                }
+            }
+
         }
 
         private void ImgChararctersConstruction()
@@ -75,7 +98,6 @@ namespace Model
             shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Balrog"].Size.X), Convert.ToInt32(_img.Avatar["Balrog"].Size.Y));
             circleShape.Add(shape);
 
-
             shape = (ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(174f, 179f), Color.Transparent, Color.White));
             shape.Texture = _img.Avatar["Chunli"];
             shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Chunli"].Size.X), Convert.ToInt32(_img.Avatar["Chunli"].Size.Y));
@@ -119,7 +141,18 @@ namespace Model
         internal List<CircleShape> Avatars => _avatars;
 
 
+        private List<string> CreateNameAvatars()
+        {
+            List<string> NameAvatar = new List<string>();
 
+            NameAvatar.Add("Balrog");
+            NameAvatar.Add("Chunli");
+            NameAvatar.Add("Ryu");
+            NameAvatar.Add("Bison");
+            NameAvatar.Add("Sagat");
+
+            return NameAvatar;
+        }
 
 
 

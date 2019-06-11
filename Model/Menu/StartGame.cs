@@ -13,8 +13,8 @@ namespace Model
         internal RectangleShape _whiteBackMenu;
         internal RectangleShape _blackBackMenu;
         internal int _chooseOptionMenu = -1;
-        CharacterMenu _characterMenu = new CharacterMenu();
-        OnlineMenu _onlineMenu = new OnlineMenu();
+        public CharacterMenu _characterMenu = new CharacterMenu();
+        public OnlineMenu _onlineMenu = new OnlineMenu();
 
         public StartGame()
         {

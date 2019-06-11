@@ -29,9 +29,10 @@ namespace UI
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
 
-
-                    //_cs.State = new GameUI(game);
                     _cs.State = new MenuUI(menus);
+                    if ( menus._startGame._characterMenu._chooseOptionMenu == 2 ) _cs.State = new GameUI(game);
+                    //_cs.State = new GameUI(game);
+
                     _cs.Update(window);
                     _cs.Draw(window);
                     window.Display();
