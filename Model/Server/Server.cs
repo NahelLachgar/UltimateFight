@@ -11,45 +11,55 @@ namespace Model
         public Game _game;
         internal static Thread _ListenTh;
         internal static bool _isListening = true;
-       // internal UdpClient _server;
+        IPAddress _ipAd;
+        TcpListener _server;
+        Socket _s;
 
 
-        public Server(Game game)
+        public Server(Game game, string hostIP)
         {
             _game = game;
+            _ipAd = IPAddress.Parse(hostIP);
+            _server = new TcpListener(_ipAd, 8001);
+
             //_server = new UdpClient(5035);
 
         }
-
-        internal void StartServer()
+        internal void Start()
         {
-            //Préparation et démarrage du thread en charge d'écouter.
-            _ListenTh = new Thread(new ThreadStart(Listen));
-            _ListenTh.Start();
+            _server.Start();
+            //s.RemoteEndPoint)
         }
 
-        internal void Listen()
-        {
-            UdpClient _server = new UdpClient(5035);
 
-            //Création d'une boucle infinie qui aura pour tâche d'écouter.
-            while (_isListening)
-            {
-                //On crée le serveur en lui spécifiant le port sur lequel il devra écouter.
-
-                //Création d'un objet IPEndPoint qui recevra les données du Socket distant.
-                IPEndPoint client = null;
-                //On écoute jusqu'à recevoir un message.
-                byte[] data = _server.Receive(ref client);
-               string key = Encoding.Default.GetString(data);
-                Send(key);
-            }
-        }
-        internal void Send(string key)
+        internal void Receive()
         {
-            _game._controls.Update(key);
-            Thread.Sleep(1);
-            Console.WriteLine(key);
+
+            _s = _server.AcceptSocket();
+
+
+            byte[] b = new byte[100];
+
+            int k = _s.Receive(b);
+                for (int i = 0; i < k; i++)
+                    Console.Write(Convert.ToChar(b[i]));
+
+                ASCIIEncoding asen = new ASCIIEncoding();
+
+
+
+            //Send a message to the client
+            _s.Send(asen.GetBytes("The string was recieved by the server."));
+            _game._controls.Update("Q");
+            
         }
+
+        internal void Stop()
+        {
+            /* clean up */
+            _s.Close();
+            _server.Stop();
+        }
+
     }
 }

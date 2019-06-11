@@ -6,28 +6,25 @@ namespace Model
 { 
     public class User
     {
-        uint _wins;
-        uint _loses;
-        string _name;
+        internal string _name;
+        internal string _ip;
 
-        internal User(string name)
+        internal User(string name, string ip)
         {
-            _wins = 0;
-            _loses = 0;
             _name = name;
+            _ip = ip;
         }
 
-        internal string Name => _name;
-
-        internal uint Wins
+        internal string Name
         {
-            get { return _wins; }
-            set { _wins = value; }
+            get { return _name; }
+            set { _name = value; }
         }
-        internal uint Loses
+
+        internal string Ip
         {
-            get { return _loses; }
-            set { _loses = value; }
+            get { return _ip; }
+            set { _ip = value; }
         }
     }
 }

@@ -4,7 +4,6 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace Model
 {
     public class Game
@@ -40,10 +39,9 @@ namespace Model
         //public GameEndMenu GameEndMenu = new GameEndMenu();       
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
         {
-            _server = new Server (this);
-            _server.StartServer();
-            if (host != null) _host = host;
-            else _host = "192.168.0.37";
+            _server = new Server (this, "127.0.0.1");
+            _server.Start();
+            
 
              _timer = timer;
             _fighter1 = fighter1;
