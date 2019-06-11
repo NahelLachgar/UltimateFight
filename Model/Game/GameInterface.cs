@@ -144,7 +144,6 @@ namespace Model
                     Position = new Vector2f(_windowX - _BackEnergyBar1.Position.X , _BackEnergyBar1.Position.Y),
                     Scale = new Vector2f(-1f, 1f),
                 };
-                Console.WriteLine(_BackEnergyBar2.Position.X);
                 _gameInterface.Add(_EnergyBar1);  // Element 6
                 _gameInterface.Add(_EnergyBar2);  // Element 7
                 _gameInterface.Add(_BackEnergyBar1);  // Element 8
