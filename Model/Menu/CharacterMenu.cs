@@ -10,7 +10,7 @@ namespace Model
     public class CharacterMenu
     {
         Sprite _imgBackGround;
-        SelectCharacter _avatars = new SelectCharacter();
+        public SelectCharacter _avatars = new SelectCharacter();
         Dictionary<int, CircleShape> _buttons;
         public int _chooseOptionMenu = -1;
 

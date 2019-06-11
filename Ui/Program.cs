@@ -21,8 +21,10 @@ namespace UI
 
             {
                 //MainMenu mainMenu = new MainMenu(window);
+                bool _gameCreate = false;
                 Menus menus = new Menus(window);
-                Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("balrog"), Factory.NewStage("stage1"), window);
+                //Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("sagat"), Factory.NewStage("stage1"), window);
+                Game game = null;
 
                 while (window.IsOpen)
                 {
@@ -30,7 +32,19 @@ namespace UI
                     window.DispatchEvents();
 
                     _cs.State = new MenuUI(menus);
-                    if ( menus._startGame._characterMenu._chooseOptionMenu == 2 ) _cs.State = new GameUI(game);
+                    if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
+                    {
+                        if ( _gameCreate == false )
+                        {
+                            game = new Game(new Time(), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer1.ToLower()), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer2.ToLower()), Factory.NewStage("stage1"), window);
+                            _gameCreate = true;
+
+                        }
+
+                        _cs.State = new GameUI(game);
+                    }
+
+
                     //_cs.State = new GameUI(game);
 
                     _cs.Update(window);

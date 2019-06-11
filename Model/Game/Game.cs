@@ -4,6 +4,7 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UI;
 
 namespace Model
 {
@@ -16,8 +17,8 @@ namespace Model
         public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
-        internal uint _player1Win = 0;
-        internal uint _player2Win = 0;
+        public uint _player1Win = 0;
+        public uint _player2Win = 0;
         internal float _timeBeforeResetRound = -4f;
         public Character _fighter1;
         public Character _fighter2;
@@ -38,7 +39,7 @@ namespace Model
         public UserInterface _userInterface;
         int _groundHeight;
 
-        //public GameEndMenu GameEndMenu = new GameEndMenu();       
+        public GameEndMenu GameEndMenu = new GameEndMenu();       
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
         {
             _server = new Server (this);
@@ -91,7 +92,7 @@ namespace Model
             _controls.Update();
             _window.Size = window.Size;
 
-            if (_startRound == true && _clock.ElapsedTime.AsSeconds() > _timeBeforeResetRound + 4f)
+            if (_startRound == true && _clock.ElapsedTime.AsSeconds() > _timeBeforeResetRound + 3f)
             {
                 _userInterface = new UserInterface(this);
                 _fighter1 = new Character(_fighter1.Name, _fighter1._sprite, _fighter1._animationRect);
@@ -107,7 +108,7 @@ namespace Model
             //Interface game graphic
             _userInterface.Update(this);
             // Menu in-game
-            //GameEndMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
+            GameEndMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
             // Timer management
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
@@ -131,7 +132,7 @@ namespace Model
            
         }
 
-        internal uint NameWinner()
+        public uint NameWinner()
         {
             if (_player1Win == 2) return 1;
             else if (_player2Win == 2) return 2;
