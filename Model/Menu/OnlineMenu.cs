@@ -63,7 +63,6 @@ namespace Model
                 if ( Mouse.IsButtonPressed(Mouse.Button.Left) )
                 {
                     _chooseOptionMenu = 0;
-                    Console.WriteLine("Option Online Menu : \"Héberger une partie\" choisis.");
                 }
             }
             else

@@ -49,7 +49,6 @@ namespace Model
         {
             _game._controls.Update(key);
             Thread.Sleep(1);
-            Console.WriteLine(key);
         }
     }
 }

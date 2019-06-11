@@ -42,9 +42,7 @@ namespace Model
                         { _characterPlayer1 = _nameAvatars[i]; window.WaitAndDispatchEvents(); window.WaitAndDispatchEvents(); }
 
                         else if ( _characterPlayer1 != string.Empty ) _characterPlayer2 = _nameAvatars[i];
-
-                        Console.WriteLine("Héros 1 : " + _characterPlayer1 );
-                        Console.WriteLine("Héros 2 : " + _characterPlayer2 );
+                        
                     }
                 }
             }

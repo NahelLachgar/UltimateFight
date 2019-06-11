@@ -91,7 +91,6 @@ namespace Model
                     if ( Mouse.IsButtonPressed(Mouse.Button.Left) )
                     {
                         _chooseOptionMenu = i;
-                        Console.WriteLine("Option Start Game Menu : " + i + " choisis.");
                     }
                 }
                 else

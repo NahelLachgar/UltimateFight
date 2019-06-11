@@ -77,7 +77,6 @@ namespace Model
                     if ( Mouse.IsButtonPressed(Mouse.Button.Left) )
                     {
                         _chooseOptionMenu = i;
-                        Console.WriteLine("Option Main Menu : " + i + " choisis.");
                     }
                 }
                 else if ( i != _chooseOptionMenu )

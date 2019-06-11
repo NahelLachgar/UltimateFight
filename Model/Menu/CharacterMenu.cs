@@ -83,7 +83,6 @@ namespace Model
                     if ( Mouse.IsButtonPressed(Mouse.Button.Left) )
                     {
                         _chooseOptionMenu = i;
-                        Console.WriteLine("Option Character Menu : " + i + " choisis.");
                     }
                 }
                 else

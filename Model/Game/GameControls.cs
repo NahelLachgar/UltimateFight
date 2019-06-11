@@ -16,12 +16,12 @@ namespace Model
 
         public void Update(string key = null)
         {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
+          /*  if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey("Z");
             if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E");
+            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E"); */
 
             // ADAPTE LA TAILLE DU PERSONNAGE A LA CARTE
             if (_game._fighter1._sprite.Position.Y + _game._fighter1._sprite.TextureRect.Height * _game._fighter1._sprite.Scale.Y != _game._stage._groundHeight && _game._fighter1._isJumping == false)
@@ -42,9 +42,9 @@ namespace Model
             if (_game._fighter1._sprite.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
-                if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
+               // if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
 
-               // if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
 
@@ -60,7 +60,7 @@ namespace Model
                 {
                     if (_game._fighter2.TakeDammage(10, "low") == true)
                     {
-                        _game._fighter1.GainEnergy(10);
+                        _game._fighter1.GainEnergy(25);
                     }
                 }
 
@@ -68,9 +68,9 @@ namespace Model
                 if (_game._fighter1._projectile.Position.X + _game._fighter1._projectile.TextureRect.Width * _game._fighter1._projectile.Scale.X > _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
                 {
                     _game._fighter1._projectileThrown = false;
-                    if (_game._fighter2.TakeDammage(10, "low") == true)
+                    if (_game._fighter2.TakeDammage(20, "low") == true)
                     {
-                        _game._fighter1.GainEnergy(10);
+                        _game._fighter1.GainEnergy(0);
                     }
                 }
                 // ======================================
