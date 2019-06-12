@@ -4,8 +4,6 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using UI;
-
 namespace Model
 {
     public class Game
@@ -17,8 +15,8 @@ namespace Model
         public Stage stage;
         UInt16 _round = 1;
         UInt16 _roundNb;
-        public uint _player1Win = 0;
-        public uint _player2Win = 0;
+        internal uint _player1Win = 0;
+        internal uint _player2Win = 0;
         internal float _timeBeforeResetRound = -4f;
         public Character _fighter1;
         public Character _fighter2;
@@ -37,24 +35,22 @@ namespace Model
         float _currentTime;
         public RenderWindow _window;
         public UserInterface _userInterface;
-        int _groundHeight;
 
-        public GameEndMenu GameEndMenu = new GameEndMenu();       
+        //public GameEndMenu GameEndMenu = new GameEndMenu();       
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
         {
-            _server = new Server (this);
-            _server.StartServer();
-            if (host != null) _host = host;
-            else _host = "192.168.0.37";
+            _server = new Server (this, "127.0.0.1");
+            _server.Start();
+            
 
-            _groundHeight = stage._groundHeight;
              _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
+         //   _fighter2._sprite.Origin = new Vector2f(_fighter2._sprite.TextureRect.Width, 0f);
             _fighter2._sprite.Scale = new Vector2f(-5f, 5f);
             // PLAYERS'S POSITIONS
-           // _fighter1._sprite.Position = new Vector2f(250, _groundHeight);
-           // _fighter2._sprite.Position = new Vector2f(1500, _groundHeight);
+            _fighter1._sprite.Position = new Vector2f(250, 580);
+            _fighter2._sprite.Position = new Vector2f(1500, 580);
             _stage = stage;
             _user1 = user1;
             _user2 = user2;
@@ -62,9 +58,8 @@ namespace Model
             _window = window;
             _controls = new GameControls(this);
             _userInterface = new UserInterface(this);
-
         }
-
+        
         internal void EndRound (Character Fighter1, Character Fighter2)
         {
             if (_startRound == false && _player1Win <= 1 && _player2Win <= 1)
@@ -92,15 +87,14 @@ namespace Model
             _controls.Update();
             _window.Size = window.Size;
 
-            if (_startRound == true && _clock.ElapsedTime.AsSeconds() > _timeBeforeResetRound + 3f)
+            if (_startRound == true && _clock.ElapsedTime.AsSeconds() > _timeBeforeResetRound + 4f)
             {
                 _userInterface = new UserInterface(this);
                 _fighter1 = new Character(_fighter1.Name, _fighter1._sprite, _fighter1._animationRect);
                 _fighter2 = new Character(_fighter2.Name, _fighter2._sprite, _fighter2._animationRect);
                 // PLAYERS'S POSITIONS
-                _fighter1._sprite.Position = new Vector2f(250, _groundHeight - _fighter1._sprite.TextureRect.Height * _fighter1._sprite.Scale.Y);
-                _fighter2._sprite.Position = new Vector2f(1500, _groundHeight - _fighter2._sprite.TextureRect.Height * _fighter2._sprite.Scale.Y);
-
+                _fighter1._sprite.Position = new Vector2f(250, 580);
+                _fighter2._sprite.Position = new Vector2f(1500, 580);
                 _startRound = false;
                 _clock = new Clock();
             }
@@ -108,7 +102,7 @@ namespace Model
             //Interface game graphic
             _userInterface.Update(this);
             // Menu in-game
-            GameEndMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
+            //GameEndMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
             // Timer management
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
@@ -132,7 +126,7 @@ namespace Model
            
         }
 
-        public uint NameWinner()
+        internal uint NameWinner()
         {
             if (_player1Win == 2) return 1;
             else if (_player2Win == 2) return 2;
