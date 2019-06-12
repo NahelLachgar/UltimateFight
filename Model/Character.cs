@@ -16,8 +16,8 @@ namespace Model
         internal Dictionary<string, IntRect> _animationRect;
         string _hit;
 
-        bool _canMove;
-        bool _canJump;
+        internal bool _canMove;
+        internal bool _canJump;
 
         internal bool _isCrouching;
         internal bool _isMoving;
@@ -72,9 +72,9 @@ namespace Model
 
             _projectile = new Sprite
             {
-                Scale = sprite.Scale,
                 Texture = sprite.Texture,
                 TextureRect = _animationRect["projectile1"],
+                Scale = sprite.Scale
             };
 
             _hitbox = new RectangleShape
@@ -93,15 +93,19 @@ namespace Model
 
         internal string Name => _name;
 
+        internal float Height => _sprite.Position.Y + _sprite.TextureRect.Height * _sprite.Scale.Y;
+
+        internal float Hitbox => _hitbox.Position.X + _hitbox.Size.X * _hitbox.Scale.X;
+
+        internal float Width => _sprite.TextureRect.Width * _sprite.Scale.X;
+
+        internal float Position => _sprite.Position.X;
+
+        internal float Scale => _sprite.Scale.X;
+
         internal bool IsAlive => Health != 0;
 
         public int Health => _health;
-
-        internal Vector2f Position
-        {
-            get { return _position; }
-            set { _position = value; }
-        }
 
         internal void Update()
         {
@@ -115,28 +119,28 @@ namespace Model
                 _projectile.Color = new Color(255, 255, 255, 255);
             }
 
-
             // SHADOW FOLOWING THE CHARACTER
+
+            _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
+
             if (_sprite.Scale.X < 0)
             {
-                _shadow.Position += new Vector2f(this._sprite.Position.X, 0f);
                 if(_shadow.Scale.X > 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
                 if (_projectile.Scale.X > 0) _projectile.Scale = new Vector2f(_shadow.Scale.X * -1, _projectile.Scale.Y);
+                if (_sprite.Scale.X > 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);
             }
 
             if (_sprite.Scale.X > 0)
             {
-                _shadow.Position += new Vector2f(_sprite.Position.X , 0f);
                 if (_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
                 if (_projectile.Scale.X < 0) _projectile.Scale = new Vector2f(_projectile.Scale.X * -1, _projectile.Scale.Y);
+                if (_sprite.Scale.X < 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);
             }
 
-            _hitbox.Position = new Vector2f(0f, this._sprite.Position.Y);
+            _hitbox.Position = new Vector2f(-5000f * _sprite.Scale.X, 0f);
         //    _hitbox.Size = new Vector2f(_sprite.TextureRect.Width, _sprite.TextureRect.Height);
             _hitbox.Scale = new Vector2f(this._sprite.Scale.X, this._sprite.Scale.Y);
-            if (_sprite.Scale.X < 0) _hitbox.Position += new Vector2f(_sprite.Position.X , 0f);
-            if (_sprite.Scale.X > 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);
-
+            
             // IS KO 
             if (_isKo == true)
             {

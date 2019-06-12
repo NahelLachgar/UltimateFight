@@ -86,7 +86,7 @@ namespace Model
                     _animationRect.Add("projectile1", new IntRect(5, 824, 47, 109));
 
 
-                    Character character = CreateCharacter("Balrog", "balrog.png", _animationRect, new Vector2f(5, 5));
+                    Character character = CreateCharacter("Balrog", "balrog.png", _animationRect, new Vector2f(5.5f, 5.5f));
                     return character;
                 case "sagat":
                     // SHADOW
@@ -138,7 +138,7 @@ namespace Model
                     _animationRect.Add("projectile1", new IntRect(554, 860, 22, 28));
 
 
-                    character = CreateCharacter("Sagat", "sagat.png", _animationRect, new Vector2f(5, 5));
+                    character = CreateCharacter("Sagat", "sagat.png", _animationRect, new Vector2f(5f, 5f));
                     return character;
                 case "bison":
                     // SHADOW
@@ -190,7 +190,7 @@ namespace Model
                     _animationRect.Add("projectile1", new IntRect(554, 860, 22, 28));
 
 
-                    character = CreateCharacter("Bison", "bison.png", _animationRect, new Vector2f(5, 5));
+                    character = CreateCharacter("Bison", "bison.png", _animationRect, new Vector2f(1, 1));
                     return character;
                 default:
                     return null;

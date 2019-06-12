@@ -183,6 +183,7 @@ namespace Model
                     break;
                 case 150:
                     this._sprite.TextureRect = _animationRect["lightPunch2"];
+                    _hitbox.Position = new Vector2f(this._sprite.Position.X, this._sprite.Position.Y);
                     this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 300:
@@ -212,6 +213,7 @@ namespace Model
                     break;
                 case 240:
                     this._sprite.TextureRect = _animationRect["lightKick3"];
+                    _hitbox.Position = new Vector2f(this._sprite.Position.X, this._sprite.Position.Y);
                     this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 360:
@@ -253,6 +255,7 @@ namespace Model
                     break;
                 case 120:
                     this._sprite.TextureRect = _animationRect["crouchLight2"];
+                    _hitbox.Position = new Vector2f(this._sprite.Position.X, this._sprite.Position.Y);
                     this._hitbox.Size = new Vector2f(this._sprite.TextureRect.Width, this._sprite.TextureRect.Height);
                     break;
                 case 240:

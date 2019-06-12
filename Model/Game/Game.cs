@@ -46,11 +46,7 @@ namespace Model
              _timer = timer;
             _fighter1 = fighter1;
             _fighter2 = fighter2;
-         //   _fighter2._sprite.Origin = new Vector2f(_fighter2._sprite.TextureRect.Width, 0f);
-            _fighter2._sprite.Scale = new Vector2f(-5f, 5f);
-            // PLAYERS'S POSITIONS
-            _fighter1._sprite.Position = new Vector2f(250, 580);
-            _fighter2._sprite.Position = new Vector2f(1500, 580);
+            _fighter2._sprite.Scale = new Vector2f(_fighter2._sprite.Scale.X * -1, fighter2._sprite.Scale.Y);
             _stage = stage;
             _user1 = user1;
             _user2 = user2;
@@ -92,9 +88,6 @@ namespace Model
                 _userInterface = new UserInterface(this);
                 _fighter1 = new Character(_fighter1.Name, _fighter1._sprite, _fighter1._animationRect);
                 _fighter2 = new Character(_fighter2.Name, _fighter2._sprite, _fighter2._animationRect);
-                // PLAYERS'S POSITIONS
-                _fighter1._sprite.Position = new Vector2f(250, 580);
-                _fighter2._sprite.Position = new Vector2f(1500, 580);
                 _startRound = false;
                 _clock = new Clock();
             }

@@ -12,24 +12,31 @@ namespace Model
         public GameControls(Game game)
         {
             _game = game;
+
         }
 
         public void Update(string key = null)
         {
-          /*  if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey("Z");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
-            if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E"); */
+            /*  if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
+              if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey("Z");
+              if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
+              if (Keyboard.IsKeyPressed(Keyboard.Key.D)) Client.SendKey("D");
+              if (Keyboard.IsKeyPressed(Keyboard.Key.A)) Client.SendKey("A");
+              if (Keyboard.IsKeyPressed(Keyboard.Key.E)) Client.SendKey("E"); */
+
+            // PROJECTILE 
+            if (_game._fighter1._projectileThrown == true)
+            {
+                _game._fighter1._projectile.Position += new Vector2f(0.5f * _game._fighter1.Scale , 0f);
+            }
 
             // ADAPTE LA TAILLE DU PERSONNAGE A LA CARTE
-            if (_game._fighter1._sprite.Position.Y + _game._fighter1._sprite.TextureRect.Height * _game._fighter1._sprite.Scale.Y != _game._stage._groundHeight && _game._fighter1._isJumping == false)
+            if (_game._fighter1.Height != _game._stage._groundHeight && _game._fighter1._isJumping == false)
             {
                 _game._fighter1._sprite.Position = new Vector2f(_game._fighter1._sprite.Position.X, _game._stage._groundHeight - _game._fighter1._sprite.TextureRect.Height * _game._fighter1._sprite.Scale.Y);
             }
 
-            if (_game._fighter2._sprite.Position.Y + _game._fighter2._sprite.TextureRect.Height * _game._fighter2._sprite.Scale.Y != _game._stage._groundHeight && _game._fighter2._isJumping == false)
+            if (_game._fighter2.Height != _game._stage._groundHeight && _game._fighter2._isJumping == false)
             {
                 _game._fighter2._sprite.Position = new Vector2f(_game._fighter2._sprite.Position.X, _game._stage._groundHeight - _game._fighter2._sprite.TextureRect.Height * _game._fighter2._sprite.Scale.Y);
             }
@@ -39,7 +46,7 @@ namespace Model
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             // LEFT TO THE RIGHT 
-            if (_game._fighter1._sprite.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
+            if (_game._fighter1.Position< _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
                // if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
@@ -48,15 +55,9 @@ namespace Model
                 // PLAYER 2
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
 
-                // PROJECTILE 
-                if (_game._fighter1._projectileThrown == true)
-                {
-                    _game._fighter1._projectile.Position += new Vector2f(2f, 0f);
-                }
-
                 // TAKE DAMAGE ==========================
                 // PUNCHES
-                if (_game._fighter1._hitbox.Position.X + _game._fighter1._hitbox.Size.X * _game._fighter1._hitbox.Scale.X > _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
+                if (_game._fighter1.Hitbox > _game._fighter2.Position + _game._fighter2.Width)
                 {
                     if (_game._fighter2.TakeDammage(10, "low") == true)
                     {
@@ -65,12 +66,15 @@ namespace Model
                 }
 
                 // PROJECTILES
-                if (_game._fighter1._projectile.Position.X + _game._fighter1._projectile.TextureRect.Width * _game._fighter1._projectile.Scale.X > _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
+                if (_game._fighter1._projectileThrown == true)
                 {
-                    _game._fighter1._projectileThrown = false;
-                    if (_game._fighter2.TakeDammage(20, "low") == true)
+                    if (_game._fighter1._projectile.Position.X + _game._fighter1._projectile.TextureRect.Width * _game._fighter1._projectile.Scale.X > _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
                     {
-                        _game._fighter1.GainEnergy(0);
+                        _game._fighter1._projectileThrown = false;
+                        if (_game._fighter2.TakeDammage(20, "low") == true)
+                        {
+                            _game._fighter1.GainEnergy(0);
+                        }
                     }
                 }
                 // ======================================
@@ -95,21 +99,18 @@ namespace Model
                 }
 
                 // Special
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _game._fighter1.Energy == 100)
-                {
-                    _game._fighter1.SpecialMove();
-                    if (_game._fighter1._hitbox.Position.X + _game._fighter1._hitbox.Size.X * _game._fighter1._hitbox.Scale.X > _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
-                    {
-                        _game._fighter2.TakeDammage(15, "low");
-                    }
-                }
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _game._fighter1.Energy == 100) _game._fighter1.SpecialMove();
+ 
 
                 // IF THE PLAYERS ARE STUCK TO EACHOTHER
-                if (_game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X < _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X /* || _game._fighter1._sprite.Position.Y != _game._fighter2._sprite.Position.Y*/)
+                if (_game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X < _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X  || _game._fighter1._sprite.Position.Y != _game._fighter2._sprite.Position.Y)
                 {
                     // PLAYER 1
                     if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
-                   
+                    // PLAYER 2
+                    if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _game._fighter2.MoveLeft(_game._moveSpeed);
+
+
                 }
 
                 // TURNING THE PLAYERS
@@ -125,11 +126,43 @@ namespace Model
             }
 
             // RIGHT TO THE LEFT
-            if (_game._fighter1._sprite.Position.X >= _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
+            if (_game._fighter1.Position >= _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
                 if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
-              
+                // PLAYER 2
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _game._fighter2.MoveLeft(_game._moveSpeed);
+
+                // LIGHT PUNCH 
+                if (Keyboard.IsKeyPressed(Keyboard.Key.A)) _game._fighter1.LightPunch();
+                
+                // Special
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _game._fighter1.Energy == 100) _game._fighter1.SpecialMove();
+
+                // TAKE DAMAGE ==========================
+                // PUNCHES
+                if (_game._fighter1.Hitbox < _game._fighter2.Position + _game._fighter2.Width)
+                {
+                    if (_game._fighter2.TakeDammage(10, "low") == true)
+                    {
+                        _game._fighter1.GainEnergy(25);
+                    }
+                }
+
+                // PROJECTILES
+                if (_game._fighter1._projectileThrown == true)
+                {
+                    if (_game._fighter1._projectile.Position.X + _game._fighter1._projectile.TextureRect.Width * _game._fighter1._projectile.Scale.X < _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
+                    {
+                        _game._fighter1._projectileThrown = false;
+                        if (_game._fighter2.TakeDammage(20, "low") == true)
+                        {
+                            _game._fighter1.GainEnergy(0);
+                        }
+                    }
+                }
+                // ======================================
 
                 // IF THE PLAYERS ARE STUCK TO EACHOTHER
                 if (_game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X >= _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X || _game._fighter1._sprite.Position.Y != _game._fighter2._sprite.Position.Y)

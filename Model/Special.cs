@@ -30,6 +30,7 @@ namespace Model
                             break;
                         case 200:
                             character._sprite.TextureRect = character._animationRect["special3"];
+                            character._hitbox.Position = new Vector2f(character._sprite.Position.X , character._sprite.Position.Y);
                             character._hitbox.Size = new Vector2f(character._sprite.TextureRect.Width, character._sprite.TextureRect.Height);
                             character._sprite.Position += new Vector2f(80f, 0f);
                             break;
@@ -58,7 +59,10 @@ namespace Model
                         case 300:
                             character._sprite.TextureRect = character._animationRect["special3"];
                             character._projectileThrown = true;
-                            character._projectile.Position = new Vector2f(character._sprite.Position.X + character._sprite.TextureRect.Width * character._sprite.Scale.X, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
+                            character._projectile.Position = new Vector2f(character.Position + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
+                            character._projectile.Scale = new Vector2f(character._sprite.Scale.X , character._sprite.Scale.Y);
+                            Console.WriteLine(character._projectile.Scale);
+                            Console.WriteLine(character._shadow.Scale);
                             break;
                         case 351:
                             _i = -1;
