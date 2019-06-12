@@ -15,23 +15,24 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            CurrentState _cs = new CurrentState();
 
             using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight", Styles.Fullscreen | Styles.Close))
 
             {
+                IAppState _state;
+
                 //MainMenu mainMenu = new MainMenu(window);
                 bool _gameCreate = false;
-                Menus menus = new Menus(window);
-                //Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("sagat"), Factory.NewStage("stage1"), window);
-                Game game = null;
+                        Menus menus = new Menus(window);
+                        //Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("sagat"), Factory.NewStage("stage1"), window);
+                        Game game = null;
 
                 while (window.IsOpen)
                 {
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
 
-                    _cs.State = new MenuUI(menus);
+                    _state = new MenuUI(menus);
                     if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
                     {
                         if ( _gameCreate == false )
@@ -41,14 +42,14 @@ namespace UI
 
                         }
 
-                        _cs.State = new GameUI(game);
+                        _state._nextState = new GameUI(game);
                     }
 
 
                     //_cs.State = new GameUI(game);
 
-                    _cs.Update(window);
-                    _cs.Draw(window);
+                    _state = _state.Update(window);
+                    _state.Draw(window);
                     window.Display();
 
                     //Event for close the program
@@ -63,8 +64,11 @@ namespace UI
                         // Close the window when OnClose event is received
                         window.Close();
                     }
+
+                   
+           
                 }
             }
-        }          
+        }
     }
 }
