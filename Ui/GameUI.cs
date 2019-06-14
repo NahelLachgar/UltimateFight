@@ -16,7 +16,12 @@ namespace UI
             _game = game;
         }
 
-         public void Draw(RenderWindow window)
+        public IAppState _nextState {
+            get => _nextState;
+            set => _nextState = value;
+        }
+
+        public void Draw(RenderWindow window)
         {
             window.Clear();
             window.Draw(_game._stage._sprite);
@@ -30,9 +35,10 @@ namespace UI
         }
 
 
-        public void Update(RenderWindow window)
+        public IAppState Update(RenderWindow window)
         {
             _game.Update(window);
+            return _nextState;
         }
     }
 }
