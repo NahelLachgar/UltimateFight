@@ -15,6 +15,7 @@ namespace Model
         public int _chooseOptionMenu = -1;
 
 
+
         public CharacterMenu()
         {
             _imgBackGround = this.ImgBackGround();
@@ -40,6 +41,7 @@ namespace Model
 
             window.Draw(_avatars.ImgPlayer1);
             window.Draw(_avatars.ImgPlayer2);
+            if(_avatars._characterPlayer1 != string.Empty) window.Draw(this.CharaterName(_avatars._characterPlayer1, new Vector2f(900f, 900f)));
         }
 
 
@@ -120,7 +122,19 @@ namespace Model
 
         }
 
+        private Text CharaterName(string namePlayer, Vector2f position )
+        {
+            Text name = new Text()
+            {
+                CharacterSize = 60,
+                DisplayedString = namePlayer,
+                Font = new Font("../../../../Ui/Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf"),
+                Style = Text.Styles.Italic,
+                Position = position,
+            };
 
+            return name;
+        }
 
 
     }
