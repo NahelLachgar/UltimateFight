@@ -58,13 +58,146 @@ namespace Model
                             break;
                         case 300:
                             character._sprite.TextureRect = character._animationRect["special3"];
-                            character._projectileThrown = true;
+                            character._projectile.isThrown = true;
                             character._projectile.Position = new Vector2f(character.Position + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
-                            character._projectile.Scale = new Vector2f(character._sprite.Scale.X , character._sprite.Scale.Y);
-                            Console.WriteLine(character._projectile.Scale);
-                            Console.WriteLine(character._shadow.Scale);
                             break;
                         case 351:
+                            _i = -1;
+                            return true;
+                    }
+                    break;
+                // Android 16
+                case "Android":
+                    _i++;
+                    switch (_i)
+                    {
+                        case 0:
+                            character._sprite.TextureRect = character._animationRect["special1"];
+                            break;
+                        case 150:
+                            character._sprite.TextureRect = character._animationRect["special2"];
+                            break;
+                        case 300:
+                            character._sprite.TextureRect = character._animationRect["special3"];
+                            break;
+                        case 450:
+                            character._sprite.TextureRect = character._animationRect["special4"];
+                            character._projectile.isThrown = true;
+                            character._projectile.Position = new Vector2f(character.Position + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
+                            break;
+                        case 550:
+                            character._sprite.TextureRect = character._animationRect["special5"];
+                            break;
+                        case 700:
+                            character._sprite.TextureRect = character._animationRect["special6"];
+                            break;
+                        case 900:
+                            character._sprite.TextureRect = character._animationRect["special7"];
+                            break;
+                        case 1100:
+                            character._sprite.TextureRect = character._animationRect["special8"];
+                            break;
+                        case 1201:
+                            _i = -1;
+                            return true;
+                    }
+                    break;
+                // Goku
+                case "Goku":
+                    _i++;
+                    switch (_i)
+                    {
+                        case 0:
+                            character._sprite.TextureRect = character._animationRect["special1"];
+                            break;
+                        case 150:
+                            character._sprite.TextureRect = character._animationRect["special2"];
+                            break;
+                        case 300:
+                            character._sprite.TextureRect = character._animationRect["special3"];
+                            break;
+                        case 450:
+                            character._sprite.TextureRect = character._animationRect["special4"];
+                            break;
+                        case 550:
+                            character._sprite.TextureRect = character._animationRect["special5"];
+                            break;
+                        case 650:
+                            character._sprite.TextureRect = character._animationRect["special4"];
+                            break;
+                        case 750:
+                            character._sprite.TextureRect = character._animationRect["special5"];
+                            break;
+                        case 850:
+                            character._sprite.TextureRect = character._animationRect["special4"];
+                            break;
+                        case 950:
+                            character._sprite.TextureRect = character._animationRect["special5"];
+                            break;
+                        case 1050:
+                            character._sprite.TextureRect = character._animationRect["special6"];
+                            break;
+                        case 1150:
+                            character._sprite.TextureRect = character._animationRect["special7"];
+                            break;
+                        case 1250:
+                            character._sprite.TextureRect = character._animationRect["special6"];
+                            break;
+                        case 1350:
+                            character._sprite.TextureRect = character._animationRect["special7"];
+                            break;
+                        case 1450:
+                            character._sprite.TextureRect = character._animationRect["special6"];
+                            break;
+                        case 1550:
+                            character._sprite.TextureRect = character._animationRect["special7"];
+                            break;
+                        case 1650:
+                            character._sprite.TextureRect = character._animationRect["special6"];
+                            break;
+                        case 1750:
+                            character._sprite.TextureRect = character._animationRect["special7"];
+                            break;
+                        case 1850:
+                            character._sprite.TextureRect = character._animationRect["special6"];
+                            break;
+                        case 1950:
+                            character._sprite.TextureRect = character._animationRect["special7"];
+                            break;
+                        case 2050:
+                            character._sprite.TextureRect = character._animationRect["special7"];
+                            break;
+                        case 2250:
+                            character._sprite.TextureRect = character._animationRect["special8"];
+                            break;
+                        case 2450:
+                            character._sprite.TextureRect = character._animationRect["special9"];
+                            break;
+                        case 2650:
+                            character._sprite.TextureRect = character._animationRect["special10"];
+                            break;
+                        case 2850:
+                            character._sprite.TextureRect = character._animationRect["special11"];
+                            break;
+                        case 3050:
+                            character._sprite.TextureRect = character._animationRect["special12"];
+                            break;
+                        case 3250:
+                            character._sprite.TextureRect = character._animationRect["special13"];
+                            break;
+                        case 3450:
+                            character._sprite.TextureRect = character._animationRect["special14"];
+                            break;
+                        case 3550:
+                            character._sprite.TextureRect = character._animationRect["special15"];
+                            character._projectile.isThrown = true;
+                            character._projectile.Position = new Vector2f(character.Position + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
+                            break;
+                        case 3850:
+                            character._sprite.TextureRect = character._animationRect["special16"];
+                            break;
+
+                        case 3951:
                             _i = -1;
                             return true;
                     }

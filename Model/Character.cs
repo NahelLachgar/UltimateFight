@@ -26,7 +26,6 @@ namespace Model
         bool _isTakingDamage;
         internal bool _isKo;
         internal bool _isWinner;
-        internal bool _projectileThrown;
 
         bool _lightPunch;
         bool _lightKick;
@@ -37,10 +36,10 @@ namespace Model
         internal Animation _animation;
         internal Special _specialMove;
         public Sprite _shadow;
-        public Sprite _projectile;
         public RectangleShape _hitbox;
+        public Projectile _projectile;
 
-        public Character(string name, Sprite sprite, Dictionary<string, IntRect> animationRect)
+        public Character(string name, Sprite sprite, Dictionary<string, IntRect> animationRect, Projectile projectile)
         {
             _name = name;
             _sprite = sprite;
@@ -70,12 +69,7 @@ namespace Model
                 Color = new Color(255, 255, 255, 0)
             };
 
-            _projectile = new Sprite
-            {
-                Texture = sprite.Texture,
-                TextureRect = _animationRect["projectile1"],
-                Scale = sprite.Scale
-            };
+            _projectile = projectile;
 
             _hitbox = new RectangleShape
             {
@@ -85,7 +79,6 @@ namespace Model
 
             _animation = new Animation(sprite, _hitbox, _animationRect);
             _specialMove = new Special();
-
 
         }
 
@@ -109,7 +102,7 @@ namespace Model
 
         internal void Update()
         {
-            if (_projectileThrown == false)
+            if (_projectile.isThrown == false)
             {
                 _projectile.Position = new Vector2f(0f, 0f);
                 _projectile.Color = new Color(255, 255, 255, 0);
@@ -120,24 +113,21 @@ namespace Model
             }
 
             // SHADOW FOLOWING THE CHARACTER
-
             _shadow.Position += new Vector2f(_sprite.Position.X, 0f);
 
             if (_sprite.Scale.X < 0)
             {
-                if(_shadow.Scale.X > 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
-                if (_projectile.Scale.X > 0) _projectile.Scale = new Vector2f(_shadow.Scale.X * -1, _projectile.Scale.Y);
+                if (_shadow.Scale.X > 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
                 if (_sprite.Scale.X > 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);
             }
 
             if (_sprite.Scale.X > 0)
             {
                 if (_shadow.Scale.X < 0) _shadow.Scale = new Vector2f(_shadow.Scale.X * -1, _shadow.Scale.Y);
-                if (_projectile.Scale.X < 0) _projectile.Scale = new Vector2f(_projectile.Scale.X * -1, _projectile.Scale.Y);
                 if (_sprite.Scale.X < 0) _hitbox.Position += new Vector2f(_sprite.Position.X, 0f);
             }
 
-            _hitbox.Position = new Vector2f(-5000f * _sprite.Scale.X, 0f);
+            _hitbox.Position = new Vector2f(-3000f * _sprite.Scale.X, 0f);
         //    _hitbox.Size = new Vector2f(_sprite.TextureRect.Width, _sprite.TextureRect.Height);
             _hitbox.Scale = new Vector2f(this._sprite.Scale.X, this._sprite.Scale.Y);
             

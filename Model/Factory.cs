@@ -8,14 +8,13 @@ namespace Model
 {
     public static class Factory
     {
-        static public Character CreateCharacter(string name, string img, Dictionary<string, IntRect> animationSprite, Vector2f scale)
+        static public Character CreateCharacter(string name, string img, Dictionary<string, IntRect> animationSprite, Vector2f scale, Projectile projectile = null)
         {
             Texture texture = new Texture("../../../../img/characters/" + img);
             texture.Smooth = true;
             Sprite sprite = new Sprite(texture);
             sprite.Scale = scale;
-        //    sprite.TextureRect = new IntRect(rect.Left, rect.Top, rect.Width, rect.Height);
-            Character character = new Character(name, sprite, animationSprite);
+            Character character = new Character(name, sprite, animationSprite, projectile);
             return character;
         }
 
@@ -137,8 +136,9 @@ namespace Model
                     // PROJECTILE
                     _animationRect.Add("projectile1", new IntRect(554, 860, 22, 28));
 
+                    Projectile projectile = new Projectile("sagat.png", _animationRect["projectile1"], 0.4f, new Vector2f(5, 5));
 
-                    character = CreateCharacter("Sagat", "sagat.png", _animationRect, new Vector2f(5f, 5f));
+                    character = CreateCharacter("Sagat", "sagat.png", _animationRect, new Vector2f(5f, 5f), projectile);
                     return character;
                 case "bison":
                     // SHADOW
@@ -190,7 +190,184 @@ namespace Model
                     _animationRect.Add("projectile1", new IntRect(554, 860, 22, 28));
 
 
-                    character = CreateCharacter("Bison", "bison.png", _animationRect, new Vector2f(1, 1));
+                    character = CreateCharacter("Bison", "bison.png", _animationRect, new Vector2f(6, 6));
+                    return character;
+                case "subzero":
+                    // SHADOW
+                    _animationRect.Add("shadow", new IntRect(880, 332, 39, 7));
+                    // WAITING
+                    _animationRect.Add("waiting1", new IntRect(149, 21, 40, 100));
+                    _animationRect.Add("waiting2", new IntRect(201, 21, 40, 100));
+                    _animationRect.Add("waiting3", new IntRect(252, 21, 40, 100));
+                    _animationRect.Add("waiting4", new IntRect(302, 21, 41, 100));
+                    // WALKING
+                    _animationRect.Add("walking1", new IntRect(179, 153, 41, 98));
+                    _animationRect.Add("walking2", new IntRect(129, 153, 40, 98));
+                    _animationRect.Add("walking3", new IntRect(78, 152, 40, 99));
+                    _animationRect.Add("walking4", new IntRect(20, 152, 48, 99));
+                    // CROUCH
+                    _animationRect.Add("crouch1", new IntRect(1217, 56, 45, 65));
+                    _animationRect.Add("crouch2", new IntRect(1272, 72, 44, 49));
+                    // JUMP
+                    _animationRect.Add("jump1", new IntRect(583, 144, 45, 107));
+                    _animationRect.Add("jump2", new IntRect(640, 161, 41, 90));
+                    _animationRect.Add("jump3", new IntRect(530, 178, 43, 73));
+                    // LIGHT PUNCH
+                    _animationRect.Add("lightPunch1", new IntRect(20, 377, 47, 100));
+                    _animationRect.Add("lightPunch2", new IntRect(77, 377, 70, 100));
+                    // LIGHT KICK
+                    _animationRect.Add("lightKick1", new IntRect(20, 609, 46, 98));
+                    _animationRect.Add("lightKick2", new IntRect(77, 615, 51, 92));
+                    _animationRect.Add("lightKick3", new IntRect(139, 615, 77, 92));
+                    // JUMP LIGHT
+                    _animationRect.Add("jumpLight", new IntRect(1111, 767, 82, 74));
+                    // CROUCH LIGHT
+                    _animationRect.Add("crouchLight1", new IntRect(664, 652, 44, 55));
+                    _animationRect.Add("crouchLight2", new IntRect(720, 659, 76, 48));
+                    // FACE HIT
+                    _animationRect.Add("faceHit1", new IntRect(20, 858, 46, 102));
+                    _animationRect.Add("faceHit2", new IntRect(76, 861, 49, 99));
+                    _animationRect.Add("faceHit3", new IntRect(135, 864, 54, 96));
+                    // CROUCH HIT
+                    _animationRect.Add("crouchHit", new IntRect(897, 900, 45, 60));
+                    // KO
+                    _animationRect.Add("ko1", new IntRect(97, 994, 73, 74));
+                    _animationRect.Add("ko2", new IntRect(297, 1006, 67, 62));
+                    _animationRect.Add("ko3", new IntRect(376, 1041, 89, 27));
+                    // SPECIAL
+                    _animationRect.Add("special1", new IntRect(5, 824, 47, 109));
+                    _animationRect.Add("special2", new IntRect(60, 846, 66, 87));
+                    _animationRect.Add("special3", new IntRect(138, 846, 96, 87));
+                    // PROJECTILE
+                    _animationRect.Add("projectile1", new IntRect(554, 860, 22, 28));
+
+                    character = CreateCharacter("SubZero", "subzero.png", _animationRect, new Vector2f(5, 5));
+                    return character;
+                case "16":
+                    // SHADOW
+                    _animationRect.Add("shadow", new IntRect(0, 0, 1, 1));
+                    // WAITING
+                    _animationRect.Add("waiting1", new IntRect(336, 17, 62, 91));
+                    _animationRect.Add("waiting2", new IntRect(399, 17, 62, 91));
+                    _animationRect.Add("waiting3", new IntRect(462, 19, 62, 89));
+                    _animationRect.Add("waiting4", new IntRect(525, 19, 62, 89));
+                    // WALKING
+                    _animationRect.Add("walking1", new IntRect(181, 126, 43, 95));
+                    _animationRect.Add("walking2", new IntRect(225, 124, 53, 97));
+                    _animationRect.Add("walking3", new IntRect(279, 127, 61, 94));
+                    _animationRect.Add("walking4", new IntRect(341, 122, 58, 99));
+                    // CROUCH
+                    _animationRect.Add("crouch1", new IntRect(653, 22, 60, 86));
+                    _animationRect.Add("crouch2", new IntRect(714, 33, 59, 75));
+                    // JUMP
+                    _animationRect.Add("jump1", new IntRect(73, 235, 64, 108));
+                    _animationRect.Add("jump2", new IntRect(138, 240, 61, 103));
+                    _animationRect.Add("jump3", new IntRect(200, 251, 65, 92));
+                    // LIGHT PUNCH
+                    _animationRect.Add("lightPunch1", new IntRect(1, 366, 68, 91));
+                    _animationRect.Add("lightPunch2", new IntRect(69, 366, 86, 91));
+                    // LIGHT KICK
+                    _animationRect.Add("lightKick1", new IntRect(264, 623, 51, 95));
+                    _animationRect.Add("lightKick2", new IntRect(116, 625, 41, 93));
+                    _animationRect.Add("lightKick3", new IntRect(158, 613, 105, 105));
+                    // JUMP LIGHT
+                    _animationRect.Add("jumpLight", new IntRect(596, 741, 112, 81));
+                    // CROUCH LIGHT
+                    _animationRect.Add("crouchLight1", new IntRect(630, 643, 70, 75));
+                    _animationRect.Add("crouchLight2", new IntRect(547, 642, 82, 76));
+                    // FACE HIT
+                    _animationRect.Add("faceHit1", new IntRect(887, 1191, 66, 91));
+                    _animationRect.Add("faceHit2", new IntRect(761, 1192, 62, 90));
+                    _animationRect.Add("faceHit3", new IntRect(824, 1195, 62, 87));
+                    // CROUCH HIT
+                    _animationRect.Add("crouchHit", new IntRect(1198, 1212, 64, 70));
+                    // KO
+                    _animationRect.Add("ko1", new IntRect(712, 1314, 75, 81));
+                    _animationRect.Add("ko2", new IntRect(788, 1348, 84, 47));
+                    _animationRect.Add("ko3", new IntRect(1165, 1357, 104, 38));
+                    // SPECIAL
+                    _animationRect.Add("special1", new IntRect(1, 1078, 62, 95));
+                    _animationRect.Add("special2", new IntRect(64, 1084, 75, 89));
+                    _animationRect.Add("special3", new IntRect(140, 1091, 84, 82));
+                    _animationRect.Add("special4", new IntRect(225, 1093, 62, 80));
+                    _animationRect.Add("special5", new IntRect(288, 1091, 65, 82));
+                    _animationRect.Add("special6", new IntRect(354, 1090, 86, 83));
+                    _animationRect.Add("special7", new IntRect(441, 1080, 73, 93));
+                    _animationRect.Add("special8", new IntRect(515, 1076, 64, 97));
+                    // PROJECTILE
+                    _animationRect.Add("projectile1", new IntRect(615, 1141, 59, 25));
+
+                    projectile = new Projectile("16.png", _animationRect["projectile1"], 0.5f, new Vector2f(4, 4));
+
+                    character = CreateCharacter("Android", "16.png", _animationRect, new Vector2f(5, 5), projectile);
+                    return character;
+                case "goku":
+                    // SHADOW
+                    _animationRect.Add("shadow", new IntRect(0, 0, 1, 1));
+                    // WAITING
+                    _animationRect.Add("waiting1", new IntRect(14, 24, 89, 103));
+                    _animationRect.Add("waiting2", new IntRect(111, 24, 88, 103));
+                    _animationRect.Add("waiting3", new IntRect(208, 25, 88, 102));
+                    _animationRect.Add("waiting4", new IntRect(304, 24, 89, 103));
+                    // WALKING
+                    _animationRect.Add("walking1", new IntRect(14, 289, 76, 112));
+                    _animationRect.Add("walking2", new IntRect(104, 291, 86, 110));
+                    _animationRect.Add("walking3", new IntRect(204, 291, 94, 110));
+                    _animationRect.Add("walking4", new IntRect(313, 291, 86, 110));
+                    // CROUCH
+                    _animationRect.Add("crouch1", new IntRect(14, 956, 85, 94));
+                    _animationRect.Add("crouch2", new IntRect(112, 963, 81, 87));
+                    // JUMP
+                    _animationRect.Add("jump1", new IntRect(104, 2275, 75, 126));
+                    _animationRect.Add("jump2", new IntRect(190, 2273, 66, 128));
+                    _animationRect.Add("jump3", new IntRect(14, 2304, 76, 97));
+                    // LIGHT PUNCH
+                    _animationRect.Add("lightPunch1", new IntRect(14, 475, 89, 101));
+                    _animationRect.Add("lightPunch2", new IntRect(111, 476, 131, 101));
+                    // LIGHT KICK
+                    _animationRect.Add("lightKick1", new IntRect(14, 624, 91, 125));
+                    _animationRect.Add("lightKick2", new IntRect(117, 624, 80, 125));
+                    _animationRect.Add("lightKick3", new IntRect(211, 624, 143, 125));
+                    // JUMP LIGHT
+                    _animationRect.Add("jumpLight", new IntRect(104, 2721, 102, 134));
+                    // CROUCH LIGHT
+                    _animationRect.Add("crouchLight1", new IntRect(14, 1084, 90, 89));
+                    _animationRect.Add("crouchLight2", new IntRect(114, 1082, 131, 91));
+                    // FACE HIT
+                    _animationRect.Add("faceHit1", new IntRect(212, 4433, 80, 121));
+                    _animationRect.Add("faceHit2", new IntRect(104, 4445, 96, 109));
+                    _animationRect.Add("faceHit3", new IntRect(14, 4435, 82, 119));
+                    // CROUCH HIT
+                    _animationRect.Add("crouchHit", new IntRect(426, 4613, 83, 104));
+                    // KO
+                    _animationRect.Add("ko1", new IntRect(14, 4752, 124, 110));
+                    _animationRect.Add("ko2", new IntRect(149, 4782, 153, 80));
+                    _animationRect.Add("ko3", new IntRect(597, 4824, 154, 38));
+                    // SPECIAL
+                    _animationRect.Add("special1", new IntRect(14, 3980, 82, 97));
+                    _animationRect.Add("special2", new IntRect(107, 3983, 82, 94));
+                    _animationRect.Add("special3", new IntRect(201, 3987, 82, 90));
+                    _animationRect.Add("special4", new IntRect(292, 3961, 108, 116));
+                    _animationRect.Add("special5", new IntRect(508, 3946, 116, 131));
+                    _animationRect.Add("special6", new IntRect(1177, 3390, 116, 131));
+                    _animationRect.Add("special7", new IntRect(1397, 3406, 108, 116));
+                    _animationRect.Add("special8", new IntRect(1308, 3419, 78, 102));
+                    _animationRect.Add("special9", new IntRect(582, 2668, 87, 107));
+                    _animationRect.Add("special10", new IntRect(684, 2668, 87, 107));
+                    _animationRect.Add("special11", new IntRect(785, 2670, 96, 105));
+                    _animationRect.Add("special12", new IntRect(896, 2670, 96, 105));
+                    _animationRect.Add("special13", new IntRect(1166, 2667, 132, 108));
+                    _animationRect.Add("special14", new IntRect(1009, 2667, 145, 108));
+                    _animationRect.Add("special15", new IntRect(825, 1920, 665, 160));
+                    _animationRect.Add("special16", new IntRect(714, 3687, 111, 101));
+
+
+                    // PROJECTILE
+                    _animationRect.Add("projectile1", new IntRect(680, 2395, 540, 210));
+
+                    projectile = new Projectile("goku.png", _animationRect["projectile1"], 0f, new Vector2f(4, 4));
+
+                    character = CreateCharacter("Goku", "goku.png", _animationRect, new Vector2f(4, 4), projectile);
                     return character;
                 default:
                     return null;

@@ -86,8 +86,8 @@ namespace Model
             if (_startRound == true && _clock.ElapsedTime.AsSeconds() > _timeBeforeResetRound + 4f)
             {
                 _userInterface = new UserInterface(this);
-                _fighter1 = new Character(_fighter1.Name, _fighter1._sprite, _fighter1._animationRect);
-                _fighter2 = new Character(_fighter2.Name, _fighter2._sprite, _fighter2._animationRect);
+                _fighter1 = new Character(_fighter1.Name, _fighter1._sprite, _fighter1._animationRect, _fighter1._projectile);
+                _fighter2 = new Character(_fighter2.Name, _fighter2._sprite, _fighter2._animationRect, _fighter2._projectile);
                 _startRound = false;
                 _clock = new Clock();
             }
