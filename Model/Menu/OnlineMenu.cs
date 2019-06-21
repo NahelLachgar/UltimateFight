@@ -17,9 +17,11 @@ namespace Model
         internal int _chooseOptionMenu = -1;
         private Sprite _returnButton;
         private Text _textReturnButton;
+        internal SearchBar _searchBar ;
 
-        internal OnlineMenu()
+        internal OnlineMenu(RenderWindow window)
         {
+            _searchBar = new SearchBar(window);
             _imgBackGround = this.CreateImgBackGround();
             _imgButtons = this.CreateImgButtons();
             _textButtonLobby = this.CreateTextButtonLobby();
@@ -83,6 +85,7 @@ namespace Model
                 this._chooseOptionMenu = -1;
             }
 
+            _searchBar.Update(window);
         }
 
 
@@ -96,6 +99,7 @@ namespace Model
             window.Draw(_textTitleLobby);
             window.Draw(_returnButton);
             window.Draw(_textReturnButton);
+            _searchBar.Draw(window);
         }
 
         private void ActionButtonLobby()

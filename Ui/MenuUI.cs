@@ -16,14 +16,19 @@ namespace UI
             _menus = menus;
         }
 
+        public IAppState _nextState { get; set; }
+
+
         public void Draw(RenderWindow window)
         {
             _menus.Draw(window);
         }
 
-        public void Update(RenderWindow window)
+        public IAppState Update(RenderWindow window)
         {
             _menus.Update(window);
+            _nextState = this;
+            return _nextState;
         }
     }
 }

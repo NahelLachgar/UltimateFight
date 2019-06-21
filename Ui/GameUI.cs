@@ -16,10 +16,7 @@ namespace UI
             _game = game;
         }
 
-        public IAppState _nextState {
-            get => _nextState;
-            set => _nextState = value;
-        }
+        public IAppState _nextState { get; set; }
 
         public void Draw(RenderWindow window)
         {
@@ -38,6 +35,7 @@ namespace UI
         public IAppState Update(RenderWindow window)
         {
             _game.Update(window);
+            _nextState = this;
             return _nextState;
         }
     }

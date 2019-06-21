@@ -16,11 +16,10 @@ namespace UI
         static void Main(string[] args)
         {
 
-            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight", Styles.Fullscreen | Styles.Close))
+            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight",  Styles.Close))
 
             {
                 IAppState _state;
-
                 //MainMenu mainMenu = new MainMenu(window);
                 bool _gameCreate = false;
                         Menus menus = new Menus(window);
@@ -31,6 +30,7 @@ namespace UI
                 {
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
+
 
                     _state = new MenuUI(menus);
                     if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
@@ -46,7 +46,7 @@ namespace UI
                     }
 
 
-                    //_cs.State = new GameUI(game);
+                    //_state = new GameUI(game);
 
                     _state = _state.Update(window);
                     _state.Draw(window);
@@ -69,6 +69,11 @@ namespace UI
            
                 }
             }
+        }
+
+        private static void Window_KeyPressed(object sender, KeyEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

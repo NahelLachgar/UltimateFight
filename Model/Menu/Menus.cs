@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using System.Text;
 using Model;
 using UI;
+
 namespace UI
 {
-    public class Menus
+    public class Menus 
     {
 
         MainMenu _mainMenu;
-        public StartGame _startGame = new StartGame();
+        public StartGame _startGame;
 
         public Menus(RenderWindow window)
         {
+            _startGame = new StartGame(window);
             _mainMenu = new MainMenu(window);
         }
 

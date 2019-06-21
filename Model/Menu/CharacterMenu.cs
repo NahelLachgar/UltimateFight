@@ -13,6 +13,8 @@ namespace Model
         public SelectCharacter _avatars = new SelectCharacter();
         Dictionary<int, CircleShape> _buttons;
         public int _chooseOptionMenu = -1;
+        Text _text1 = new Text();
+        Text _text2 = new Text();
 
 
 
@@ -20,6 +22,7 @@ namespace Model
         {
             _imgBackGround = this.ImgBackGround();
             _buttons = Buttons();
+            CharaterName();
         }
 
         public void Update(MainMenu mainMenu, StartGame startGame, RenderWindow window)
@@ -41,7 +44,18 @@ namespace Model
 
             window.Draw(_avatars.ImgPlayer1);
             window.Draw(_avatars.ImgPlayer2);
-            if(_avatars._characterPlayer1 != string.Empty) window.Draw(this.CharaterName(_avatars._characterPlayer1, new Vector2f(900f, 900f)));
+            //if(_avatars._characterPlayer1 != string.Empty) window.Draw(this.CharaterName(_avatars._characterPlayer1, new Vector2f(900f, 900f)));
+            if ( _avatars._characterPlayer1 != string.Empty )
+            {
+                _text1.DisplayedString = _avatars._characterPlayer1;
+                window.Draw(_text1);
+            }
+            if ( _avatars._characterPlayer2 != string.Empty )
+            {
+                _text2.DisplayedString = _avatars._characterPlayer2;
+                window.Draw(_text2);
+            }
+            window.Draw(_text1);
         }
 
 
@@ -116,24 +130,32 @@ namespace Model
                     break;
 
                 case 2:  // Button "Next"
+                    Console.WriteLine("Lancer la game");
                     break;
 
             }
 
         }
 
-        private Text CharaterName(string namePlayer, Vector2f position )
+        private void CharaterName()
         {
-            Text name = new Text()
+            _text1 = new Text()
             {
                 CharacterSize = 60,
-                DisplayedString = namePlayer,
+                DisplayedString = _avatars._characterPlayer1,
                 Font = new Font("../../../../Ui/Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf"),
                 Style = Text.Styles.Italic,
-                Position = position,
+                Position = new Vector2f(900f, 950f),
             };
 
-            return name;
+            _text2 = new Text()
+            {
+                CharacterSize = 60,
+                DisplayedString = _avatars._characterPlayer2,
+                Font = new Font("../../../../Ui/Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf"),
+                Style = Text.Styles.Italic,
+                Position = new Vector2f(1450f, 950f),
+            };
         }
 
 

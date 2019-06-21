@@ -14,10 +14,12 @@ namespace Model
         internal RectangleShape _blackBackMenu;
         internal int _chooseOptionMenu = -1;
         public CharacterMenu _characterMenu = new CharacterMenu();
-        public OnlineMenu _onlineMenu = new OnlineMenu();
+        public OnlineMenu _onlineMenu ;
 
-        public StartGame()
+        public StartGame(RenderWindow window)
         {
+            _onlineMenu = new OnlineMenu(window);
+
             _whiteBackMenu = new RectangleShape()
             {
                 FillColor = new Color(255, 255, 255, 255),
@@ -56,7 +58,7 @@ namespace Model
 
             Font font = new Font("../../../../Ui/Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf");
 
-            Option.Add(new Text("Player Vs. I.A", font, 50));
+            Option.Add(new Text("Entraînement", font, 50));
             Option[0].Position = new Vector2f(500F + ( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( Option[0].GetGlobalBounds().Width / 2f ), 400f);
             Option[0].Style = Text.Styles.Bold;
 
