@@ -14,6 +14,8 @@ namespace UI
         public MenuUI(Menus menus)
         {
             _menus = menus;
+            _nextState = this;
+
         }
 
         public IAppState _nextState { get; set; }
@@ -27,7 +29,6 @@ namespace UI
         public IAppState Update(RenderWindow window)
         {
             _menus.Update(window);
-            _nextState = this;
             return _nextState;
         }
     }
