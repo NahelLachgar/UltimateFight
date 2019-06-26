@@ -88,9 +88,6 @@ namespace UI
         {
             if ( Regex.IsMatch(e.Unicode, "^[a-zA-Z0-9_]*$") && _inSearchBar == true)
             {
-
-                Console.WriteLine("Lettre choissis : " + e.Unicode);
-
                 if ( _inSearchBar == true )
                 {
                     _searchText.DisplayedString += e.Unicode.ToString();
@@ -107,7 +104,6 @@ namespace UI
                 if (e.Code == Keyboard.Key.Enter)
                 {
                     // CODE DE NAHEL A INSERER ICI
-                    Console.WriteLine("Appuis sur enter");
                     _nextState = null;
                 }
 

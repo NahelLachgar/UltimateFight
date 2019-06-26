@@ -8,7 +8,7 @@ using Model;
 
 namespace UI
 {
-    public class CharacterMenu 
+    public class CharacterMenu : IAppState
     {
         Sprite _imgBackGround;
         public SelectCharacter _avatars = new SelectCharacter();
@@ -16,7 +16,7 @@ namespace UI
         public int _chooseOptionMenu = -1;
         Text _text1 = new Text();
         Text _text2 = new Text();
-
+        public IAppState _nextState { get; set; }
 
 
         public CharacterMenu()
@@ -24,21 +24,23 @@ namespace UI
             _imgBackGround = this.ImgBackGround();
             _buttons = Buttons();
             CharaterName();
+            _nextState = this;
         }
 
-        public void Update(MainMenu mainMenu, StartGame startGame, RenderWindow window)
+        public IAppState Update(/*MainMenu mainMenu, StartGame startGame,*/ RenderWindow window)
         {
             if ( _chooseOptionMenu == -1 )
             {
                this.SelectOption(window);
-               this.RedirectionMenu(mainMenu, startGame, window);
+               this.RedirectionMenu(/*mainMenu, startGame, */window);
             }
             _avatars.Update(window);
+            return _nextState;
         }
 
-        public void Draw(MainMenu mainMenu, StartGame startGame, RenderWindow window)
+        public void Draw(/*MainMenu mainMenu, StartGame startGame, */RenderWindow window)
         {
-            this.Update(mainMenu, startGame, window);
+            //this.Update(/*mainMenu, startGame, */window);
             window.Draw(_imgBackGround);
             foreach ( CircleShape value in _buttons.Values ) window.Draw(value);
             foreach ( CircleShape value in _avatars.Avatars ) window.Draw(value);
@@ -111,16 +113,17 @@ namespace UI
         }
 
 
-        private void RedirectionMenu(MainMenu mainMenu, StartGame startGame, RenderWindow window)
+        private void RedirectionMenu(/*MainMenu mainMenu, StartGame startGame,*/ RenderWindow window)
         {
             switch ( _chooseOptionMenu )
             {
                 case 0:  // Button "Back to menu"
                     this._chooseOptionMenu = -1;
-                    startGame._chooseOptionMenu = -1;
-                    mainMenu._chooseOptionMenu = -1;
+                    //startGame._chooseOptionMenu = -1;
+                    //mainMenu._chooseOptionMenu = -1;
                     _avatars._characterPlayer1 = string.Empty;
                     _avatars._characterPlayer2 = string.Empty;
+                    this._nextState = new Menus(window);
                     break;
 
                 case 1:  // Button "Random Character"

@@ -81,9 +81,13 @@ namespace UI
 
             if ( _chooseOptionMenu == 0 ) this.ActionButtonLobby();
 
-            if ( _returnButton.GetGlobalBounds().Contains(Mouse.GetPosition(window).X, Mouse.GetPosition(window).Y) && Mouse.IsButtonPressed(Mouse.Button.Left) ) _chooseOptionMenu = 1;
+            if ( _returnButton.GetGlobalBounds().Contains(Mouse.GetPosition(window).X, Mouse.GetPosition(window).Y) && Mouse.IsButtonPressed(Mouse.Button.Left) )
+            {
+                 _chooseOptionMenu = 1 ;
+                this._nextState = new Menus(window);
+            }
 
-            if(_chooseOptionMenu == 1)
+            if (_chooseOptionMenu == 1)
             {
                 //startGame._chooseOptionMenu = -1;
                 //mainMenu._chooseOptionMenu = -1;

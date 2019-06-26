@@ -114,16 +114,20 @@ namespace UI
             switch ( _chooseOptionMenu )
             {
                 case 0:  // Mode Player versus A.I
-                    //_characterMenu.Draw(mainMenu, this, window);
+                         //_characterMenu.Draw(mainMenu, this, window);
+                    this._state = new CharacterMenu();
+
                     break;
 
                 case 1:  // Mode Player Versus Player
                     //_characterMenu.Draw(mainMenu, this, window);
+                    this._state = new CharacterMenu();
                     break;
 
                 case 2:  // Mode online
-                    OnlineMenu _onlineMenu = new OnlineMenu(window);
-                    this._state = _onlineMenu;
+                    //OnlineMenu _onlineMenu = new OnlineMenu(window);
+                    //this._state = _onlineMenu;
+                    this._state = new OnlineMenu(window);
                     // _onlineMenu.Draw(mainMenu, this, window);
                     break;
 
