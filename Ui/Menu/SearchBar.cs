@@ -4,16 +4,19 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Model;
 
-namespace Model
+namespace UI
 {
-    internal class SearchBar
+    public class SearchBar : IAppState
     {
         Input _input = new Input();
         Vector2f MousePosition;
         RectangleShape _searchBar;
         Text _searchText;
         bool _inSearchBar = true;
+        public IAppState _nextState { get; set; }
+
 
         internal SearchBar(RenderWindow window)
         {
@@ -38,10 +41,10 @@ namespace Model
             window.TextEntered += (sender, e) => WriteAdressIP(e);
             window.KeyPressed += (sender, e) => RemoveAdressIP(e);
 
-
+            _nextState = this;
         }
 
-        internal void Update(RenderWindow window)
+        public IAppState Update(RenderWindow window)
         {
             _searchText.Position = new Vector2f(_searchBar.GetGlobalBounds().Left + ( _searchBar.GetGlobalBounds().Width / 2 ) - ( _searchText.GetGlobalBounds().Width / 2 ), _searchBar.GetGlobalBounds().Top + ( _searchBar.GetGlobalBounds().Height / 2 ) - ( _searchText.GetGlobalBounds().Height / 2 ));
 
@@ -49,9 +52,10 @@ namespace Model
             //if ( Mouse.IsButtonPressed(Mouse.Button.Left) ) ClickOnSearchBar(window);
             //window.MouseButtonReleased += (sender, e) => ClickOnSearchBar(e);
             //if ( _inSearchBar == true ) WriteAdressIP(window);
+            return _nextState;
         }
 
-        internal void Draw(RenderWindow Window)
+        public void Draw(RenderWindow Window)
         {
             Window.Draw(_searchBar);
             Window.Draw(_searchText);
@@ -103,6 +107,8 @@ namespace Model
                 if (e.Code == Keyboard.Key.Enter)
                 {
                     // CODE DE NAHEL A INSERER ICI
+                    Console.WriteLine("Appuis sur enter");
+                    _nextState = null;
                 }
 
             }

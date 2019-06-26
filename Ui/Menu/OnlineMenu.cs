@@ -4,10 +4,11 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Model;
 
-namespace Model
+namespace UI
 {
-    public class OnlineMenu
+    public class OnlineMenu : IAppState
     {
         private Sprite _imgBackGround;
         private Sprite _imgButtons;
@@ -18,8 +19,9 @@ namespace Model
         private Sprite _returnButton;
         private Text _textReturnButton;
         internal SearchBar _searchBar ;
+        public IAppState _nextState { get; set; }
 
-        internal OnlineMenu(RenderWindow window)
+        public OnlineMenu(RenderWindow window)
         {
             _searchBar = new SearchBar(window);
             _imgBackGround = this.CreateImgBackGround();
@@ -51,10 +53,13 @@ namespace Model
                 DisplayedString = "Retour",
                 Position = new Vector2f(95f, 900f),
             };
+
+            _nextState = this;
         }
 
 
-        internal void Update(MainMenu mainMenu, StartGame startGame, RenderWindow window)
+
+        public IAppState Update(/*MainMenu mainMenu, StartGame startGame,*/ RenderWindow window)
         {
             if(_imgButtons.GetGlobalBounds().Contains(Mouse.GetPosition(window).X, Mouse.GetPosition(window).Y ) )
             {
@@ -80,18 +85,24 @@ namespace Model
 
             if(_chooseOptionMenu == 1)
             {
-                startGame._chooseOptionMenu = -1;
-                mainMenu._chooseOptionMenu = -1;
+                //startGame._chooseOptionMenu = -1;
+                //mainMenu._chooseOptionMenu = -1;
                 this._chooseOptionMenu = -1;
             }
 
             _searchBar.Update(window);
+            return _nextState;
+        }
+
+        private void ReturnMenu(MainMenu mainMenu, StartGame startGame)
+        {
+
         }
 
 
-        internal void Draw(MainMenu mainMenu, StartGame startGame, RenderWindow window)
+        public void Draw(/*MainMenu mainMenu, StartGame startGame, */RenderWindow window)
         {
-            this.Update(mainMenu, startGame, window);
+            this.Update(/*mainMenu, startGame, */window);
             window.Draw(_imgBackGround);
             window.Draw(_backLobby);
             window.Draw(_imgButtons);

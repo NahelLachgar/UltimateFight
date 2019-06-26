@@ -4,21 +4,25 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Model;
 
-namespace Model
+namespace UI
 {
-    public class StartGame
+    public class StartGame 
     {
         List<Text> _options;
         internal RectangleShape _whiteBackMenu;
         internal RectangleShape _blackBackMenu;
         internal int _chooseOptionMenu = -1;
-        public CharacterMenu _characterMenu = new CharacterMenu();
-        public OnlineMenu _onlineMenu ;
+        //public CharacterMenu _characterMenu = new CharacterMenu();
+        //public OnlineMenu _onlineMenu ;
+        public IAppState _state = null;
+
+
 
         public StartGame(RenderWindow window)
         {
-            _onlineMenu = new OnlineMenu(window);
+            //_onlineMenu = new OnlineMenu(window);
 
             _whiteBackMenu = new RectangleShape()
             {
@@ -38,7 +42,7 @@ namespace Model
 
         }
 
-        private void Update(RenderWindow window)
+        public void Update(RenderWindow window)
         {
             if (_chooseOptionMenu == -1) SelectOption(window);
         }
@@ -49,7 +53,8 @@ namespace Model
             window.Draw(_whiteBackMenu);
             window.Draw(_blackBackMenu);
             foreach ( Text value in _options ) window.Draw(value);
-            RedirectionMenu(mainMenu, this, window);
+            RedirectionMenu(window, mainMenu, this);
+
         }
 
         private List<Text> Option()
@@ -104,20 +109,22 @@ namespace Model
             }
         }
 
-        private void RedirectionMenu(MainMenu mainMenu, StartGame startGame, RenderWindow window)
+        private void RedirectionMenu(RenderWindow window, MainMenu mainMenu, StartGame startGame)
         {
             switch ( _chooseOptionMenu )
             {
                 case 0:  // Mode Player versus A.I
-                    _characterMenu.Draw(mainMenu, this, window);
+                    //_characterMenu.Draw(mainMenu, this, window);
                     break;
 
                 case 1:  // Mode Player Versus Player
-                    _characterMenu.Draw(mainMenu, this, window);
+                    //_characterMenu.Draw(mainMenu, this, window);
                     break;
 
                 case 2:  // Mode online
-                    _onlineMenu.Draw(mainMenu, this, window);
+                    OnlineMenu _onlineMenu = new OnlineMenu(window);
+                    this._state = _onlineMenu;
+                    // _onlineMenu.Draw(mainMenu, this, window);
                     break;
 
                 case 3:  // Option : "Retour" 
