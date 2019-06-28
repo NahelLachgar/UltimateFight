@@ -14,6 +14,7 @@ namespace UI
         private Dictionary<string, Sprite> _menu = new Dictionary<string, Sprite>();
         private Dictionary<string, Text> _textMenu = new Dictionary<string, Text>();
         CreateMenu CreateMenu = new CreateMenu();
+        public RectangleShape test = new RectangleShape();
 
         internal GameEndMenu()
         {
@@ -38,6 +39,10 @@ namespace UI
             _menu["Quitter"].Position = _menu["Rejouer"].Position + new Vector2f(0f, 240f);
             _menu["Quitter"].Scale = new Vector2f(4f, 3f);
             _textMenu.Add("QuitterText", CreateMenu.NewTextMenu("Quitter", new Vector2f(900f, 765f), 40));
+
+            test.Size = new Vector2f(400F, 440f);
+            test.FillColor = Color.Black;
+            test.Position = new Vector2f(100f, 300f);
         }
 
         public void Update(Game game, bool animationKO)
@@ -68,6 +73,8 @@ namespace UI
                 _menu["Quitter"].Position = _menu["Rejouer"].Position + new Vector2f(0f, 240f);
                 _menu["Quitter"].Scale = new Vector2f(4f, 3f);
             }
+
+            //this.Draw(game._window);
         }
 
         public void Draw(RenderWindow window)
@@ -77,6 +84,8 @@ namespace UI
                 foreach ( Sprite T in _menu.Values ) window.Draw(T);
                 foreach ( Text T in _textMenu.Values ) window.Draw(T);
             }
+
+
         }
 
         public Dictionary<string, Sprite> BackMenu => _menu;

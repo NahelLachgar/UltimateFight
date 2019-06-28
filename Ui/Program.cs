@@ -32,7 +32,7 @@ namespace UI
                 {
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
-
+                    window.Clear();
 
                     
                     //if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )

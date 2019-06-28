@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Model;
 
-namespace Model
+
+namespace UI
 {
     internal class AnimationsUI
     {

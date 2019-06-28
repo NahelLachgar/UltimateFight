@@ -4,10 +4,14 @@ using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Text;
-namespace Model
+using Model;
+
+namespace UI
 {
-    public class Game
+    public class Game : IAppState
     {
+        public IAppState _nextState { get; set; }
+
         internal bool _startRound = true;
         internal Server _server;
         internal string _host;
@@ -36,7 +40,7 @@ namespace Model
         public RenderWindow _window;
         public UserInterface _userInterface;
 
-        //public GameEndMenu GameEndMenu = new GameEndMenu();       
+        public GameEndMenu _gameEndMenu = new GameEndMenu();       
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
         {
             _server = new Server (this, "127.0.0.1");
@@ -58,6 +62,8 @@ namespace Model
             _window = window;
             _controls = new GameControls(this);
             _userInterface = new UserInterface(this);
+
+            _nextState = this;
         }
         
         internal void EndRound (Character Fighter1, Character Fighter2)
@@ -81,7 +87,12 @@ namespace Model
             }
         }
 
-        public void Update(RenderWindow window)
+        public void Draw(RenderWindow window)
+        {
+
+        }
+
+        public IAppState Update(RenderWindow window)
         {
             _userInterface.Draw(window);
             _controls.Update();
@@ -101,8 +112,7 @@ namespace Model
 
             //Interface game graphic
             _userInterface.Update(this);
-            // Menu in-game
-            //GameEndMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
+
             // Timer management
             _timer = _clock.ElapsedTime;
             _currentTime = _timer.AsSeconds();
@@ -111,18 +121,20 @@ namespace Model
             EndRound(_fighter1, _fighter2);
 
 
-         /*   // IF FIGHTERS WINS
-            if (_fighter2.Health == 0)
-            {
-                _fighter1._isWinner = true;
-            }
-            if (_fighter1.Health == 0)
-            {
-                _fighter2._isWinner = true;
+            /*   // IF FIGHTERS WINS
+               if (_fighter2.Health == 0)
+               {
+                   _fighter1._isWinner = true;
+               }
+               if (_fighter1.Health == 0)
+               {
+                   _fighter2._isWinner = true;
 
-            }
-            */
-
+               }
+               */
+            // Menu in-game
+            _gameEndMenu.Update(this, _userInterface.AnimationUI.KO.Finish);
+            return this._nextState;
            
         }
 

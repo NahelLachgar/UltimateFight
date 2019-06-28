@@ -134,7 +134,8 @@ namespace UI
                     break;
 
                 case 2:  // Button "Next"
-                    Console.WriteLine("Lancer la game");
+                    this._nextState = new GameUI( new Game(new Time(), Factory.NewCharacter(_avatars._characterPlayer1.ToLower()), Factory.NewCharacter(_avatars._characterPlayer2.ToLower()), Factory.NewStage("stage1"), window) );
+                    Console.WriteLine("Perso 1 : " + _avatars._characterPlayer1 + " \nPerso 2 : " + _avatars._characterPlayer2);
                     break;
 
             }
