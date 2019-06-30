@@ -44,6 +44,8 @@ namespace Model
             // SHADOW
             _game._fighter1._shadow.Position = new Vector2f(0, _game._stage._groundHeight - _game._fighter1._shadow.TextureRect.Height * _game._fighter1._shadow.Scale.Y);
 
+
+            Console.WriteLine(_game._fighter2.Hitbox);
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             // LEFT TO THE RIGHT 
             if (_game._fighter1.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
@@ -62,6 +64,13 @@ namespace Model
                     if (_game._fighter2.TakeDammage(10, "low") == true)
                     {
                         _game._fighter1.GainEnergy(25);
+                    }
+                }
+                if (_game._fighter2.Hitbox < _game._fighter1.Position.X + _game._fighter1.Width)
+                {
+                    if (_game._fighter1.TakeDammage(10, "low") == true)
+                    {
+                        _game._fighter2.GainEnergy(25);
                     }
                 }
 
@@ -83,6 +92,10 @@ namespace Model
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))
                 {
                     _game._fighter1.LightPunch();
+                }
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad4))
+                {
+                    _game._fighter2.LightPunch();
                 }
 
                 // LIGHT KICK 

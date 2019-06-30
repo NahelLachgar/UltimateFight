@@ -17,13 +17,13 @@ namespace UI
         {
             CurrentState _cs = new CurrentState();
 
-            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight", Styles.Fullscreen | Styles.Close))
+            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight", Styles.Close))
 
             {
                 //MainMenu mainMenu = new MainMenu(window);
                 bool _gameCreate = false;
                 Menus menus = new Menus(window);
-                Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("chun-li"), Factory.NewStage("stage6"), window);
+                Game game = new Game(new Time(), Factory.NewCharacter("goku"), Factory.NewCharacter("chun-li"), Factory.NewStage("stage6"), window);
                 //Game game = null;
 
                 while (window.IsOpen)

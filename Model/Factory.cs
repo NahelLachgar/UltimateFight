@@ -469,8 +469,6 @@ namespace Model
                     _animationRect.Add("faceHit1", new IntRect(137, 852, 46, 83));
                     _animationRect.Add("faceHit2", new IntRect(187, 860, 59, 75));
                     _animationRect.Add("faceHit3", new IntRect(187, 860, 59, 75));
-
-                //    _animationRect.Add("faceHit3", new IntRect(137, 852, 46, 83));
                     // CROUCH HIT
                     _animationRect.Add("crouchHit", new IntRect(254, 880, 53, 55));
                     // KO

@@ -154,6 +154,13 @@ namespace Model
             // TAKING DAMAGE ANIMATION
             if (_isTakingDamage == true)
             {
+                if (_special == true)
+                {
+                    _special = false;
+                    _energy = 0;
+                }
+                if (_isFighting == true) _isFighting = false;
+                
                 switch (_hit)
                 {
                     case "low":
