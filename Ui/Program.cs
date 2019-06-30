@@ -23,7 +23,7 @@ namespace UI
                 //MainMenu mainMenu = new MainMenu(window);
                 bool _gameCreate = false;
                 Menus menus = new Menus(window);
-                Game game = new Game(new Time(), Factory.NewCharacter("goku"), Factory.NewCharacter("16"), Factory.NewStage("stage1"), window);
+                Game game = new Game(new Time(), Factory.NewCharacter("chun-li"), Factory.NewCharacter("chun-li"), Factory.NewStage("stage1"), window);
                 //Game game = null;
 
                 while (window.IsOpen)
@@ -31,8 +31,8 @@ namespace UI
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
 
-                    _cs.State = new MenuUI(menus);
-                /*    if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
+                /*    _cs.State = new MenuUI(menus);
+                    if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
                     {
                         if ( _gameCreate == false )
                         {

@@ -59,11 +59,175 @@ namespace Model
                         case 300:
                             character._sprite.TextureRect = character._animationRect["special3"];
                             character._projectile.isThrown = true;
-                            character._projectile.Position = new Vector2f(character.Position + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile1"];
+                            character._projectile.Position = new Vector2f(character.Position.X + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
                             break;
-                        case 351:
+                        case 450:
+                            character._sprite.TextureRect = character._animationRect["special2"];
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 600:
+                            character._sprite.TextureRect = character._animationRect["special1"];
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 651:
                             _i = -1;
                             return true;
+                    }
+                    break;
+                // Bison
+                case "Bison":
+                    _i++;
+                    switch (_i)
+                    {
+                        case 0:
+                            character._sprite.TextureRect = character._animationRect["special1"];
+                            break;
+                        case 150:
+                            character._sprite.TextureRect = character._animationRect["special2"];
+                            break;
+                        case 300:
+                            character._sprite.Color = new Color(255, 255, 255, 0);
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile1"];
+                            character._projectile.isThrown = true;
+                            character._projectile.Position = new Vector2f(character.Position.X, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
+                            break;
+                        case 400:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 500:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 600:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile4"];
+                            break;
+                        case 700:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile5"];
+                            break;
+                        case 800:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 900:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 1000:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile4"];
+                            break;
+                        case 1100:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile5"];
+                            break;
+                        case 1200:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 1300:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 1400:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile4"];
+                            break;
+                        case 1500:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile5"];
+                            break;
+                        case 1600:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 1700:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 1800:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile4"];
+                            break;
+                        case 1900:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile5"];
+                            break;
+                        case 1902:
+                            character._sprite.TextureRect = character._animationRect["special2"];
+                            _i = -1;
+                            return true;
+                    }
+                    if (_i >= 600 && character._projectile.isThrown != false) character.Position = new Vector2f(character._projectile.Position.X, 0f);
+                    if (_i >= 600 && character._projectile.isThrown == false)
+                    {
+                        character._sprite.Color = new Color(255, 255, 255, 255);
+                        _i = 1901;
+                    }
+                    break;
+                // Ryu
+                case "Ryu":
+                    _i++;
+                    switch (_i)
+                    {
+                        case 0:
+                            character._sprite.TextureRect = character._animationRect["special1"];
+                            break;
+                        case 200:
+                            character._sprite.Color = new Color(255, 255, 255, 0);
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile1"];
+                            character._projectile.isThrown = true;
+                            character._projectile.Position = new Vector2f(character.Position.X, character._sprite.Position.Y);
+                            character._projectile.Position += new Vector2f(0f, character._sprite.TextureRect.Height * character._sprite.Scale.X - character._projectile.Sprite.TextureRect.Height * character._sprite.Scale.X);
+                            break;
+                        case 300:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 400:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 500:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile4"];
+                            break;
+                        case 600:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile5"];
+                            break;
+                        case 700:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile1"];
+                            break;
+                        case 800:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 900:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 1000:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile4"];
+                            break;
+                        case 1100:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile5"];
+                            break;
+                        case 1200:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile1"];
+                            break;
+                        case 1300:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 1400:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 1500:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile4"];
+                            break;
+                        case 1600:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile1"];
+                            break;
+                        case 1700:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile2"];
+                            break;
+                        case 1800:
+                            character._projectile.Sprite.TextureRect = character._animationRect["projectile3"];
+                            break;
+                        case 1802:
+                            character._sprite.TextureRect = character._animationRect["special2"];
+                            _i = -1;
+                            return true;
+                    }
+                    if (_i >= 600 && character._projectile.isThrown != false)
+                    {
+                        character.Position = new Vector2f(character._projectile.Position.X, 0f);
+                    }
+                    if (_i >= 600 && character._projectile.isThrown == false)
+                    {
+                        character._sprite.Color = new Color(255, 255, 255, 255);
+                        _i = 1801;
                     }
                     break;
                 // Android 16
@@ -83,7 +247,7 @@ namespace Model
                         case 450:
                             character._sprite.TextureRect = character._animationRect["special4"];
                             character._projectile.isThrown = true;
-                            character._projectile.Position = new Vector2f(character.Position + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
+                            character._projectile.Position = new Vector2f(character.Position.X + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
                             break;
                         case 550:
                             character._sprite.TextureRect = character._animationRect["special5"];
@@ -191,7 +355,7 @@ namespace Model
                         case 3550:
                             character._sprite.TextureRect = character._animationRect["special15"];
                             character._projectile.isThrown = true;
-                            character._projectile.Position = new Vector2f(character.Position + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
+                            character._projectile.Position = new Vector2f(character.Position.X + character.Width, character._sprite.Position.Y + character._sprite.TextureRect.Height / 2);
                             break;
                         case 3850:
                             character._sprite.TextureRect = character._animationRect["special16"];

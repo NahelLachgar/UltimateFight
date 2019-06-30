@@ -27,7 +27,7 @@ namespace Model
             // PROJECTILE 
             if (_game._fighter1._projectile.isThrown == true)
             {
-                _game._fighter1._projectile.Position += new Vector2f(_game._fighter1._projectile.Speed * _game._fighter1.Scale , 0f);
+                _game._fighter1._projectile.Position += new Vector2f(_game._fighter1._projectile.Path.X * _game._fighter1.Scale , _game._fighter1._projectile.Path.Y * _game._fighter1.Scale);
             }
 
             // ADAPTE LA TAILLE DU PERSONNAGE A LA CARTE
@@ -46,7 +46,7 @@ namespace Model
 
             // A CHARACTER TURN AROUND WHEN ANOTHER CHARACTER IS BEHIND HIM 
             // LEFT TO THE RIGHT 
-            if (_game._fighter1.Position < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
+            if (_game._fighter1.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
                // if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
@@ -57,7 +57,7 @@ namespace Model
 
                 // TAKE DAMAGE ==========================
                 // PUNCHES
-                if (_game._fighter1.Hitbox > _game._fighter2.Position + _game._fighter2.Width)
+                if (_game._fighter1.Hitbox > _game._fighter2.Position.X + _game._fighter2.Width)
                 {
                     if (_game._fighter2.TakeDammage(10, "low") == true)
                     {
@@ -126,7 +126,7 @@ namespace Model
             }
 
             // RIGHT TO THE LEFT
-            if (_game._fighter1.Position >= _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
+            if (_game._fighter1.Position.X >= _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
                 if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
@@ -142,7 +142,7 @@ namespace Model
 
                 // TAKE DAMAGE ==========================
                 // PUNCHES
-                if (_game._fighter1.Hitbox < _game._fighter2.Position + _game._fighter2.Width)
+                if (_game._fighter1.Hitbox < _game._fighter2.Position.X + _game._fighter2.Width)
                 {
                     if (_game._fighter2.TakeDammage(10, "low") == true)
                     {

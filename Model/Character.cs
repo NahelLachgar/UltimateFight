@@ -92,7 +92,11 @@ namespace Model
 
         internal float Width => _sprite.TextureRect.Width * _sprite.Scale.X;
 
-        internal float Position => _sprite.Position.X;
+        internal Vector2f Position
+        {
+            get { return _sprite.Position; }
+            set { _sprite.Position = value; }
+        }
 
         internal float Scale => _sprite.Scale.X;
 
@@ -104,7 +108,7 @@ namespace Model
         {
             if (_projectile.isThrown == false)
             {
-                _projectile.Position = new Vector2f(0f, 0f);
+                _projectile.Position = new Vector2f(_projectile.Position.X, _projectile.Position.Y);
                 _projectile.Color = new Color(255, 255, 255, 0);
             }
             else

@@ -12,15 +12,14 @@ namespace Model
         IntRect _intRect;
         bool _isThrown;
         Texture _texture;
-        float _speed;
+        Vector2f _path;
         Sprite _sprite;
         float _width;
 
-        public Projectile(string img, IntRect intRect, float speed, Vector2f scale)
+        public Projectile(string img, IntRect intRect, Vector2f path, Vector2f scale)
         {
-            _intRect = intRect;
             _isThrown = false;
-            _speed = speed;
+            _path = path;
             _texture = new Texture("../../../../img/characters/" + img);
             _texture.Smooth = true;
             _sprite = new Sprite(_texture);
@@ -51,7 +50,7 @@ namespace Model
             set { _sprite.Color = value; }
         }
 
-        public float Speed => _speed;
+        public Vector2f Path => _path;
 
         public float Width => _width;
     }
