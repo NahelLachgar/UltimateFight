@@ -65,7 +65,7 @@ namespace UI
                         _game._fighter1.GainEnergy(25);
                     }
                 }
-                if (_game._fighter2.Hitbox < _game._fighter1.Position.X + _game._fighter1.Width)
+                if (_game._fighter2.Hitbox < _game._fighter1.Position.X + _game._fighter1.Width && _game._fighter2.Hitbox != 0)
                 {
                     if (_game._fighter1.TakeDammage(10, "low") == true)
                     {
