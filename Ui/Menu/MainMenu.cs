@@ -5,11 +5,11 @@ using System.Text;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-using UI;
+using Model;
 
-namespace Model
+namespace UI
 {
-    public class MainMenu
+    public class MainMenu : IAppState
     {
         RenderWindow _window;
         public Sprite _imgMenu;
@@ -18,6 +18,7 @@ namespace Model
         public RectangleShape _blackBackMenu;
         public List<Text> _optionMenu;
         public int _chooseOptionMenu = -1;
+        public IAppState _nextState { get; set; }
 
 
         public MainMenu(RenderWindow window)
@@ -35,12 +36,13 @@ namespace Model
             };
 
             _optionMenu = OptionMenu();
+            _nextState = this;
         }
 
-        public void Update(RenderWindow window, Menus menus)
+        public IAppState Update(RenderWindow window/*, Menus menus*/)
         {
             if ( _chooseOptionMenu == -1 ) SelectOption(window);
-
+            return _nextState;
         }
 
         public void Draw(RenderWindow window)

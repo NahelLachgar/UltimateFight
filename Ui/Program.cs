@@ -15,21 +15,23 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            CurrentState _cs = new CurrentState();
-
-            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight", Styles.Close))
-
+            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight",  Styles.Close))
             {
+                IAppState _state;
                 //MainMenu mainMenu = new MainMenu(window);
                 bool _gameCreate = false;
                 Menus menus = new Menus(window);
-                Game game = new Game(new Time(), Factory.NewCharacter("goku"), Factory.NewCharacter("chun-li"), Factory.NewStage("stage6"), window);
-                //Game game = null;
+
+                //Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("sagat"), Factory.NewStage("stage1"), window);
+                Game game = null;
+                //_state = new MenuUI(menus);
+                _state = menus;
 
                 while (window.IsOpen)
                 {
                     //window.SetFramerateLimit(60);
                     window.DispatchEvents();
+                    window.Clear();
 
                 /*    _cs.State = new MenuUI(menus);
                     if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
@@ -38,17 +40,28 @@ namespace UI
                         {
                             game = new Game(new Time(), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer1.ToLower()), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer2.ToLower()), Factory.NewStage("stage1"), window);
                             _gameCreate = true;
+                    
+                    //if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
+                    //{
+                    //    if ( _gameCreate == false )
+                    //    {
+                    //        game = new Game(new Time(), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer1.ToLower()), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer2.ToLower()), Factory.NewStage("stage1"), window);
+                    //        _gameCreate = true;
 
-                        }
+                    //    }
 
                         _cs.State = new GameUI(game);
                     }*/
 
 
-                    _cs.State = new GameUI(game);
+                    //    _state._nextState = new GameUI(game);
+                    //}
 
-                    _cs.Update(window);
-                    _cs.Draw(window);
+
+                    //_state = new GameUI(game);
+
+                    _state = _state.Update(window);
+                    _state.Draw(window);
                     window.Display();
 
                     //Event for close the program
@@ -63,8 +76,16 @@ namespace UI
                         // Close the window when OnClose event is received
                         window.Close();
                     }
+
+                   
+           
                 }
             }
-        }          
+        }
+
+        private static void Window_KeyPressed(object sender, KeyEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

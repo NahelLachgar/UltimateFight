@@ -14,16 +14,22 @@ namespace UI
         public MenuUI(Menus menus)
         {
             _menus = menus;
+            _nextState = this;
+
         }
+
+        public IAppState _nextState { get; set; }
+
 
         public void Draw(RenderWindow window)
         {
             _menus.Draw(window);
         }
 
-        public void Update(RenderWindow window)
+        public IAppState Update(RenderWindow window)
         {
             _menus.Update(window);
+            return _nextState;
         }
     }
 }

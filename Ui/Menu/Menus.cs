@@ -4,24 +4,30 @@ using System.Collections.Generic;
 using System.Text;
 using Model;
 using UI;
+
 namespace UI
 {
-    public class Menus
+    public class Menus : IAppState
     {
 
         MainMenu _mainMenu;
-        public StartGame _startGame = new StartGame();
+        public StartGame _startGame;
+
+        public IAppState _nextState { get; set; }
 
         public Menus(RenderWindow window)
         {
             _mainMenu = new MainMenu(window);
+            _startGame = new StartGame(window);
+            _nextState = this;
         }
 
 
-        public void Update(RenderWindow window)
+        public IAppState Update(RenderWindow window)
         {
-            _mainMenu.Update(window, this);
-
+            _mainMenu.Update(window/*, this*/);
+            if ( _startGame._state != null ) _nextState = _startGame._state;
+            return _nextState;
         }
 
         public void Draw(RenderWindow window)
@@ -37,7 +43,7 @@ namespace UI
             switch ( _mainMenu._chooseOptionMenu )
             {
                 case 0:  // Option : "Start Game"
-                    _startGame.Draw(window, _mainMenu);
+                    _startGame.Draw(window, _mainMenu);                   
                     break;
 
                 case 1:  // Option : "Option"
@@ -61,5 +67,7 @@ namespace UI
                     break;
             }
         }
+
+
     }
 }

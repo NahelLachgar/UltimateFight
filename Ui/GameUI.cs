@@ -16,23 +16,27 @@ namespace UI
             _game = game;
         }
 
-         public void Draw(RenderWindow window)
+        public IAppState _nextState { get; set; }
+
+        public void Draw(RenderWindow window)
         {
-            window.Clear();
+            //window.Clear();
             window.Draw(_game._stage._sprite);
             window.Draw(_game._fighter2._shadow);
             window.Draw(_game._fighter2._sprite);
             window.Draw(_game._fighter1._shadow);
             window.Draw(_game._fighter1._sprite);
             window.Draw(_game._fighter1._projectile.Sprite);
-            //_game.GameEndMenu.Draw(window);
+            _game._gameEndMenu.Draw(window);
             _game._userInterface.Draw(window);
         }
 
 
-        public void Update(RenderWindow window)
+        public IAppState Update(RenderWindow window)
         {
             _game.Update(window);
+            _nextState = this;
+            return _nextState;
         }
     }
 }
