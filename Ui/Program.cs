@@ -23,7 +23,7 @@ namespace UI
                 //MainMenu mainMenu = new MainMenu(window);
                 bool _gameCreate = false;
                 Menus menus = new Menus(window);
-                Game game = new Game(new Time(), Factory.NewCharacter("chun-li"), Factory.NewCharacter("chun-li"), Factory.NewStage("stage1"), window);
+                Game game = new Game(new Time(), Factory.NewCharacter("balrog"), Factory.NewCharacter("chun-li"), Factory.NewStage("stage6"), window);
                 //Game game = null;
 
                 while (window.IsOpen)

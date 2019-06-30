@@ -84,8 +84,9 @@ namespace Model
                     // PROJECTILE
                     _animationRect.Add("projectile1", new IntRect(5, 824, 47, 109));
 
+                    Projectile projectile = new Projectile("balrog.png", _animationRect["projectile1"], new Vector2f(0.3f, 0f), new Vector2f(5, 5));
 
-                    Character character = CreateCharacter("Balrog", "balrog.png", _animationRect, new Vector2f(5.5f, 5.5f));
+                    Character character = CreateCharacter("Balrog", "balrog.png", _animationRect, new Vector2f(5.5f, 5.5f), projectile);
                     return character;
                 case "sagat":
                     // SHADOW
@@ -138,7 +139,7 @@ namespace Model
                     _animationRect.Add("projectile2", new IntRect(526, 861, 15, 26));
                     _animationRect.Add("projectile3", new IntRect(554, 860, 22, 28));
 
-                    Projectile projectile = new Projectile("sagat.png", _animationRect["projectile1"], new Vector2f(0.3f, 0f), new Vector2f(5, 5));
+                    projectile = new Projectile("sagat.png", _animationRect["projectile1"], new Vector2f(0.3f, 0f), new Vector2f(5, 5));
 
                     character = CreateCharacter("Sagat", "sagat.png", _animationRect, new Vector2f(5f, 5f), projectile);
                     return character;
@@ -503,6 +504,21 @@ namespace Model
             {
                 case "stage1":
                     Stage stage = CreateStage("stage1", "stage1.jpg", 1060);
+                    return stage;
+                case "stage2":
+                    stage = CreateStage("stage2", "stage2.jpg", 950);
+                    return stage;
+                case "stage3":
+                    stage = CreateStage("stage3", "stage3.png", 970);
+                    return stage;
+                case "stage4":
+                    stage = CreateStage("stage4", "stage4.png", 1030);
+                    return stage;
+                case "stage5":
+                    stage = CreateStage("stage5", "stage5.png", 970);
+                    return stage;
+                case "stage6":
+                    stage = CreateStage("stage6", "stage6.jpg", 970);
                     return stage;
                 default:
                     return null;
