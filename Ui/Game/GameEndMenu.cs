@@ -15,6 +15,7 @@ namespace UI
         private Dictionary<string, Text> _textMenu = new Dictionary<string, Text>();
         CreateMenu CreateMenu = new CreateMenu();
         public RectangleShape test = new RectangleShape();
+        IAppState _state;
         Vector2f MousePosition;
 
         internal GameEndMenu(Game game)
@@ -55,11 +56,16 @@ namespace UI
             {
                 if(  Mouse.IsButtonPressed(Mouse.Button.Left) && _menu["Quitter"].GetGlobalBounds().Contains(MousePosition.X, MousePosition.Y) == true )
                 {
-                    game._nextState = new Menus(game._window);
+                    game._intMenus = 3;
                     Console.WriteLine("ecrit ok");
                 }
+                else if ( Mouse.IsButtonPressed(Mouse.Button.Left) && _menu["Changer"].GetGlobalBounds().Contains(MousePosition.X, MousePosition.Y) == true )
+                {
+                    game._intMenus = 2;
+                }
 
-                
+
+
             }
         }
 
@@ -67,7 +73,8 @@ namespace UI
         {
             MousePosition = new Vector2f(Mouse.GetPosition(game._window).X, Mouse.GetPosition(game._window).Y);
             ClickMenu(game);
-            if ( Keyboard.IsKeyPressed(Keyboard.Key.Escape) == true ) _isActived = true;
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.Escape) == true && _isActived == false ) _isActived = true;
+            //if ( Keyboard.IsKeyPressed(Keyboard.Key.Escape) == true && _isActived == true ) _isActived = false;
 
 
             if ( ( game._player1Win == 2 || game._player2Win == 2 ) && animationKO == true ) _isActived = true;

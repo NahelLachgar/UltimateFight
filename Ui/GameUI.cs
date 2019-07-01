@@ -35,7 +35,11 @@ namespace UI
         public IAppState Update(RenderWindow window)
         {
             _game.Update(window);
-            _nextState = this;
+            //_nextState = _game._nextState;
+
+            if ( _game._intMenus == 0 ) _nextState = this;
+            else if ( _game._intMenus == 2 ) _nextState = new CharacterMenu();
+            else if ( _game._intMenus == 3 ) _nextState = new Menus(window);
             return _nextState;
         }
     }

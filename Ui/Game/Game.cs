@@ -11,7 +11,7 @@ namespace UI
     public class Game : IAppState
     {
         public IAppState _nextState { get; set; }
-
+        public int _intMenus = 0;
         internal bool _startRound = true;
         internal Server _server;
         internal string _host;
