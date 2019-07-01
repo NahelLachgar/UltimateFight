@@ -15,7 +15,7 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight",  Styles.Close))
+            using (RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "Ultimate Fight",   Styles.Close))
             {
                 IAppState _state;
                 //MainMenu mainMenu = new MainMenu(window);
