@@ -7,7 +7,7 @@ namespace Model
 {
     public class Special
     {
-        int _i = -1;
+        internal int _i = -1;
         bool _isFinished = false;
 
         public bool SpecialMove(Character character)
