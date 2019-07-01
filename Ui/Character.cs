@@ -158,6 +158,7 @@ namespace Model
                 {
                     _special = false;
                     _energy = 0;
+                    _specialMove._i = -1;
                 }
                 if (_isFighting == true) _isFighting = false;
                 

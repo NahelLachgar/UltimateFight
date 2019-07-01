@@ -79,7 +79,7 @@ namespace UI
                     if (_game._fighter1._projectile.Position.X + _game._fighter1._projectile.Width > _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
                     {
                         _game._fighter1._projectile.isThrown = false;
-                        if (_game._fighter2.TakeDammage(20, "low") == true)
+                        if (_game._fighter2.TakeDammage(45, "low") == true)
                         {
                             _game._fighter1.GainEnergy(0);
                         }
