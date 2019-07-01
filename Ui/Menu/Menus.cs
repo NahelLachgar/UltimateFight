@@ -12,6 +12,7 @@ namespace UI
 
         MainMenu _mainMenu;
         public StartGame _startGame;
+        public Credit _credit;
 
         public IAppState _nextState { get; set; }
 
@@ -19,6 +20,7 @@ namespace UI
         {
             _mainMenu = new MainMenu(window);
             _startGame = new StartGame(window);
+            _credit = new Credit(window);
             _nextState = this;
         }
 
@@ -56,6 +58,7 @@ namespace UI
                     break;
 
                 case 4:  // Option : "Crédit"
+                    _credit.Draw(window, _mainMenu);
                     break;
 
                 case 5:  // Option : "Exit"
