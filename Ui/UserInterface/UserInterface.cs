@@ -9,7 +9,7 @@ namespace UI
 {
     public class UserInterface
     {
-        Timer gameTimer;
+        internal Timer gameTimer;
         HealthBar healthBar;
         EnergyBars energyBar;
         PlayerName playerName;

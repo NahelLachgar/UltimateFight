@@ -62,7 +62,7 @@ namespace UI
                 if ( e.Button == Mouse.Button.Left && value.GetGlobalBounds().Contains(MousePosition.X, MousePosition.Y) == true )
                 {
                     this._nextState = new GameUI( new Game(new Time(), Factory.NewCharacter(_characterMenu._avatars._characterPlayer1.ToLower()), Factory.NewCharacter(_characterMenu._avatars._characterPlayer2.ToLower()), Factory.NewStage("stage"+x), window) );
-                    Console.WriteLine("Map numéro : " + x);
+                    //Console.WriteLine("Map numéro : " + x);
                 };
             }
 

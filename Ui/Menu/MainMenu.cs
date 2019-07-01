@@ -139,7 +139,7 @@ namespace UI
             OptionMenu[2].Position = new Vector2f(( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( OptionMenu[2].GetGlobalBounds().Width / 2f ), 570f);
             OptionMenu[2].Style = Text.Styles.Bold;
 
-            OptionMenu.Add(new Text("Coup Spéciaux", font, 50));
+            OptionMenu.Add(new Text("Coup Speciaux", font, 50));
             OptionMenu[3].Position = new Vector2f(( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( OptionMenu[3].GetGlobalBounds().Width / 2f ), 655f);
             OptionMenu[3].Style = Text.Styles.Bold;
 

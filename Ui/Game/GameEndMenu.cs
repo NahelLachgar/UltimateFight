@@ -73,8 +73,12 @@ namespace UI
         {
             MousePosition = new Vector2f(Mouse.GetPosition(game._window).X, Mouse.GetPosition(game._window).Y);
             ClickMenu(game);
-            if ( Keyboard.IsKeyPressed(Keyboard.Key.Escape) == true && _isActived == false ) _isActived = true;
-            //if ( Keyboard.IsKeyPressed(Keyboard.Key.Escape) == true && _isActived == true ) _isActived = false;
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.Escape) == true && _isActived == false )
+            {
+                _isActived = true;
+                //game._userInterface.gameTimer.
+            }
+            else if ( Keyboard.IsKeyPressed(Keyboard.Key.Enter) == true && _isActived == true ) _isActived = false;
 
 
             if ( ( game._player1Win == 2 || game._player2Win == 2 ) && animationKO == true ) _isActived = true;

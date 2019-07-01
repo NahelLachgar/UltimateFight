@@ -54,7 +54,7 @@ namespace UI
 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
                 // PLAYER 2
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) _game._fighter2.MoveRight(_game._moveSpeed);
 
                 // TAKE DAMAGE ==========================
                 // PUNCHES
@@ -92,7 +92,7 @@ namespace UI
                 {
                     _game._fighter1.LightPunch();
                 }
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad4))
+                if (Keyboard.IsKeyPressed(Keyboard.Key.RShift))
                 {
                     _game._fighter2.LightPunch();
                 }
@@ -120,7 +120,7 @@ namespace UI
                     // PLAYER 1
                     if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
                     // PLAYER 2
-                    if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _game._fighter2.MoveLeft(_game._moveSpeed);
+                    if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) _game._fighter2.MoveLeft(_game._moveSpeed);
 
 
                 }

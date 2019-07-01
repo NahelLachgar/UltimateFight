@@ -63,15 +63,15 @@ namespace UI
 
             Font font = new Font("../../../../Ui/Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf");
 
-            Option.Add(new Text("Entraînement", font, 50));
+            Option.Add(new Text("Entrainement", font, 50));
             Option[0].Position = new Vector2f(500F + ( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( Option[0].GetGlobalBounds().Width / 2f ), 400f);
             Option[0].Style = Text.Styles.Bold;
 
-            Option.Add(new Text("Player Vs. Player", font, 50));
+            Option.Add(new Text("Joueur Vs. Joueur", font, 50));
             Option[1].Position = new Vector2f(500F + ( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( Option[1].GetGlobalBounds().Width / 2f ), 485f);
             Option[1].Style = Text.Styles.Bold;
 
-            Option.Add(new Text("Mode Online", font, 50));
+            Option.Add(new Text("Mode en ligne", font, 50));
             Option[2].Position = new Vector2f(500F + ( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( Option[2].GetGlobalBounds().Width / 2f ), 570f);
             Option[2].Style = Text.Styles.Bold;
 

@@ -81,7 +81,7 @@ namespace UI
 
             Font font = new Font("../../../../Ui/Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf");
 
-            Option.Add(new Text("Projet etudiant realis par :", font, 50));
+            Option.Add(new Text("Projet etudiant realise par :", font, 50));
             Option[0].Position = new Vector2f(390F + ( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( Option[0].GetGlobalBounds().Width / 2f ), 300f);
             Option[0].Style = Text.Styles.Bold;
             Option[0].FillColor = Color.Red;
@@ -118,8 +118,8 @@ namespace UI
             Option[3].Font = new Font("../../../../Ui/Resources/Fonts/GrizzlyAttack/GrizzlyAttack.ttf");
 
 
-            Option.Add(new Text("\n\n\n\nCorinne THOMAS pour avoir fait passer Kevin \nEt bien evidemment le camion a pizza sans qui\nrien n'aurait ete possible !", font, 50));
-            Option[4].Position = new Vector2f(450F + ( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( Option[4].GetGlobalBounds().Width / 2f ), 635f);
+            Option.Add(new Text("\n\n\n\nRetour", font, 50));
+            Option[4].Position = new Vector2f(450F + ( _blackBackMenu.GetGlobalBounds().Width / 2f ) - ( Option[4].GetGlobalBounds().Width / 2f ), 685f);
             Option[4].Style = Text.Styles.Bold;
             Option[4].LineSpacing = 0.75f;
             Option[4].FillColor = Color.White;
