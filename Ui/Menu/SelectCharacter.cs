@@ -31,7 +31,7 @@ namespace Model
             ImgChararctersConstruction();
             Vector2i mousePosition = Mouse.GetPosition(window);
 
-            for ( byte i = 0; i <= _avatars.Count-2 ; i++ )
+            for ( byte i = 0; i <= /*_avatars.Count-1*/7 ; i++ )
             {
                 if ( _avatars[i].GetGlobalBounds().Contains(mousePosition.X, mousePosition.Y) )
                 {
@@ -97,8 +97,8 @@ namespace Model
             circleShape.Add(shape);
 
             shape = (ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(174f, 179f), Color.Transparent, Color.White));
-            shape.Texture = _img.Avatar["Chunli"];
-            shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Chunli"].Size.X), Convert.ToInt32(_img.Avatar["Chunli"].Size.Y));
+            shape.Texture = _img.Avatar["Chun-li"];
+            shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Chun-li"].Size.X), Convert.ToInt32(_img.Avatar["Chun-li"].Size.Y));
             circleShape.Add(shape);
 
             shape =(ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(322f, 179f), Color.Transparent, Color.White));
@@ -116,6 +116,20 @@ namespace Model
             shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Sagat"].Size.X), Convert.ToInt32(_img.Avatar["Sagat"].Size.Y));
             circleShape.Add(shape);
 
+            shape = ( ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(102f, 302f), Color.Transparent, Color.White) );
+            shape.Texture = _img.Avatar["Goku"];
+            shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Goku"].Size.X), Convert.ToInt32(_img.Avatar["Goku"].Size.Y));
+            circleShape.Add(shape);
+
+            shape = ( ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(250f, 302f), Color.Transparent, Color.White) );
+            shape.Texture = _img.Avatar["16"];
+            shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["16"].Size.X), Convert.ToInt32(_img.Avatar["16"].Size.Y));
+            circleShape.Add(shape);
+
+            shape = ( ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(398f, 302f), Color.Transparent, Color.White) );
+            shape.Texture = _img.Avatar["Subzero"];
+            shape.TextureRect = new IntRect(0, 0, Convert.ToInt32(_img.Avatar["Subzero"].Size.X), Convert.ToInt32(_img.Avatar["Subzero"].Size.Y));
+            circleShape.Add(shape);
 
             // Ligne impair
             circleShape.Add(ShapeHelpers.RedCircleShape(68f, 6, new Vector2f(102f, 304f), Color.Transparent));
@@ -144,10 +158,13 @@ namespace Model
             List<string> NameAvatar = new List<string>();
 
             NameAvatar.Add("Balrog");
-            NameAvatar.Add("Chunli");
+            NameAvatar.Add("Chun-li");
             NameAvatar.Add("Ryu");
             NameAvatar.Add("Bison");
             NameAvatar.Add("Sagat");
+            NameAvatar.Add("Goku");
+            NameAvatar.Add("16");
+            NameAvatar.Add("Subzero");
 
             return NameAvatar;
         }

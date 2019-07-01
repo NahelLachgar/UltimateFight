@@ -176,7 +176,7 @@ namespace UI
 
                     break;
 
-                case 3:  // Option : "Retour" 
+                case 3:  
 
                     break;
 

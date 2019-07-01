@@ -129,8 +129,9 @@ namespace UI
                 case 1:  // Button "Random Character"
                     Random random = new Random();
 
-                    _avatars._characterPlayer1 = _avatars._nameAvatars[random.Next(0, 5)];
-                    _avatars._characterPlayer2 = _avatars._nameAvatars[random.Next(0, 5)];
+                    _avatars._characterPlayer1 = _avatars._nameAvatars[random.Next(0, 7)];
+                    _avatars._characterPlayer2 = _avatars._nameAvatars[random.Next(0, 7)];
+                    this._nextState = new Map(window, this);
                     break;
 
                 case 2:  // Button "Next"

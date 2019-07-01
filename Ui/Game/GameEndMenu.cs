@@ -15,9 +15,13 @@ namespace UI
         private Dictionary<string, Text> _textMenu = new Dictionary<string, Text>();
         CreateMenu CreateMenu = new CreateMenu();
         public RectangleShape test = new RectangleShape();
+        Vector2f MousePosition;
 
-        internal GameEndMenu()
+        internal GameEndMenu(Game game)
         {
+            //game._window.MouseButtonReleased += (sender, e) => ClickMenu(e, game);
+
+
             _menu.Add("Back", CreateMenu.NewBackground());
             _menu["Back"].Position = new Vector2f(1980f / 2f - Convert.ToSingle(_menu["Back"].TextureRect.Width) * 3f, 1080f / 2f - Convert.ToSingle(_menu["Back"].TextureRect.Height) * 2f);
             _menu["Back"].Scale = new Vector2f(6f, 6f);
@@ -45,14 +49,36 @@ namespace UI
             test.Position = new Vector2f(100f, 300f);
         }
 
+        private void ClickMenu( Game game)
+        {
+            if ( _isActived == true )
+            {
+                if(  Mouse.IsButtonPressed(Mouse.Button.Left) && _menu["Quitter"].GetGlobalBounds().Contains(MousePosition.X, MousePosition.Y) == true )
+                {
+                    game._nextState = new Menus(game._window);
+                    Console.WriteLine("ecrit ok");
+                }
+
+                
+            }
+        }
+
         public void Update(Game game, bool animationKO)
         {
+            MousePosition = new Vector2f(Mouse.GetPosition(game._window).X, Mouse.GetPosition(game._window).Y);
+            ClickMenu(game);
+            if ( Keyboard.IsKeyPressed(Keyboard.Key.Escape) == true ) _isActived = true;
+
+
             if ( ( game._player1Win == 2 || game._player2Win == 2 ) && animationKO == true ) _isActived = true;
-            else _isActived = false;
+            //else _isActived = false;
 
             if ( _isActived == true )
             {
-                _textMenu["BackText"].DisplayedString = string.Format("Joueur {0} wins", game.NameWinner());
+                if ( game.NameWinner() > 0 )
+                { // Check si un joueur a gagné, et si oui affiche son prénom
+                    _textMenu["BackText"].DisplayedString = string.Format("Joueur {0} wins", game.NameWinner());
+                }
 
                 // Button for replay : "Rejouer"
                 if ( CreateMenu.MouseInButton(_menu["Rejouer"], game._window) ) _menu["Rejouer"] = CreateMenu.NewButton("Green").Item2;
@@ -72,6 +98,7 @@ namespace UI
                 else _menu["Quitter"] = CreateMenu.NewButton("Orange").Item1;
                 _menu["Quitter"].Position = _menu["Rejouer"].Position + new Vector2f(0f, 240f);
                 _menu["Quitter"].Scale = new Vector2f(4f, 3f);
+
             }
 
             //this.Draw(game._window);
@@ -89,6 +116,8 @@ namespace UI
         }
 
         public Dictionary<string, Sprite> BackMenu => _menu;
+
+
 
     }
 }

@@ -21,11 +21,14 @@ namespace Model
         {
             Dictionary<string, Texture> load = new Dictionary<string, Texture>();
 
-            load.Add("Chunli", new Texture("../../../../img/Characters/Avatar/Character/Chunli.png"));
+            load.Add("Chun-li", new Texture("../../../../img/Characters/Avatar/Character/Chun-li.png"));
             load.Add("Balrog", new Texture("../../../../img/Characters/Avatar/Character/Balrog.png"));
             load.Add("Ryu", new Texture("../../../../img/Characters/Avatar/Character/Ryu.png"));
             load.Add("Bison", new Texture("../../../../img/Characters/Avatar/Character/Bison.png"));
             load.Add("Sagat", new Texture("../../../../img/Characters/Avatar/Character/Sagat.png"));
+            load.Add("Goku", new Texture("../../../../img/Characters/Avatar/Character/Goku.png"));
+            load.Add("16", new Texture("../../../../img/Characters/Avatar/Character/16.png"));
+            load.Add("Subzero", new Texture("../../../../img/Characters/Avatar/Character/Subzero.png"));
 
             return load;
         }
@@ -34,11 +37,16 @@ namespace Model
         {
             Dictionary<string, Texture> load = new Dictionary<string, Texture>();
 
-            load.Add("Chunli", new Texture("../../../../img/Characters/Avatar/Avatar/Chunli.png"));
+            load.Add("Chun-li", new Texture("../../../../img/Characters/Avatar/Avatar/Chun-li.png"));
             load.Add("Balrog", new Texture("../../../../img/Characters/Avatar/Avatar/Balrog.png"));
             load.Add("Ryu", new Texture("../../../../img/Characters/Avatar/Avatar/Ryu.png"));
             load.Add("Bison", new Texture("../../../../img/Characters/Avatar/Avatar/Bison.gif"));
             load.Add("Sagat", new Texture("../../../../img/Characters/Avatar/Avatar/Sagat.png"));
+            load.Add("Goku", new Texture("../../../../img/Characters/Avatar/Avatar/Goku.png"));
+            load.Add("16", new Texture("../../../../img/Characters/Avatar/Avatar/16.png"));
+            load.Add("Subzero", new Texture("../../../../img/Characters/Avatar/Avatar/Subzero.png"));
+
+
 
             return load;
         }

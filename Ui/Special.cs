@@ -231,7 +231,7 @@ namespace Model
                     }
                     break;
                 // Android 16
-                case "Android":
+                case "16":
                     _i++;
                     switch (_i)
                     {
