@@ -309,7 +309,9 @@ namespace UI
                     // PROJECTILE
                     _animationRect.Add("projectile1", new IntRect(554, 860, 22, 28));
 
-                    character = CreateCharacter("subzero", "subzero.png", _animationRect, new Vector2f(5, 5));
+                    projectile = new Projectile("subzero.png", _animationRect["projectile1"], new Vector2f(0.3f, 0f), new Vector2f(4, 4));
+
+                    character = CreateCharacter("subzero", "subzero.png", _animationRect, new Vector2f(5, 5), projectile);
                     return character;
                 case "16":
                     // SHADOW
