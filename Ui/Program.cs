@@ -26,34 +26,26 @@ namespace UI
                 Game game = null;
                 //_state = new MenuUI(menus);
                 _state = menus;
+                _state = new Map(window, new CharacterMenu() );
 
                 while (window.IsOpen)
                 {
-                    //window.SetFramerateLimit(60);
                     window.DispatchEvents();
                     window.Clear();
-
-                /*    _cs.State = new MenuUI(menus); */
-                    //_state = new GameUI(game);
 
                     _state = _state.Update(window);
                     _state.Draw(window);
                     window.Display();
 
                     //Event for close the program
-
-
                     if (Keyboard.IsKeyPressed(Keyboard.Key.F4)) window.Close();
-
 
                     window.Closed += new EventHandler(OnClose);
                     void OnClose(object sender, EventArgs e)
                     {
                         // Close the window when OnClose event is received
                         window.Close();
-                    }
-
-                   
+                    }                 
            
                 }
             }

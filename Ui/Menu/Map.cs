@@ -19,6 +19,7 @@ namespace UI
 
 
 
+
         public Map(RenderWindow window, CharacterMenu character)
         {
             _nextState = this;
@@ -29,7 +30,7 @@ namespace UI
             {
                 Position = new Vector2f(0f, 0f),
                 Size = new Vector2f(window.Size.X, window.Size.Y),
-                FillColor = Color.Black,
+                Texture = new Texture("../../../../img/Menu/SelectMap.jpg"),
             };
 
             window.MouseButtonReleased += (sender, e) => ClickSelectMap(e, window);
