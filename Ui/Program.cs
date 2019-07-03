@@ -33,31 +33,7 @@ namespace UI
                     window.DispatchEvents();
                     window.Clear();
 
-                /*    _cs.State = new MenuUI(menus);
-                    if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
-                    {
-                        if ( _gameCreate == false )
-                        {
-                            game = new Game(new Time(), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer1.ToLower()), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer2.ToLower()), Factory.NewStage("stage1"), window);
-                            _gameCreate = true;
-                    
-                    //if ( menus._startGame._characterMenu._chooseOptionMenu == 2 )
-                    //{
-                    //    if ( _gameCreate == false )
-                    //    {
-                    //        game = new Game(new Time(), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer1.ToLower()), Factory.NewCharacter(menus._startGame._characterMenu._avatars._characterPlayer2.ToLower()), Factory.NewStage("stage1"), window);
-                    //        _gameCreate = true;
-
-                    //    }
-
-                        _cs.State = new GameUI(game);
-                    }*/
-
-
-                    //    _state._nextState = new GameUI(game);
-                    //}
-
-
+                /*    _cs.State = new MenuUI(menus); */
                     //_state = new GameUI(game);
 
                     _state = _state.Update(window);
