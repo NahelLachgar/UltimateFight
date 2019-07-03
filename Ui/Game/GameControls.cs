@@ -54,7 +54,7 @@ namespace UI
 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
                 // PLAYER 2
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) _game._fighter2.MoveRight(_game._moveSpeed);
+                if (Joystick.GetAxisPosition(0,Joystick.Axis.X) < 0) _game._fighter2.MoveRight(_game._moveSpeed);
 
                 // TAKE DAMAGE ==========================
                 // PUNCHES
@@ -92,7 +92,7 @@ namespace UI
                 {
                     _game._fighter1.LightPunch();
                 }
-                if (Keyboard.IsKeyPressed(Keyboard.Key.RShift))
+                if (Joystick.IsButtonPressed(0, 2))
                 {
                     _game._fighter2.LightPunch();
                 }
@@ -110,9 +110,23 @@ namespace UI
                     }
                 }
 
+                if (Joystick.IsButtonPressed(0, 1))
+                {
+                    _game._fighter2.LightKick();
+                    if (_game._fighter2._hitbox.Position.X + _game._fighter2._hitbox.Size.X * _game._fighter2._hitbox.Scale.X > _game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X)
+                    {
+                        if (_game._fighter1.TakeDammage(15, "low") == true)
+                        {
+                            _game._fighter1.GainEnergy(10);
+                        }
+                    }
+                }
+
                 // Special
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _game._fighter1.Energy == 100) _game._fighter1.SpecialMove();
- 
+
+                if (Joystick.IsButtonPressed(0,1) && Joystick.IsButtonPressed(0,2) && _game._fighter2.Energy == 100) _game._fighter2.SpecialMove();
+
 
                 // IF THE PLAYERS ARE STUCK TO EACHOTHER
                 if (_game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X < _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X /* || _game._fighter1._sprite.Position.Y != _game._fighter2._sprite.Position.Y*/)
@@ -120,7 +134,7 @@ namespace UI
                     // PLAYER 1
                     if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
                     // PLAYER 2
-                    if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) _game._fighter2.MoveLeft(_game._moveSpeed);
+                    if (Joystick.GetAxisPosition(0, Joystick.Axis.X) > 0) _game._fighter2.MoveLeft(_game._moveSpeed);
 
 
                 }
@@ -199,7 +213,12 @@ namespace UI
             // PLAYER 1 CONTROLER
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.Crouch();
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _game._fighter1.Jump();
-                
+
+            if (Joystick.GetAxisPosition(0, Joystick.Axis.Y) < 0 && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.Crouch();
+            if (Joystick.GetAxisPosition(0, Joystick.Axis.Y) > 0) _game._fighter1.Jump();
+
+
+
 
             _game._fighter1.Update();
             _game._fighter2.Update();
@@ -212,11 +231,15 @@ namespace UI
                 if (e.Code == Keyboard.Key.Q) _game._fighter1._isMoving = false;
                 if (e.Code == Keyboard.Key.S) _game._fighter1._isCrouching = false;
 
-                // PLAYER 2
-                if (e.Code == Keyboard.Key.Numpad3) _game._fighter2._isMoving = false;
-                if (e.Code == Keyboard.Key.Numpad1) _game._fighter2._isMoving = false;
-                if (e.Code == Keyboard.Key.Numpad2) _game._fighter2._isCrouching = false;
+               
 
+            };
+
+            _game._window.JoystickMoved += (sender, e) =>
+            {
+                // PLAYER 1
+                if (e.Axis == Joystick.Axis.X) _game._fighter1._isMoving = false;
+                if (e.Axis == Joystick.Axis.Y) _game._fighter1._isCrouching = false;
             };
 
             /*
