@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using System;
-
+using UI;
 
 namespace Model
 {
@@ -9,6 +9,7 @@ namespace Model
     {
         internal int _i = -1;
         bool _isFinished = false;
+        Sound _music = new Sound();
 
         public bool SpecialMove(Character character)
         {
@@ -272,6 +273,8 @@ namespace Model
                     switch (_i)
                     {
                         case 0:
+                            _music._currentSound = _music._goku;
+                            _music._currentSound.Play();
                             character._sprite.TextureRect = character._animationRect["special1"];
                             break;
                         case 150:

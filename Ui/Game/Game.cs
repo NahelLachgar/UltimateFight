@@ -39,6 +39,7 @@ namespace UI
         float _currentTime;
         public RenderWindow _window;
         public UserInterface _userInterface;
+        //public Sound _music = new Sound();
 
         public GameEndMenu _gameEndMenu;   
         public Game(Time timer, Character fighter1, Character fighter2, Stage stage, RenderWindow window, User user1 = null, User user2 = null, string host = null)
@@ -57,6 +58,8 @@ namespace UI
             _window = window;
             _controls = new GameControls(this);
             _userInterface = new UserInterface(this);
+            //_music._currentMusic = _music._musicGame;
+            //_music._currentMusic.Play();
 
             _nextState = this;
             _gameEndMenu = new GameEndMenu(this);

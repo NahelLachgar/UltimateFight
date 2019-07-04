@@ -19,6 +19,7 @@ namespace UI
         public List<Text> _optionMenu;
         public int _chooseOptionMenu = -1;
         public IAppState _nextState { get; set; }
+        public Sound _music1 = new Sound();
 
 
         public MainMenu(RenderWindow window)
@@ -37,6 +38,9 @@ namespace UI
 
             _optionMenu = OptionMenu();
             _nextState = this;
+            _music1._currentMusic = _music1._musicMenu;
+            _music1._currentMusic.Loop = true;
+            _music1._currentMusic.Play();
         }
 
         public IAppState Update(RenderWindow window/*, Menus menus*/)
