@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Model;
+using System.Threading;
 
 namespace UI
 {
@@ -18,6 +19,37 @@ namespace UI
 
         public void Update(string key = null)
         {
+            Joystick.Update();
+            float povX = Joystick.GetAxisPosition(0, Joystick.Axis.PovX);
+            Console.WriteLine(povX);
+            /*for (uint i=10; i<32; i++)
+            {
+               if (Joystick.GetAxisPosition(i, Joystick.Axis.PovX)>0) ;
+                Console.WriteLine($"{i}  :  {Joystick.GetAxisPosition(i, Joystick.Axis.X)}");
+                Thread.Sleep(1000);
+            }*/
+         /*   _game._window.JoystickMoved += (sender, e) =>
+            {
+                
+                // PLAYER 1
+                /* Console.WriteLine(e.Axis);
+                 Console.WriteLine(e.JoystickId);
+                 Console.WriteLine(e.Position);
+                if (e.Axis == Joystick.Axis.PovX)
+                {
+                    if (e.Position < 0)
+                    {
+                        _game._fighter2.MoveRight(e.Position / 10000);
+                        _game._fighter2._isMoving = true;
+                       // Console.WriteLine($"id : {e.JoystickId}");
+                    } else
+                    {
+                        _game._fighter2._isMoving = false;
+
+                    }
+
+                }
+            };*/
             /*  if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) Client.SendKey("Q");
               if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) Client.SendKey("Z");
               if (Keyboard.IsKeyPressed(Keyboard.Key.S)) Client.SendKey("S");
@@ -28,7 +60,7 @@ namespace UI
             // PROJECTILE 
             if (_game._fighter1._projectile.isThrown == true)
             {
-                _game._fighter1._projectile.Position += new Vector2f(_game._fighter1._projectile.Path.X * _game._fighter1.Scale , _game._fighter1._projectile.Path.Y * _game._fighter1.Scale);
+                _game._fighter1._projectile.Position += new Vector2f(_game._fighter1._projectile.Path.X * _game._fighter1.Scale, _game._fighter1._projectile.Path.Y * _game._fighter1.Scale);
             }
 
             // ADAPTE LA TAILLE DU PERSONNAGE A LA CARTE
@@ -50,11 +82,11 @@ namespace UI
             if (_game._fighter1.Position.X < _game._fighter2._sprite.Position.X + ((_game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X) / 2))
             {
                 // PLAYER 1
-               // if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
+                // if (key=="Q") _game._fighter1.MoveLeft(_game._moveSpeed);
 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
                 // PLAYER 2
-                if (Joystick.GetAxisPosition(0,Joystick.Axis.X) < 0) _game._fighter2.MoveRight(_game._moveSpeed);
+                if (Joystick.GetAxisPosition(0, Joystick.Axis.PovX) > 0) _game._fighter2.MoveRight(_game._moveSpeed);
 
                 // TAKE DAMAGE ==========================
                 // PUNCHES
@@ -125,7 +157,7 @@ namespace UI
                 // Special
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _game._fighter1.Energy == 100) _game._fighter1.SpecialMove();
 
-                if (Joystick.IsButtonPressed(0,1) && Joystick.IsButtonPressed(0,2) && _game._fighter2.Energy == 100) _game._fighter2.SpecialMove();
+                if (Joystick.IsButtonPressed(0, 3) && _game._fighter2.Energy == 100) _game._fighter2.SpecialMove();
 
 
                 // IF THE PLAYERS ARE STUCK TO EACHOTHER
@@ -134,7 +166,7 @@ namespace UI
                     // PLAYER 1
                     if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
                     // PLAYER 2
-                    if (Joystick.GetAxisPosition(0, Joystick.Axis.X) > 0) _game._fighter2.MoveLeft(_game._moveSpeed);
+                    if (Joystick.GetAxisPosition(0, Joystick.Axis.PovX) < 0) _game._fighter2.MoveLeft(_game._moveSpeed);
 
 
                 }
@@ -157,12 +189,12 @@ namespace UI
                 // PLAYER 1
                 if (Keyboard.IsKeyPressed(Keyboard.Key.D)) _game._fighter1.MoveRight(_game._moveSpeed);
                 // PLAYER 2
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveRight(_game._moveSpeed);
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _game._fighter2.MoveLeft(_game._moveSpeed);
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad3)) _game._fighter2.MoveLeft(_game._moveSpeed);
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Numpad1)) _game._fighter2.MoveRight(_game._moveSpeed);
 
                 // LIGHT PUNCH 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A)) _game._fighter1.LightPunch();
-                
+
                 // Special
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _game._fighter1.Energy == 100) _game._fighter1.SpecialMove();
 
@@ -181,7 +213,7 @@ namespace UI
                 {
                     if (_game._fighter1._projectile.Position.X + _game._fighter1._projectile.Width < _game._fighter2._sprite.Position.X + _game._fighter2._sprite.TextureRect.Width * _game._fighter2._sprite.Scale.X)
                     {
-                        _game._fighter1._projectile.isThrown= false;
+                        _game._fighter1._projectile.isThrown = false;
                         if (_game._fighter2.TakeDammage(20, "low") == true)
                         {
                             _game._fighter1.GainEnergy(0);
@@ -195,7 +227,7 @@ namespace UI
                 {
                     // PLAYER 1
                     if (Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.MoveLeft(_game._moveSpeed);
-                   
+
                 }
 
                 // TURNING THE PLAYERS
@@ -214,8 +246,8 @@ namespace UI
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.Crouch();
             if (Keyboard.IsKeyPressed(Keyboard.Key.Z)) _game._fighter1.Jump();
 
-            if (Joystick.GetAxisPosition(0, Joystick.Axis.Y) < 0 && !Keyboard.IsKeyPressed(Keyboard.Key.D) && !Keyboard.IsKeyPressed(Keyboard.Key.Q)) _game._fighter1.Crouch();
-            if (Joystick.GetAxisPosition(0, Joystick.Axis.Y) > 0) _game._fighter1.Jump();
+        //    if (Joystick.GetAxisPosition(0, Joystick.Axis.PovY) < 0 && Joystick.GetAxisPosition(0, Joystick.Axis.PovX) == 0) _game._fighter2.Crouch();
+            if (Joystick.GetAxisPosition(0, Joystick.Axis.PovY) > 50) _game._fighter2.Jump();
 
 
 
@@ -231,16 +263,18 @@ namespace UI
                 if (e.Code == Keyboard.Key.Q) _game._fighter1._isMoving = false;
                 if (e.Code == Keyboard.Key.S) _game._fighter1._isCrouching = false;
 
-               
+
 
             };
 
             _game._window.JoystickMoved += (sender, e) =>
             {
                 // PLAYER 1
-                if (e.Axis == Joystick.Axis.X) _game._fighter1._isMoving = false;
-                if (e.Axis == Joystick.Axis.Y) _game._fighter1._isCrouching = false;
+                if (e.Axis == Joystick.Axis.PovX) _game._fighter2._isMoving = false;
+                if (e.Axis == Joystick.Axis.Y && e.Position == 0) _game._fighter2._isCrouching = false;
             };
+        //    if (Joystick.GetAxisPosition(0,Joystick.Axis.PovY)==0) _game._fighter2._isCrouching = true;
+
 
             /*
             _game._window.KeyPressed += (sender, e) =>
