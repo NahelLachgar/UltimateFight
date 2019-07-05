@@ -63,6 +63,16 @@ namespace UI
                 _game._fighter1._projectile.Position += new Vector2f(_game._fighter1._projectile.Path.X * _game._fighter1.Scale, _game._fighter1._projectile.Path.Y * _game._fighter1.Scale);
             }
 
+            if (_game._fighter2._projectile.isThrown == true)
+            {
+                if(_game._fighter2._projectile.Sprite.Scale.X > 0)
+                {
+                    _game._fighter2._projectile.Sprite.Scale = new Vector2f(_game._fighter2._projectile.Sprite.Scale.X * -1, _game._fighter2._projectile.Sprite.Scale.Y);
+
+                }
+                _game._fighter2._projectile.Position += new Vector2f(_game._fighter2._projectile.Path.X * _game._fighter2.Scale, _game._fighter2._projectile.Path.Y * _game._fighter2.Scale);
+            }
+
             // ADAPTE LA TAILLE DU PERSONNAGE A LA CARTE
             if (_game._fighter1.Height != _game._stage._groundHeight && _game._fighter1._isJumping == false)
             {
@@ -117,6 +127,18 @@ namespace UI
                         }
                     }
                 }
+
+                if (_game._fighter2._projectile.isThrown == true)
+                {
+                    if (_game._fighter2._projectile.Position.X - _game._fighter2._projectile.Width < _game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X)
+                    {
+                        _game._fighter2._projectile.isThrown = false;
+                        if (_game._fighter1.TakeDammage(45, "low") == true)
+                        {
+                            _game._fighter2.GainEnergy(0);
+                        }
+                    }
+                }
                 // ======================================
 
                 // LIGHT PUNCH 
@@ -137,7 +159,7 @@ namespace UI
                     {
                         if (_game._fighter2.TakeDammage(15, "low") == true)
                         {
-                            _game._fighter1.GainEnergy(10);
+                            _game._fighter1.GainEnergy(25);
                         }
                     }
                 }
@@ -145,11 +167,11 @@ namespace UI
                 if (Joystick.IsButtonPressed(0, 1))
                 {
                     _game._fighter2.LightKick();
-                    if (_game._fighter2._hitbox.Position.X + _game._fighter2._hitbox.Size.X * _game._fighter2._hitbox.Scale.X > _game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X)
+                    if (_game._fighter2._hitbox.Position.X - _game._fighter2._hitbox.Size.X * _game._fighter2._hitbox.Scale.X < _game._fighter1._sprite.Position.X + _game._fighter1._sprite.TextureRect.Width * _game._fighter1._sprite.Scale.X)
                     {
                         if (_game._fighter1.TakeDammage(15, "low") == true)
                         {
-                            _game._fighter1.GainEnergy(10);
+                            _game._fighter2.GainEnergy(25);
                         }
                     }
                 }
