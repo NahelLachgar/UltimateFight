@@ -92,7 +92,8 @@ namespace UI
                 {
                     _game._fighter1.LightPunch();
                 }
-                if (Joystick.IsButtonPressed(0, 2))
+                //if (Joystick.IsButtonPressed(0, 2))
+                if(Keyboard.IsKeyPressed(Keyboard.Key.RShift))
                 {
                     _game._fighter2.LightPunch();
                 }
