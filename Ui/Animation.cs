@@ -3,11 +3,14 @@ using SFML.System;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Model;
 
-namespace Model
+namespace UI
+
 {
     public class Animation
     {
+        public Sound _music = new Sound();
         Sprite _sprite;
         RectangleShape _hitbox;
         //IntRect _test;
@@ -178,6 +181,10 @@ namespace Model
             switch (_p)
             {
                 case 0:
+                    _music._currentSound = _music._punch0;
+                    _music._currentSound.Stop();
+                    _music._currentSound.Play();
+
                     _spriteNb = 0;
                     this._sprite.TextureRect = _animationRect["lightPunch1"];
                     break;
@@ -205,6 +212,9 @@ namespace Model
             switch (_m)
             {
                 case 0:
+                    _music._currentSound = _music._punch1;
+                    _music._currentSound.Stop();
+                    _music._currentSound.Play();
                     _spriteNb = 0;
                     this._sprite.TextureRect = _animationRect["lightKick1"];
                     break;
@@ -237,7 +247,7 @@ namespace Model
 
             switch (_p)
             {
-                case 0:
+                case 0:             
                     this._sprite.TextureRect = _animationRect["jumpLight"];
                     _p = -1;
                     break;
@@ -282,6 +292,9 @@ namespace Model
             switch (_p)
             {
                 case 0:
+                    _music._currentSound = _music._punch2;
+                    _music._currentSound.Stop();
+                    _music._currentSound.Play();
                     this._sprite.TextureRect = _animationRect["faceHit1"];
                     _spriteNb = -1;
                     _i = -1;

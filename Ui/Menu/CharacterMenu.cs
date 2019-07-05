@@ -11,7 +11,7 @@ namespace UI
     public class CharacterMenu : IAppState
     {
         Sprite _imgBackGround;
-        public SelectCharacter _avatars = new SelectCharacter();
+        public SelectCharacter _avatars;
         Dictionary<int, CircleShape> _buttons;
         public int _chooseOptionMenu = -1;
         Text _text1 = new Text();
@@ -19,8 +19,9 @@ namespace UI
         public IAppState _nextState { get; set; }
 
 
-        public CharacterMenu()
+        public CharacterMenu(RenderWindow window)
         {
+            _avatars = new SelectCharacter(window);
             _imgBackGround = this.ImgBackGround();
             _buttons = Buttons();
             CharaterName();

@@ -274,6 +274,7 @@ namespace Model
                     {
                         case 0:
                             _music._currentSound = _music._goku;
+                            _music._currentSound.Stop();
                             _music._currentSound.Play();
                             character._sprite.TextureRect = character._animationRect["special1"];
                             break;

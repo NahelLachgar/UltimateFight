@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
+using Model;
 
-namespace Model
+namespace UI
+
 {
     public class Character
     {

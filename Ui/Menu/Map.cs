@@ -163,7 +163,6 @@ namespace UI
             if ( _Map4.GetGlobalBounds().Contains(MousePosition.X, MousePosition.Y) ) _mapDisplay.Texture = new Texture("../../../../img/stages/stage4.png");
             if ( _Map5.GetGlobalBounds().Contains(MousePosition.X, MousePosition.Y) ) _mapDisplay.Texture = new Texture("../../../../img/stages/stage5.png");
             if ( _Map6.GetGlobalBounds().Contains(MousePosition.X, MousePosition.Y) ) _mapDisplay.Texture = new Texture("../../../../img/stages/stage6.jpg");
-
         }
 
         private void ClickSelectMap(MouseButtonEventArgs e, RenderWindow window)

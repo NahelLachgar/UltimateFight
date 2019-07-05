@@ -115,13 +115,13 @@ namespace UI
             {
                 case 0:  // Mode Player versus A.I
                          //_characterMenu.Draw(mainMenu, this, window);
-                    this._state = new CharacterMenu();
+                    this._state = new CharacterMenu(window);
 
                     break;
 
                 case 1:  // Mode Player Versus Player
                     //_characterMenu.Draw(mainMenu, this, window);
-                    this._state = new CharacterMenu();
+                    this._state = new CharacterMenu(window);
                     break;
 
                 case 2:  // Mode online

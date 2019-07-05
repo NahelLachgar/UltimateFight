@@ -48,20 +48,20 @@ namespace UI
                     _startGame.Draw(window, _mainMenu);                   
                     break;
 
-                case 1:  // Option : "Option"
-                    break;
+                //case 1:  // Option : "Option"
+                //    break;
 
-                case 2:  // Option : "Statistiques"
-                    break;
+                //case 2:  // Option : "Statistiques"
+                //    break;
 
-                case 3:  // Option : "Coups spéciaux"
-                    break;
+                //case 3:  // Option : "Coups spéciaux"
+                //    break;
 
-                case 4:  // Option : "Crédit"
+                case 1:  // Option : "Crédit"
                     _credit.Draw(window, _mainMenu);
                     break;
 
-                case 5:  // Option : "Exit"
+                case 2:  // Option : "Exit"
                     window.Close();
                     break;
 

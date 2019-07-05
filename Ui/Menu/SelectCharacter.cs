@@ -19,33 +19,55 @@ namespace Model
         private ConvexShape _imgPlayer1 = new ConvexShape();
         private ConvexShape _imgPlayer2 = new ConvexShape();
 
-        internal SelectCharacter()
+        internal SelectCharacter(RenderWindow window)
         {
             _avatars = CreateAvatars();
             _nameAvatars = CreateNameAvatars();
+            window.MouseButtonReleased += (sender, e) => ClickOnCharacter(window, e);
+
         }
 
+        private void ClickOnCharacter(RenderWindow window, MouseButtonEventArgs e)
+        {
+            Vector2i mousePosition = Mouse.GetPosition(window);
+
+            for ( byte i = 0; i <= /*_avatars.Count-1*/7; i++ )
+            {
+                if ( _avatars[i].GetGlobalBounds().Contains(mousePosition.X, mousePosition.Y) )
+                {
+                    if ( e.Button == Mouse.Button.Left )
+                    {
+
+                        if ( _characterPlayer1 == string.Empty )
+                        { _characterPlayer1 = _nameAvatars[i]; }
+
+                        else if ( _characterPlayer1 != string.Empty ) _characterPlayer2 = _nameAvatars[i];
+
+                    }
+                }
+            }
+        }
 
         internal void Update(RenderWindow window)
         {
             ImgChararctersConstruction();
             Vector2i mousePosition = Mouse.GetPosition(window);
 
-            for ( byte i = 0; i <= /*_avatars.Count-1*/7 ; i++ )
-            {
-                if ( _avatars[i].GetGlobalBounds().Contains(mousePosition.X, mousePosition.Y) )
-                {
-                    if ( Mouse.IsButtonPressed(Mouse.Button.Left) )
-                    {
+            //for ( byte i = 0; i <= /*_avatars.Count-1*/7 ; i++ )
+            //{
+            //    if ( _avatars[i].GetGlobalBounds().Contains(mousePosition.X, mousePosition.Y) )
+            //    {
+            //        if ( Mouse.IsButtonPressed(Mouse.Button.Left) )
+            //        {
 
-                        if ( _characterPlayer1 == string.Empty )
-                        { _characterPlayer1 = _nameAvatars[i]; window.WaitAndDispatchEvents(); window.WaitAndDispatchEvents(); }
+            //            if ( _characterPlayer1 == string.Empty )
+            //            { _characterPlayer1 = _nameAvatars[i]; window.WaitAndDispatchEvents(); window.WaitAndDispatchEvents(); }
 
-                        else if ( _characterPlayer1 != string.Empty ) _characterPlayer2 = _nameAvatars[i];
+            //            else if ( _characterPlayer1 != string.Empty ) _characterPlayer2 = _nameAvatars[i];
                         
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
         }
 
